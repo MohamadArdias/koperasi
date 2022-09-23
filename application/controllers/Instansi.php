@@ -14,7 +14,7 @@ class Instansi extends CI_Controller
 
         $config['base_url'] = 'http://localhost/koperasi/index.php/Instansi/index';
         $config['total_rows'] = $this->Instansi->countAllInstansi();
-        $config['per_page'] = 10;
+        $config['per_page'] = 25;
         $config['num_links'] = 2;
 
         // styling
