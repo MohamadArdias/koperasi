@@ -18,22 +18,22 @@ $this->load->view('templates/sidebar');
         <th>Tanggal Keluar</th>
         <th>Golongan</th> -->
         <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($anggota as $ang) : ?>
+        <tr>
+          <td><?= $ang['KODE_ANG']; ?></td>
+          <td><?= $ang['NAMA_ANG']; ?></td>
+          <td><?= $ang['URUT_ANG']; ?></td>
+          <td>
+            <a href="<?= base_url(); ?>index.php/Anggota/detail/<?= $ang['URUT_ANG']; ?>" class="btn btn-success">Detail</a>
+            <a href="#" class="btn btn-warning">Edit</a>
+            <a href="#" class="btn btn-danger" onclick="return confirm('Yakin?');">Hapus</a>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-                <?php foreach ($anggota as $ang) : ?>
-                    <tr>
-                        <td><?= $ang['KODE_ANG']; ?></td>
-                        <td><?= $ang['NAMA_ANG']; ?></td>
-                        <td><?= $ang['URUT_ANG']; ?></td>
-                        <td>
-                            <a href="<?= base_url();?>index.php/Anggota/detail <?= $ang['URUT_ANG'];?>" class="btn btn-success">Detail</a>
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <a href="#" class="btn btn-danger" onclick="return confirm('Yakin?');">Hapus</a>
-                        </td>
-                    </tr>
-                <?php endforeach ?>
-            </tbody>
+      <?php endforeach ?>
+    </tbody>
   </table>
 </div>
 
