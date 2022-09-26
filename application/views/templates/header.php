@@ -45,11 +45,8 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="<?= base_url(); ?>index.php/" class="logo d-flex align-items-center">
                 <img src="<?= base_url('public'); ?>/assets/img/logo.png" alt="">
-<<<<<<< Updated upstream
+
                 <span class="d-none d-lg-block">Koperasi</span>
-=======
-                <span class="d-none d-lg-block">KOPERASI</span>
->>>>>>> Stashed changes
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -116,7 +113,7 @@
                             <i class="bi bi-check-circle text-success"></i>
                             <div>
                                 <h4>Data Anggota berhasil dihapus</h4>
-                                <p>Telah dihapus dosa-dosanya</p>
+                                <p>hoooh tenan</p>
                                 <p>2 jam yang lalu</p>
                             </div>
                         </li>
@@ -129,7 +126,7 @@
                             <i class="bi bi-info-circle text-primary"></i>
                             <div>
                                 <h4>Data Anggota berhasil diubah</h4>
-                                <p>Data Alga Saputra telah diubah pada bagian Tempat Tanggal Lahir</p>
+                                <p>ahhh yang bener</p>
                                 <p>4 jam yang lalu</p>
                             </div>
                         </li>
@@ -166,7 +163,7 @@
                                 <img src="<?= base_url('public'); ?>/assets/img/messages-1.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Moh. Ardias Ade Aga</h4>
-                                    <p>Hello World!</p>
+                                    <p>heh affaaann tuhh</p>
                                     <p>4 jam yang lalu</p>
                                 </div>
                             </a>
@@ -180,7 +177,7 @@
                                 <img src="<?= base_url('public'); ?>/assets/img/messages-2.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Alga Saputra</h4>
-                                    <p>P!</p>
+                                    <p>hallo cok</p>
                                     <p>6 jam yang lalu</p>
                                 </div>
                             </a>
@@ -194,7 +191,7 @@
                                 <img src="<?= base_url('public'); ?>/assets/img/messages-3.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Afdal Zikri</h4>
-                                    <p>Hi!</p>
+                                    <p>nande nande</p>
                                     <p>8 jam yang lalu</p>
                                 </div>
                             </a>
@@ -202,6 +199,21 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="<?= base_url('public'); ?>/assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>Aldin Regas</h4>
+                                    <p>araaa araa</p>
+                                    <p>7 jam yang lalu</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
 
                         <li class="dropdown-footer">
                             <a href="#">Tampilkan semua pesan</a>
