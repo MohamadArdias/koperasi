@@ -45,7 +45,11 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="<?= base_url(); ?>index.php/" class="logo d-flex align-items-center">
                 <img src="<?= base_url('public'); ?>/assets/img/logo.png" alt="">
+<<<<<<< Updated upstream
                 <span class="d-none d-lg-block">Koperasi</span>
+=======
+                <span class="d-none d-lg-block">KOPERASI</span>
+>>>>>>> Stashed changes
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
