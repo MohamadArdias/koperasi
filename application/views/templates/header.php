@@ -43,7 +43,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="<?= base_url(); ?>index.php/" class="logo d-flex align-items-center">
                 <img src="<?= base_url('public'); ?>/assets/img/logo.png" alt="">
                 <span class="d-none d-lg-block">Koperasi</span>
             </a>
