@@ -22,7 +22,7 @@ $this->load->view('templates/sidebar');
     <thead>
       <tr>
         <th>No. Urut</th>
-        <th>Nama</th>
+        <th>Nama Anggota</th>
         <th>Status / Instansi</th>
         <th>Golongan</th>
         <th>Aksi</th>

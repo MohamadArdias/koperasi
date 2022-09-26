@@ -22,9 +22,9 @@ $this->load->view('templates/sidebar');
             <thead>
                 <tr>
                     <th>Kode Instansi</th>
-                    <th>Instansi</th>
+                    <th>Nama Instansi</th>
                     <th>Alamat</th>
-                    <th>No Telepon</th>
+                    <th>Nomor Telepon</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
