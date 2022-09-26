@@ -76,7 +76,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                         <li class="dropdown-header">
                             Kamu memiliki 4 notifikasi baru
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Tampilkan semua</span></a>
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat semua</span></a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -85,9 +85,9 @@
                         <li class="notification-item">
                             <i class="bi bi-exclamation-circle text-warning"></i>
                             <div>
-                                <h4>Lorem Ipsum</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>30 min. ago</p>
+                                <h4>Data Instansi berhasil ditambahkan</h4>
+                                <p>Tapi boong</p>
+                                <p>30 menit yang lalu</p>
                             </div>
                         </li>
 
@@ -98,9 +98,9 @@
                         <li class="notification-item">
                             <i class="bi bi-x-circle text-danger"></i>
                             <div>
-                                <h4>Atque rerum nesciunt</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>1 hr. ago</p>
+                                <h4>Profil anda berhasil diubah</h4>
+                                <p>Telah diubah menjadi sukses</p>
+                                <p>1 jam yang lalu</p>
                             </div>
                         </li>
 
@@ -111,9 +111,9 @@
                         <li class="notification-item">
                             <i class="bi bi-check-circle text-success"></i>
                             <div>
-                                <h4>Sit rerum fuga</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>2 hrs. ago</p>
+                                <h4>Data Anggota berhasil dihapus</h4>
+                                <p>Telah dihapus dosa-dosanya</p>
+                                <p>2 jam yang lalu</p>
                             </div>
                         </li>
 
@@ -124,9 +124,9 @@
                         <li class="notification-item">
                             <i class="bi bi-info-circle text-primary"></i>
                             <div>
-                                <h4>Dicta reprehenderit</h4>
-                                <p>Quae dolorem earum veritatis oditseno</p>
-                                <p>4 hrs. ago</p>
+                                <h4>Data Anggota berhasil diubah</h4>
+                                <p>Data Alga Saputra telah diubah pada bagian Tempat Tanggal Lahir</p>
+                                <p>4 jam yang lalu</p>
                             </div>
                         </li>
 
@@ -151,7 +151,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                         <li class="dropdown-header">
                             Kamu memiliki 3 pesan baru
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat semua</span></a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -161,9 +161,9 @@
                             <a href="#">
                                 <img src="<?= base_url('public'); ?>/assets/img/messages-1.jpg" alt="" class="rounded-circle">
                                 <div>
-                                    <h4>Maria Hudson</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>4 hrs. ago</p>
+                                    <h4>Moh. Ardias Ade Aga</h4>
+                                    <p>Hello World!</p>
+                                    <p>4 jam yang lalu</p>
                                 </div>
                             </a>
                         </li>
@@ -175,9 +175,9 @@
                             <a href="#">
                                 <img src="<?= base_url('public'); ?>/assets/img/messages-2.jpg" alt="" class="rounded-circle">
                                 <div>
-                                    <h4>Anna Nelson</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>6 hrs. ago</p>
+                                    <h4>Alga Saputra</h4>
+                                    <p>P!</p>
+                                    <p>6 jam yang lalu</p>
                                 </div>
                             </a>
                         </li>
@@ -189,9 +189,9 @@
                             <a href="#">
                                 <img src="<?= base_url('public'); ?>/assets/img/messages-3.jpg" alt="" class="rounded-circle">
                                 <div>
-                                    <h4>David Muldon</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>8 hrs. ago</p>
+                                    <h4>Afdal Zikri</h4>
+                                    <p>Hi!</p>
+                                    <p>8 jam yang lalu</p>
                                 </div>
                             </a>
                         </li>
