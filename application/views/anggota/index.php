@@ -47,8 +47,6 @@ $this->load->view('templates/sidebar');
   <?= $this->pagination->create_links(); ?>
 </div>
 
-<p>To understand the example better, we have added borders to the table.</p>
-
 </body>
 
 <?php
