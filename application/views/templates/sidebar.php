@@ -13,7 +13,7 @@
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/">
                   <i class="bi bi-grid"></i>
-                  <span>User</span>
+                  <span>Pengguna</span>
               </a>
           </li>
           
