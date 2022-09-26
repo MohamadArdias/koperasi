@@ -36,8 +36,8 @@ $this->load->view('templates/sidebar');
                         <td><?= $ins['ALM_INS']; ?></td>
                         <td><?= $ins['TLP_INS']; ?></td>
                         <td>
-                            <a href="<?= base_url(); ?>index.php/instansi/edit/<?= $ins['KODE_INS']; ?>" class="btn btn-warning">edit</a>
-                            <a href="<?= base_url(); ?>index.php/instansi/hapus/<?= $ins['KODE_INS']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">delete</a>
+                            <a href="<?= base_url(); ?>index.php/instansi/edit/<?= $ins['KODE_INS']; ?>" class="btn btn-warning">Edit</a>
+                            <a href="<?= base_url(); ?>index.php/instansi/hapus/<?= $ins['KODE_INS']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach ?>
