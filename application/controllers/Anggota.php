@@ -89,7 +89,7 @@ class Anggota extends CI_Controller
 
     public function edit($URUT_ANG)
     {
-        $this->data['title'] = 'Ubah data anggota';
+        $this->data['title'] = 'Edit Data Anggota';
         $this->data['anggota'] = $this->Anggota->getAnggotaByUrut($URUT_ANG);
 
         $this->form_validation->set_rules('URUT_ANG', 'nomor urut anggota', 'required');

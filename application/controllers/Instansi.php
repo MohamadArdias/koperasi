@@ -76,7 +76,7 @@ class Instansi extends CI_Controller
 
     public function edit($KODE_INS)
     {
-        $this->data['title'] = 'Ubah data instansi';
+        $this->data['title'] = 'Edit Data Instansi';
         $this->data['instansi'] = $this->Instansi->getInstansiByKode($KODE_INS);
 
         $this->form_validation->set_rules('KODE_INS', 'Kode Instansi', 'required');
