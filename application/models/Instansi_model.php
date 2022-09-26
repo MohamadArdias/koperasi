@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class Instansi_model extends  CI_Model{
+class Instansi_model extends  CI_Model
+{
     public function getAllInstansi()
     {
         return $this->db->get('instan')->result_array();
@@ -15,6 +16,39 @@ class Instansi_model extends  CI_Model{
     {
         return $this->db->get('instan')->num_rows();
     }
-}
 
-?>
+    public function tambahDataInstansi()
+    {
+        $data = [
+            "KODE_INS" => $this->input->post('KODE_INS', true),
+            "NAMA_INS" => $this->input->post('NAMA_INS', true),
+            "ALM_INS" => $this->input->post('ALM_INS', true),
+            "TLP_INS" => $this->input->post('TLP_INS', true),
+        ];
+
+        $this->db->insert('instan', $data);
+    }
+
+    public function hapusDataInstansi($KODE_INS)
+    {
+        $this->db->delete('instan', ['KODE_INS' => $KODE_INS]);
+    }
+
+    public function getInstansiByKode($KODE_INS)
+    {
+        return $this->db->get_where('instan', ['KODE_INS' => $KODE_INS])->row_array();
+    }
+
+    public function editDataInstansi()
+    {
+        $this->data = [
+            "KODE_INS" => $this->input->post('KODE_INS', true),
+            "NAMA_INS" => $this->input->post('NAMA_INS', true),
+            "ALM_INS" => $this->input->post('ALM_INS', true),
+            "TLP_INS" => $this->input->post('TLP_INS', true),
+        ];
+
+        $this->db->where('KODE_INS', $this->input->post('KODE_INS'));
+        $this->db->update('instan', $this->data);
+    }
+}

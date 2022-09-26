@@ -5,7 +5,19 @@ $this->load->view('templates/sidebar');
 <div class="row">
 
     <div class="card">
-        <!-- <div class="card-body"> -->
+        <?php if ($this->session->flashdata('flash')) : ?>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Data instansi <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="mt-3">
+            <a href="<?= base_url(); ?>index.php/Instansi/tambah" class="btn btn-primary">Tambah Instansi</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -24,8 +36,8 @@ $this->load->view('templates/sidebar');
                         <td><?= $ins['ALM_INS']; ?></td>
                         <td><?= $ins['TLP_INS']; ?></td>
                         <td>
-                            <a href="#" class="btn btn-warning">edit</a>
-                            <a href="#" class="btn btn-danger" onclick="return confirm('Yakin?');">delete</a>
+                            <a href="<?= base_url(); ?>index.php/instansi/edit/<?= $ins['KODE_INS']; ?>" class="btn btn-warning">edit</a>
+                            <a href="<?= base_url(); ?>index.php/instansi/hapus/<?= $ins['KODE_INS']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">delete</a>
                         </td>
                     </tr>
                 <?php endforeach ?>

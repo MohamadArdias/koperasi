@@ -10,6 +10,8 @@ class Anggota extends CI_Controller
     
     public function index()
     {
-        $this->load->view('Anggota/index');
+        $this->data['title'] = 'Anggota';
+
+        $this->load->view('Anggota/index', $this->data);
     }
 }
