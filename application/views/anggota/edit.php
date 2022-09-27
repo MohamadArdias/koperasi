@@ -6,15 +6,18 @@ $this->load->view('templates/sidebar');
 <div class="card">
     <form action="" method="POST">
         <div class="card-body row mt-4">
-            <div >
-                <input type="hidden" name="URUT_ANG" class="form-control" id="URUT_ANG" value="<?= $anggota['URUT_ANG']; ?>" /> 
+            <div>
+                <input type="hidden" name="URUT_ANG" class="form-control" id="URUT_ANG" value="<?= $anggota['URUT_ANG']; ?>" />
                 <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
             </div>
 
             <div class="form-group row mb-2">
                 <label for="nama" class="col-sm-2 text-end control-label col-form-label">Kode Anggota</label>
                 <div class="col-sm-9">
-                    <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" placeholder="-" value="<?= $anggota['KODE_ANG']; ?>" /> 
+                    <div class="input-group">
+                        <i class="fa-solid fa-user input-group-text"></i>
+                        <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" placeholder="-" value="<?= $anggota['KODE_ANG']; ?>" />
+                    </div>
                     <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
                 </div>
             </div>
@@ -22,7 +25,10 @@ $this->load->view('templates/sidebar');
             <div class="form-group row mb-2">
                 <label for="nama" class="col-sm-2 text-end control-label col-form-label">Nama</label>
                 <div class="col-sm-9">
-                    <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" value="<?= $anggota['NAMA_ANG']; ?>" /> 
+                    <div class="input-group">
+                        <i class="fa-solid fa-user input-group-text"></i>
+                        <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" value="<?= $anggota['NAMA_ANG']; ?>" />
+                    </div>
                     <small class="form-text text-danger"><?= form_error('NAMA_ANG'); ?></small>
                 </div>
             </div>
@@ -30,7 +36,10 @@ $this->load->view('templates/sidebar');
             <div class="form-group row mb-2">
                 <label for="kdins" class="col-sm-2 text-end control-label col-form-label">Kode Instansi</label>
                 <div class="col-sm-9">
-                    <input type="text" name="KODE_INS" class="form-control" id="KODE_INS" value="<?= $anggota['KODE_INS']; ?>" /> 
+                    <div class="input-group">
+                        <i class="fa-solid fa-briefcase input-group-text"></i>
+                        <input type="text" name="KODE_INS" class="form-control" id="KODE_INS" value="<?= $anggota['KODE_INS']; ?>" />
+                    </div>
                     <small class="form-text text-danger"><?= form_error('KODE_INS'); ?></small>
                 </div>
             </div>
@@ -38,7 +47,10 @@ $this->load->view('templates/sidebar');
             <div class="form-group row mb-2">
                 <label for="namains" class="col-sm-2 text-end control-label col-form-label">Nama Instansi</label>
                 <div class="col-sm-9">
-                    <input type="text" name="NAMA_INS" class="form-control" id="NAMA_INS" placeholder="-" value="<?= $anggota['NAMA_INS']; ?>" /> 
+                    <div class="input-group">
+                        <i class="fa-solid fa-briefcase input-group-text"></i>
+                        <input type="text" name="NAMA_INS" class="form-control" id="NAMA_INS" placeholder="-" value="<?= $anggota['NAMA_INS']; ?>" />
+                    </div>
                     <small class="form-text text-danger"><?= form_error('NAMA_INS'); ?></small>
                 </div>
             </div>
@@ -57,9 +69,12 @@ $this->load->view('templates/sidebar');
             <div class="form-group row mb-2">
                 <label for="alamat" class="col-sm-2 text-end control-label col-form-label">Alamat</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ALM_ANG" placeholder="-" name="ALM_ANG" value="<?= $anggota['ALM_ANG']; ?>">
-                    <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small>
+                    <div class="input-group">
+                        <i class="fa-solid fa-location-dot input-group-text"></i>
+                        <input type="text" class="form-control" id="ALM_ANG" placeholder="-" name="ALM_ANG" value="<?= $anggota['ALM_ANG']; ?>">
+                    </div>
                 </div>
+                <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small>
             </div>
 
             <div class="form-group row mb-2">
@@ -87,15 +102,19 @@ $this->load->view('templates/sidebar');
             <div class="form-group row mb-2">
                 <label for="Golongan" class="col-sm-2 text-end control-label col-form-label">Golongan</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="GOL" placeholder="-" name="GOL" value="<?= $anggota['GOL']; ?>">
+                    <div class="input-group ">
+                        <i class="fa-solid fa-people-group input-group-text"></i>
+                        <input type="text" class="form-control" id="GOL" placeholder="-" name="GOL" value="<?= $anggota['GOL']; ?>">
+                    </div>
                     <small class="form-text text-danger"><?= form_error('GOL') ?></small>
                 </div>
-                <div class="col-sm-2 text-end mt-3 ">
-                    <button type="submit" name="edit" class="btn btn-primary">simpan</button>
-                </div>
+            </div>
+            <div class="col-sm-2 text-end mt-3 ">
+                <button type="submit" name="edit" class="btn btn-primary">simpan</button>
             </div>
         </div>
-    </form>
+</div>
+</form>
 </div>
 <?php
 $this->load->view('templates/footer');
