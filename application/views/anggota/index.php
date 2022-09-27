@@ -18,8 +18,8 @@ $this->load->view('templates/sidebar');
     <a href="<?= base_url(); ?>index.php/Anggota/tambah" class="btn btn-primary">Tambah Anggota</a>
   </div>
   <br>
-  <table class="table">
-    <thead>
+  <table class="table table-bordered">
+    <thead class="table-primary">
       <tr>
         <th class="text-center">No. Urut</th>
         <th class="text-center">Nama Anggota</th>
