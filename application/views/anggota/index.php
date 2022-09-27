@@ -21,21 +21,21 @@ $this->load->view('templates/sidebar');
   <table class="table">
     <thead>
       <tr>
-        <th>No. Urut</th>
-        <th>Nama Anggota</th>
-        <th>Status / Instansi</th>
-        <th>Golongan</th>
-        <th>Aksi</th>
+        <th class="text-center">No. Urut</th>
+        <th class="text-center">Nama Anggota</th>
+        <th class="text-center">Status / Instansi</th>
+        <th class="text-center">Golongan</th>
+        <th class="text-center">Aksi</th>
       </tr>
     </thead>
     <tbody>
       <?php foreach ($anggota as $ang) : ?>
         <tr>
-          <td><?= $ang['URUT_ANG']; ?></td>
-          <td><?= $ang['NAMA_ANG']; ?></td>
-          <td><?= $ang['NAMA_INS']; ?></td>
-          <td><?= $ang['GOL']; ?></td>
-          <td>
+          <td class="text-center"><?= $ang['URUT_ANG']; ?></td>
+          <td class="text-center"><?= $ang['NAMA_ANG']; ?></td>
+          <td class="text-center"><?= $ang['NAMA_INS']; ?></td>
+          <td class="text-center"><?= $ang['GOL']; ?></td>
+          <td class="text-center">
             <a href="<?= base_url(); ?>index.php/Anggota/detail/<?= $ang['URUT_ANG']; ?>" class="btn btn-primary">Detail</a>
             <a href="<?= base_url(); ?>index.php/Anggota/edit/<?= $ang['URUT_ANG']; ?>" class="btn btn-warning">Edit</a>
             <a href="<?= base_url(); ?>index.php/Anggota/hapus/<?= $ang['URUT_ANG']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">Hapus</a>
