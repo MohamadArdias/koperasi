@@ -8,6 +8,8 @@
     <title><?= $title; ?></title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicons -->
     <link href="<?= base_url('public'); ?>/assets/img/favicon.png" rel="icon">
@@ -29,6 +31,10 @@
     <!-- Template Main CSS File -->
     <link href="<?= base_url('public'); ?>/assets/css/style.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+
     <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.0
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -46,11 +52,10 @@
             <a href="<?= base_url(); ?>index.php/" class="logo d-flex align-items-center">
                 <img src="<?= base_url('public'); ?>/assets/img/logo.png" alt="">
 
-<<<<<<< HEAD
                 <span class="d-none d-lg-block">KOPERASI</span>
-=======
-                <span class="d-none d-lg-block">Koperasi</span>
->>>>>>> af6ce76ee33dffc624fb1060c3bf3a91ff317e34
+
+                <!-- <span class="d-none d-lg-block">Koperasi</span> -->
+
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
