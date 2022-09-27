@@ -25,10 +25,16 @@ class Anggota_model extends  CI_Model
     public function tambahDataAnggota()
     {
         $this->data = [
+            "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "URUT_ANG" => $this->input->post('URUT_ANG', true),
             "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
             "KODE_INS" => $this->input->post('KODE_INS', true),
             "NAMA_INS" => $this->input->post('NAMA_INS', true),
+            "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
+            "ALM_ANG" => $this->input->post('ALM_ANG', true),
+            "TGLM_ANG" => $this->input->post('TGLM_ANG', true),
+            "TGLK_ANG" => $this->input->post('TGLK_ANG', true),
+            "GOL" => $this->input->post('GOL', true),
         ];
 
         $this->db->insert('anggota', $this->data);
@@ -47,6 +53,7 @@ class Anggota_model extends  CI_Model
     public function editDataAnggota()
     {
         $this->data = [
+            "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "URUT_ANG" => $this->input->post('URUT_ANG', true),
             "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
             "KODE_INS" => $this->input->post('KODE_INS', true),

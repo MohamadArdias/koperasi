@@ -15,14 +15,16 @@ $this->load->view('templates/sidebar');
 ?>
 
 <body>
-    <div class="card-header text-bg-info">
-        UBAH DATA ANGGOTA
-    </div>
     <div class="card">
         <form action="" method="POST">
             <div>
                 <input type="hidden" name="URUT_ANG" class="form-control" id="URUT_ANG" value="<?= $anggota['URUT_ANG']; ?>" /> <br>
                 <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+            </div>
+            <div>
+                <label for="nama" class="from-label">Kode Anggota</label>
+                <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" placeholder="-" value="<?= $anggota['KODE_ANG']; ?>" /> <br>
+                <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
             </div>
             <div>
                 <label for="nama" class="from-label">Nama</label>

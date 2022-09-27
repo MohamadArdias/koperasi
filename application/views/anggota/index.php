@@ -17,7 +17,7 @@ $this->load->view('templates/sidebar');
   <div class="mt-3">
     <a href="<?= base_url(); ?>index.php/Anggota/tambah" class="btn btn-primary">Tambah Anggota</a>
   </div>
-
+  <br>
   <table class="table">
     <thead>
       <tr>
