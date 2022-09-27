@@ -18,7 +18,7 @@ $this->load->view('templates/sidebar');
         <label class="position-absolute top-0 end-0"><?= $anggota['NAMA_ANG']; ?></label>
         <br>
         <label for="ttl" class="form-label"> Tempat Tanggal Lahir</label>
-        <input type="date" id="" name="birthday" value="1999-09-19" readonly>
+        <input type="text" class="form-control" id="" name="birthday" value="<?= $anggota['TLHR_ANG']; ?>" readonly>
         <br>
         <label for="kredit" class="form-label">Limit Kredit </label>
         <div class="input-group mb-3">
