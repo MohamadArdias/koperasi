@@ -5,65 +5,98 @@ $this->load->view('templates/sidebar');
 
 <div class="card">
     <form action="" method="POST">
-        <br>
-        <div>
-            <label for="nama" class="from-label">Kode Anggota</label>
-            <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" placeholder="-" /> <br>
-            <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
-        </div>
-        <div>
-            <label for="nama" class="from-label">No Urut Anggota</label>
-            <input type="text" name="URUT_ANG" class="form-control" id="URUT_ANG" placeholder="-" /> <br>
-            <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
-        </div>
-        <div>
-            <label for="nama" class="from-label">Nama Anggota</label>
-            <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" placeholder="-" /> <br>
-            <small class="form-text text-danger"><?= form_error('NAMA_ANG'); ?></small>
-        </div>
-        <div>
-            <label for="nama" class="from-label">Kode Instansi</label>
-            <input type="text" name="KODE_INS" class="form-control" id="KODE_INS" placeholder="-" /> <br>
-            <small class="form-text text-danger"><?= form_error('KODE_INS'); ?></small>
-        </div>
-        <div>
-            <label for="nama" class="from-label">Nama Instansi</label>
-            <input type="text" name="NAMA_INS" class="form-control" id="NAMA_INS" placeholder="-" /> <br>
-            <small class="form-text text-danger"><?= form_error('NAMA_INS'); ?></small>
-        </div>
-        <label for="ttl" class="form-label"> Tempat Tanggal Lahir</label>
-        <div class="input-group mb-3">
-            <i class="fa-solid fa-calendar-days input-group-text"></i>
-            <input type="text" class="form-control" id="TLHR_ANG" name="TLHR_ANG" placeholder="-">
-        </div>
-        <small class="form-text text-danger"><?= form_error('TLHR_ANG') ?></small>
-        <div>
-            <label for="alamat" class="from-label">Alamat</label>
-            <input type="text" class="form-control" id="ALM_ANG" placeholder="-" name="ALM_ANG"><br>
-            <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small>
-        </div>
-        <label for="In" class="from-label">Tanggal Masuk</label>
-        <div class="input-group mb-3">
-            <i class="fa-solid fa-calendar-days input-group-text"></i>
-            <input type="text" class="form-control" id="TGLM_ANG" placeholder="-" name="TGLM_ANG">
-        </div>
-        <small class="form-text text-danger"><?= form_error('TGLM_ANG') ?></small>
-        <label for="Out" class="from-label">Tanggal Keluar</label>
-        <div class="input-group mb-3">
-            <i class="fa-solid fa-calendar-days input-group-text"></i>
-            <input type="text" class="form-control" id="TGLK_ANG" placeholder="-" name="TGLK_ANG"><br>
-        </div>
-        <small class="form-text text-danger"><?= form_error('TGLK_ANG') ?></small>
-        <div>
-            <label for="Golongan" class="from-label">Golongan</label>
-            <input type="text" class="form-control" id="GOL" placeholder="-" name="GOL">
-            <small class="form-text text-danger"><?= form_error('GOL') ?></small>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="position-absolute bottom-0 end-0 translate-middle">
-            <button type="submit" name="tambah" class="btn btn-primary">Simpan</button>
+        <div class="card-body row mt-4">
+            <div class="form-group row mb-2">
+                <label for="nama" class="col-sm-3 text-end control-label col-form-label">No Urut Anggota</label>
+                <div class="col-sm-9">
+                    <input type="text" name="URUT_ANG" class="form-control" id="URUT_ANG" placeholder="-" />
+                    <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="nama" class="col-sm-3 text-end control-label col-form-label">Kode Anggota</label>
+                <div class="col-sm-9">
+                    <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" placeholder="-" />
+                    <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="nama" class="col-sm-3 text-end control-label col-form-label">Nama</label>
+                <div class="col-sm-9">
+                    <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" />
+                    <small class="form-text text-danger"><?= form_error('NAMA_ANG'); ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="kdins" class="col-sm-3 text-end control-label col-form-label">Kode Instansi</label>
+                <div class="col-sm-9">
+                    <input type="text" name="KODE_INS" class="form-control" id="KODE_INS" />
+                    <small class="form-text text-danger"><?= form_error('KODE_INS'); ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="namains" class="col-sm-3 text-end control-label col-form-label">Nama Instansi</label>
+                <div class="col-sm-9">
+                    <input type="text" name="NAMA_INS" class="form-control" id="NAMA_INS" placeholder="-" />
+                    <small class="form-text text-danger"><?= form_error('NAMA_INS'); ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="ttl" class="col-sm-3 text-end control-label col-form-label"> Tempat Tanggal Lahir</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <i class="fa-solid fa-calendar-days input-group-text "></i>
+                        <input type="text" class="form-control" id="TLHR_ANG" name="TLHR_ANG" placeholder="-">
+                    </div>
+                    <small class="form-text text-danger"><?= form_error('TLHR_ANG') ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="alamat" class="col-sm-3 text-end control-label col-form-label">Alamat</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ALM_ANG" placeholder="-" name="ALM_ANG">
+                    <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="In" class="col-sm-3 text-end control-label col-form-label">Tanggal Masuk</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <i class="fa-solid fa-calendar-days input-group-text"></i>
+                        <input type="text" class="form-control" id="TGLM_ANG" placeholder="-" name="TGLM_ANG">
+                    </div>
+                    <small class="form-text text-danger"><?= form_error('TGLM_ANG') ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="Out" class="col-sm-3 text-end control-label col-form-label">Tanggal Keluar</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <i class="fa-solid fa-calendar-days input-group-text"></i>
+                        <input type="text" class="form-control" id="TGLK_ANG" placeholder="-" name="TGLK_ANG">
+                    </div>
+                    <small class="form-text text-danger"><?= form_error('TGLK_ANG') ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="Golongan" class="col-sm-3 text-end control-label col-form-label">Golongan</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="GOL" placeholder="-" name="GOL">
+                    <small class="form-text text-danger"><?= form_error('GOL') ?></small>
+                </div>
+                <div class="col-sm-3 text-end mt-3 ">
+                    <button type="submit" name="edit" class="btn btn-primary">simpan</button>
+                </div>
+            </div>
         </div>
     </form>
 </div>
