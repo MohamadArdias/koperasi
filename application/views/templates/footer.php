@@ -28,6 +28,11 @@
 <script src="<?= base_url('public'); ?>/assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="<?= base_url('public'); ?>/assets/vendor/php-email-form/validate.js"></script>
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+
 <!-- Template Main JS File -->
 <script src="<?= base_url('public'); ?>/assets/js/main.js"></script>
 
