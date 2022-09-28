@@ -7,6 +7,16 @@ class Anggota_model extends  CI_Model
         return $this->db->get('anggota')->result_array();
     }
 
+    public function cariDataAnggota()
+    {
+        $keyword = $this->input->post('keyword', true);
+        $this->db->like('NAMA_ANG', $keyword);
+        $this->db->or_like('URUT_ANG', $keyword);
+        $this->db->or_like('KODE_INS', $keyword);
+        $this->db->or_like('NAMA_INS', $keyword);
+        return $this->db->get('anggota')->result_array();
+    }
+
     public function getAnggotaById($URUT_ANG)
     {
         return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();

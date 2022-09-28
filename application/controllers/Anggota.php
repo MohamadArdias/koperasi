@@ -12,7 +12,7 @@ class Anggota extends CI_Controller
     {
         $this->load->library('pagination');
 
-        $this->data['title'] = 'Anggota';
+        $this->data['title'] = 'Tabel Anggota';
 
         $config['base_url'] = 'http://localhost/koperasi/index.php/Anggota/index';
         $config['total_rows'] = $this->Anggota->countAllAnggota();
@@ -52,6 +52,11 @@ class Anggota extends CI_Controller
         $data['start'] = $this->uri->segment(3);
 
         $this->data['anggota'] = $this->Anggota->getAnggota($config['per_page'], $data['start']);
+
+        if ($this->input->post('keyword')) {
+            $this->data['anggota'] = $this->Anggota->cariDataAnggota();
+        }
+
         $this->load->view('Anggota/index', $this->data);
     }
 

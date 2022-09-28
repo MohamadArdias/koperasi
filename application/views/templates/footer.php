@@ -5,7 +5,7 @@
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
     <div class="copyright">
-        &copy; 2022 <strong><span>TIF'19 Polije</span></strong>. All Rights Reserved
+        &copy; 2022 <strong><span>INACTA</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
         <!-- All the links in the footer should remain intact. -->
