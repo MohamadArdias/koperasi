@@ -38,6 +38,13 @@
               </a>
           </li>
 
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Laporan">
+                  <i class="bi bi-grid"></i>
+                  <span>Cetak</span>
+              </a>
+          </li>
+
       </ul>
 
   </aside><!-- End Sidebar-->
