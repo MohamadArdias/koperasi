@@ -39,7 +39,7 @@
           </li>
 
           <li class="nav-item">
-              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Laporan">
+              <a class="nav-link collapsed" href="#">
                   <i class="bi bi-grid"></i>
                   <span>Cetak</span>
               </a>
