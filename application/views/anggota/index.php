@@ -64,8 +64,6 @@ $this->load->view('templates/sidebar');
   </div>
 </div>
 
-</body>
-
 <?php
 $this->load->view('templates/footer');
 ?>
