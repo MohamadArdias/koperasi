@@ -23,7 +23,7 @@ $this->load->view('templates/sidebar');
             <div>
               <a href="<?= base_url(); ?>index.php/Anggota/tambah" class="btn btn-primary">Tambah Anggota</a>
             </div>
-            <div class="col md 6"></div>
+            <div class="col"></div>
             <input type="text" class="form-control" placeholder="Pencarian" name="keyword">
             <!-- <div class="input-group-append"> -->
             <button class="btn btn-primary" type="submit">Cari</button>
