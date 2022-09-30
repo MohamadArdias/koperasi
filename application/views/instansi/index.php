@@ -9,7 +9,7 @@ $this->load->view('templates/sidebar');
             <div class="row mt-3">
                 <div class="col-md-6">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        Data instansi <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>
+                        Data Instansi <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
                     </div>
                 </div>
             </div>
@@ -18,8 +18,8 @@ $this->load->view('templates/sidebar');
         <div class="mt-3">
             <a href="<?= base_url(); ?>index.php/Instansi/tambah" class="btn btn-primary">Tambah Instansi</a>
         </div>
-        <table class="table">
-            <thead>
+        <table class="table table-bordered mt-3">
+            <thead class="table-primary">
                 <tr>
                     <th>Kode Instansi</th>
                     <th>Nama Instansi</th>
