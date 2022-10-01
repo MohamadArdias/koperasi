@@ -109,6 +109,7 @@ $this->load->view('templates/sidebar');
                     <small class="form-text text-danger"><?= form_error('GOL') ?></small>
                 </div>
             </div>
+            
             <div class="col-sm-4 text-end mt-3 ">
                 <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
                 <button type="submit" name="edit" class="btn btn-primary">simpan</button>
