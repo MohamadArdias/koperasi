@@ -12,17 +12,6 @@ $this->load->view('templates/sidebar');
             </div>
 
             <div class="form-group row mb-2">
-                <label for="nama" class="col-sm-2 text-end control-label col-form-label">Kode Anggota</label>
-                <div class="col-sm-9">
-                    <div class="input-group">
-                        <i class="bi-person-fill input-group-text"></i>
-                        <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" placeholder="-" value="<?= $anggota['KODE_ANG']; ?>" />
-                    </div>
-                    <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
-                </div>
-            </div>
-
-            <div class="form-group row mb-2">
                 <label for="nama" class="col-sm-2 text-end control-label col-form-label">Nama</label>
                 <div class="col-sm-9">
                     <div class="input-group">

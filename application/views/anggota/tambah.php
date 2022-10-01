@@ -18,17 +18,6 @@ $this->load->view('templates/sidebar');
             </div>
 
             <div class="form-group row mb-2">
-                <label for="nama" class="col-sm-2 text-end control-label col-form-label">Kode Anggota</label>
-                <div class="col-sm-9">
-                    <div class="input-group input-group-sm">
-                        <i class="bi-person-fill input-group-text"></i>
-                        <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" placeholder="-" />
-                    </div>
-                    <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
-                </div>
-            </div>
-
-            <div class="form-group row mb-2">
                 <label for="nama" class="col-sm-2 text-end control-label col-form-label">Nama</label>
                 <div class="col-sm-9">
                     <div class="input-group input-group-sm">
@@ -68,7 +57,7 @@ $this->load->view('templates/sidebar');
                         <i class="bi-calendar3 input-group-text "></i>
                         <input type="text" class="form-control" id="TLHR_ANG" name="TLHR_ANG" placeholder="-">
                     </div>
-                    <small class="form-text text-danger"><?= form_error('TLHR_ANG') ?></small>
+                    <!-- <small class="form-text text-danger"><?= form_error('TLHR_ANG') ?></small> -->
                 </div>
             </div>
 
@@ -79,7 +68,7 @@ $this->load->view('templates/sidebar');
                         <i class="bi-geo-alt-fill input-group-text"></i>
                         <input type="text" class="form-control" id="ALM_ANG" placeholder="-" name="ALM_ANG">
                     </div>
-                    <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small>
+                    <!-- <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small> -->
                 </div>
             </div>
 
@@ -90,7 +79,7 @@ $this->load->view('templates/sidebar');
                         <i class="bi-calendar3 input-group-text"></i>
                         <input type="text" class="form-control" id="TGLM_ANG" placeholder="-" name="TGLM_ANG">
                     </div>
-                    <small class="form-text text-danger"><?= form_error('TGLM_ANG') ?></small>
+                    <!-- <small class="form-text text-danger"><?= form_error('TGLM_ANG') ?></small> -->
                 </div>
             </div>
 
@@ -101,7 +90,7 @@ $this->load->view('templates/sidebar');
                         <i class="bi-calendar3 input-group-text"></i>
                         <input type="text" class="form-control" id="TGLK_ANG" placeholder="-" name="TGLK_ANG">
                     </div>
-                    <small class="form-text text-danger"><?= form_error('TGLK_ANG') ?></small>
+                    <!-- <small class="form-text text-danger"><?= form_error('TGLK_ANG') ?></small> -->
                 </div>
             </div>
 
@@ -122,6 +111,7 @@ $this->load->view('templates/sidebar');
         </div>
     </form>
 </div>
+
 <?php
 $this->load->view('templates/footer');
 ?>

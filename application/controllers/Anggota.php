@@ -70,15 +70,15 @@ class Anggota extends CI_Controller
     public function tambah()
     {
         $this->data['title'] = 'Tambah Data Anggota';
-        $this->form_validation->set_rules('KODE_ANG', 'kode anggota', 'required');
+        // $this->form_validation->set_rules('KODE_ANG', 'kode anggota', 'required');
         $this->form_validation->set_rules('URUT_ANG', 'nomor urut anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'nama anggota', 'required');
         $this->form_validation->set_rules('KODE_INS', 'kode instansi', 'required');
         $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
-        $this->form_validation->set_rules('ALM_ANG', 'alamat', 'required');
-        $this->form_validation->set_rules('TLHR_ANG', 'tanggal lahir', 'required');
-        $this->form_validation->set_rules('TGLM_ANG', 'tanggal masuk', 'required');
-        $this->form_validation->set_rules('TGLK_ANG', 'tanggal keluar', 'required');
+        // $this->form_validation->set_rules('ALM_ANG', 'alamat', 'required');
+        // $this->form_validation->set_rules('TLHR_ANG', 'tanggal lahir', 'required');
+        // $this->form_validation->set_rules('TGLM_ANG', 'tanggal masuk', 'required');
+        // $this->form_validation->set_rules('TGLK_ANG', 'tanggal keluar', 'required');
         $this->form_validation->set_rules('GOL', 'golongan', 'required');
 
 
