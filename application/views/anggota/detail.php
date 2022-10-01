@@ -107,7 +107,6 @@ $this->load->view('templates/sidebar');
         <div class="col-sm-2 text-end mt-3 ">
             <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
         </div>
->>>>>>> Stashed changes
     </div>
 </div>
 
