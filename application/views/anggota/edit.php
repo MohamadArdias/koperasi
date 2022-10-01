@@ -109,18 +109,23 @@ $this->load->view('templates/sidebar');
                     <small class="form-text text-danger"><?= form_error('GOL') ?></small>
                 </div>
             </div>
-            <div class="col-sm-2 text-end mt-3 ">
+            <div class="col-sm-4 text-end mt-3 ">
+                <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
                 <button type="submit" name="edit" class="btn btn-primary">simpan</button>
             </div>
         </div>
+    </form>
 </div>
-</form>
-</div>
+
+
 <?php
 $this->load->view('templates/footer');
 ?>
 
 <script>
+    function goBack() {
+        window.history.back();
+    }
     $(function() {
         $("#TLHR_ANG").datepicker({
             changeMonth: true,
@@ -133,4 +138,3 @@ $this->load->view('templates/footer');
         $("#TGLK_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
     })
 </script>
-</body>

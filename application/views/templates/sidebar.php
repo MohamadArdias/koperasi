@@ -32,9 +32,16 @@
           </li>
 
           <li class="nav-item">
-              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Laporan">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Keuangan">
                   <i class="bi bi-grid"></i>
-                  <span>Laporan</span>
+                  <span>Keuangan</span>
+              </a>
+          </li>
+          
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Kirim">
+                  <i class="bi bi-grid"></i>
+                  <span>Simpan Pinjam</span>
               </a>
           </li>
 
