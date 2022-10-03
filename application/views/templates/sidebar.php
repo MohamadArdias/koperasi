@@ -34,14 +34,14 @@
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Keuangan">
                   <i class="bi bi-grid"></i>
-                  <span>Keuangan</span>
+                  <span>Simpan Pinjam</span>
               </a>
           </li>
           
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Kirim">
                   <i class="bi bi-grid"></i>
-                  <span>Simpan Pinjam</span>
+                  <span>Keuangans</span>
               </a>
           </li>
 
