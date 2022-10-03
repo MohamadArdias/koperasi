@@ -9,12 +9,14 @@ class Kirim extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Kirim_model', 'Kirim');
+        $this->load->model('Instansi_model', 'Instansi'); //'Instansi' adalah alias dari 'Instansi_model'
+        $this->load->model('Keuangan_model', 'keuangan');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
-        $this->data['title'] = 'Cetakan ke Bank';
+        $this->data['title'] = 'Data Potongan Anggota';
         $this->data['keuangan'] = $this->Kirim->getAllKirim();
 
         if ($this->input->post('keyword')) {
@@ -148,5 +150,24 @@ class Kirim extends CI_Controller
 
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
+    }
+
+    public function cetakins()
+    {
+        $this->data['title'] = 'Cetak Per Instansi';
+        $this->data['instansi'] = $this->Instansi->getAllInstansi();
+
+        // $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);
+
+        $this->load->view('kirim/cetakins', $this->data);
+    }
+
+    public function printins($KODE_INS)
+    {
+        $this->data['title'] = 'Cetak Per Instansi';
+
+        $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);
+
+        $this->load->view('kirim/printins', $this->data);
     }
 }

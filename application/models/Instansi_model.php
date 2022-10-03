@@ -4,7 +4,11 @@ class Instansi_model extends  CI_Model
 {
     public function getAllInstansi()
     {
-        return $this->db->get('instan')->result_array();
+        // return $this->db->get('instan')->result_array();
+        $this->db->select('*');
+        $this->db->from('instan');
+        $this->db->where('KODE_INS !=', '99');
+        return  $this->db->get()->result_array();
     }
 
     public function cariDataInstansi()

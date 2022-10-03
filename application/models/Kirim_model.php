@@ -18,4 +18,12 @@ class Kirim_model extends CI_model
         $this->db->or_like('NAMA_INS', $keyword);
         return $this->db->get('keuangan')->result_array();
     }
+
+    public function cariDataInstansi()
+    {
+        $keyword = $this->input->post('keyword', true);
+        $this->db->like('KODE_INS', $keyword);
+        $this->db->or_like('NAMA_INS', $keyword);
+        return $this->db->get('instan')->result_array();
+    }
 }
