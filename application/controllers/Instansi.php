@@ -5,6 +5,7 @@ class Instansi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Instansi_model', 'Instansi'); //'Instansi' adalah alias dari 'Instansi_model'
+        $this->load->model('Keuangan_model', 'keuangan'); //'Instansi' adalah alias dari 'Instansi_model'
         $this->load->library('form_validation');
     }
 
@@ -103,5 +104,14 @@ class Instansi extends CI_Controller
         $this->Instansi->hapusDataInstansi($KODE_INS);
         $this->session->set_flashdata('flash', 'dihapus');
         redirect('instansi');
+    }
+
+    public function cetak($KODE_INS)
+    {
+        $this->data['title'] = 'Cetak Per Instansi';
+
+        $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);
+
+        $this->load->view('instansi/cetak', $this->data);
     }
 }

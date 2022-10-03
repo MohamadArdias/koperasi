@@ -61,4 +61,17 @@ class Instansi_model extends  CI_Model
         $this->db->where('KODE_INS', $this->input->post('KODE_INS'));
         $this->db->update('instan', $this->data);
     }
+
+    public function getAnggotaWhereKodeins($KODE_INS)
+    {
+        // return $this->db->get_where('keuangan', ['KODE_INS' => $KODE_INS])->row_array();
+        // ['kode' => $KODE_INS];
+        // $this->db->get('instan')
+        // $gg='03';
+
+        $this->db->select('*');
+        $this->db->from('keuangan');
+        $this->db->where('KODE_INS', $KODE_INS );
+        return  $this->db->get()->result_array();
+    }
 }
