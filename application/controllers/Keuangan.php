@@ -10,11 +10,11 @@ class Keuangan extends CI_Controller
 
     public function index()
     {
-        
+
         $this->data['title'] = 'Informasi Keuangan Anggota';
-        
+
         $this->load->library('pagination');
-        
+
         $config['base_url'] = 'http://localhost/koperasi/index.php/Keuangan/index';
         $config['total_rows'] = $this->Keuangan->countAllKeuangan();
         $config['per_page'] = 50;
@@ -57,9 +57,17 @@ class Keuangan extends CI_Controller
         if ($this->input->post('keyword')) {
             $this->data['keuangan'] = $this->Keuangan->cariDataKeuangan();
         }
-        
+
 
         $this->load->view('Keuangan/index', $this->data);
+    }
+
+    public function cetak($KODE_ANG)
+    {
+        $this->data['title'] = 'Cetak Anggota';
+        $this->data['keuangan'] = $this->Keuangan->getKeuanganByKode($KODE_ANG);
+
+        $this->load->view('Keuangan/cetak', $this->data);
     }
 
     // public function detail($URUT_ANG)
@@ -100,30 +108,5 @@ class Keuangan extends CI_Controller
     //     redirect('Anggota');
     // }
 
-    // public function edit($URUT_ANG)
-    // {
-    //     $this->data['title'] = 'Edit Data Anggota';
-    //     $this->data['anggota'] = $this->Anggota->getAnggotaByUrut($URUT_ANG);
-    //     $this->form_validation->set_rules('KODE_ANG', 'kode anggota', 'required');
-    //     $this->form_validation->set_rules('URUT_ANG', 'nomor urut anggota', 'required');
-    //     $this->form_validation->set_rules('NAMA_ANG', 'nama anggota', 'required');
-    //     $this->form_validation->set_rules('KODE_INS', 'kode instansi', 'required');
-    //     $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
-    //     $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
-    //     $this->form_validation->set_rules('ALM_ANG', 'alamat', 'required');
-    //     $this->form_validation->set_rules('TLHR_ANG', 'tanggal lahir', 'required');
-    //     $this->form_validation->set_rules('TGLM_ANG', 'tanggal masuk', 'required');
-    //     $this->form_validation->set_rules('TGLK_ANG', 'tanggal keluar', 'required');
-    //     $this->form_validation->set_rules('GOL', 'golongan', 'required');
 
-
-
-    //     if ($this->form_validation->run() == FALSE) {
-    //         $this->load->view('Anggota/edit', $this->data);
-    //     } else {
-    //         $this->Anggota->editDataAnggota();
-    //         $this->session->set_flashdata('flash', 'diubah');
-    //         redirect('Anggota');
-    //     }
-    // }
 }

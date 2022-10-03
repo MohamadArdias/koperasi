@@ -30,10 +30,10 @@ class Keuangan_model extends  CI_Model
         return $this->db->get('keuangan')->result_array();
     }
 
-    // public function getAnggotaById($URUT_ANG)
-    // {
-    //     return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
-    // }  
+    public function getKeuanganByKode($KODE_ANG)
+    {
+        return $this->db->get_where('keuangan', ['KODE_ANG' => $KODE_ANG])->row_array();
+    }  
 
     // public function tambahDataAnggota()
     // {
