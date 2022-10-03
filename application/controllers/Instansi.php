@@ -53,6 +53,10 @@ class Instansi extends CI_Controller
         $data['start'] = $this->uri->segment(3);
         $this->data['instansi'] = $this->Instansi->getInstansi($config['per_page'], $data['start']);
 
+        if ($this->input->post('keyword')) {
+            $this->data['instansi'] = $this->Instansi->cariDataInstansi();
+        }
+
         $this->load->view('Instansi/index', $this->data);
     }
 

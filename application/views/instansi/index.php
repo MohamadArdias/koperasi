@@ -15,8 +15,21 @@ $this->load->view('templates/sidebar');
         <?php endif; ?>
 
         <div class="mt-3">
-            <a href="<?= base_url(); ?>index.php/Instansi/tambah" class="btn btn-primary">Tambah Instansi</a>
+            <div class="col-md-12">
+                <form action="" method="post">
+                    <div class="input-group">
+                        <div>
+                            <a href="<?= base_url(); ?>index.php/Instansi/tambah" class="btn btn-primary">Tambah Instansi</a>
+                        </div>
+                    <div class="col"></div>
+                    <input type="text" class="form-control" placeholder="Pencarian" name="keyword">
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
+                </form>
+            </div>
         </div>
+        
+
         <table class="table table-bordered mt-3">
             <thead class="table-primary">
                 <tr>
