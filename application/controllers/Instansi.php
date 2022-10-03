@@ -14,7 +14,7 @@ class Instansi extends CI_Controller
 
         $this->data['title'] = 'Instansi';
 
-        $config['base_url'] = 'http://localhost/koperasi/index.php/Instansi/index';
+        $config['base_url'] = 'http://localhost/koperasi/index.php/instansi/index';
         $config['total_rows'] = $this->Instansi->countAllInstansi();
         $config['per_page'] = 30;
         $config['num_links'] = 2;
@@ -57,7 +57,7 @@ class Instansi extends CI_Controller
             $this->data['instansi'] = $this->Instansi->cariDataInstansi();
         }
 
-        $this->load->view('Instansi/index', $this->data);
+        $this->load->view('instansi/index', $this->data);
     }
 
     public function tambah()

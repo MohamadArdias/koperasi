@@ -15,7 +15,7 @@ class Keuangan extends CI_Controller
 
         $this->load->library('pagination');
 
-        $config['base_url'] = 'http://localhost/koperasi/index.php/Keuangan/index';
+        $config['base_url'] = 'http://localhost/koperasi/index.php/keuangan/index';
         $config['total_rows'] = $this->Keuangan->countAllKeuangan();
         $config['per_page'] = 50;
         $config['num_links'] = 5;
@@ -59,7 +59,7 @@ class Keuangan extends CI_Controller
         }
 
 
-        $this->load->view('Keuangan/index', $this->data);
+        $this->load->view('keuangan/index', $this->data);
     }
 
     public function cetak($KODE_ANG)
@@ -67,7 +67,7 @@ class Keuangan extends CI_Controller
         $this->data['title'] = 'Cetak Anggota';
         $this->data['keuangan'] = $this->Keuangan->getKeuanganByKode($KODE_ANG);
 
-        $this->load->view('Keuangan/cetak', $this->data);
+        $this->load->view('keuangan/cetak', $this->data);
     }
 
     // public function detail($URUT_ANG)

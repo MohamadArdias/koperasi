@@ -14,7 +14,7 @@ class Anggota extends CI_Controller
 
         $this->data['title'] = 'Tabel Anggota';
 
-        $config['base_url'] = 'http://localhost/koperasi/index.php/Anggota/index';
+        $config['base_url'] = 'http://localhost/koperasi/index.php/anggota/index';
         $config['total_rows'] = $this->Anggota->countAllAnggota();
         $config['per_page'] = 50;
         $config['num_links'] = 5;
@@ -57,14 +57,14 @@ class Anggota extends CI_Controller
             $this->data['anggota'] = $this->Anggota->cariDataAnggota();
         }
 
-        $this->load->view('Anggota/index', $this->data);
+        $this->load->view('anggota/index', $this->data);
     }
 
     public function detail($URUT_ANG)
     {
         $this->data['title'] = 'Detail Data Anggota';
         $this->data['anggota'] = $this->Anggota->getAnggotaById($URUT_ANG);
-        $this->load->view('Anggota/detail', $this->data);
+        $this->load->view('anggota/detail', $this->data);
     }
 
     public function tambah()
@@ -83,7 +83,7 @@ class Anggota extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('Anggota/tambah', $this->data);
+            $this->load->view('anggota/tambah', $this->data);
         } else {
             $this->Anggota->tambahDataAnggota();
             $this->session->set_flashdata('flash', 'ditambahkan');
@@ -117,7 +117,7 @@ class Anggota extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('Anggota/edit', $this->data);
+            $this->load->view('anggota/edit', $this->data);
         } else {
             $this->Anggota->editDataAnggota();
             $this->session->set_flashdata('flash', 'diubah');
