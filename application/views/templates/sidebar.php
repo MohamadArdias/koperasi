@@ -12,35 +12,35 @@
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/">
-                  <i class="bi bi-grid"></i>
+              <i class="bi bi-person-circle"></i>
                   <span>User</span>
               </a>
           </li>
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/anggota">
-                  <i class="bi bi-grid"></i>
+              <i class="bi bi-people-fill"></i>
                   <span>Anggota</span>
               </a>
           </li>
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/instansi">
-                  <i class="bi bi-grid"></i>
+              <i class="bi bi-building"></i>
                   <span>Instansi</span>
               </a>
           </li>
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan">
-                  <i class="bi bi-grid"></i>
+              <i class="bi bi-bank2"></i>
                   <span>Simpan Pinjam</span>
               </a>
           </li>
 
           <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav" aria-expanded="false" aria-controls="forms-nav">
-                  <i class="bi bi-journal-text"></i><span>Keuangan</span><i class="bi bi-chevron-down ms-auto"></i>
+              <i class="bi bi-cash-stack"></i><span>Keuangan</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>

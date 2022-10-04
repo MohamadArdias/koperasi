@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicons -->
-    <link href="<?= base_url('public'); ?>/assets/img/favicon.png" rel="icon">
+    <link href="<?= base_url('public'); ?>/assets/img/favicon_kop.png" rel="icon">
     <link href="<?= base_url('public'); ?>/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -52,7 +52,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="<?= base_url(); ?>index.php/" class="logo d-flex align-items-center">
-                <img src="<?= base_url('public'); ?>/assets/img/logo.png" alt="">
+                <img src="<?= base_url('public'); ?>/assets/img/logo_kop.png" alt="">
 
                 <span class="d-none d-lg-block">KOPERASI</span>
 
