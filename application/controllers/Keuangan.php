@@ -3,6 +3,7 @@
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
+// define('BASEPATH') OR exit('No direct script access allowed');
 class Keuangan extends CI_Controller
 {
     public function __construct()
@@ -11,6 +12,7 @@ class Keuangan extends CI_Controller
         $this->load->model('Kirim_model', 'Kirim');
         $this->load->model('Instansi_model', 'Instansi'); //'Instansi' adalah alias dari 'Instansi_model'
         $this->load->model('Keuangan_model', 'keuangan');
+        $this->load->library('pdf');
         $this->load->library('form_validation');
     }
 
@@ -67,7 +69,7 @@ class Keuangan extends CI_Controller
                 'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
             ]
         ];
-        
+
         $style_row_mid = [
             'alignment' => [
                 'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
@@ -171,5 +173,10 @@ class Keuangan extends CI_Controller
         $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);
 
         $this->load->view('keuangan/printins', $this->data);
+    }
+    public function print()
+    {
+        // $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);
+        $this->load->view('keuangan/contoh');
     }
 }

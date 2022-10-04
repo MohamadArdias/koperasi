@@ -33,7 +33,7 @@ class Keuangan_model extends  CI_Model
     public function getKeuanganByKode($KODE_ANG)
     {
         return $this->db->get_where('keuangan', ['KODE_ANG' => $KODE_ANG])->row_array();
-    }  
+    }
 
     // public function tambahDataAnggota()
     // {

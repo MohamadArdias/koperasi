@@ -20,7 +20,7 @@ class Instansi_model extends  CI_Model
         $this->db->or_like('TLP_INS', $keyword);
         return $this->db->get('instan')->result_array();
     }
-    
+
     public function cariDataInstansi2()
     {
         $keyword = $this->input->post('keyword', true);
@@ -83,7 +83,7 @@ class Instansi_model extends  CI_Model
 
         $this->db->select('*');
         $this->db->from('keuangan');
-        $this->db->where('KODE_INS', $KODE_INS );
+        $this->db->where('KODE_INS', $KODE_INS);
         return  $this->db->get()->result_array();
     }
 }
