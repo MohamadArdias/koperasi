@@ -146,11 +146,11 @@ class Keuangan extends CI_Controller
         // Set judul file excel nya
         $sheet->setTitle("Data Potongan");
         // Proses file excel
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment; filename="Daftar Potongan.xlsx"'); // Set nama file excel nya
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="myfile.xls"');
         header('Cache-Control: max-age=0');
 
-        $writer = new Xlsx($spreadsheet);
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
         $writer->save('php://output');
     }
 
@@ -174,6 +174,19 @@ class Keuangan extends CI_Controller
 
         $this->load->view('keuangan/printins', $this->data);
     }
+
+    public function cetakang()
+    {
+        $this->data['title'] = 'Cetak Per Anggota';
+        $this->data['instansi'] = $this->Instansi->getAllInstansi();
+
+        if ($this->input->post('keyword')) {
+            $this->data['instansi'] = $this->Instansi->cariDataInstansi2();
+        }
+
+        $this->load->view('keuangan/cetakins', $this->data);
+    }
+    
     public function print()
     {
         // $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);

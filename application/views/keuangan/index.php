@@ -41,7 +41,7 @@ $this->load->view('templates/sidebar');
                 <form action="" method="post">
                     <div class="input-group">
                         <div>
-                            <a href="<?= base_url(); ?>index.php/Kirim/export" class="btn btn-primary"><i class="bi-download"></i> Export Excel</a>
+                            <a href="<?= base_url(); ?>index.php/keuangan/export" class="btn btn-primary"><i class="bi-download"></i> Export Excel</a>
                         </div>
                         <div class="col-sm-6"></div>
                         <input type="text" class="form-control" placeholder="Pencarian" name="keyword">
