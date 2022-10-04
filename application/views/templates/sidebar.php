@@ -32,7 +32,7 @@
           </li>
 
           <li class="nav-item">
-              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinsim">
               <i class="bi bi-bank2"></i>
                   <span>Simpan Pinjam</span>
               </a>
@@ -44,12 +44,12 @@
               </a>
               <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
-                      <a href="<?= base_url(); ?>index.php/kirim/">
+                      <a href="<?= base_url(); ?>index.php/keuangan/">
                           <i class="bi bi-circle"></i><span>Export Excel</span>
                       </a>
                   </li>
                   <li>
-                      <a href="<?= base_url(); ?>index.php/kirim/cetakins/">
+                      <a href="<?= base_url(); ?>index.php/keuangan/cetakins/">
                           <i class="bi bi-circle"></i><span>Cetak Instansi</span>
                       </a>
                   </li>

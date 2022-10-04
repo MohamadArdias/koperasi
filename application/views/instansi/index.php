@@ -2,6 +2,37 @@
 $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
 ?>
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td,
+    #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #0066ff;
+        color: white;
+    }
+</style>
+
 <div class="card">
     <div class="card-body">
         <?php if ($this->session->flashdata('flash')) : ?>
@@ -29,8 +60,8 @@ $this->load->view('templates/sidebar');
             </div>
         </div>
 
-
-        <table class="table table-bordered mt-3">
+        <div class="overflow-auto">
+        <table class="mt-3" id="customers">
             <thead class="table-primary">
                 <tr>
                     <th class="text-center">Kode Instansi</th>
@@ -50,7 +81,6 @@ $this->load->view('templates/sidebar');
                         <td class="text-center">
                             <a href="<?= base_url(); ?>index.php/instansi/edit/<?= $ins['KODE_INS']; ?>" class="btn btn-warning">Edit</a>
                             <a href="<?= base_url(); ?>index.php/instansi/hapus/<?= $ins['KODE_INS']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">Hapus</a>
-                            <a href="<?= base_url(); ?>index.php/instansi/cetak/<?= $ins['KODE_INS']; ?>" class="btn btn-success">Cetak</a>
                         </td>
                     </tr>
                 <?php endforeach ?>

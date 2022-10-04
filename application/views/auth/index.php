@@ -3,14 +3,46 @@ $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
 ?>
 
+<style>
+  #customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #customers td,
+  #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  #customers tr:hover {
+    background-color: #ddd;
+  }
+
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0066ff;
+    color: white;
+  }
+</style>
+
 <div id="infoMessage"><?php echo $message; ?></div>
 
 <div class="card ">
-	<div class="table-responsive mt-3">
+	<div class="mt-3" id="customers">
 		<div class="card-body ">
 			<a href="<?= base_url('index.php/auth/create_user'); ?>" class="btn btn-primary">Create User</a>
 		</div>
-		<table cellpadding=0 cellspacing=10 id="zero_config" class="table table-striped table-bordered">
+
+		<div class="overflow-auto">
+		<table class="table">
 			<tr>
 				<th><?= 'No'; ?></th>
 				<th><?php echo 'Name'; ?></th>
@@ -40,6 +72,7 @@ $this->load->view('templates/sidebar');
 				</tr>
 			<?php endforeach; ?>
 		</table>
+		</div>
 	</div>
 </div>
 

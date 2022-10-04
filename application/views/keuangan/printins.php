@@ -28,7 +28,7 @@ $this->load->view('templates/sidebar');
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
-        background-color: #04AA6D;
+        background-color: #0066ff;
         color: white;
     }    
 </style>
