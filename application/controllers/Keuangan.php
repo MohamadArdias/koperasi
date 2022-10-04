@@ -157,7 +157,9 @@ class Keuangan extends CI_Controller
         $this->data['title'] = 'Cetak Per Instansi';
         $this->data['instansi'] = $this->Instansi->getAllInstansi();
 
-        // $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);
+        if ($this->input->post('keyword')) {
+            $this->data['instansi'] = $this->Instansi->cariDataInstansi2();
+        }
 
         $this->load->view('keuangan/cetakins', $this->data);
     }

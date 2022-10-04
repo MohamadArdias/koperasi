@@ -12,49 +12,49 @@
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/">
-              <i class="bi bi-person-circle"></i>
+                  <i class="bi bi-person-circle"></i>
                   <span>User</span>
               </a>
           </li>
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/anggota">
-              <i class="bi bi-people-fill"></i>
+                  <i class="bi bi-people-fill"></i>
                   <span>Anggota</span>
               </a>
           </li>
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/instansi">
-              <i class="bi bi-building"></i>
+                  <i class="bi bi-building"></i>
                   <span>Instansi</span>
               </a>
           </li>
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinsim">
-              <i class="bi bi-bank2"></i>
+                  <i class="bi bi-bank2"></i>
                   <span>Simpan Pinjam</span>
               </a>
           </li>
 
           <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav" aria-expanded="false" aria-controls="forms-nav">
-              <i class="bi bi-cash-stack"></i><span>Keuangan</span><i class="bi bi-chevron-down ms-auto"></i>
+                  <i class="bi bi-cash-stack"></i><span>Keuangan</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
-                      <a href="<?= base_url(); ?>index.php/keuangan/">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan/">
                           <i class="bi bi-circle"></i><span>Export Excel</span>
                       </a>
                   </li>
                   <li>
-                      <a href="<?= base_url(); ?>index.php/keuangan/cetakins/">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan/cetakins/">
                           <i class="bi bi-circle"></i><span>Cetak Instansi</span>
                       </a>
                   </li>
                   <li>
-                      <a href="#">
+                      <a class="nav-link collapsed" href="#">
                           <i class="bi bi-circle"></i><span>Cetak Anggota</span>
                       </a>
                   </li>
