@@ -5,11 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<<<<<<< Updated upstream
   <title> Login </title>
-=======
   <title>Login Koperasi Bangkit Bersama</title>
->>>>>>> Stashed changes
   <meta content="" name="description">
   <meta content="" name="keywords">
 
