@@ -56,7 +56,7 @@ $this->load->view('templates/sidebar');
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($instansi as $ins) : ?>
+                        <?php foreach ($keuangan as $ins) : ?>
                             <tr>
                                 <td><?= $ins['KODE_INS']; ?></td>
                                 <td><?= $ins['NAMA_INS']; ?></td>

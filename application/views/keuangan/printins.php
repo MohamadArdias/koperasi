@@ -63,6 +63,7 @@ $this->load->view('templates/sidebar');
                         <th class="text-center">SIM. WAJIB</th>
                         <th class="text-center">TUNGGAKAN</th>
                         <th class="text-center">TOTAL</th>
+                        <th class="text-center">AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,6 +94,9 @@ $this->load->view('templates/sidebar');
                                 $lap['POKU8'] + $lap['BNGU8'];
                             ?>
                             <td><?= $potongan; ?></td>
+                            <td class="text-center">
+                                <a href="<?= base_url(); ?>index.php/keuangan/printang/<?= $lap['KODE_ANG']; ?>" class="btn btn-warning"><i class="bi-printer-fill"></i>Print</a>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

@@ -2,13 +2,18 @@
 
 class Keuangan_model extends  CI_Model
 {
-    // public function getAllKeuangan()
-    // {
-    //     $this->db->select('*');
-    //     $this->db->from('keuangan');
-    //     $this->db->where('KODE_INS !=','99');
-    //     return  $this->db->get()->result_array();
-    // }
+    public function getAllKeuangan()
+    {
+        $this->db->distinct();
+        $this->db->select('keuangan.KODE_INS, keuangan.NAMA_INS');
+        $this->db->from('instan');
+        $this->db->join('keuangan', 'keuangan.KODE_INS = instan.KODE_INS');
+        $this->db->where('instan.KODE_INS !=','99');
+        return  $this->db->get()->result_array();
+
+        // $this->db->distinct('KODE_INS', 'NAMA_INS');
+        // return $this->db->get('keuangan')->result_array();
+    }
 
     public function getKeuangan($limit, $start)
     {

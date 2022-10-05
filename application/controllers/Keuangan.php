@@ -157,7 +157,7 @@ class Keuangan extends CI_Controller
     public function cetakins()
     {
         $this->data['title'] = 'Cetak Per Instansi';
-        $this->data['instansi'] = $this->Instansi->getAllInstansi();
+        $this->data['keuangan'] = $this->keuangan->getAllKeuangan();
 
         if ($this->input->post('keyword')) {
             $this->data['instansi'] = $this->Instansi->cariDataInstansi2();
@@ -175,16 +175,25 @@ class Keuangan extends CI_Controller
         $this->load->view('keuangan/printins', $this->data);
     }
 
-    public function cetakang()
+    // public function cetakang()
+    // {
+    //     $this->data['title'] = 'Cetak Per Anggota';
+    //     $this->data['instansi'] = $this->Instansi->getAllInstansi();
+
+    //     if ($this->input->post('keyword')) {
+    //         $this->data['instansi'] = $this->Instansi->cariDataInstansi2();
+    //     }
+
+    //     $this->load->view('keuangan/cetakins', $this->data);
+    // }
+
+    public function printANG($KODE_ANG)
     {
-        $this->data['title'] = 'Cetak Per Anggota';
-        $this->data['instansi'] = $this->Instansi->getAllInstansi();
+        $this->data['title'] = 'Cetak Anggota';
 
-        if ($this->input->post('keyword')) {
-            $this->data['instansi'] = $this->Instansi->cariDataInstansi2();
-        }
+        $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeang($KODE_ANG);
 
-        $this->load->view('keuangan/cetakins', $this->data);
+        $this->load->view('keuangan/printang', $this->data);
     }
     
     public function print()
