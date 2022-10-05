@@ -21,13 +21,13 @@ class Instansi_model extends  CI_Model
         return $this->db->get('instan')->result_array();
     }
 
-    public function cariDataInstansi2()
-    {
-        $keyword = $this->input->post('keyword', true);
-        $this->db->like('KODE_INS', $keyword);
-        $this->db->or_like('NAMA_INS', $keyword);
-        return $this->db->get('instan')->result_array();
-    }
+    // public function cariDataInstansi2()
+    // {
+    //     $keyword = $this->input->post('keyword', true);
+    //     $this->db->like('KODE_INS', $keyword);
+    //     $this->db->or_like('NAMA_INS', $keyword);
+    //     return $this->db->get('instan')->result_array();
+    // }
 
     public function getInstansi($limit, $start)
     {
@@ -74,16 +74,16 @@ class Instansi_model extends  CI_Model
         $this->db->update('instan', $this->data);
     }
 
-    public function getAnggotaWhereKodeins($KODE_INS)
-    {
-        // return $this->db->get_where('keuangan', ['KODE_INS' => $KODE_INS])->row_array();
-        // ['kode' => $KODE_INS];
-        // $this->db->get('instan')
-        // $gg='03';
+    // public function getAnggotaWhereKodeins($KODE_INS)
+    // {
+    //     // return $this->db->get_where('keuangan', ['KODE_INS' => $KODE_INS])->row_array();
+    //     // ['kode' => $KODE_INS];
+    //     // $this->db->get('instan')
+    //     // $gg='03';
 
-        $this->db->select('*');
-        $this->db->from('keuangan');
-        $this->db->where('KODE_INS', $KODE_INS);
-        return  $this->db->get()->result_array();
-    }
+    //     $this->db->select('*');
+    //     $this->db->from('keuangan');
+    //     $this->db->where('KODE_INS', $KODE_INS);
+    //     return  $this->db->get()->result_array();
+    // }
 }
