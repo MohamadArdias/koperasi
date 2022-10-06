@@ -16,6 +16,6 @@
 	<td colspan="12"></td>
 </tr>
 
-<table>
+<tabl>
 
 </table>

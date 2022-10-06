@@ -56,13 +56,14 @@ class Keuangan_model extends  CI_Model
         return  $this->db->get()->result_array();
     }
     
-    public function getAnggotaWhereKodeang($KODE_INS)
-    {
-        $this->db->select('*');
-        $this->db->from('keuangan');
-        $this->db->where('KODE_INS', $KODE_INS);
-        return  $this->db->get()->result_array();
-    }
+    // public function getAnggotaWhereKodeang($KODE_INS)
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('keuangan');
+    //     $this->db->where('KODE_INS', $KODE_INS);
+    //     return  $this->db->get()->result_array();
+    // }
+
     // public function tambahDataAnggota()
     // {
     //     $this->data = [
