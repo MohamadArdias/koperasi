@@ -4,7 +4,7 @@
       <ul class="sidebar-nav" id="sidebar-nav">
 
           <li class="nav-item">
-              <a class="nav-link collapsed" href="#">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/dashboard">
                   <i class="bi bi-grid"></i>
                   <span>Dashboard</span>
               </a>
@@ -45,17 +45,17 @@
               <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan/">
-                          <i class="bi bi-circle"></i><span>Export Excel</span>
+                          <i class="bi bi-circle-fill"></i><span>Export Excel</span>
                       </a>
                   </li>
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan/cetakins/">
-                          <i class="bi bi-circle"></i><span>Cetak Instansi</span>
+                          <i class="bi bi-circle-fill"></i><span>Cetak Instansi</span>
                       </a>
                   </li>
                   <li>
                       <a class="nav-link collapsed" href="#">
-                          <i class="bi bi-circle"></i><span>Cetak Anggota</span>
+                          <i class="bi bi-circle-fill"></i><span>Cetak Anggota</span>
                       </a>
                   </li>
 
