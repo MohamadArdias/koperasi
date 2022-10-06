@@ -10,7 +10,7 @@ class Keuangan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Kirim_model', 'Kirim');
-        $this->load->model('Instansi_model', 'Instansi'); //'Instansi' adalah alias dari 'Instansi_model'
+        // $this->load->model('Instansi_model', 'Instansi'); //'Instansi' adalah alias dari 'Instansi_model'
         $this->load->model('Keuangan_model', 'keuangan');
         $this->load->library('pdf');
         $this->load->library('form_validation');
@@ -160,7 +160,7 @@ class Keuangan extends CI_Controller
         $this->data['keuangan'] = $this->keuangan->getAllKeuangan();
 
         if ($this->input->post('keyword')) {
-            $this->data['instansi'] = $this->Instansi->cariDataInstansi2();
+            $this->data['keuangan'] = $this->keuangan->cariDataInstansi();
         }
 
         $this->load->view('keuangan/cetakins', $this->data);
@@ -170,7 +170,7 @@ class Keuangan extends CI_Controller
     {
         $this->data['title'] = 'Cetak Per Instansi';
 
-        $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);
+        $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
 
         $this->load->view('keuangan/printins', $this->data);
     }
@@ -187,15 +187,16 @@ class Keuangan extends CI_Controller
     //     $this->load->view('keuangan/cetakins', $this->data);
     // }
 
-    public function printANG($KODE_ANG)
+    public function printang($KODE_ANG)
     {
         $this->data['title'] = 'Cetak Anggota';
 
         $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeang($KODE_ANG);
+        // $this->data['cetak'] = $this->db->get('pegawai')->result();
 
-        $this->load->view('keuangan/printang', $this->data);
+        $view = $this->load->view('keuangan/printang', $this->data);
     }
-    
+
     public function print()
     {
         // $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);

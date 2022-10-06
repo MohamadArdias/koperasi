@@ -41,7 +41,7 @@ $this->load->view('templates/sidebar');
                     <div class="input-group">
                         <div>
                             <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
-                            <a href="<?= base_url(); ?>index.php/keuangan/print/" target="blank" class="btn btn-primary"><i class="bi-printer-fill"></i> Print</a>
+                            <a href="<?= base_url(); ?>index.php/keuangan/print/" target="blank" class="btn btn-primary" target="blank"><i class="bi-printer-fill"></i> Print</a>
                         </div>
                     </div>
                 </form>
