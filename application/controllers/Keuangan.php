@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') or exit('No direct script access allowed');
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -197,9 +199,140 @@ class Keuangan extends CI_Controller
         $view = $this->load->view('keuangan/printang', $this->data);
     }
 
-    public function print()
+    public function print($KODE_INS)
     {
-        // $this->data['keuangan'] = $this->Instansi->getAnggotaWhereKodeins($KODE_INS);
-        $this->load->view('keuangan/contoh');
+        $keuangan = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
+
+        // $this->load->view('keuangan/contoh', $this->data);
+
+        $mpdf = new \Mpdf\Mpdf(['orientation' => 'L', 'default_font_size' => 9]);
+        // $data = $this->load->view('keuangan/contoh', [], TRUE);
+
+        $date = date("d-M-y");
+        $data =
+            '<!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        
+        <body>
+        <style>
+        #table{
+            border: 1px solid black;
+            border-collapse: collapse;
+            
+        }
+        #table th{
+            border: 1px solid black;
+            border-collapse: collapse;
+            font-size: 10;
+        }
+
+        #table td {
+            border-right: solid 1px black; 
+        }
+        </style>
+            <center>
+                <div>
+                    <div>
+                        <div>
+                            <table id="table">
+                                <thead>
+                                    <tr>
+                                        <th style="height:30" width="30" align="center">No </th>
+                                        <th width="200" align="center">ANGGOTA</th>
+                                        <th align="center" width="90">SIM</th>
+                                        <th align="center" width="90">KONSUMSI</th>
+                                        <th align="center" width="90">NON KONSUMS</th>
+                                        <th align="center" width="90">PINJ. KHUSUS</th>
+                                        <th align="center" width="90">PINJ. SP</th>
+                                        <th width="30" align="center">KE</th>
+                                        <th align="center" width="90">SIM. POKOK</th>
+                                        <th align="center" width="90">SIM. WAJIB</th>
+                                        <th width="90" align="center">TUNGGAKAN</th>
+                                        <th align="center" width="90">TOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                $i = 1;
+                                foreach ($keuangan as $lap ) {
+                                    $data .= '<tr>
+                                        <td align="right">'. $i++ .'</td>
+                                        <td>'.$lap['NAMA_ANG'].'</td>
+                                        <td align="right"></td>
+                                        <td align="right"></td>
+                                        <td align="right">'.$a = $lap['POKU3'] + $lap['BNGU3'].'</td>
+                                        <td align="right"></td>
+                                        <td align="right">'.$a =$lap['POKU1'] + $lap['BNGU1'].'</td>
+                                        <td width="30" align="right">'.$lap['KEU1'].'</td>
+                                        <td align="right"></td>
+                                        <td align="right">'.$lap['WAJIB'].'</td>
+                                        <td width="100" align="right"></td>
+                                        <td align="right">'.
+                                        $potongan = $lap['WAJIB'] +
+                                            $lap['POKU1'] + $lap['BNGU1'] +
+                                            $lap['POKU2'] + $lap['BNGU2'] +
+                                            $lap['POKU3'] + $lap['BNGU3'] +
+                                            $lap['POKU4'] + $lap['BNGU4'] +
+                                            $lap['POKU5'] + $lap['BNGU5'] +
+                                            $lap['POKU6'] + $lap['BNGU6'] +
+                                            $lap['POKU7'] + $lap['BNGU7'] +
+                                            $lap['POKU8'] + $lap['BNGU8']
+                                        .'</td>
+                                    </tr>';
+                                }
+
+                    $data .=    '</tbody>
+                                <tr>
+                                    <td colspan="12"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <div>
+                            <div>
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <td align="justify">
+                                                Jumlah Uang Sebesar RP. <br>
+                                                Telah saya terima <br> 
+                                                bendahara KP-RI Bangkit Bersama <br>
+                                                Telah saya terima <br><br><br><br>
+                                                DRA.EC.HJ.ERFIN AGUSTINA,M.SI
+                                            </td>
+                                            <td width="60"></td>
+                                            <td align="justify">
+                                                Jumlah Tagihan Rp.<br>
+                                                Terbayar Rp.<br>
+                                                ========================<br>
+                                                Sisa Rp.
+                                            </td>
+                                            <td width="60"></td>
+                                            <td align="justify">
+                                                Banyuwangi,'. $date .' <br>
+                                                Pengurus KP-RI Bangkit Bersama <br>
+                                                Kantor Pemkab. Banyuwangi <br>
+                                                Ketua 1 <br><br><br><br>
+                                                DRA.EC.HJ.ERFIN AGUSTINA,M.SI
+                                            </td>
+                                        </tr>        
+                                    </table>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </center>
+        </body>
+        
+        </html>';
+        $mpdf->WriteHTML($data);
+        $mpdf->Output();
     }
 }
