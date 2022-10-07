@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Mpdf\Mpdf;
 
 // define('BASEPATH') OR exit('No direct script access allowed');
 class Keuangan extends CI_Controller
@@ -184,10 +185,16 @@ class Keuangan extends CI_Controller
     public function printins($KODE_INS)
     {
         $keuangan = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
-        $mpdf = new \Mpdf\Mpdf(['orientation' => 'L', 'default_font_size' => 9]);
+
+        // $mpdf = new Mpdf(['orientation' => 'L', 'default_font_size' => 9]);
         $date = date("d-M-Y");
         $Month = date("M-Y");
         $full = date("l, d-M-Y H:i:s");
+
+        $pdf = new \TCPDF();
+        $pdf->AddPage('L', 'mm', 'A4');
+        $pdf->SetFont('', 'B', 10);
+
         $data =
             '<!DOCTYPE html>
         <html lang="en">
@@ -243,11 +250,11 @@ class Keuangan extends CI_Controller
                                     </td>
                                     <td width="595"></td>
                                     <td align="right" width="150">
-                                    '.$full.'
+                                    ' . $full . '
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><b>DAFTAR TAGIHAN BULAN '.$Month.'</b></td>
+                                    <td><b>DAFTAR TAGIHAN BULAN ' . $Month . '</b></td>
                                 </tr>
                             </table>
                             <table id="table">
@@ -268,45 +275,45 @@ class Keuangan extends CI_Controller
                                     </tr>
                                 </thead>
                                 <tbody>';
-                                $i = 1;
-                                $totala = 0;
-                                $totalb = 0;
-                                $totalc = 0;
-                                $totald = 0;
-                                foreach ($keuangan as $lap ) {
-                                    $a = $lap['POKU3'] + $lap['BNGU3'];
-                                    $b =$lap['POKU1'] + $lap['BNGU1'];
-                                    $potongan = $lap['WAJIB'] +
-                                            $lap['POKU1'] + $lap['BNGU1'] +
-                                            $lap['POKU2'] + $lap['BNGU2'] +
-                                            $lap['POKU3'] + $lap['BNGU3'] +
-                                            $lap['POKU4'] + $lap['BNGU4'] +
-                                            $lap['POKU5'] + $lap['BNGU5'] +
-                                            $lap['POKU6'] + $lap['BNGU6'] +
-                                            $lap['POKU7'] + $lap['BNGU7'] +
-                                            $lap['POKU8'] + $lap['BNGU8'];
+        $i = 1;
+        $totala = 0;
+        $totalb = 0;
+        $totalc = 0;
+        $totald = 0;
+        foreach ($keuangan as $lap) {
+            $a = $lap['POKU3'] + $lap['BNGU3'];
+            $b = $lap['POKU1'] + $lap['BNGU1'];
+            $potongan = $lap['WAJIB'] +
+                $lap['POKU1'] + $lap['BNGU1'] +
+                $lap['POKU2'] + $lap['BNGU2'] +
+                $lap['POKU3'] + $lap['BNGU3'] +
+                $lap['POKU4'] + $lap['BNGU4'] +
+                $lap['POKU5'] + $lap['BNGU5'] +
+                $lap['POKU6'] + $lap['BNGU6'] +
+                $lap['POKU7'] + $lap['BNGU7'] +
+                $lap['POKU8'] + $lap['BNGU8'];
 
-                                    $totala += $a;
-                                    $totalb += $b;
-                                    $totalc += $lap['WAJIB'];
-                                    $totald += $potongan;
+            $totala += $a;
+            $totalb += $b;
+            $totalc += $lap['WAJIB'];
+            $totald += $potongan;
 
-                                    $data .= '<tr>
-                                        <td align="right">'. $i++ .'</td>
-                                        <td>'.$lap['NAMA_ANG'].'</td>
+            $data .= '<tr>
+                                        <td align="right">' . $i++ . '</td>
+                                        <td>' . $lap['NAMA_ANG'] . '</td>
                                         <td align="right"></td>
                                         <td align="right"></td>
-                                        <td align="right">'.$a.'</td>
+                                        <td align="right">' . $a . '</td>
                                         <td align="right"></td>
-                                        <td align="right">'.$b.'</td>
-                                        <td width="30" align="right">'.$lap['KEU1'].'</td>
+                                        <td align="right">' . $b . '</td>
+                                        <td width="30" align="right">' . $lap['KEU1'] . '</td>
                                         <td align="right"></td>
-                                        <td align="right">'.$lap['WAJIB'].'</td>
+                                        <td align="right">' . $lap['WAJIB'] . '</td>
                                         <td width="90" align="right"></td>
-                                        <td align="right">'.$potongan.'</td>
+                                        <td align="right">' . $potongan . '</td>
                                     </tr>';
-                                }
-                    $data .=    '</tbody>                                                                   
+        }
+        $data .=    '</tbody>                                                                   
                             </table>
                         </div>
                         <table id="footer">
@@ -315,28 +322,28 @@ class Keuangan extends CI_Controller
                             <td width="200">TOTAL</td>
                             <td width="90" align="right"></td>
                             <td width="90" align="right"></td>
-                            <td width="90" align="right">'.$totala.'</td>
+                            <td width="90" align="right">' . $totala . '</td>
                             <td width="90" align="right"></td>
-                            <td width="90" align="right">'.$totalb.'</td>
+                            <td width="90" align="right">' . $totalb . '</td>
                             <td width="30" align="right"></td>
                             <td width="90" align="right"></td>
-                            <td width="90" align="right">'.$totalc.'</td>
+                            <td width="90" align="right">' . $totalc . '</td>
                             <td width="90" align="right"></td>
-                            <td width="90" align="right">'.$totald.'</td>
+                            <td width="90" align="right">' . $totald . '</td>
                         </tr>
                         <tr>
                             <td width="30"></td>
                             <td width="200">GRAND TOTAL</td>
                             <td width="90" align="right"></td>
                             <td width="90" align="right"></td>
-                            <td width="90" align="right">'.$totala.'</td>
+                            <td width="90" align="right">' . $totala . '</td>
                             <td width="90" align="right"></td>
-                            <td width="90" align="right">'.$totalb.'</td>
+                            <td width="90" align="right">' . $totalb . '</td>
                             <td width="30" align="right"></td>
                             <td width="90" align="right"></td>
-                            <td width="90" align="right">'.$totalc.'</td>
+                            <td width="90" align="right">' . $totalc . '</td>
                             <td width="90" align="right"></td>
-                            <td width="90" align="right">'.$totald.'</td>
+                            <td width="90" align="right">' . $totald . '</td>
                         </tr>
                         </table>
                         <br>
@@ -355,7 +362,7 @@ class Keuangan extends CI_Controller
 
                                             <td width="1">
                                             <pre>
-                                                Jumlah Tagihan  Rp. '.$totald.'
+                                                Jumlah Tagihan  Rp. ' . $totald . '
                                                 Terbayar        Rp. <br>
                                                 ================================ <br>
                                                 Sisa            Rp.
@@ -364,7 +371,7 @@ class Keuangan extends CI_Controller
                                             
                                             <td width="90"></td>
                                             <td align="justify" width="200">
-                                                Banyuwangi,'. $date .' <br>
+                                                Banyuwangi,' . $date . ' <br>
                                                 Pengurus KPRI Bangkit Bersama 
                                                 Kantor Pemkab. Banyuwangi <br>
                                                 Ketua 1 <br><br><br><br>
@@ -381,7 +388,7 @@ class Keuangan extends CI_Controller
         </body>
         
         </html>';
-        $mpdf->WriteHTML($data);
-        $mpdf->Output();
+        $pdf->WriteHTML($data);
+        $pdf->Output();
     }
 }
