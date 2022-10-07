@@ -54,7 +54,7 @@
                       </a>
                   </li>
                   <li>
-                      <a class="nav-link collapsed" href="#">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan/cetakang/">
                           <i class="bi bi-circle-fill"></i><span>Cetak Anggota</span>
                       </a>
                   </li>

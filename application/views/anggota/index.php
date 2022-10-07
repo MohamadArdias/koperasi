@@ -90,8 +90,9 @@ $this->load->view('templates/sidebar');
           <?php endforeach ?>
         </tbody>
       </table>
-      <?= $this->pagination->create_links(); ?>
-
+      <div class="mt-3">
+        <?= $this->pagination->create_links(); ?>
+      </div>
     </div>
   </div>
 </div>

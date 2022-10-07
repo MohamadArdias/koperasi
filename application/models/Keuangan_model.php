@@ -4,6 +4,11 @@ class Keuangan_model extends  CI_Model
 {
     public function getAllKeuangan()
     {
+        return $this->db->get('keuangan')->result_array();
+    }
+    
+    public function getDistincAllKeuangan()
+    {
         $this->db->distinct();
         $this->db->select('keuangan.KODE_INS, keuangan.NAMA_INS');
         $this->db->from('instan');
