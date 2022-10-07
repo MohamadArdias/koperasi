@@ -235,6 +235,8 @@ class Keuangan extends CI_Controller
         $pdf = new \TCPDF();
         $pdf->AddPage('L', 'mm', 'A4');
         $pdf->SetFont('', 'B', 10);
+        $pdf->Cell(277, 5, "KPRI BANGKIT BERSAMA", 0, 1, 'C');
+        $pdf->Cell(277, 5, "Jl.Borobudur No. 1A (0333) 424315 BANYUWANGI Jawa Timur - Indonesia", 0, 1, 'C');
 
         $data =
             '<!DOCTYPE html>
@@ -248,71 +250,30 @@ class Keuangan extends CI_Controller
         </head>
         
         <body>
-        <style>
-        #table{
-            border: 1px solid black;
-            border-collapse: collapse;
-            
-        }
-        #table th{
-            border: 1px solid black;
-            border-collapse: collapse;
-            font-size: 10;
-        }
-        #text-center {
-            text-align:center
-        }
-        #left    { 
-            text-align: left
-        }
-        #table.center {
-            margin-left:auto; 
-            margin-right:auto;
-        }
-
-        #table td {
-            border-right: solid 1px black;
-        }
-
-        #footer{
-            border: 1;
-        }
-
-        </style>
             <center>
                 <div>                                                          
                     <div>
-                        <div>
+                        <>
                             <table>
-                                <tr>
-                                    <td width="325" height="70">
-                                    <b>KPRI BANGKIT BERSAMA <br>
-                                    Jl.Borobudur No. 1A (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</b>
-                                    </td>
-                                    <td width="595"></td>
-                                    <td align="right" width="150">
-                                    ' . $full . '
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td><b>DAFTAR TAGIHAN BULAN ' . $Month . '</b></td>
                                 </tr>
                             </table>
-                            <table id="table">
+                            <table cellspacing="0" cellpadding="1" border="1">
                                 <thead>
                                     <tr>
-                                        <th style="height:30" width="30" align="center">No </th>
-                                        <th width="200" align="center">ANGGOTA</th>
-                                        <th align="center" width="90">SIM</th>
-                                        <th align="center" width="90">KONSUMSI</th>
-                                        <th align="center" width="90">NON KONSUMS</th>
-                                        <th align="center" width="90">PINJ. KHUSUS</th>
-                                        <th align="center" width="90">PINJ. SP</th>
+                                        <th width="30" align="center">No </th>
+                                        <th width="100" align="center">ANGGOTA</th>
+                                        <th align="center">SIM</th>
+                                        <th align="center">KONSUMSI</th>
+                                        <th align="center">NON KONSUMSI</th>
+                                        <th align="center">PINJ. KHUSUS</th>
+                                        <th align="center">PINJ. SP</th>
                                         <th width="30" align="center">KE</th>
-                                        <th align="center" width="90">SIM. POKOK</th>
-                                        <th align="center" width="90">SIM. WAJIB</th>
-                                        <th width="90" align="center">TUNGGAKAN</th>
-                                        <th align="center" width="90">TOTAL</th>
+                                        <th align="center">SIM. POKOK</th>
+                                        <th align="center">SIM. WAJIB</th>
+                                        <th width="100" align="center">TUNGGAKAN</th>
+                                        <th align="center">TOTAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -340,8 +301,8 @@ class Keuangan extends CI_Controller
             $totald += $potongan;
 
             $data .= '<tr>
-                                        <td align="right">' . $i++ . '</td>
-                                        <td>' . $lap['NAMA_ANG'] . '</td>
+                                        <td width="30" align="right">' . $i++ . '</td>
+                                        <td width="100">' . $lap['NAMA_ANG'] . '</td>
                                         <td align="right"></td>
                                         <td align="right"></td>
                                         <td align="right">' . $a . '</td>
@@ -350,41 +311,18 @@ class Keuangan extends CI_Controller
                                         <td width="30" align="right">' . $lap['KEU1'] . '</td>
                                         <td align="right"></td>
                                         <td align="right">' . $lap['WAJIB'] . '</td>
-                                        <td width="90" align="right"></td>
+                                        <td width="100" align="right"></td>
                                         <td align="right">' . $potongan . '</td>
                                     </tr>';
         }
         $data .=    '</tbody>                                                                   
                             </table>
-                        </div>
-                        <table id="footer">
+                        <table cellspacing="0" cellpadding="1" border="1">
                         <tr>
-                            <td width="30"></td>
-                            <td width="200">TOTAL</td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right">' . $totala . '</td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right">' . $totalb . '</td>
-                            <td width="30" align="right"></td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right">' . $totalc . '</td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right">' . $totald . '</td>
+                            <td collspan="12"><pre>TOTAL                                        ' . $totala . '               ' . $totalb . '                    ' . $totalc . '                     ' . $totald . '</pre></td>
                         </tr>
                         <tr>
-                            <td width="30"></td>
-                            <td width="200">GRAND TOTAL</td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right">' . $totala . '</td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right">' . $totalb . '</td>
-                            <td width="30" align="right"></td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right">' . $totalc . '</td>
-                            <td width="90" align="right"></td>
-                            <td width="90" align="right">' . $totald . '</td>
+                            <td collspan="12"><pre>GRAND TOTAL                                  ' . $totala . '               ' . $totalb . '                    ' . $totalc . '                     ' . $totald . '</pre></td>
                         </tr>
                         </table>
                         <br>
@@ -393,29 +331,20 @@ class Keuangan extends CI_Controller
                                 <div>
                                     <table>
                                         <tr>
-                                            <td align="justify" width="200">
+                                            <td align="center">
                                                 Jumlah Uang Sebesar RP. <br>
                                                 Telah saya terima <br> 
                                                 bendahara KP-RI Bangkit Bersama <br><br><br><br><br>
                                                 DRA.EC.HJ.ERFIN AGUSTINA,M.SI
                                             </td>
-                                            <td width="110"></td>
-
-                                            <td width="1">
-                                            <pre>
-                                                Jumlah Tagihan  Rp. ' . $totald . '
-                                                Terbayar        Rp. <br>
-                                                ================================ <br>
-                                                Sisa            Rp.
+                                            <td align="center">
+                                            <pre>Jumlah Tagihan Rp.' .$totald. '                 Terbayar       Rp.                         ================================           Sisa           Rp.            
                                             </pre>
                                             </td>
-                                            
-                                            <td width="90"></td>
-                                            <td align="justify" width="200">
-                                                Banyuwangi,' . $date . ' <br>
+                                            <td align="center">
+                                                Banyuwangi, ' . $date . ' <br>
                                                 Pengurus KPRI Bangkit Bersama 
-                                                Kantor Pemkab. Banyuwangi <br>
-                                                Ketua 1 <br><br><br><br>
+                                                Kantor Pemkab. Banyuwangi Ketua 1 <br><br><br><br>
                                                 DRS A. Kholid Askandar
                                             </td>
                                         </tr>        
@@ -430,6 +359,6 @@ class Keuangan extends CI_Controller
         
         </html>';
         $pdf->WriteHTML($data);
-        $pdf->Output();
+        $pdf->Output("Koperasi Bangkit Bersama $date .pdf", 'I');
     }
 }
