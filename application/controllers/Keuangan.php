@@ -225,140 +225,15 @@ class Keuangan extends CI_Controller
 
     public function printins($KODE_INS)
     {
-        $keuangan = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
+        $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
+        $this->data['instansi'] = $this->keuangan->getInstansi($KODE_INS);
 
-        // $mpdf = new Mpdf(['orientation' => 'L', 'default_font_size' => 9]);
-        $date = date("d-M-Y");
-        $Month = date("M-Y");
-        $full = date("l, d-M-Y H:i:s");
-
-        $pdf = new \TCPDF();
-        $pdf->AddPage('L', 'mm', 'A4');
-        $pdf->SetFont('', 'B', 10);
-        $pdf->Cell(277, 5, "KPRI BANGKIT BERSAMA", 0, 1, 'C');
-        $pdf->Cell(277, 5, "Jl.Borobudur No. 1A (0333) 424315 BANYUWANGI Jawa Timur - Indonesia", 0, 1, 'C');
-
-        $data =
-            '<!DOCTYPE html>
-        <html lang="en">
-        
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        
-        <body>
-            <center>
-                <div>                                                          
-                    <div>
-                        <>
-                            <table>
-                                <tr>
-                                    <td><b>DAFTAR TAGIHAN BULAN ' . $Month . '</b></td>
-                                </tr>
-                            </table>
-                            <table cellspacing="0" cellpadding="1" border="1">
-                                <thead>
-                                    <tr>
-                                        <th width="30" align="center">No </th>
-                                        <th width="100" align="center">ANGGOTA</th>
-                                        <th align="center">SIM</th>
-                                        <th align="center">KONSUMSI</th>
-                                        <th align="center">NON KONSUMSI</th>
-                                        <th align="center">PINJ. KHUSUS</th>
-                                        <th align="center">PINJ. SP</th>
-                                        <th width="30" align="center">KE</th>
-                                        <th align="center">SIM. POKOK</th>
-                                        <th align="center">SIM. WAJIB</th>
-                                        <th width="100" align="center">TUNGGAKAN</th>
-                                        <th align="center">TOTAL</th>
-                                    </tr>
-                                </thead>
-                                <tbody>';
-        $i = 1;
-        $totala = 0;
-        $totalb = 0;
-        $totalc = 0;
-        $totald = 0;
-        foreach ($keuangan as $lap) {
-            $a = $lap['POKU3'] + $lap['BNGU3'];
-            $b = $lap['POKU1'] + $lap['BNGU1'];
-            $potongan = $lap['WAJIB'] +
-                $lap['POKU1'] + $lap['BNGU1'] +
-                $lap['POKU2'] + $lap['BNGU2'] +
-                $lap['POKU3'] + $lap['BNGU3'] +
-                $lap['POKU4'] + $lap['BNGU4'] +
-                $lap['POKU5'] + $lap['BNGU5'] +
-                $lap['POKU6'] + $lap['BNGU6'] +
-                $lap['POKU7'] + $lap['BNGU7'] +
-                $lap['POKU8'] + $lap['BNGU8'];
-
-            $totala += $a;
-            $totalb += $b;
-            $totalc += $lap['WAJIB'];
-            $totald += $potongan;
-
-            $data .= '<tr>
-                                        <td width="30" align="right">' . $i++ . '</td>
-                                        <td width="100">' . $lap['NAMA_ANG'] . '</td>
-                                        <td align="right"></td>
-                                        <td align="right"></td>
-                                        <td align="right">' . $a . '</td>
-                                        <td align="right"></td>
-                                        <td align="right">' . $b . '</td>
-                                        <td width="30" align="right">' . $lap['KEU1'] . '</td>
-                                        <td align="right"></td>
-                                        <td align="right">' . $lap['WAJIB'] . '</td>
-                                        <td width="100" align="right"></td>
-                                        <td align="right">' . $potongan . '</td>
-                                    </tr>';
-        }
-        $data .=    '</tbody>                                                                   
-                            </table>
-                        <table cellspacing="0" cellpadding="1" border="1">
-                        <tr>
-                            <td collspan="12"><pre>TOTAL                                        ' . $totala . '               ' . $totalb . '                    ' . $totalc . '                     ' . $totald . '</pre></td>
-                        </tr>
-                        <tr>
-                            <td collspan="12"><pre>GRAND TOTAL                                  ' . $totala . '               ' . $totalb . '                    ' . $totalc . '                     ' . $totald . '</pre></td>
-                        </tr>
-                        </table>
-                        <br>
-                        <div>
-                            <div>
-                                <div>
-                                    <table>
-                                        <tr>
-                                            <td align="center">
-                                                Jumlah Uang Sebesar RP. <br>
-                                                Telah saya terima <br> 
-                                                bendahara KP-RI Bangkit Bersama <br><br><br><br><br>
-                                                DRA.EC.HJ.ERFIN AGUSTINA,M.SI
-                                            </td>
-                                            <td align="center">
-                                            <pre>Jumlah Tagihan Rp.' .$totald. '                 Terbayar       Rp.                         ================================           Sisa           Rp.            
-                                            </pre>
-                                            </td>
-                                            <td align="center">
-                                                Banyuwangi, ' . $date . ' <br>
-                                                Pengurus KPRI Bangkit Bersama 
-                                                Kantor Pemkab. Banyuwangi Ketua 1 <br><br><br><br>
-                                                DRS A. Kholid Askandar
-                                            </td>
-                                        </tr>        
-                                    </table>
-                                </div>
-                            </div>
-                        </div>        
-                    </div>
-                </div>
-            </center>
-        </body>
-        
-        </html>';
-        $pdf->WriteHTML($data);
-        $pdf->Output("Koperasi Bangkit Bersama $date .pdf", 'I');
+        $this->load->view('keuangan/printins', $this->data);        
     }
+
+    public function printang($KODE_ANG)
+    {   
+        $this->load->view('keuangan/printang');          
+    }
+
 }

@@ -37,11 +37,11 @@ $this->load->view('templates/sidebar');
     <div class="card-body">
         <div class="row mt-3">
             <div class="col-md-12">
-                <form action="" method="post">
+                <form action="<?= base_url(); ?>index.php/Pinsim" method="post">
                     <div class="input-group">
                         <div class="col-sm-7"></div>
                         <input type="text" class="form-control" placeholder="Pencarian" name="keyword">
-                        <button class="btn btn-primary" type="submit">Cari</button>
+                        <input type="submit" class="btn btn-primary" name="submit" value="Cari">
                     </div>
                 </form>
             </div>
@@ -50,7 +50,7 @@ $this->load->view('templates/sidebar');
             <table class="mt-3" id="customers">
                 <thead class="table-primary">
                     <tr>
-                        <th class="text-center">Kode</th>
+                        <th class="text-center">No</th>
                         <th class="text-center">Nama Anggota</th>
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Tabungan</th>
@@ -82,8 +82,9 @@ $this->load->view('templates/sidebar');
                     <?php endforeach ?>
                 </tbody>
             </table>
-            <?= $this->pagination->create_links(); ?>
-
+            <div class="mt-3">
+                <?= $this->pagination->create_links(); ?>
+            </div>
         </div>
     </div>
 </div>

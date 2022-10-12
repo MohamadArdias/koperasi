@@ -65,7 +65,7 @@ $this->load->view('templates/sidebar');
                                 <td><?= $ins['KODE_INS']; ?></td>
                                 <td><?= $ins['NAMA_INS']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>" class="btn btn-secondary" target="blank">Print</a>
+                                    <a href="<?= base_url(); ?>index.php/keuangan/printang/<?= $ins['KODE_ANG']; ?>" class="btn btn-secondary" target="blank">Print</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

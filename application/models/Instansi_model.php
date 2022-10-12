@@ -2,42 +2,38 @@
 
 class Instansi_model extends  CI_Model
 {
-    public function getAllInstansi()
-    {
-        // return $this->db->get('instan')->result_array();
-        $this->db->select('*');
-        $this->db->from('instan');
-        $this->db->where('KODE_INS !=', '99');
-        return  $this->db->get()->result_array();
-    }
+    // public function getAllInstansi()
+    // {
+    //     // return $this->db->get('instan')->result_array();
+    //     $this->db->select('*');
+    //     $this->db->from('instan');
+    //     $this->db->where('KODE_INS !=', '99');
+    //     return  $this->db->get()->result_array();
+    // }
 
-    public function cariDataInstansi()
-    {
-        $keyword = $this->input->post('keyword', true);
-        $this->db->like('KODE_INS', $keyword);
-        $this->db->or_like('NAMA_INS', $keyword);
-        $this->db->or_like('ALM_INS', $keyword);
-        $this->db->or_like('TLP_INS', $keyword);
-        return $this->db->get('instan')->result_array();
-    }
-
-    // public function cariDataInstansi2()
+    // public function cariDataInstansi()
     // {
     //     $keyword = $this->input->post('keyword', true);
     //     $this->db->like('KODE_INS', $keyword);
     //     $this->db->or_like('NAMA_INS', $keyword);
+    //     $this->db->or_like('ALM_INS', $keyword);
+    //     $this->db->or_like('TLP_INS', $keyword);
     //     return $this->db->get('instan')->result_array();
     // }
 
-    public function getInstansi($limit, $start)
+    public function getInstansi($limit, $start, $keyword = null)
     {
+        if ($keyword) {
+            $this->db->like('KODE_INS', $keyword);
+            $this->db->or_like('NAMA_INS', $keyword);
+        }
         return $this->db->get('instan', $limit, $start)->result_array();
     }
 
-    public function countAllInstansi()
-    {
-        return $this->db->get('instan')->num_rows();
-    }
+    // public function countAllInstansi()
+    // {
+    //     return $this->db->get('instan')->num_rows();
+    // }
 
     public function tambahDataInstansi()
     {
