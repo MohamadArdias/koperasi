@@ -66,20 +66,13 @@
         foreach ($keuangan as $lap) {
             $a = $lap['POKU3'] + $lap['BNGU3'];
             $b = $lap['POKU1'] + $lap['BNGU1'];
-            $potongan = $lap['WAJIB'] +
-                $lap['POKU1'] + $lap['BNGU1'] +
-                $lap['POKU2'] + $lap['BNGU2'] +
-                $lap['POKU3'] + $lap['BNGU3'] +
-                $lap['POKU4'] + $lap['BNGU4'] +
-                $lap['POKU5'] + $lap['BNGU5'] +
-                $lap['POKU6'] + $lap['BNGU6'] +
-                $lap['POKU7'] + $lap['BNGU7'] +
-                $lap['POKU8'] + $lap['BNGU8'];
-
+            
             $totala += $a;
             $totalb += $b;
             $totalc += $lap['WAJIB'];
+            $potongan = $a + $b + $lap['WAJIB'];
             $totald += $potongan;
+            
 
             $data .= '  <tr>
                                         <td width="20" align="right" style=" border-right: 1px solid black; border-left: 1px solid black; ">' . $i++ . '</td>
