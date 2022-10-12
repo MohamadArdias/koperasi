@@ -9,6 +9,7 @@ $this->load->view('templates/sidebar');
         border-collapse: collapse;
         width: 100%;
     }
+    
 
     #customers td,
     #customers th {
