@@ -15,7 +15,7 @@
         $pdf->AddPage('L', '', 'A3');
         $pdf->SetFont('', '', 11);
         $pdf->Cell(277, 5, "KPRI BANGKIT BERSAMA", 0, 1, 'C');
-        $pdf->Cell(277, 5, "Jl.Borobudur No. 1A (0333) 424315 BANYUWANGI Jawa Timur - Indonesia", 0, 1, 'C');
+        $pdf->Cell(277, 5, "Jl.Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia", 0, 1, 'C');
         
         $pdf->SetFont('', '', 8);
         $data =
