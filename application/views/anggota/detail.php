@@ -10,9 +10,8 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group">
                     <i class="bi-person-fill input-group-text"></i>
-                    <input type="text" name="URUT_ANG" class="form-control" id="URUT_ANG" value="<?= $anggota['URUT_ANG']; ?>" />
+                    <input type="text" name="URUT_ANG" class="form-control" id="URUT_ANG" value="<?= $anggota['URUT_ANG']; ?>" disabled>
                 </div>
-                <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
             </div>
         </div>
 
@@ -21,9 +20,8 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group">
                     <i class="bi-person-fill input-group-text"></i>
-                    <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" value="<?= $anggota['NAMA_ANG']; ?>" />
+                    <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" value="<?= $anggota['NAMA_ANG']; ?>" readonly>
                 </div>
-                <small class="form-text text-danger"><?= form_error('NAMA_ANG'); ?></small>
             </div>
         </div>
 
@@ -32,9 +30,8 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group">
                     <i class="bi-briefcase-fill input-group-text"></i>
-                    <input type="text" name="KODE_INS" class="form-control" id="KODE_INS" value="<?= $anggota['KODE_INS']; ?>" />
+                    <input type="text" name="KODE_INS" class="form-control" id="KODE_INS" value="<?= $anggota['KODE_INS']; ?>" readonly>
                 </div>
-                <small class="form-text text-danger"><?= form_error('KODE_INS'); ?></small>
             </div>
         </div>
 
@@ -43,9 +40,8 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group">
                     <i class="bi-briefcase-fill input-group-text"></i>
-                    <input type="text" name="NAMA_INS" class="form-control" id="NAMA_INS" placeholder="-" value="<?= $anggota['NAMA_INS']; ?>" />
+                    <input type="text" name="NAMA_INS" class="form-control" id="NAMA_INS" placeholder="-" value="<?= $anggota['NAMA_INS']; ?>" readonly>
                 </div>
-                <small class="form-text text-danger"><?= form_error('NAMA_INS'); ?></small>
             </div>
         </div>
 
@@ -54,9 +50,8 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group ">
                     <i class="bi-calendar3 input-group-text "></i>
-                    <input type="text" class="form-control" id="TLHR_ANG" name="TLHR_ANG" placeholder="-" value="<?= $anggota['TLHR_ANG']; ?>">
+                    <input type="text" class="form-control" id="TLHR_ANG" name="TLHR_ANG" placeholder="-" value="<?= $anggota['TLHR_ANG']; ?>" readonly>
                 </div>
-                <small class="form-text text-danger"><?= form_error('TLHR_ANG') ?></small>
             </div>
         </div>
 
@@ -65,10 +60,9 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group">
                     <i class="bi-geo-alt-fill input-group-text "></i>
-                    <input type="text" class="form-control" id="ALM_ANG" placeholder="-" name="ALM_ANG" value="<?= $anggota['ALM_ANG']; ?>">
+                    <input type="text" class="form-control" id="ALM_ANG" placeholder="-" name="ALM_ANG" value="<?= $anggota['ALM_ANG']; ?>" readonly>
                 </div>
             </div>
-            <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small>
         </div>
 
         <div class="form-group row mb-2">
@@ -76,9 +70,8 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group ">
                     <i class="bi-calendar3 input-group-text"></i>
-                    <input type="text" class="form-control" id="TGLM_ANG" placeholder="-" name="TGLM_ANG" value="<?= $anggota['TGLM_ANG']; ?>">
+                    <input type="text" class="form-control" id="TGLM_ANG" placeholder="-" name="TGLM_ANG" value="<?= $anggota['TGLM_ANG']; ?>" readonly>
                 </div>
-                <small class="form-text text-danger"><?= form_error('TGLM_ANG') ?></small>
             </div>
         </div>
 
@@ -87,9 +80,8 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group ">
                     <i class="bi-calendar3 input-group-text"></i>
-                    <input type="text" class="form-control" id="TGLK_ANG" placeholder="-" name="TGLK_ANG" value="<?= $anggota['TGLK_ANG']; ?>">
+                    <input type="text" class="form-control" id="TGLK_ANG" placeholder="-" name="TGLK_ANG" value="<?= $anggota['TGLK_ANG']; ?>" readonly>
                 </div>
-                <small class="form-text text-danger"><?= form_error('TGLK_ANG') ?></small>
             </div>
         </div>
 
@@ -98,9 +90,8 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group ">
                     <i class="bi-people-fill input-group-text"></i>
-                    <input type="text" class="form-control" id="GOL" placeholder="-" name="GOL" value="<?= $anggota['GOL']; ?>">
+                    <input type="text" class="form-control" id="GOL" placeholder="-" name="GOL" value="<?= $anggota['GOL']; ?>" readonly>
                 </div>
-                <small class="form-text text-danger"><?= form_error('GOL') ?></small>
             </div>
         </div>
 

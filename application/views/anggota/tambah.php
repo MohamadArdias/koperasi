@@ -2,7 +2,7 @@
 $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
 ?>
-
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <div class="card">
     <form action="" method="POST">
         <div class="card-body row mt-4">
@@ -115,6 +115,8 @@ $this->load->view('templates/sidebar');
 <?php
 $this->load->view('templates/footer');
 ?>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     function goBack() {
         window.history.back();
