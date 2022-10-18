@@ -91,7 +91,6 @@ class Anggota extends CI_Controller
         $this->form_validation->set_rules('NAMA_ANG', 'nama anggota', 'required');
         $this->form_validation->set_rules('KODE_INS', 'kode instansi', 'required');
         $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
-        $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
         $this->form_validation->set_rules('ALM_ANG', 'alamat', 'required');
         $this->form_validation->set_rules('TLHR_ANG', 'tanggal lahir', 'required');
         $this->form_validation->set_rules('TGLM_ANG', 'tanggal masuk', 'required');

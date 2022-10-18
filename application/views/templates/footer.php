@@ -35,6 +35,7 @@
 
 <!-- Template Main JS File -->
 <script src="<?= base_url('public'); ?>/assets/js/main.js"></script>
+<script src="<?= base_url('public'); ?>/assets/js/dropdown.js"></script>
 
 </body>
 
