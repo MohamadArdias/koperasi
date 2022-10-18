@@ -7,6 +7,15 @@ class Anggota_model extends  CI_Model
     //     return $this->db->get('anggota')->result_array();
     // }
 
+    public function getAllAnggota()
+    {
+        // return $this->db->get('instan')->result_array();
+        $this->db->select('*');
+        $this->db->from('anggota');
+        $this->db->where('KODE_INS !=', '99');
+        return  $this->db->get()->result_array();
+    }
+
     // public function cariDataAnggota()
     // {
     //     $keyword = $this->input->post('keyword', true);
@@ -16,6 +25,14 @@ class Anggota_model extends  CI_Model
     //     $this->db->or_like('NAMA_INS', $keyword);
     //     return $this->db->get('anggota')->result_array();
     // }
+
+    public function cariDataAnggota($title)
+    {
+        $this->db->like('KODE_ANG',$title);
+        $this->db->order_by('KODE_ANG', 'ASC');
+        $this->db->limit(10);
+        return $this->db->get('anggota')->result();
+    }
 
     public function getAnggotaById($URUT_ANG)
     {
@@ -83,5 +100,38 @@ class Anggota_model extends  CI_Model
 
         $this->db->where('URUT_ANG', $this->input->post('URUT_ANG'));
         $this->db->update('anggota', $this->data);
+    }
+
+    public function getTanggungan($URUT_ANG)
+    {
+        //     $tahun = date("Y");
+        //     $bulan = date("m");
+
+        //     $query = $this->db->query("SELECT
+        //     pinuang.NOFAK AS FAKTUR, 
+        //     anggota.NAMA_ANG AS NAMA, 
+        //     pinuang.JWKT_ANG AS JANGKA, 
+        //     pl.KEU3 AS PERIODE, 
+        //     pl.SIPOKU3 AS SISA, 
+        //     pl.BNGU3 AS BUNGA
+        // FROM
+        //     anggota
+        //     LEFT JOIN
+        //     pinuang
+        //     ON 
+        //         anggota.URUT_ANG = pinuang.KODE_ANG
+        //     LEFT JOIN
+        //     pl
+        //     ON 
+        //         anggota.URUT_ANG = pl.KODE_ANG
+        // WHERE
+        //     anggota.URUT_ANG = $URUT_ANG AND
+        //     pinuang.NOFAK LIKE 'U' AND
+        //     pl.TAHUN = $tahun AND
+        //     pl.BULAN = $bulan");
+
+        // return $query->row_array();
+
+
     }
 }
