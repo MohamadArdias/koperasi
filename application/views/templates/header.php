@@ -63,9 +63,9 @@
 
         <!-- Profile -->
 
-        <nav class="navbar">
+        <nav class="navbar col-md-1 ms-auto">
             <ul>
-                <li><a href="">Nama</a> <i class="bi bi-person-circle"></i>
+                <li><a href="">Nama</a>
                     <ul>
                         <li><a href="">Profile</a></li>
                         <li><a href="">Edit Profile</a></li>
