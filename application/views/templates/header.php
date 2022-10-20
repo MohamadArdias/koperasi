@@ -47,7 +47,7 @@
 <body>
 
     <!-- ======= Header ======= -->
-
+    <?php date_default_timezone_set("Asia/Jakarta"); ?>
     <!-- Logo -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
