@@ -64,7 +64,7 @@
                     <a class="nav-link nav-profile collapsed pe-2" data-toggle="collapse" data-target="#forms-nav2" aria-controls="forms-nav">
                         <span class="d-none d-md-block dropdown-toggle ps-2"><?= $this->session->userdata('identity'); ?></span>
                     </a>
-                    <ul id="forms-nav2" data-bs-parent="#header-nav" class="nav-content collapse position-absolute">
+                    <ul id="forms-nav2" data-bs-parent="#header-nav" class="dropdown-menu nav-content collapse position-absolute">
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="<?= base_url(); ?>index.php">
                                 <i class="bi bi-person"></i>

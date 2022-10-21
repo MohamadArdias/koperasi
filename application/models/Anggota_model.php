@@ -39,7 +39,13 @@ class Anggota_model extends  CI_Model
 
     public function getAnggotaById($URUT_ANG)
     {
-        return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
+        // return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
+
+        $this->db->select('*');
+        $this->db->from('anggota');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        $this->db->where('URUT_ANG', $URUT_ANG);
+        return $this->db->get()->row_array();
     }
 
     // public function countAllAnggota()
@@ -122,10 +128,11 @@ class Anggota_model extends  CI_Model
         $this->db->delete('anggota', ['URUT_ANG' => $URUT_ANG]);
     }
 
-    public function getAnggotaByUrut($URUT_ANG)
-    {
-        return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
-    }
+    // public function getAnggotaByUrut($URUT_ANG)
+    // {
+    //     return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
+    //     return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
+    // }
 
     public function editDataAnggota()
     {

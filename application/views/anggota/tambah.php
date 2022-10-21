@@ -29,24 +29,19 @@ $this->load->view('templates/sidebar');
             </div>
 
             <div class="form-group row mb-2">
-                <label for="kdins" class="col-sm-2 text-end control-label col-form-label">Kode Instansi</label>
+                <label for="kdins" class="col-sm-2 text-end control-label col-form-label">Instansi</label>
                 <div class="col-sm-9">
                     <div class="input-group input-group-sm">
                         <i class="bi-briefcase-fill input-group-text"></i>
-                        <input type="text" name="KODE_INS" class="form-control" id="KODE_INS" placeholder="-" />
+                        <select id="KODE_INS" name="KODE_INS" class="form-select" aria-label="Default select example">
+                            <option selected="">--Pilih Instansi--</option>
+                            <?php foreach ($instansi as $key) : ?>
+                                <option value="<?= $key['KODE_INS']; ?>" ><?= $key['KODE_INS']; ?>/<?= $key['NAMA_INS']; ?></option>
+                            <?php endforeach ?>
+                        </select>
+                        <!-- <input type="text" name="KODE_INS" class="form-control" id="KODE_INS" placeholder="-" /> -->
                     </div>
                     <small class="form-text text-danger"><?= form_error('KODE_INS'); ?></small>
-                </div>
-            </div>
-
-            <div class="form-group row mb-2">
-                <label for="namains" class="col-sm-2 text-end control-label col-form-label">Nama Instansi</label>
-                <div class="col-sm-9">
-                    <div class="input-group input-group-sm">
-                        <i class="bi-briefcase-fill input-group-text"></i>
-                        <input type="text" name="NAMA_INS" class="form-control" id="NAMA_INS" placeholder="-" />
-                    </div>
-                    <small class="form-text text-danger"><?= form_error('NAMA_INS'); ?></small>
                 </div>
             </div>
 

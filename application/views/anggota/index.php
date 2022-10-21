@@ -48,10 +48,10 @@ $this->load->view('templates/sidebar');
 
     <div class="row mt-3">
       <div class="col-md-12">
-        <form action="<?= base_url(); ?>index.php/Anggota" method="post">
+        <form action="<?= base_url(); ?>index.php/anggota" method="post">
           <div class="input-group">
             <div>
-              <a href="<?= base_url(); ?>index.php/Anggota/tambah" class="btn btn-primary">Tambah Anggota</a>
+              <a href="<?= base_url(); ?>index.php/anggota/tambah" class="btn btn-primary">Tambah Anggota</a>
             </div>
             <div class="col"></div>
             <input type="text" class="form-control" placeholder="Pencarian" name="keyword">

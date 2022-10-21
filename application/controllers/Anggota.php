@@ -5,6 +5,7 @@ class Anggota extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Anggota_model', 'Anggota');
+        $this->load->model('Instansi_model', 'Instansi');
         $this->load->library('form_validation');
     }
 
@@ -62,11 +63,13 @@ class Anggota extends CI_Controller
     public function tambah()
     {
         $this->data['title'] = 'Tambah Data Anggota';
+        $this->data['instansi'] = $this->Instansi->getAllInstansi();
+
         // $this->form_validation->set_rules('KODE_ANG', 'kode anggota', 'required');
         $this->form_validation->set_rules('URUT_ANG', 'nomor urut anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'nama anggota', 'required');
         $this->form_validation->set_rules('KODE_INS', 'kode instansi', 'required');
-        $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
+        // $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
         // $this->form_validation->set_rules('ALM_ANG', 'alamat', 'required');
         // $this->form_validation->set_rules('TLHR_ANG', 'tanggal lahir', 'required');
         // $this->form_validation->set_rules('TGLM_ANG', 'tanggal masuk', 'required');
@@ -93,16 +96,17 @@ class Anggota extends CI_Controller
     public function edit($URUT_ANG)
     {
         $this->data['title'] = 'Edit Data Anggota';
-        $this->data['anggota'] = $this->Anggota->getAnggotaByUrut($URUT_ANG);
-        $this->form_validation->set_rules('KODE_ANG', 'kode anggota', 'required');
+        $this->data['anggota'] = $this->Anggota->getAnggotaById($URUT_ANG);
+        $this->data['instansi'] = $this->Instansi->getAllInstansi();
+
         $this->form_validation->set_rules('URUT_ANG', 'nomor urut anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'nama anggota', 'required');
         $this->form_validation->set_rules('KODE_INS', 'kode instansi', 'required');
-        $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
-        $this->form_validation->set_rules('ALM_ANG', 'alamat', 'required');
-        $this->form_validation->set_rules('TLHR_ANG', 'tanggal lahir', 'required');
-        $this->form_validation->set_rules('TGLM_ANG', 'tanggal masuk', 'required');
-        $this->form_validation->set_rules('TGLK_ANG', 'tanggal keluar', 'required');
+        // $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
+        // $this->form_validation->set_rules('ALM_ANG', 'alamat', 'required');
+        // $this->form_validation->set_rules('TLHR_ANG', 'tanggal lahir', 'required');
+        // $this->form_validation->set_rules('TGLM_ANG', 'tanggal masuk', 'required');
+        // $this->form_validation->set_rules('TGLK_ANG', 'tanggal keluar', 'required');
         $this->form_validation->set_rules('GOL', 'golongan', 'required');
 
 
