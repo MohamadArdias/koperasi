@@ -7,13 +7,16 @@ class Anggota_model extends  CI_Model
     //     return $this->db->get('anggota')->result_array();
     // }
 
-    public function getAllAnggota()
+    public function getAllAnggota($a)
     {
-        // return $this->db->get('instan')->result_array();
-        $this->db->select('*');
-        $this->db->from('anggota');
-        $this->db->where('KODE_INS !=', '99');
-        return  $this->db->get()->result_array();
+        return $this->db->query("SELECT anggota.NAMA_ANG AS aga FROM anggota WHERE URUT_ANG = '$a'")->row_array();
+        // return  $this->db->get($query)->row_array();
+
+        // $this->db->select('anggota.NAMA_ANG');
+        // $this->db->from('anggota');
+        // // $this->db->where('KODE_INS !=', '99');
+        // $this->db->where('URUT_ANG', $a);
+        // return  $this->db->get()->row_array();
     }
 
     // public function cariDataAnggota()
@@ -28,7 +31,7 @@ class Anggota_model extends  CI_Model
 
     public function cariDataAnggota($title)
     {
-        $this->db->like('KODE_ANG',$title);
+        $this->db->like('KODE_ANG', $title);
         $this->db->order_by('KODE_ANG', 'ASC');
         $this->db->limit(10);
         return $this->db->get('anggota')->result();
@@ -47,13 +50,54 @@ class Anggota_model extends  CI_Model
     public function getAnggota($limit, $start, $keyword = null)
     {
         if ($keyword) {
-            $this->db->like('NAMA_ANG', $keyword);
-            $this->db->or_like('KODE_ANG', $keyword);
-            $this->db->or_like('KODE_INS', $keyword);
-            $this->db->or_like('NAMA_INS', $keyword);
+            $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+            $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+            $this->db->select("anggota.KODE_INS AS KODE_INS");
+            $this->db->select("instan.NAMA_INS AS NAMA_INS");
+            $this->db->from('anggota');
+            $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+            $this->db->where('anggota.KODE_INS !=', '99');
+            $this->db->like('anggota.NAMA_ANG', $keyword);
+            $this->db->or_like('anggota.URUT_ANG', $keyword);
+            $this->db->or_like('instan.NAMA_INS', $keyword);
+        } else {
+            $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+            $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+            $this->db->select("anggota.KODE_INS AS KODE_INS");
+            $this->db->select("instan.NAMA_INS AS NAMA_INS");
+            $this->db->from('anggota');
+            $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+            $this->db->where('anggota.KODE_INS !=', '99');
         }
-        return $this->db->get('anggota', $limit, $start)->result_array();
+        return $this->db->get('', $limit, $start)->result_array();
     }
+
+    public function getAnggota2($keyword = null)
+    {
+        if ($keyword) {
+            $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+            $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+            $this->db->select("anggota.KODE_INS AS KODE_INS");
+            $this->db->select("instan.NAMA_INS AS NAMA_INS");
+            $this->db->from('anggota');
+            $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+            $this->db->where('anggota.KODE_INS !=', '99');
+            $this->db->like('anggota.NAMA_ANG', $keyword);
+            $this->db->or_like('anggota.URUT_ANG', $keyword);
+            $this->db->or_like('instan.NAMA_INS', $keyword);
+        } else {
+            $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+            $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+            $this->db->select("anggota.KODE_INS AS KODE_INS");
+            $this->db->select("instan.NAMA_INS AS NAMA_INS");
+            $this->db->from('anggota');
+            $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+            $this->db->where('anggota.KODE_INS !=', '99');
+        }
+
+        return $this->db->get()->num_rows();
+    }
+
 
     public function tambahDataAnggota()
     {
@@ -86,11 +130,9 @@ class Anggota_model extends  CI_Model
     public function editDataAnggota()
     {
         $this->data = [
-            "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "URUT_ANG" => $this->input->post('URUT_ANG', true),
             "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
             "KODE_INS" => $this->input->post('KODE_INS', true),
-            "NAMA_INS" => $this->input->post('NAMA_INS', true),
             "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
             "ALM_ANG" => $this->input->post('ALM_ANG', true),
             "TGLM_ANG" => $this->input->post('TGLM_ANG', true),
@@ -102,36 +144,40 @@ class Anggota_model extends  CI_Model
         $this->db->update('anggota', $this->data);
     }
 
-    public function getTanggungan($URUT_ANG)
+    public function getNama($a)
     {
-        //     $tahun = date("Y");
-        //     $bulan = date("m");
+        $query = $this->db->query("SELECT NAMA_ANG AS NAMA FROM anggota WHERE URUT_ANG='$a'");
+        return $query->row_array();
+    }
 
-        //     $query = $this->db->query("SELECT
-        //     pinuang.NOFAK AS FAKTUR, 
-        //     anggota.NAMA_ANG AS NAMA, 
-        //     pinuang.JWKT_ANG AS JANGKA, 
-        //     pl.KEU3 AS PERIODE, 
-        //     pl.SIPOKU3 AS SISA, 
-        //     pl.BNGU3 AS BUNGA
-        // FROM
-        //     anggota
-        //     LEFT JOIN
-        //     pinuang
-        //     ON 
-        //         anggota.URUT_ANG = pinuang.KODE_ANG
-        //     LEFT JOIN
-        //     pl
-        //     ON 
-        //         anggota.URUT_ANG = pl.KODE_ANG
-        // WHERE
-        //     anggota.URUT_ANG = $URUT_ANG AND
-        //     pinuang.NOFAK LIKE 'U' AND
-        //     pl.TAHUN = $tahun AND
-        //     pl.BULAN = $bulan");
+    public function getTanggungan($a)
+    {
+        $tahun = date("Y");
+        $bulan = date("m");
 
-        // return $query->row_array();
+        $sql = $this->db->query("SELECT 
+        pinuang.NOFAK AS FAKTUR,
+        anggota.NAMA_ANG AS NAMA, 
+        pinuang.JWKT_ANG AS JANGKA,
+        pl.KEU3 AS PERIODE, 
+        pl.SIPOKU3 AS SISA, 
+        pl.BNGU3 AS BUNGA
+        FROM 
+        anggota 
+        LEFT JOIN 
+        pinuang 
+        ON 
+        anggota.URUT_ANG = pinuang.KODE_ANG  
+        LEFT JOIN
+	    pl
+	    ON 
+		anggota.URUT_ANG = pl.KODE_ANG
+        WHERE anggota.URUT_ANG = '$a' AND 
+        pl.TAHUN = $tahun AND
+        pl.BULAN = $bulan AND
+        pinuang.NOFAK LIKE '%n%' 
+        ");
 
-
+        return $sql->row_array();
     }
 }

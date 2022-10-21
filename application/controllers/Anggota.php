@@ -20,20 +20,28 @@ class Anggota extends CI_Controller
             $this->session->set_userdata('keyang', $data['keyword']);
         } else {
             $data['keyword'] = $this->session->userdata('keyang');
+            // $data['keyword'] = $this->session->unset_userdata('keyang');
         }
 
-        $this->db->like('NAMA_ANG', $data['keyword']);
-        $this->db->or_like('KODE_ANG', $data['keyword']);
-        $this->db->or_like('NAMA_INS', $data['keyword']);
-        $this->db->or_like('KODE_INS', $data['keyword']);
-        $this->db->from('anggota');
+        $keyword = $data['keyword'];
+        // $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+        // $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+        // $this->db->select("anggota.KODE_INS AS KODE_INS");
+        // $this->db->select("instan.NAMA_INS AS NAMA_INS");
+        // $this->db->from('anggota');
+        // $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        // $this->db->where('anggota.KODE_INS', '99');
+        // $this->db->like('anggota.NAMA_ANG', $data['keyword']);
+        // $this->db->or_like('anggota.URUT_ANG', $data['keyword']);
+        // $this->db->or_like('instan.NAMA_INS', $data['keyword']);
 
         $config['base_url'] = 'http://localhost/koperasi/index.php/anggota/index';
-        $config['total_rows'] = $this->db->count_all_results();
+        // $config['total_rows'] = $this->db->count_all_results();
+        $config['total_rows'] = $this->Anggota->getAnggota2($keyword);
         $config['per_page'] = 10;
         $config['num_links'] = 5;
 
-        
+
 
         $this->pagination->initialize($config);
 

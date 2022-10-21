@@ -33,7 +33,7 @@ class Pinuang_model extends  CI_Model
             $row = $query->row();
             $n = ((int)$row->MAX_CODE) + 1;
             $urutan = sprintf("%'.04d", $n);
-        }else {
+        } else {
             $urutan = "0001";
         }
 
@@ -45,10 +45,10 @@ class Pinuang_model extends  CI_Model
         $a = $this->input->post('TGLP_ANG');
         $b = $this->input->post('JWKT_ANG');
 
-        $date = date('Y-m-d', strtotime('+'.$b.' month', strtotime( $a )));
+        $date = date('Y-m-d', strtotime('+' . $b . ' month', strtotime($a)));
         $this->data = [
             "NOFAK" => $this->input->post('NOFAK', true),
-            "KODE_ANG" => $this->input->post('KODE_ANG', true),
+            "KODE_ANG" => $this->input->post('URUT_ANG', true),
             "JMLP_ANG" => $this->input->post('JMLP_ANG', true),
             "TGLP_ANG" => $this->input->post('TGLP_ANG', true),
             "TGLT_ANG" => $date,
@@ -57,6 +57,14 @@ class Pinuang_model extends  CI_Model
         ];
 
         $this->db->insert('pinuang', $this->data);
-        
+    }
+
+    public function deleteTransaksi($a)
+    {
+        return $this->db->query("DELETE FROM
+            pinuang
+        WHERE
+            pinuang.NOFAK LIKE '%n%' AND
+            pinuang.KODE_ANG = '$a'");
     }
 }

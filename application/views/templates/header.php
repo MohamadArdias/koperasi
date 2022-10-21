@@ -47,7 +47,7 @@
 <body>
 
     <!-- ======= Header ======= -->
-    <?php date_default_timezone_set("Asia/Jakarta"); ?>
+
     <!-- Logo -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -58,18 +58,30 @@
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown pe-6">
+                    <a class="nav-link nav-profile collapsed pe-2" data-toggle="collapse" data-target="#forms-nav2" aria-controls="forms-nav">
+                        <span class="d-none d-md-block dropdown-toggle ps-2"><?= $this->session->userdata('identity'); ?></span>
+                    </a>
+                    <ul id="forms-nav2" data-bs-parent="#header-nav" class="nav-content collapse position-absolute">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="<?= base_url(); ?>index.php">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
 
-        <!-- End Logo -->
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="<?= base_url(); ?>index.php/auth/logout">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
 
-        <!-- Profile -->
-
-        <nav class="navbar col-md-1 ms-auto">
-            <ul>
-                <li><a href="">Nama</a>
-                    <ul>
-                        <li><a href="">Profile</a></li>
-                        <li><a href="">Edit Profile</a></li>
-                        <li><a href="">Log Out</a></li>
                     </ul>
                 </li>
             </ul>

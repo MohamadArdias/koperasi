@@ -41,30 +41,20 @@ $b = $this->data['urutan'];
 // KDOE
 if ($kode == 1) {
     $kd = 'U';
+    $bg = 1.5;
 } elseif ($kode == 2) {
     $kd = 'S';
+    $bg = 2;
 } elseif ($kode == 3) {
     $kd = 'O';
-} elseif ($kode == 4) {
-    $kd = 'N';
-} else {
-    $kd = 'Z';
-}
-
-// BUNGA
-
-if ($kode == 1) {
-    $bg = 3/2;
-} elseif ($kode == 2) {
-    $bg = 2;
-} elseif ($kode == 3) {
     $bg = 0;
 } elseif ($kode == 4) {
+    $kd = 'N';
     $bg = 2;
 } else {
+    $kd = 'Z';
     $bg = 3;
 }
-
 
 $hari = date("d");
 $bulan = date("m");
@@ -100,7 +90,6 @@ if ($bulan == 1) {
 
 $faktur = $tahun . $a . $kd . $urutan;
 
-// echo $tb = 3/2;
 ?>
 
 <div class="row">
@@ -119,60 +108,71 @@ $faktur = $tahun . $a . $kd . $urutan;
                                             <input type="text" name="NOFAK" class="form-control" id="NOFAK" value="<?= $faktur ?>" />
                                             <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
                                         </div>
+                                        <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-2">
                                     <label for="nama" class="col-sm-4 text-end control-label col-form-label">Kode Anggota</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
-                                            <!-- <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" required> -->
-                                            <select class="form-select" name="URUT_ANG" id="URUT_ANG" onchange="pilih_anggota()">
-                                                <option>--Pilih Anggota--</option>
-                                                <?php foreach ($anggota as $key) : ?>
-                                                    <option value="<?= $key['URUT_ANG']; ?>"><?= $key['URUT_ANG']; ?>/<?= $key['NAMA_ANG']; ?></option>
-                                                <?php endforeach ?>
-                                            </select>
+                                            <input type="text" name="URUT_ANG" class="form-control" id="URUT_ANG" onkeyup="autofill()" autofocus>
                                         </div>
+                                        <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-2">
                                     <label for="kdins" class="col-sm-4 text-end control-label col-form-label">Nama</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
-                                            <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" required>
+                                            <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG">
                                         </div>
+                                        <small class="form-text text-danger"><?= form_error('NAMA_ANG'); ?></small>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-2">
+                                    <label for="kdins" class="col-sm-4 text-end control-label col-form-label">Tanggungan</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" name="TANGGUNGAN" class="form-control" id="TANGGUNGAN" >
+                                        </div>
+                                        <small class="form-text text-danger"><?= form_error('TANGGUNGAN'); ?></small>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-2">
                                     <label for="alamat" class="col-sm-4 text-end control-label col-form-label">Jumlah</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
-                                            <input type="text" class="form-control" id="JMLP_ANG" name="JMLP_ANG" required>
+                                            <input type="text" class="form-control" id="JMLP_ANG" name="JMLP_ANG">
                                         </div>
+                                        <small class="form-text text-danger"><?= form_error('JMLP_ANG'); ?></small>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-2">
                                     <label for="alamat" class="col-sm-4 text-end control-label col-form-label">Bunga</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
-                                            <input type="text" class="form-control" id="PRO_ANG" name="PRO_ANG" value="<?= $bg; ?>">
+                                            <input type="hidden" class="form-control" id="PRO_ANG" name="PRO_ANG" value="<?= $bg; ?>">
+                                            <?= $bg; ?>
                                         </div>
+                                        <small class="form-text text-danger"><?= form_error('PRO_ANG'); ?></small>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-2">
                                     <label for="namains" class="col-sm-4 text-end control-label col-form-label">Jangka Waktu</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
-                                            <input type="text" name="JWKT_ANG" class="form-control" id="JWKT_ANG" required>
+                                            <input type="text" name="JWKT_ANG" class="form-control" id="JWKT_ANG">
                                         </div>
+                                        <small class="form-text text-danger"><?= form_error('JWKT_ANG'); ?></small>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-2">
                                     <label for="Golongan" class="col-sm-4 text-end control-label col-form-label">Tanggal Mulai</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm ">
-                                            <input type="text" class="form-control" id="TGLP_ANG" name="TGLP_ANG" required>
+                                            <input type="text" class="form-control" id="TGLP_ANG" name="TGLP_ANG">
                                         </div>
+                                        <small class="form-text text-danger"><?= form_error('TGLP_ANG'); ?></small>
                                     </div>
                                     <div class="col-sm-6 text-end mt-3 ">
                                         <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
@@ -237,7 +237,7 @@ $this->load->view('templates/footer');
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
+<script type="text/javascript">
     function goBack() {
         window.history.back();
     }
@@ -253,4 +253,27 @@ $this->load->view('templates/footer');
         $("#TGLT_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
         // $("#TGLK_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
     })
+
+    function autofill() {
+        var URUT_ANG = $('#URUT_ANG').val();
+        $.ajax({
+            url: '<?= base_url(); ?>index.php/Pinjaman/autofill',
+            data: {
+                'URUT_ANG': URUT_ANG
+            },
+        }).success(
+            function(data) {
+                var json = data,
+                    obj = JSON.parse(json);
+                $("#NAMA_ANG").val(obj.nama);
+
+                var jang = obj.jangka;
+                var per = obj.periode;
+                var sis = obj.sisa;
+                var bung = obj.bunga;
+                var tang = (jang - per) * bung;
+                $("#TANGGUNGAN").val(Number(tang) + Number(sis));
+
+            });
+    }
 </script>

@@ -35,11 +35,11 @@ $this->load->view('templates/sidebar');
 
 <div class="card">
     <div class="card-body">
-        <?php if ($this->session->flashdata('flash')) : ?>
+        <?php if ($this->session->flashdata('flashP')) : ?>
             <div class="row mt-3">
                 <div class="col-md-6">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        Data anggota <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>
+                        Data anggota <strong>berhasil</strong> <?= $this->session->flashdata('flashP'); ?>
                     </div>
                 </div>
             </div>
