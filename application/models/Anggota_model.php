@@ -157,7 +157,7 @@ class Anggota_model extends  CI_Model
         return $query->row_array();
     }
 
-    public function getTanggungan($a)
+    public function getTanggungan($a, $b)
     {
         $tahun = date("Y");
         $bulan = date("m");
@@ -179,10 +179,11 @@ class Anggota_model extends  CI_Model
 	    pl
 	    ON 
 		anggota.URUT_ANG = pl.KODE_ANG
-        WHERE anggota.URUT_ANG = '$a' AND 
+        WHERE 
+        anggota.URUT_ANG = '$a' AND 
         pl.TAHUN = $tahun AND
         pl.BULAN = $bulan AND
-        pinuang.NOFAK LIKE '%n%' 
+        pinuang.NOFAK LIKE '%$b%' 
         ");
 
         return $sql->row_array();

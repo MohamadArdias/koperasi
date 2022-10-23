@@ -38,12 +38,12 @@
               </a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/transaksi">
                   <i class="bi bi-bank2"></i>
                   <span>Transaksi</span>
               </a>
-          </li>
+          </li> -->
           
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinsim">

@@ -77,7 +77,8 @@ $this->load->view('templates/sidebar');
                             <td><?= $lap['JWKT_ANG']; ?></td>                            
                             <td><?= $lap['KE_ANG']; ?></td>                            
                             <td><?= $lap['PRO_ANG']; ?></td>                            
-                            <td><?= $lap['JMLP_ANG']; ?></td>
+                            <td><?= number_format($lap['JMLP_ANG'],0,',','.'); ?></td>
+                            
                             <td></td>                            
                             <td><?= $lap['POK_13']; ?></td>                            
                             <td><?= $lap['BNG_13']; ?></td>

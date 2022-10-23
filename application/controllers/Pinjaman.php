@@ -65,9 +65,9 @@ class Pinjaman extends CI_Controller
     public function autofill()
     {
         $a = $_GET['URUT_ANG'];
-        // $b = $_GET['KD'];
+        $b = $_GET['KODE'];
 
-        $query = $this->Anggota->getTanggungan($a);
+        $query = $this->Anggota->getTanggungan($a, $b);
         $query2 = $this->Anggota->getNama($a);
 
         if ($query != null) {

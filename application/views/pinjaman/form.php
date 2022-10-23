@@ -106,6 +106,7 @@ $faktur = $tahun . $a . $kd . $urutan;
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
                                             <input type="text" name="NOFAK" class="form-control" id="NOFAK" value="<?= $faktur ?>" />
+                                            <input type="hidden" name="KODE" class="form-control" id="KODE" value="<?= $kd ?>" />
                                             <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
                                         </div>
                                         <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
@@ -133,7 +134,7 @@ $faktur = $tahun . $a . $kd . $urutan;
                                     <label for="kdins" class="col-sm-4 text-end control-label col-form-label">Tanggungan</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
-                                            <input type="text" name="TANGGUNGAN" class="form-control" id="TANGGUNGAN" >
+                                            <input type="text" name="TANGGUNGAN" class="form-control" id="TANGGUNGAN">
                                         </div>
                                         <small class="form-text text-danger"><?= form_error('TANGGUNGAN'); ?></small>
                                     </div>
@@ -256,10 +257,12 @@ $this->load->view('templates/footer');
 
     function autofill() {
         var URUT_ANG = $('#URUT_ANG').val();
+        var KODE = $('#KODE').val();
         $.ajax({
             url: '<?= base_url(); ?>index.php/Pinjaman/autofill',
             data: {
-                'URUT_ANG': URUT_ANG
+                'URUT_ANG': URUT_ANG,
+                'KODE': KODE
             },
         }).success(
             function(data) {
@@ -272,8 +275,7 @@ $this->load->view('templates/footer');
                 var sis = obj.sisa;
                 var bung = obj.bunga;
                 var tang = (jang - per) * bung;
-                $("#TANGGUNGAN").val(Number(tang) + Number(sis));
-
+                $("#TANGGUNGAN").val(Number(tang) + Number(sis));          
             });
     }
 </script>
