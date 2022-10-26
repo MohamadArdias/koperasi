@@ -19,6 +19,23 @@ class Anggota_model extends  CI_Model
         // return  $this->db->get()->row_array();
     }
 
+    public function getAllAnggotaAktif()
+    {
+        // return $this->db->get('instan')->result_array();
+        $this->db->select('*');
+        $this->db->from('anggota');
+        $this->db->where('KODE_INS !=', '99');
+        return  $this->db->get()->num_rows();
+    }
+
+    public function getAllAnggotaTidakAktif()
+    {
+        // return $this->db->get('instan')->result_array();
+        $this->db->select('*');
+        $this->db->from('anggota');
+        $this->db->where('KODE_INS', '99');
+        return  $this->db->get()->num_rows();
+    }
     // public function cariDataAnggota()
     // {
     //     $keyword = $this->input->post('keyword', true);
