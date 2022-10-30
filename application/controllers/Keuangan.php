@@ -173,51 +173,9 @@ class Keuangan extends CI_Controller
     {
         $this->load->library('pagination');
 
-        $this->data['title'] = 'Cetak Per Anggota';
-        // $this->data['keuangan'] = $this->keuangan->getAllKeuangan();
+        $this->data['title'] = 'Cetak Per Anggota';    
 
-        $config['base_url'] = 'http://localhost/koperasi/index.php/keuangan/cetakang';
-        $config['total_rows'] = $this->keuangan->countAllKeuangan();
-        $config['per_page'] = 25;
-        $config['num_links'] = 5;
-
-        // styling
-        $config['full_tag_open'] = '<nav><ul class="pagination justify-content-center">';
-        $config['full_tag_close'] = '</ul></nav>';
-
-        $config['first_link'] = 'First';
-        $config['first_tag_open'] = '<li class="page-item">';
-        $config['first_tag_close'] = '</li>';
-
-        $config['last_link'] = 'Last';
-        $config['last_tag_open'] = '<li class="page-item">';
-        $config['last_tag_close'] = '</li>';
-
-        $config['next_link'] = '&raquo';
-        $config['next_tag_open'] = '<li class="page-item">';
-        $config['next_tag_close'] = '</li>';
-
-        $config['prev_link'] = '&laquo';
-        $config['prev_tag_open'] = '<li class="page-item">';
-        $config['prev_tag_close'] = '</li>';
-
-        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
-        $config['cur_tag_close'] = '</a></li>';
-
-        $config['num_tag_open'] = '<li class="page-item">';
-        $config['num_tag_close'] = '</li>';
-
-        $config['attributes'] = array('class' => 'page-link');
-
-        $this->pagination->initialize($config);
-
-        $data['start'] = $this->uri->segment(3);
-
-        $this->data['keuangan'] = $this->keuangan->getKeuangan($config['per_page'], $data['start']);
-
-        if ($this->input->post('keyword')) {
-            $this->data['keuangan'] = $this->keuangan->cariDataKeuangan();
-        }
+        $this->data['keuangan'] = $this->keuangan->getAllKeuangan();
 
         $this->load->view('keuangan/cetakang', $this->data);
     }

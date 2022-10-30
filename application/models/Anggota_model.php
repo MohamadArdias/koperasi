@@ -70,56 +70,68 @@ class Anggota_model extends  CI_Model
     //     return $this->db->get('anggota')->num_rows();
     // }
 
-    public function getAnggota($limit, $start, $keyword = null)
+    public function getAnggota()
     {
-        if ($keyword) {
-            $this->db->select("anggota.URUT_ANG AS URUT_ANG");
-            $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
-            $this->db->select("anggota.KODE_INS AS KODE_INS");
-            $this->db->select("instan.NAMA_INS AS NAMA_INS");
-            $this->db->from('anggota');
-            $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-            $this->db->where('anggota.KODE_INS !=', '99');
-            $this->db->like('anggota.NAMA_ANG', $keyword);
-            $this->db->or_like('anggota.URUT_ANG', $keyword);
-            $this->db->or_like('instan.NAMA_INS', $keyword);
-        } else {
-            $this->db->select("anggota.URUT_ANG AS URUT_ANG");
-            $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
-            $this->db->select("anggota.KODE_INS AS KODE_INS");
-            $this->db->select("instan.NAMA_INS AS NAMA_INS");
-            $this->db->from('anggota');
-            $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-            $this->db->where('anggota.KODE_INS !=', '99');
-        }
-        return $this->db->get('', $limit, $start)->result_array();
+        $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+        $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+        $this->db->select("anggota.KODE_INS AS KODE_INS");
+        $this->db->select("instan.NAMA_INS AS NAMA_INS");
+        $this->db->from('anggota');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        $this->db->where('anggota.KODE_INS !=', '99');
+        return $this->db->get()->result_array();
     }
+    
+    // public function getAnggota($limit, $start, $keyword = null)
+    // {
+    //     if ($keyword) {
+    //         $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+    //         $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+    //         $this->db->select("anggota.KODE_INS AS KODE_INS");
+    //         $this->db->select("instan.NAMA_INS AS NAMA_INS");
+    //         $this->db->from('anggota');
+    //         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+    //         $this->db->where('anggota.KODE_INS !=', '99');
+    //         $this->db->like('anggota.NAMA_ANG', $keyword);
+    //         $this->db->or_like('anggota.URUT_ANG', $keyword);
+    //         $this->db->or_like('instan.NAMA_INS', $keyword);
+    //     } else {
+    //         $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+    //         $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+    //         $this->db->select("anggota.KODE_INS AS KODE_INS");
+    //         $this->db->select("instan.NAMA_INS AS NAMA_INS");
+    //         $this->db->from('anggota');
+    //         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+    //         $this->db->where('anggota.KODE_INS !=', '99');
+    //     }
+    //     return $this->db->get('', $limit, $start)->result_array();
+    // }
 
-    public function getAnggota2($keyword = null)
-    {
-        if ($keyword) {
-            $this->db->select("anggota.URUT_ANG AS URUT_ANG");
-            $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
-            $this->db->select("anggota.KODE_INS AS KODE_INS");
-            $this->db->select("instan.NAMA_INS AS NAMA_INS");
-            $this->db->from('anggota');
-            $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-            $this->db->where('anggota.KODE_INS !=', '99');
-            $this->db->like('anggota.NAMA_ANG', $keyword);
-            $this->db->or_like('anggota.URUT_ANG', $keyword);
-            $this->db->or_like('instan.NAMA_INS', $keyword);
-        } else {
-            $this->db->select("anggota.URUT_ANG AS URUT_ANG");
-            $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
-            $this->db->select("anggota.KODE_INS AS KODE_INS");
-            $this->db->select("instan.NAMA_INS AS NAMA_INS");
-            $this->db->from('anggota');
-            $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-            $this->db->where('anggota.KODE_INS !=', '99');
-        }
+    // public function getAnggota2($keyword = null)
+    // {
+    //     if ($keyword) {
+    //         $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+    //         $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+    //         $this->db->select("anggota.KODE_INS AS KODE_INS");
+    //         $this->db->select("instan.NAMA_INS AS NAMA_INS");
+    //         $this->db->from('anggota');
+    //         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+    //         $this->db->where('anggota.KODE_INS !=', '99');
+    //         $this->db->like('anggota.NAMA_ANG', $keyword);
+    //         $this->db->or_like('anggota.URUT_ANG', $keyword);
+    //         $this->db->or_like('instan.NAMA_INS', $keyword);
+    //     } else {
+    //         $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+    //         $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
+    //         $this->db->select("anggota.KODE_INS AS KODE_INS");
+    //         $this->db->select("instan.NAMA_INS AS NAMA_INS");
+    //         $this->db->from('anggota');
+    //         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+    //         $this->db->where('anggota.KODE_INS !=', '99');
+    //     }
 
-        return $this->db->get()->num_rows();
-    }
+    //     return $this->db->get()->num_rows();
+    // }
 
 
     public function tambahDataAnggota()

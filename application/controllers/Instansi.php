@@ -12,31 +12,8 @@ class Instansi extends CI_Controller
     public function index()
     {
         $this->load->library('pagination');
-
         $this->data['title'] = 'Instansi';
-
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyins', $data['keyword']);
-        } else {
-            $data['keyword'] = $this->session->userdata('keyins');
-        }
-
-        $this->db->like('NAMA_INS', $data['keyword']);
-        $this->db->or_like('KODE_INS', $data['keyword']);
-        $this->db->from('instan');
-
-        $config['base_url'] = 'http://localhost/koperasi/index.php/instansi/index';
-        $config['total_rows'] = $this->db->count_all_results();
-        $config['per_page'] = 10;
-        $config['num_links'] = 5;
-
-        $this->pagination->initialize($config);
-
-        $data['start'] = $this->uri->segment(3);
-        $this->data['instansi'] = $this->Instansi->getInstansi($config['per_page'], $data['start'], $data['keyword']);
-
+        $this->data['instansi'] = $this->Instansi->getAllInstansi();
 
         $this->load->view('instansi/index', $this->data);
     }

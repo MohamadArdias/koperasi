@@ -50,19 +50,14 @@ $this->load->view('templates/sidebar');
       <div class="col-md-12">
         <form action="<?= base_url(); ?>index.php/anggota" method="post">
           <div class="input-group">
-            <div>
-              <a href="<?= base_url(); ?>index.php/anggota/tambah" class="btn btn-primary">Tambah Anggota</a>
-            </div>
-            <div class="col"></div>
-            <input type="text" class="form-control" placeholder="Pencarian" name="keyword">
-            <input type="submit" class="btn btn-primary" name="submit" value="Cari">
+            <a href="<?= base_url(); ?>index.php/anggota/tambah" class="btn btn-primary">Tambah Anggota</a>
           </div>
         </form>
       </div>
     </div>
 
     <div class="overflow-auto">
-      <table class="mt-3" id="customers">
+      <table class="table table-borderless datatable" id="customers">
         <thead class="table-primary">
           <tr>
             <th class="text-center">No. Urut</th>
@@ -86,9 +81,6 @@ $this->load->view('templates/sidebar');
           <?php endforeach ?>
         </tbody>
       </table>
-      <div class="mt-3">
-        <?= $this->pagination->create_links(); ?>
-      </div>
     </div>
   </div>
 </div>

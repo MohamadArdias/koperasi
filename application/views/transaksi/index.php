@@ -7,9 +7,9 @@ $this->load->view('templates/sidebar');
     #customers {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
-        width: 100%;
+        width: 2000px;
     }
-    
+
 
     #customers td,
     #customers th {
@@ -36,62 +36,48 @@ $this->load->view('templates/sidebar');
 
 <div class="card">
     <div class="card-body">
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <form action="<?= base_url(); ?>index.php/Transaksi" method="post">
-                    <div class="input-group">
-                        <div class="col-sm-7"></div>
-                        <input type="text" class="form-control" placeholder="Pencarian" name="keyword">
-                        <input type="submit" class="btn btn-primary" name="submit" value="Cari">
-                    </div>
-                </form>
-            </div>
-        </div>
         <div class="overflow-auto">
-            <table class="mt-3" id="customers">
+            <table class="table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
-                        <th width="" >No. Faktur</th>
-                        <th width="" >Anggota</th>
-                        <th width="" >Instansi</th>
-                        <th width="" >Tanggal</th>
-                        <th width="" >Jangka</th>
-                        <th width="" >Ke</th>
-                        <th width="" >%</th>
-                        <th width="" >Plafon</th>
-                        <th width="" >Sisa Awal</th>
-                        <th width="" >Angsuran</th>
-                        <th width="" >Bunga</th>
-                        <th width="" >Ke</th>
-                        <th width="" >Sisa Akhir</th>
-                        <th width="" >JPOK Tahun Lalu</th>
+                        <th width="">No. Faktur</th>
+                        <th width="">Anggota</th>
+                        <th width="">Instansi</th>
+                        <th width="">Tanggal</th>
+                        <th width="">Jangka</th>
+                        <th width="">Ke</th>
+                        <th width="">%</th>
+                        <th width="">Plafon</th>
+                        <th width="">Sisa Awal</th>
+                        <th width="">Angsuran</th>
+                        <th width="">Bunga</th>
+                        <th width="">Ke</th>
+                        <th width="">Sisa Akhir</th>
+                        <th width="">JPOK Tahun Lalu</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($dt_transaksi as $lap) : ?>
                         <tr>
-                            <td><?= $lap['NOFAK']; ?></td>                            
-                            <td><?= $lap['KODE_ANG'],"/",$lap['NAMA_ANG']; ?></td>                            
-                            <td><?= $lap['KODE_INS'],"/",$lap['NAMA_INS']; ?></td>                            
-                            <td><?= $lap['TGLP_ANG']; ?></td>                            
-                            <td><?= $lap['JWKT_ANG']; ?></td>                            
-                            <td><?= $lap['KE_ANG']; ?></td>                            
-                            <td><?= $lap['PRO_ANG']; ?></td>                            
-                            <td><?= number_format($lap['JMLP_ANG'],0,',','.'); ?></td>
-                            
-                            <td></td>                            
-                            <td><?= $lap['POK_13']; ?></td>                            
+                            <td><?= $lap['NOFAK']; ?></td>
+                            <td><?= $lap['KODE_ANG'], "/", $lap['NAMA_ANG']; ?></td>
+                            <td><?= $lap['KODE_INS'], "/", $lap['NAMA_INS']; ?></td>
+                            <td><?= $lap['TGLP_ANG']; ?></td>
+                            <td><?= $lap['JWKT_ANG']; ?></td>
+                            <td><?= $lap['KE_ANG']; ?></td>
+                            <td><?= $lap['PRO_ANG']; ?></td>
+                            <td><?= number_format($lap['JMLP_ANG'], 0, ',', '.'); ?></td>
+
+                            <td></td>
+                            <td><?= $lap['POK_13']; ?></td>
                             <td><?= $lap['BNG_13']; ?></td>
-                            <td></td>                            
-                            <td></td>                            
-                            <td></td>                            
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
-            <div class="mt-3">
-                <?= $this->pagination->create_links(); ?>
-            </div>
         </div>
     </div>
 </div>

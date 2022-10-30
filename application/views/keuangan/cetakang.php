@@ -36,18 +36,8 @@ $this->load->view('templates/sidebar');
 <div class="col-xxl-4 col-xl-12">
     <div class="card">
         <div class="card-body">
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <form action="" method="post">
-                        <div class="input-group">
-                            <input type="text" class="form-control col-sm-6" placeholder="Pencarian" name="keyword">
-                            <button class="btn btn-primary" type="submit">Cari</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
             <div class="overflow-auto">
-                <table class="mt-3" id="customers">
+                <table class="table table-borderless datatable" id="customers">
                     <thead class="table-primary">
                         <tr>
                             <th class="text-center">Kode Anggota</th>
@@ -71,9 +61,6 @@ $this->load->view('templates/sidebar');
                         <?php endforeach ?>
                     </tbody>
                 </table>
-                <div class="mt-3">
-                    <?= $this->pagination->create_links(); ?>
-                </div>
             </div>
         </div>
     </div>

@@ -4,33 +4,33 @@ $this->load->view('templates/sidebar');
 ?>
 
 <style>
-    #customers {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
+  #customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-    #customers td,
-    #customers th {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
+  #customers td,
+  #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
 
-    #customers tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
+  #customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
 
-    #customers tr:hover {
-        background-color: #ddd;
-    }
+  #customers tr:hover {
+    background-color: #ddd;
+  }
 
-    #customers th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #0066ff;
-        color: white;
-    }
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0066ff;
+    color: white;
+  }
 </style>
 
 <div class="card">
@@ -49,19 +49,14 @@ $this->load->view('templates/sidebar');
             <div class="col-md-12">
                 <form action="<?= base_url(); ?>index.php/Instansi" method="post">
                     <div class="input-group">
-                        <div>
-                            <a href="<?= base_url(); ?>index.php/Instansi/tambah" class="btn btn-primary">Tambah Instansi</a>
-                        </div>
-                        <div class="col"></div>
-                        <input type="text" class="form-control" placeholder="Pencarian" name="keyword">
-                        <input type="submit" class="btn btn-primary" name="submit" value="Cari">
+                        <a href="<?= base_url(); ?>index.php/Instansi/tambah" class="btn btn-primary">Tambah Instansi</a>
                     </div>
                 </form>
             </div>
         </div>
 
-        <div class="overflow-auto">
-            <table class="mt-3" id="customers">
+        <div class="overflow-auto mt-2">
+            <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
                         <th class="text-center">Kode Instansi</th>
@@ -86,9 +81,6 @@ $this->load->view('templates/sidebar');
                     <?php endforeach ?>
                 </tbody>
             </table>
-            <div class="mt-3">
-                <?= $this->pagination->create_links(); ?>
-            </div>
         </div>
     </div>
 
