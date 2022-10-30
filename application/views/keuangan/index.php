@@ -44,14 +44,12 @@ $this->load->view('templates/sidebar');
                             <a href="<?= base_url(); ?>index.php/keuangan/export" class="btn btn-primary"><i class="bi-download"></i> Export Excel</a>
                         </div>
                         <div class="col-sm-6"></div>
-                        <input type="text" class="form-control" placeholder="Pencarian" name="keyword">
-                        <button class="btn btn-primary" type="submit">Cari</button>
                     </div>
                 </form>
             </div>
         </div>
         <div class="overflow-auto">
-        <table class="mt-3" id="customers">
+        <table class="table table-borderless datatable" id="customers">
             <thead class="table-primary">
                 <tr>
                     <th class="text-center">No</th>

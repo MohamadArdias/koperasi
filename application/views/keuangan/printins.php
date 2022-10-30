@@ -1,7 +1,15 @@
 <?php
 // $mpdf = new Mpdf(['orientation' => 'L', 'default_font_size' => 9]);
-        $date = date("d-M-Y");
-        $Month = date("M-Y");
+        setlocale(LC_ALL, 'id-ID', 'id_ID');
+        
+        // Hasil: Selasa, 04 April 2020
+        // echo strftime("%A, %d %B %Y", strtotime('2020-10-05')) . "\n";
+        // Hasil: Senin, 05 Oktober 2020
+
+        $date2 = date("d-M-Y");        
+        $date = strftime("%d %B %Y");       
+        // $Month = date('M-Y', strtotime('+1 month', strtotime($date)));
+        $Month = strftime('%B %Y', strtotime('+1 month', strtotime($date2)));
         $full = date("l, d-M-Y H:i:s");
 
         $pdf = new \TCPDF();
@@ -66,11 +74,12 @@
         foreach ($keuangan as $lap) {
             $a = $lap['POKU3'] + $lap['BNGU3'];
             $b = $lap['POKU1'] + $lap['BNGU1'];
+            $c = $lap['POKU7'] + $lap['BNGU7'];
             
             $totala += $a;
             $totalb += $b;
             $totalc += $lap['WAJIB'];
-            $potongan = $a + $b + $lap['WAJIB'];
+            $potongan = $a + $b + $c + $lap['WAJIB'];
             $totald += $potongan;
             
 
@@ -80,7 +89,7 @@
                                         <td width="65" align="right" style="border-right: 1px solid black; "></td>
                                         <td width="65" align="right" style="border-right: 1px solid black; "></td>
                                         <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($a,0,',','.') . '</td>
-                                        <td width="65" align="right" style="border-right: 1px solid black; "></td>
+                                        <td width="65" align="right" style="border-right: 1px solid black; ">'.number_format($c,0,',','.').'</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($b,0,',','.') . '</td>
                                         <td width="20" align="right" style="border-right: 1px solid black; ">' . $lap['KEU1'] . '</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; "></td>
