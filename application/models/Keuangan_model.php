@@ -10,10 +10,12 @@ class Keuangan_model extends  CI_Model
     public function getDistincAllKeuangan()
     {
         $this->db->distinct();
-        $this->db->select('keuangan.KODE_INS, instan.NAMA_INS');
+        $this->db->select('pl.KODE_INS, instan.NAMA_INS');
         $this->db->from('instan');
-        $this->db->join('keuangan', 'keuangan.KODE_INS = instan.KODE_INS');
+        $this->db->join('pl', 'pl.KODE_INS = instan.KODE_INS');
         $this->db->where('instan.KODE_INS !=', '99');
+        $this->db->where('pl.TAHUN', '2022');
+        $this->db->where('pl.BULAN', '10');
         return  $this->db->get()->result_array();
 
         // $this->db->distinct('KODE_INS', 'NAMA_INS');
