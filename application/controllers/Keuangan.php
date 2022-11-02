@@ -170,14 +170,14 @@ class Keuangan extends CI_Controller
         $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
         $this->data['instansi'] = $this->keuangan->getInstansi($KODE_INS);
 
-        $this->load->view('keuangan/printins', $this->data);        
+        $this->load->view('keuangan/printins', $this->data);
     }
 
     public function cetakang()
     {
         $this->load->library('pagination');
 
-        $this->data['title'] = 'Cetak Per Anggota';    
+        $this->data['title'] = 'Cetak Per Anggota';
 
         $this->data['keuangan'] = $this->keuangan->getAllKeuangan();
 
@@ -185,8 +185,18 @@ class Keuangan extends CI_Controller
     }
 
     public function printang($KODE_ANG)
-    {   
-        $this->load->view('keuangan/printang');          
+    {
+        $this->load->view('keuangan/printang');
     }
 
+
+    public function gen_tag($BULAN, $TAHUN)
+    {
+        $ANG = $this->db->query('select * from anggota limit 10')->result();
+
+
+        foreach ($ANG as $row) {
+            echo $BULAN . '-' . $TAHUN . '-' . $row->NAMA_ANG . '-</br>';
+        }
+    }
 }

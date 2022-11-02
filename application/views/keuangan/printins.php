@@ -7,7 +7,7 @@ setlocale(LC_ALL, 'id-ID', 'id_ID');
 // Hasil: Senin, 05 Oktober 2020
 
 $date2 = date("d-M-Y");
-$date = strftime("%d %B %Y");
+$date = strftime("%B %Y");
 // $Month = date('M-Y', strtotime('+1 month', strtotime($date)));
 $Month = strftime('%B %Y', strtotime('+1 month', strtotime($date2)));
 $full = strftime("%A, %d %B %Y");
@@ -72,15 +72,20 @@ $totala = 0;
 $totalb = 0;
 $totalc = 0;
 $totald = 0;
+$totale = 0;
+$totalf = 0;
 foreach ($keuangan as $lap) {
     $a = $lap['POKU3'] + $lap['BNGU3'];
     $b = $lap['POKU1'] + $lap['BNGU1'];
-    $c = $lap['POKU7'] + $lap['BNGU7'];
+    $e = $lap['POKU7'] + $lap['BNGU7'];
+    $f = $lap['POKU2'];
 
     $totala += $a;
     $totalb += $b;
     $totalc += $lap['WAJIB'];
-    $potongan = $a + $b + $c + $lap['WAJIB'];
+    $totale += $e;
+    $totalf += $f;
+    $potongan = $a + $b + $e + $f + $lap['WAJIB'];
     $totald += $potongan;
 
 
@@ -88,9 +93,9 @@ foreach ($keuangan as $lap) {
                                         <td width="20" align="right" style=" border-right: 1px solid black; border-left: 1px solid black; ">' . $i++ . '</td>
                                         <td width="150" style="border-right: 1px solid black; ">' . $lap['KODE_ANG'] . '-' . $lap['NAMA_ANG'] . '</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; "></td>
-                                        <td width="65" align="right" style="border-right: 1px solid black; "></td>
+                                        <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($f, 0, ',', '.') . '</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($a, 0, ',', '.') . '</td>
-                                        <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($c, 0, ',', '.') . '</td>
+                                        <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($e, 0, ',', '.') . '</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($b, 0, ',', '.') . '</td>
                                         <td width="20" align="right" style="border-right: 1px solid black; ">' . $lap['KEU1'] . '</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; "></td>
@@ -103,9 +108,9 @@ $data .=    '           <tr>
                                     <td style="border-top: 1px solid black; border-left: 1px solid black; " width="20" align="right"></td>
                                     <td style="border-top: 1px solid black; " width="150">TOTAL</td>
                                     <td style="border-top: 1px solid black; " width="65" align="right"></td>
-                                    <td style="border-top: 1px solid black; " width="65" align="right"></td>
+                                    <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totalf, 0, ',', '.') . '</td>
                                     <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totala, 0, ',', '.') . '</td>
-                                    <td style="border-top: 1px solid black; " width="65" align="right"></td>
+                                    <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totale, 0, ',', '.') . '</td>
                                     <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totalb, 0, ',', '.') . '</td>
                                     <td style="border-top: 1px solid black; " width="20" align="right">' . $lap['KEU1'] . '</td>
                                     <td style="border-top: 1px solid black; " width="65" align="right"></td>
@@ -117,9 +122,9 @@ $data .=    '           <tr>
                                     <td style="border-bottom: 1px solid black; border-left: 1px solid black; " width="20" align="right"></td>
                                     <td style="border-bottom: 1px solid black; " width="150">GRAND TOTAL</td>
                                     <td style="border-bottom: 1px solid black; " width="65" align="right"></td>
-                                    <td style="border-bottom: 1px solid black; " width="65" align="right"></td>
+                                    <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totalf, 0, ',', '.') . '</td>
                                     <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totala, 0, ',', '.') . '</td>
-                                    <td style="border-bottom: 1px solid black; " width="65" align="right"></td>
+                                    <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totale, 0, ',', '.') . '</td>
                                     <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totalb, 0, ',', '.') . '</td>
                                     <td style="border-bottom: 1px solid black; " width="20" align="right">' . $lap['KEU1'] . '</td>
                                     <td style="border-bottom: 1px solid black; " width="65" align="right"></td>
@@ -142,11 +147,11 @@ $data .=    '           <tr>
                                                 DRA.EC.HJ.ERFIN AGUSTINA,M.SI
                                             </td>       
                                             <td width="125"></td> 
-                                            <td><pre>Jumlah Tagihan Rp. ' . $totald .
+                                            <td><pre>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
     '<br>Terbayar       Rp. 0<br>==========================<br>Sisa           Rp. 0 </pre></td>
                                             <td width="125"></td>
                                             <td align="left" width="150">
-                                                Banyuwangi, ' . $date . ' <br>
+                                                Banyuwangi, 25 ' . $date . ' <br>
                                                 Pengurus KPRI Bangkit Bersama <br> 
                                                 Kantor Pemkab. Banyuwangi <br> 
                                                 Ketua 1 <br><br><br><br>

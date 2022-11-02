@@ -8,18 +8,16 @@ class Keuangan_model extends  CI_Model
     }
 
     public function getDistincAllKeuangan()
-    {
+    {       
         $this->db->distinct();
-        $this->db->select('pl.KODE_INS, instan.NAMA_INS');
-        $this->db->from('instan');
-        $this->db->join('pl', 'pl.KODE_INS = instan.KODE_INS');
+        $this->db->select('anggota.KODE_INS, instan.NAMA_INS');
+        $this->db->from('pl');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG', 'right');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
         $this->db->where('instan.KODE_INS !=', '99');
         $this->db->where('pl.TAHUN', '2022');
         $this->db->where('pl.BULAN', '10');
         return  $this->db->get()->result_array();
-
-        // $this->db->distinct('KODE_INS', 'NAMA_INS');
-        // return $this->db->get('keuangan')->result_array();
     }
 
     public function getKeuangan($limit, $start, $keyword = null)
@@ -65,7 +63,9 @@ class Keuangan_model extends  CI_Model
     {
         $this->db->select('*');
         $this->db->from('pl');
-        $this->db->where('KODE_INS', $KODE_INS);
+        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG', 'right');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
+        $this->db->where('instan.KODE_INS', $KODE_INS);
         $this->db->where('TAHUN', '2022');
         $this->db->where('BULAN', '10');
         return  $this->db->get()->result_array();
