@@ -62,7 +62,7 @@ $this->load->view('templates/sidebar');
                     <i class="bi bi-cash"></i>
                   </div>
                   <div class="ps-3">
-                    <h6><?= $bunga ?></h6>
+                    <h6><?= $bunga->jumlah ?></h6>
                   </div>
                 </div>
               </div>
@@ -129,61 +129,55 @@ $this->load->view('templates/sidebar');
 
 
 
-      <div id="reportsChart"></div>
 
-      <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          new ApexCharts(document.querySelector("#reportsChart"), {
-            series: [{
-              name: 'Sales',
-              data: [31, 40, 28, 51, 42, 82, 56],
-            }, {
-              name: 'Revenue',
-              data: [11, 32, 45, 32, 34, 52, 41]
-            }, {
-              name: 'Customers',
-              data: [15, 11, 32, 18, 9, 24, 11]
-            }],
-            chart: {
-              height: 350,
-              type: 'area',
-              toolbar: {
-                show: false
-              },
-            },
-            markers: {
-              size: 4
-            },
-            colors: ['#4154f1', '#2eca6a', '#ff771d'],
-            fill: {
-              type: "gradient",
-              gradient: {
-                shadeIntensity: 1,
-                opacityFrom: 0.3,
-                opacityTo: 0.4,
-                stops: [0, 90, 100]
-              }
-            },
-            dataLabels: {
-              enabled: false
-            },
-            stroke: {
-              curve: 'smooth',
-              width: 2
-            },
-            xaxis: {
-              type: 'datetime',
-              categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-            },
-            tooltip: {
-              x: {
-                format: 'dd/MM/yy HH:mm'
-              },
-            }
-          }).render();
-        });
-      </script>
-      <!-- End Line Chart -->
+      <div id="lineChart"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    new ApexCharts(document.querySelector("#lineChart"), {
+      series: [{
+        name: "Pinjaman Uang",
+        data: [<?=$SPjanuari->jumlah?>, <?=$SPfebruari->jumlah?>, <?=$SPmaret->jumlah?>, <?=$SPapril->jumlah?>, <?=$SPmei->jumlah?>, <?=$SPjuni->jumlah?>, <?=$SPjuli->jumlah?>, <?=$SPagustus->jumlah?>]
+      }, {
+        name: "Pinjaman Khusus",
+        data: [15, 45, 30, 59, 46, 66, 67, 90, 111]
+      }, {
+        name: "Konsumsi",
+        data: [15, 45, 30, 59, 46, 66, 67, 90, 111]
+      }, {
+        name: "Non Konsumsi",
+        data: [15, 45, 30, 59, 46, 66, 67, 90, 111]
+      }],
+      chart: {
+        height: 350,
+        type: 'line',
+        zoom: {
+          enabled: false
+        }
+      },
+      markers: {
+        size: 4
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 2
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          opacity: 0.5
+        },
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      }
+    }).render();
+  });
+</script>
+</div>
 
     </div>
 
