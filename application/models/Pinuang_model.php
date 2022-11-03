@@ -57,4 +57,19 @@ class Pinuang_model extends  CI_Model
             pinuang.NOFAK LIKE '%n%' AND
             pinuang.KODE_ANG = '$a'");
     }
+
+    public function getUang()
+    {
+        $bln = date('m', strtotime('-1 month'));
+        $thn = date('Y', strtotime('-1 month'));
+
+        $this->db->select('*');
+        $this->db->from('pinsimp');
+        // $this->db->where('KODE_INS', 06);
+        // $this->db->where('KODE_ANG', 5000);
+        $this->db->where('KODE_INS !=', 99);
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', $bln);
+        return $this->db->get()->result_array();
+    }
 }
