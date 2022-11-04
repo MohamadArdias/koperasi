@@ -43,6 +43,14 @@ class generate extends CI_Controller
         $this->load->view('generate/konsum', $this->data);
     }
 
+    public function khusus()
+    {
+        $this->data['title'] = 'Generate Pinjaman Khusus';
+        $this->data['uang'] = $this->Pinuang->getKhusus();
+
+        $this->load->view('generate/khusus', $this->data);
+    }
+
     // public function tambah()
     // {
     //     if (isset($_POST['KODE_ANG'])) {

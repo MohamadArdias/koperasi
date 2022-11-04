@@ -77,6 +77,11 @@
                           <i class="bi bi-circle-fill"></i><span>Konsum</span>
                       </a>
                   </li>
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/khusus">
+                          <i class="bi bi-circle-fill"></i><span>khusus</span>
+                      </a>
+                  </li>
               </ul>
           </li>
           
