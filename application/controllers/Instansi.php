@@ -11,7 +11,6 @@ class Instansi extends CI_Controller
 
     public function index()
     {
-        $this->load->library('pagination');
         $this->data['title'] = 'Instansi';
         $this->data['instansi'] = $this->Instansi->getAllInstansi();
 

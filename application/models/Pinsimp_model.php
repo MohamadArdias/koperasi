@@ -22,25 +22,6 @@ class Pinsimp_model extends  CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function getUang()
-    {
-        $bln = date('m', strtotime('-1 month'));
-        $thn = date('Y', strtotime('-1 month'));
-
-        $this->db->select('*');
-        $this->db->from('pl');
-        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
-        $this->db->where('pl.TAHUN', $thn);
-        $this->db->where('pl.BULAN', $bln);
-        $this->db->where('pinuang.TAHUN', $thn);
-        $this->db->where('pinuang.BULAN', $bln);
-        $this->db->where('anggota.KODE_INS', 06);
-        // $this->db->where('pl.KODE_ANG', 1541);
-        $this->db->like('pinuang.NOFAK', 'U');
-        return $this->db->get()->result_array();
-    }
-
     public function getAllSimp2()
     {
         $this->db->select_sum('POPU1');

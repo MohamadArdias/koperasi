@@ -11,8 +11,6 @@ class Anggota extends CI_Controller
 
     public function index()
     {
-        $this->load->library('pagination');
-
         $this->data['title'] = 'Tabel Anggota';
 
         $this->data['anggota'] = $this->Anggota->getAnggota();

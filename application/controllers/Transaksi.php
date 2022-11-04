@@ -11,7 +11,6 @@ class Transaksi extends CI_Controller
     public function index()
     {
         $this->data['title'] = 'History Transaksi';
-        $this->load->library('pagination');
         $this->data['dt_transaksi'] = $this->Pinuang->getPinuang();
 
         $this->load->view('transaksi/index', $this->data);

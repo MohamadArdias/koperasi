@@ -22,9 +22,25 @@ class generate extends CI_Controller
     public function uang()
     {
         $this->data['title'] = 'Generate Pinjaman Uang';
-        $this->data['uang'] = $this->Pinsimp->getUang();
+        $this->data['uang'] = $this->Pinuang->getUang();
 
         $this->load->view('generate/uang', $this->data);
+    }
+
+    public function nonkonsum()
+    {
+        $this->data['title'] = 'Generate Pinjaman Non-Konsumi';
+        $this->data['uang'] = $this->Pinuang->getNon();
+
+        $this->load->view('generate/nonkonsum', $this->data);
+    }
+
+    public function konsum()
+    {
+        $this->data['title'] = 'Generate Pinjaman Konsumi';
+        $this->data['uang'] = $this->Pinuang->getKons();
+
+        $this->load->view('generate/konsum', $this->data);
     }
 
     // public function tambah()

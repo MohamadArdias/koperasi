@@ -64,12 +64,57 @@ class Pinuang_model extends  CI_Model
         $thn = date('Y', strtotime('-1 month'));
 
         $this->db->select('*');
-        $this->db->from('pinsimp');
-        // $this->db->where('KODE_INS', 06);
-        // $this->db->where('KODE_ANG', 5000);
-        $this->db->where('KODE_INS !=', 99);
-        $this->db->where('TAHUN', $thn);
-        $this->db->where('BULAN', $bln);
+        $this->db->from('pl');
+        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
+        $this->db->where('pl.TAHUN', $thn);
+        $this->db->where('pl.BULAN', $bln);
+        $this->db->where('pinuang.TAHUN', $thn);
+        $this->db->where('pinuang.BULAN', $bln);
+        $this->db->where('anggota.KODE_INS !=', 99);
+        $this->db->where('anggota.KODE_INS', 06);
+        // $this->db->where('pl.KODE_ANG', 1541);
+        $this->db->like('pinuang.NOFAK', 'U');
+        return $this->db->get()->result_array();
+    }
+
+    public function getNon()
+    {
+        $bln = date('m', strtotime('-1 month'));
+        $thn = date('Y', strtotime('-1 month'));
+
+        $this->db->select('*');
+        $this->db->from('pl');
+        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
+        $this->db->where('pl.TAHUN', $thn);
+        $this->db->where('pl.BULAN', $bln);
+        $this->db->where('pinuang.TAHUN', $thn);
+        $this->db->where('pinuang.BULAN', $bln);
+        $this->db->where('anggota.KODE_INS !=', 99);
+        $this->db->where('anggota.KODE_INS', 06);
+        // $this->db->where('pl.KODE_ANG', '1275');
+        $this->db->like('pinuang.NOFAK', 'N');
+        return $this->db->get()->result_array();
+    }
+
+    public function getKons()
+    {
+        $bln = date('m', strtotime('-1 month'));
+        $thn = date('Y', strtotime('-1 month'));
+
+        $this->db->select('*');
+        $this->db->from('pl');
+        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
+        $this->db->where('pl.TAHUN', $thn);
+        $this->db->where('pl.BULAN', $bln);
+        $this->db->where('pinuang.TAHUN', $thn);
+        $this->db->where('pinuang.BULAN', $bln);
+        $this->db->where('anggota.KODE_INS !=', 99);
+        $this->db->like('pinuang.NOFAK', 'O');
         return $this->db->get()->result_array();
     }
 }

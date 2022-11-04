@@ -67,12 +67,16 @@
                           <i class="bi bi-circle-fill"></i><span>Uang</span>
                       </a>
                   </li>
-                  <!-- <li>
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan/cetakang/">
-                          <i class="bi bi-circle-fill"></i><span>Cetak Anggota</span>
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/nonkonsum">
+                          <i class="bi bi-circle-fill"></i><span>Non Konsum</span>
                       </a>
-                  </li> -->
-
+                  </li>
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/konsum">
+                          <i class="bi bi-circle-fill"></i><span>Konsum</span>
+                      </a>
+                  </li>
               </ul>
           </li>
           
