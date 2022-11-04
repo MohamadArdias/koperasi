@@ -143,10 +143,10 @@ $this->load->view('templates/sidebar');
         data: [15, 45, 30, 59, 46, 66, 67, 90, 111]
       }, {
         name: "Konsumsi",
-        data: [15, 45, 30, 59, 46, 66, 67, 90, 111]
+        data: [<?=$Kjanuari->jumlah?>, <?=$Kfebruari->jumlah?>, <?=$Kmaret->jumlah?>, <?=$Kapril->jumlah?>, <?=$Kmei->jumlah?>, <?=$Kjuni->jumlah?>, <?=$Kjuli->jumlah?>, <?=$Kagustus->jumlah?>, <?=$Kseptember->jumlah?>, <?=$Koktober->jumlah?>, <?=$Knovember->jumlah?>, <?=$Kdesember->jumlah?>]
       }, {
         name: "Non Konsumsi",
-        data: [15, 45, 30, 59, 46, 66, 67, 90, 111]
+        data: [<?=$NKjanuari->jumlah?>, <?=$NKfebruari->jumlah?>, <?=$NKmaret->jumlah?>, <?=$NKapril->jumlah?>, <?=$NKmei->jumlah?>, <?=$NKjuni->jumlah?>, <?=$NKjuli->jumlah?>, <?=$NKagustus->jumlah?>, <?=$NKseptember->jumlah?>, <?=$NKoktober->jumlah?>, <?=$NKnovember->jumlah?>, <?=$NKdesember->jumlah?>]
       }],
       chart: {
         height: 350,
