@@ -25,7 +25,7 @@ class Dashboard_model extends CI_Model
     }
 
 
-    // SP
+    // SP / UANG
 
     public function SPjanuari()
     {
@@ -115,10 +115,52 @@ class Dashboard_model extends CI_Model
         return $this->db->get('')->row(); 
     }
 
+    public function SPseptember()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '09');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU1' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
 
-    // Konsumsi Pokok
+    public function SPoktober()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '10');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU1' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+    
+    public function SPnovember()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '11');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU1' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
 
-    // K
+    public function SPdesember()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '12');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU1' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+
+    // Konsumsi
 
     public function kjanuari()
     {
@@ -252,7 +294,7 @@ class Dashboard_model extends CI_Model
         return $this->db->get('')->row(); 
     }
 
-    // NK
+    // NON KONSUMSI
 
     public function Nkjanuari()
     {
@@ -386,5 +428,138 @@ class Dashboard_model extends CI_Model
         return $this->db->get('')->row(); 
     }
 
+    // PINJAMAN KHUSUS
+
+    public function PKjanuari()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '01');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKfebruari()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '02');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKmaret()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '03');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKapril()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '04');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKmei()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '05');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKjuni()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '06');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKjuli()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '07');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKagustus()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '08');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKseptember()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '09');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKoktober()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '10');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKnovember()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '11');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
+
+    public function PKdesember()
+    {
+        $thn = date('Y');
+        $this->db->where('TAHUN', $thn);
+        $this->db->where('BULAN', '12');
+        $this->db->where('KODE_INS !=', '99');
+        $this->db->select_sum('POKU7' , 'jumlah');
+        $this->db->from('pl');
+        return $this->db->get('')->row(); 
+    }
 
 }
