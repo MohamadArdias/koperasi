@@ -63,10 +63,10 @@ $this->load->view('templates/sidebar');
                 <tbody>
                     <?php
                     foreach ($uang as $key) :
-                        $KEU2 = $key['KEU2'];
+                        $KEU7 = $key['KEU7'];
                         $JWKT_ANG = $key['JWKT_ANG'];
 
-                        if ($KEU2 == $JWKT_ANG) {
+                        if ($KEU7 == $JWKT_ANG) {
                             $STATUS = 'LUNAS';
                             $JWKT_ANG = 0;
                         } else {
@@ -78,27 +78,30 @@ $this->load->view('templates/sidebar');
                             $JMLP_ANG = 0;
                             $PRO_ANG = 0;
                             $KE_ANG = 0;
-                            $KEU2 = 0;
-                            $POKU2 = 0;
-                            $SIPOKU2 = 0;
-                            $BNGU2 = 0;
+                            $KEU7 = 0;
+                            $POKU7 = 0;
+                            $SIPOKU7 = 0;
+                            $BNGU7 = 0;
                             $CICILAN = 0;
                         } else {
                             $JMLP_ANG = $key['JMLP_ANG'];
                             $PRO_ANG = $key['PRO_ANG'];
-                            $KEU2 = $key['KEU2'] + 1;
+                            $KEU7 = $key['KEU7'] + 1;
 
                             if (date('m') == 12) {
-                                $KE_ANG = $KEU2;
+                                $KE_ANG = $KEU7;
                             } else {
                                 $KE_ANG = $key['KE_ANG'];
                             }
 
-                            $POKU2 = $JMLP_ANG / $JWKT_ANG; //apakah seLisih sedikit pengaruh atau tidak? jika tidak = $key['POKU2']
-
-                            $SIPOKU2 = $JMLP_ANG - ($POKU2 * $KEU2); //$key['SIPOKU2']-$key['POKU2'] //$key['SIPOKU2']-$POKU2;
-                            $BNGU2 = $JMLP_ANG * ($PRO_ANG / 100);
-                            $CICILAN = $JMLP_ANG - $SIPOKU2;
+                            if ($JMLP_ANG == 0 || $JWKT_ANG == 0) {
+                                $POKU7 = 0;
+                            } else {
+                                $POKU7 = $JMLP_ANG / $JWKT_ANG; //apakah seLisih sedikit pengaruh atau tidak? jika tidak = $key['POKU7']                                
+                            }
+                            $SIPOKU7 = $JMLP_ANG - ($POKU7 * $KEU7); //$key['SIPOKU7']-$key['POKU7'] //$key['SIPOKU7']-$POKU7;
+                            $BNGU7 = $JMLP_ANG * ($PRO_ANG / 100);
+                            $CICILAN = $JMLP_ANG - $SIPOKU7;
                         }
 
 
@@ -111,10 +114,10 @@ $this->load->view('templates/sidebar');
                             <td><?= $PRO_ANG; ?></td>
                             <td><?= $KE_ANG; ?></td>
                             <td><?= $JWKT_ANG; ?></td>
-                            <td><?= $KEU2; ?></td>
-                            <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($POKU2, 0, ',', '.'); ?></td>
-                            <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($SIPOKU2, 0, ',', '.'); ?></td>
-                            <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($BNGU2, 0, ',', '.'); ?></td>
+                            <td><?= $KEU7; ?></td>
+                            <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($POKU7, 0, ',', '.'); ?></td>
+                            <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($SIPOKU7, 0, ',', '.'); ?></td>
+                            <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($BNGU7, 0, ',', '.'); ?></td>
                             <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($CICILAN, 0, ',', '.'); ?></td>
                             <td style="text-align: center;"><?= $STATUS; ?></td>
 

@@ -94,7 +94,11 @@ $this->load->view('templates/sidebar');
                                 $KE_ANG = $key['KE_ANG'];
                             }
 
-                            $POKU2 = $JMLP_ANG / $JWKT_ANG; //apakah seLisih sedikit pengaruh atau tidak? jika tidak = $key['POKU2']
+                            if ($JMLP_ANG == 0 || $JWKT_ANG == 0) {
+                                $POKU2 = 0;
+                            } else {
+                                $POKU2 = $JMLP_ANG / $JWKT_ANG; //apakah seLisih sedikit pengaruh atau tidak? jika tidak = $key['POKU2']                                
+                            }
 
                             $SIPOKU2 = $JMLP_ANG - ($POKU2 * $KEU2); //$key['SIPOKU2']-$key['POKU2'] //$key['SIPOKU2']-$POKU2;
                             $BNGU2 = $JMLP_ANG * ($PRO_ANG / 100);
