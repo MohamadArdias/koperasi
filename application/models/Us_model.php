@@ -23,4 +23,21 @@ class Us_model extends  CI_Model
 
         $this->db->insert('us', $this->data);
     }
+
+    public function getUs()
+    {
+        // SELECT TGLP_ANG,SUM(JMLP_ANG) FROM pinuang GROUP BY TGLP_ANG
+        $data =  $this->db->query("SELECT TGLP_ANG,SUM(JMLP_ANG) AS HASIL FROM pinuang GROUP BY TGLP_ANG");
+        return $data->result_array();
+        // $this->db->select('*');
+        // $this->db->from('us');
+        // $this->db->where('KODE_INS', '06');
+        // return $this->db->get()->result_array();
+    }
+
+    public function getTgl()
+    {
+        $data = $this->db->query("SELECT TGLP_ANG AS TANGGAL FROM pinuang GROUP BY TGLP_ANG");
+        return $data->result_array();
+    }
 }
