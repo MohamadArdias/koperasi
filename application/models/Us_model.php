@@ -27,7 +27,7 @@ class Us_model extends  CI_Model
     public function getUs()
     {
         // SELECT TGLP_ANG,SUM(JMLP_ANG) FROM pinuang GROUP BY TGLP_ANG
-        $data =  $this->db->query("SELECT TGLP_ANG,SUM(JMLP_ANG) AS HASIL FROM pinuang GROUP BY TGLP_ANG");
+        $data =  $this->db->query("SELECT TANGGAL, SUM(JUMLAH) AS HASIL FROM us GROUP BY TANGGAL");
         return $data->result_array();
         // $this->db->select('*');
         // $this->db->from('us');

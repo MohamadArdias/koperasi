@@ -65,7 +65,7 @@ class aku extends CI_Controller
                         },
                         xaxis: {
                             type: 'date',
-                            categories: [<?php foreach ($data2 as $key) { ?> "<?= $key['TANGGAL']; ?>",
+                            categories: [<?php foreach ($data as $key) { ?> "<?= $key['TANGGAL']; ?>",
                                 <?php   } ?>
                             ]
                         },

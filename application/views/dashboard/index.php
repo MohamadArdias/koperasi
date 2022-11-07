@@ -162,56 +162,52 @@ $this->load->view('templates/sidebar');
 
       <div id="lineChart"></div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    new ApexCharts(document.querySelector("#lineChart"), {
-      series: [{
-        name: "Pinjaman Uang",
-        data: [<?=$SPjanuari->jumlah?>, <?=$SPfebruari->jumlah?>, <?=$SPmaret->jumlah?>, <?=$SPapril->jumlah?>, <?=$SPmei->jumlah?>, <?=$SPjuni->jumlah?>, <?=$SPjuli->jumlah?>, <?=$SPagustus->jumlah?>,<?=$SPseptember->jumlah?>, <?=$SPoktober->jumlah?>, <?=$SPnovember->jumlah?>, <?=$SPdesember->jumlah?>]
-      }, {
-        name: "Pinjaman Khusus",
-        data: [<?=$PKjanuari->jumlah?>, <?=$PKfebruari->jumlah?>, <?=$PKmaret->jumlah?>, <?=$PKapril->jumlah?>, <?=$PKmei->jumlah?>, <?=$PKjuni->jumlah?>, <?=$PKjuli->jumlah?>, <?=$PKagustus->jumlah?>, <?=$PKseptember->jumlah?>, <?=$PKoktober->jumlah?>, <?=$PKnovember->jumlah?>, <?=$PKdesember->jumlah?>]
-      }, {
-        name: "Konsumsi",
-        data: [<?=$Kjanuari->jumlah?>, <?=$Kfebruari->jumlah?>, <?=$Kmaret->jumlah?>, <?=$Kapril->jumlah?>, <?=$Kmei->jumlah?>, <?=$Kjuni->jumlah?>, <?=$Kjuli->jumlah?>, <?=$Kagustus->jumlah?>, <?=$Kseptember->jumlah?>, <?=$Koktober->jumlah?>, <?=$Knovember->jumlah?>, <?=$Kdesember->jumlah?>]
-      }, {
-        name: "Non Konsumsi",
-        data: [<?=$NKjanuari->jumlah?>, <?=$NKfebruari->jumlah?>, <?=$NKmaret->jumlah?>, <?=$NKapril->jumlah?>, <?=$NKmei->jumlah?>, <?=$NKjuni->jumlah?>, <?=$NKjuli->jumlah?>, <?=$NKagustus->jumlah?>, <?=$NKseptember->jumlah?>, <?=$NKoktober->jumlah?>, <?=$NKnovember->jumlah?>, <?=$NKdesember->jumlah?>]
-      }],
-      chart: {
-        height: 350,
-        type: 'line',
-        zoom: {
-          enabled: true
-        }
-      },
-      markers: {
-        size: 4
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        curve: 'smooth',
-        width: 2
-      },
-      grid: {
-        row: {
-          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-          opacity: 0.5
-        },
-      },
-      xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep','Okt','Nov','Des'],
-      }
-    }).render();
-  });
-</script>
-</div>
-
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          new ApexCharts(document.querySelector("#lineChart"), {
+            series: [{
+              name: 'Sales',
+              data: [<?php foreach ($data as $key) {
+                        echo $key['HASIL'];  ?>, <?php
+                                                        } ?>],
+            }],
+            chart: {
+              height: 350,
+              type: 'line',
+              zoom: {
+                enabled: true
+              }
+            },
+            markers: {
+              size: 4
+            },
+            dataLabels: {
+              enabled: false
+            },
+            stroke: {
+              curve: 'smooth',
+              width: 2
+            },
+            grid: {
+              row: {
+                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5
+              },
+            },
+            xaxis: {
+              type: 'date',
+              categories: [<?php foreach ($data as $key) { ?> "<?= $key['TANGGAL']; ?>",
+                <?php   } ?>
+              ]
+            }
+          }).render();
+        });
+      </script>
     </div>
 
   </div>
+
+</div>
 </div><!-- End Reports -->
 
 <?php
