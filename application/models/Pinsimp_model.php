@@ -10,14 +10,14 @@ class Pinsimp_model extends  CI_Model
         $this->db->select('*');
         $this->db->from('pl');
         $this->db->join('pinsimp', 'pinsimp.KODE_ANG = pl.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinsimp.KODE_ANG', 'left');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pinsimp.KODE_ANG', 'right');
         $this->db->where('anggota.KODE_INS !=', 99);
         $this->db->where('pl.TAHUN', $thn);
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('pinsimp.TAHUN', $thn);
         $this->db->where('pinsimp.BULAN', $bln);
-        $this->db->where('anggota.KODE_INS', 06);
-        // $this->db->where('pl.KODE_ANG', '1541');
+        // $this->db->where('anggota.KODE_INS', '03');
+        $this->db->where('pl.KODE_ANG', '1541');
 
         return $this->db->get()->result_array();
     }
