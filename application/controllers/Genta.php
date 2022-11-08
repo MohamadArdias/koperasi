@@ -19,7 +19,7 @@ class Genta extends CI_Controller
         $khus = $this->Pinuang->getKhusus();
 
         foreach ($simpan as $key) {
-            if (date('m') == 11) {
+            if (date('m') == 12) {
                 // pinsimp
                 $pinsimp = array(
                     'TAHUN' => date('Y'),
@@ -96,7 +96,7 @@ class Genta extends CI_Controller
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
-                if (date('m') == 11) {
+                if (date('m') == 12) {
                     $KE_ANG = $KEU1;
                 } else {
                     $KE_ANG = $key['KE_ANG'];
@@ -112,7 +112,7 @@ class Genta extends CI_Controller
                 $CICILAN = $JMLP_ANG - $SIPOKU1;
             }
 
-            if (date('m') == 11) {
+            if (date('m') == 12) {
                 $pinuang_uang = array(
                     'TAHUN' => date('Y'),
                     'BULAN' => date('m'),
@@ -195,7 +195,7 @@ class Genta extends CI_Controller
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
-                if (date('m') == 11) {
+                if (date('m') == 12) {
                     $KE_ANG = $KEU3;
                 } else {
                     $KE_ANG = $key['KE_ANG'];
@@ -211,7 +211,7 @@ class Genta extends CI_Controller
                 $CICILAN = $JMLP_ANG - $SIPOKU3;
             }
 
-            if (date('m') == 11) {
+            if (date('m') == 12) {
                 $pinuang_non = array(
                     'TAHUN' => date('Y'),
                     'BULAN' => date('m'),
@@ -294,7 +294,7 @@ class Genta extends CI_Controller
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
-                if (date('m') == 11) {
+                if (date('m') == 12) {
                     $KE_ANG = $KEU7;
                 } else {
                     $KE_ANG = $key['KE_ANG'];
@@ -310,7 +310,7 @@ class Genta extends CI_Controller
                 $CICILAN = $JMLP_ANG - $SIPOKU7;
             }
 
-            if (date('m') == 11) {
+            if (date('m') == 12) {
                 $pinuang_khusus = array(
                     'TAHUN' => date('Y'),
                     'BULAN' => date('m'),
@@ -393,7 +393,7 @@ class Genta extends CI_Controller
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
-                if (date('m') == 11) {
+                if (date('m') == 12) {
                     $KE_ANG = $KEU2;
                 } else {
                     $KE_ANG = $key['KE_ANG'];
@@ -409,7 +409,7 @@ class Genta extends CI_Controller
                 $CICILAN = $JMLP_ANG - $SIPOKU2;
             }
 
-            if (date('m') == 11) {
+            if (date('m') == 12) {
                 $pinuang_kons = array(
                     'TAHUN' => date('Y'),
                     'BULAN' => date('m'),
