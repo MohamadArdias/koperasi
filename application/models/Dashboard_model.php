@@ -2,6 +2,12 @@
 
 class Dashboard_model extends CI_Model
 {
+    // public function getThnById($TAHUN){
+    // $this->db->select('*');
+    // $this->db->from('pl');
+    // $this->db->where('TAHUN',$TAHUN);
+    // return $this->db->get()->result_array();
+    // }
     public function getBunga()
     {
         $thn = date('Y');
@@ -14,7 +20,7 @@ class Dashboard_model extends CI_Model
         // $this->db->select_sum('SIPOKU3');
         // return  $this->db->get('pl')->num_rows();
     } 
-    public function getAnggotaTunggak($table)
+    public function getAnggotaTunggak()
     {
         $thn = date('Y');
         // $bln = date('m');

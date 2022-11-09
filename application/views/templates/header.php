@@ -32,6 +32,7 @@
 
 </head>
 
+
 <body>
     <?php date_default_timezone_set("Asia/Jakarta"); ?>
     <!-- ======= Header ======= -->
@@ -46,6 +47,8 @@
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
+
+    <!-- Profil -->
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-6">
@@ -56,7 +59,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="<?= base_url(); ?>index.php">
                                 <i class="bi bi-person"></i>
-                                <span>My Profile</span>
+                                <span>Profil</span>
                             </a>
                         </li>
                         <li>
@@ -66,7 +69,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="<?= base_url(); ?>index.php/auth/logout">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>Log Outs</span>
                             </a>
                         </li>
 

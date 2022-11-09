@@ -33,7 +33,7 @@
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinjaman">
-                  <i class="bi bi-bank2"></i>
+                  <i class="bi bi-bank"></i>
                   <span>Pinjaman</span>
               </a>
           </li>
@@ -54,12 +54,12 @@
 
           <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav-gen" aria-controls="forms-nav">
-                  <i class="bi bi-cash-stack"></i><span>Generate</span><i class="bi bi-chevron-down ms-auto"></i>
+                  <i class="bi bi-cash"></i><span>Generate</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="forms-nav-gen" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate">
-                          <i class="bi bi-circle-fill"></i><span>pinsimp</span>
+                          <i class="bi bi-circle-fill"></i><span>Pinjam Simpan</span>
                       </a>
                   </li>
                   <li>
@@ -69,17 +69,17 @@
                   </li>
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/nonkonsum">
-                          <i class="bi bi-circle-fill"></i><span>Non Konsum</span>
+                          <i class="bi bi-circle-fill"></i><span>Non Konsumsi</span>
                       </a>
                   </li>
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/konsum">
-                          <i class="bi bi-circle-fill"></i><span>Konsum</span>
+                          <i class="bi bi-circle-fill"></i><span>Konsumsi</span>
                       </a>
                   </li>
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/khusus">
-                          <i class="bi bi-circle-fill"></i><span>khusus</span>
+                          <i class="bi bi-circle-fill"></i><span>Khusus</span>
                       </a>
                   </li>
               </ul>

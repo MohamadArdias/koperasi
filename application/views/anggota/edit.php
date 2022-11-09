@@ -94,7 +94,7 @@ $this->load->view('templates/sidebar');
             
             <div class="col-sm-4 text-end mt-3 ">
                 <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
-                <button type="submit" name="edit" class="btn btn-primary">simpan</button>
+                <button type="submit" name="edit" class="btn btn-primary">Simpan</button>
             </div>
         </div>
     </form>

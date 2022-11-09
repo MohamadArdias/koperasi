@@ -39,7 +39,7 @@ $this->load->view('templates/sidebar');
             <div class="row mt-3">
                 <div class="col-md-6">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        Data anggota <strong>berhasil</strong> <?= $this->session->flashdata('flashP'); ?>
+                        Data Anggota <strong>Berhasil</strong> <?= $this->session->flashdata('flashP'); ?>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@ $this->load->view('templates/sidebar');
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-cart"></i>
+                                <i class="bi bi-wallet"></i>
                             </div>
                             <div class="ps-3">
                                 <a href="<?= base_url(); ?>index.php/pinjaman/form/1" class="nav-link">
@@ -66,7 +66,7 @@ $this->load->view('templates/sidebar');
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-cart"></i>
+                                <i class="bi bi-wallet2"></i>
                             </div>
                             <div class="ps-3">
                                 <a href="<?= base_url(); ?>index.php/pinjaman/form/2" class="nav-link">
@@ -82,7 +82,7 @@ $this->load->view('templates/sidebar');
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-cart"></i>
+                                <i class="bi bi-cart-check"></i>
                             </div>
                             <div class="ps-3">
                                 <a href="<?= base_url(); ?>index.php/pinjaman/form/3" class="nav-link">
@@ -99,11 +99,11 @@ $this->load->view('templates/sidebar');
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-cart"></i>
+                                <i class="bi bi-cart-dash"></i>
                             </div>
                             <div class="ps-3">
                                 <a href="<?= base_url(); ?>index.php/pinjaman/form/4" class="nav-link">
-                                    <h6>Non Konsumi</h6>
+                                    <h6>Non Konsumsi</h6>
                                 </a>
                             </div>
                         </div>
@@ -116,11 +116,11 @@ $this->load->view('templates/sidebar');
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-cart"></i>
+                                <i class="bi bi-wallet-fill"></i>
                             </div>
                             <div class="ps-3">
                                 <a href="<?= base_url(); ?>index.php/pinjaman/form/5" class="nav-link">
-                                    <h6>Pinjaman Khususu</h6>
+                                    <h6>Pinjaman Khusus</h6>
                                 </a>
                             </div>
                         </div>
