@@ -93,15 +93,8 @@
           </li>
 
           <li class="nav-item">
-              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Import">
-                  <i class="bi bi-circle-fill"></i>
-                  <span>Import Bank Jatim</span>
-              </a>
-          </li>
-
-          <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav" aria-controls="forms-nav">
-                  <i class="bi bi-cash-stack"></i><span>Keuangan</span><i class="bi bi-chevron-down ms-auto"></i>
+                  <i class="bi bi-gear-wide-connected"></i><span>Export/Import/print</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
@@ -120,6 +113,11 @@
                       </a>
                   </li>
 
+                  <li class="nav-item">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Import">
+                          <i class="bi bi-circle-fill"></i><span>Import Bank Jatim</span>
+                      </a>
+                  </li>
               </ul>
           </li><!-- End Forms Nav -->
 
