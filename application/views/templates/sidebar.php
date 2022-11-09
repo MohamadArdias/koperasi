@@ -102,6 +102,11 @@
                           <i class="bi bi-circle-fill"></i><span>Export Excel</span>
                       </a>
                   </li>
+                  <li class="nav-item">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Import">
+                          <i class="bi bi-circle-fill"></i><span>Import Bank Jatim</span>
+                      </a>
+                  </li>
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan/cetakins/">
                           <i class="bi bi-circle-fill"></i><span>Cetak Instansi</span>
@@ -110,12 +115,6 @@
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/keuangan/cetakang/">
                           <i class="bi bi-circle-fill"></i><span>Cetak Anggota</span>
-                      </a>
-                  </li>
-
-                  <li class="nav-item">
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Import">
-                          <i class="bi bi-circle-fill"></i><span>Import Bank Jatim</span>
                       </a>
                   </li>
               </ul>
