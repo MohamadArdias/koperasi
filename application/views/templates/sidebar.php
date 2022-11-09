@@ -44,11 +44,18 @@
                   <span>Transaksi</span>
               </a>
           </li> -->
-          
+
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinsim">
                   <i class="bi bi-bank2"></i>
                   <span>Simpan Pinjam</span>
+              </a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pay">
+                  <i class="bi bi-bank2"></i>
+                  <span>Pembayaran Langsung</span>
               </a>
           </li>
 
@@ -84,7 +91,7 @@
                   </li>
               </ul>
           </li>
-          
+
           <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav" aria-controls="forms-nav">
                   <i class="bi bi-cash-stack"></i><span>Keuangan</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -108,7 +115,7 @@
 
               </ul>
           </li><!-- End Forms Nav -->
-          
+
       </ul>
 
   </aside><!-- End Sidebar-->
