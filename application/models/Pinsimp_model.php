@@ -4,8 +4,10 @@ class Pinsimp_model extends  CI_Model
 {
     public function getAllSimp()
     {
-        $bln = date('m', strtotime('-1 month'));
-        $thn = date('Y', strtotime('-1 month'));
+        // $bln = date('m', strtotime('-1 month'));
+        // $thn = date('Y', strtotime('-1 month'));
+        $bln = date('m');
+        $thn = date('Y');
 
         $this->db->select('*');
         $this->db->from('pl');
@@ -16,8 +18,8 @@ class Pinsimp_model extends  CI_Model
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('pinsimp.TAHUN', $thn);
         $this->db->where('pinsimp.BULAN', $bln);
-        // $this->db->where('anggota.KODE_INS', '03');
-        $this->db->where('pl.KODE_ANG', '1541');
+        $this->db->where('anggota.KODE_INS', '06');
+        // $this->db->where('pl.KODE_ANG', '1541');
 
         return $this->db->get()->result_array();
     }
