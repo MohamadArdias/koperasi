@@ -74,7 +74,8 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pinuang.TAHUN', $thn);
         $this->db->where('pinuang.BULAN', $bln);
         $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('anggota.KODE_INS', '06');
+        $this->db->where('anggota.KODE_INS', '03');
+        // $this->db->where('pl.KODE_ANG', '1541');
         // $this->db->where('anggota.URUT_ANG', '4040');
         // $this->db->where('pl.KODE_ANG', 1541);
         $this->db->like('pinuang.NOFAK', 'U');
@@ -98,7 +99,8 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pinuang.TAHUN', $thn);
         $this->db->where('pinuang.BULAN', $bln);
         $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('anggota.KODE_INS', '06');
+        $this->db->where('anggota.KODE_INS', '03');
+        // $this->db->where('pl.KODE_ANG', '1541');
         // $this->db->where('anggota.URUT_ANG', '1541');
         // $this->db->where('pl.KODE_ANG', '1275');
         $this->db->like('pinuang.NOFAK', 'N');
@@ -122,7 +124,8 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pinuang.TAHUN', $thn);
         $this->db->where('pinuang.BULAN', $bln);
         $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('anggota.KODE_INS', '06');
+        $this->db->where('anggota.KODE_INS', '03');
+        // $this->db->where('pl.KODE_ANG', '1541');
         // $this->db->where('anggota.URUT_ANG', '1541');
         $this->db->like('pinuang.NOFAK', 'O');
         return $this->db->get()->result_array();
@@ -145,7 +148,8 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pinuang.TAHUN', $thn);
         $this->db->where('pinuang.BULAN', $bln);
         $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('anggota.KODE_INS', '06');
+        $this->db->where('anggota.KODE_INS', '03');
+        // $this->db->where('pl.KODE_ANG', '1541');
         // $this->db->where('anggota.URUT_ANG', '1541');
         // $this->db->where('anggota.URUT_ANG', '4040');
         $this->db->like('pinuang.NOFAK', 'Z');
