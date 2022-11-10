@@ -6,6 +6,7 @@ class Genta extends CI_Controller
         parent::__construct();
         $this->load->model('Anggota_model', 'Anggota');
         $this->load->model('Instansi_model', 'Instansi');
+        $this->load->model('Keuangan_model', 'Keuangan');
         $this->load->model('Pinsimp_model', 'Pinsimp');
         $this->load->model('Pinuang_model', 'Pinuang');
     }
@@ -17,6 +18,7 @@ class Genta extends CI_Controller
         $non = $this->Pinuang->getNon();
         $kons = $this->Pinuang->getKons();
         $khus = $this->Pinuang->getKhusus();
+        $pembayaran = $this->Keuangan->inPembayaran();
 
         foreach ($simpan as $key) {
             if (date('m') == 11) {
@@ -78,7 +80,7 @@ class Genta extends CI_Controller
                 $this->db->delete('pl');
                 $this->db->insert('pl', $pl);
             }
-        };
+        }
 
         foreach ($uang as $key) {
 
@@ -156,7 +158,7 @@ class Genta extends CI_Controller
                 'KODE_ANG' => $key['KODE_ANG'],
             );
             $this->db->update('pl', $pl_uang, $where_uang);
-        };
+        }
 
         foreach ($non as $key) {
 
@@ -234,7 +236,7 @@ class Genta extends CI_Controller
                 'KODE_ANG' => $key['KODE_ANG'],
             );
             $this->db->update('pl', $pl_non, $where_non);
-        };
+        }
 
         foreach ($khus as $key) {
 
@@ -312,7 +314,7 @@ class Genta extends CI_Controller
                 'KODE_ANG' => $key['KODE_ANG'],
             );
             $this->db->update('pl', $pl_khusus, $where_khusus);
-        };
+        }
 
         foreach ($kons as $key) {
 
@@ -390,7 +392,26 @@ class Genta extends CI_Controller
                 'KODE_ANG' => $key['KODE_ANG'],
             );
             $this->db->update('pl', $pl_khusus, $where_kons);
-        };
+        }
+
+        foreach ($pembayaran as $key) {
+            $a = $key['POKU3'] + $key['BNGU3'] + $key['POKU1'] + $key['BNGU1'] + $key['POKU7'] + $key['BNGU7'] + $key['POKU2'] + $key['WAJIB'];
+
+            $bayar = array(
+                'KODE_ANG' => $key['KODE_ANG'],
+                'TGL_TGHN' => date('Y-m-d'),
+                'JML_TGHN' => $a,               
+                'STATUS' => 'BELUM TERBAYAR',
+                'TUNGGAKAN' => $a,
+            );
+
+            $this->db->where('KODE_ANG', $key['KODE_ANG']);
+            $this->db->like('TGL_TGHN', date('Y-m'));
+            $this->db->delete('pembayaran');
+
+            $this->db->insert('pembayaran', $bayar);
+        }
+
         $this->session->set_flashdata('genta', 'Berhasil');
         redirect('generate');
     }

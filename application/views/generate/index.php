@@ -63,15 +63,18 @@ $this->load->view('templates/sidebar');
                 <thead class="table-primary">
                     <tr>
                         <th class="text-center">No</th>
+                        <th class="text-center">Tanggal Tagihan</th>
                         <th class="text-center">Nama Anggota</th>
                         <th class="text-center">Instansi</th>
-                        <th class="text-center">Tabungan</th>
-                        <th class="text-center">Hutang</th>
-                        <th class="text-center">Tunggakan</th>
+                        <th class="text-center">Jumlah</th>
+                        <th class="text-center">Status</th>
                     </tr>
                 </thead>
+                
                 <tbody>
-                    
+                    <tr>
+
+                    </tr>                    
                 </tbody>
             </table>
         </div>

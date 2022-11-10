@@ -76,58 +76,17 @@ class Keuangan_model extends  CI_Model
         return $this->db->get_where('instan', ['KODE_INS' => $KODE_INS])->row_array();
     }
 
-    // public function getAnggotaWhereKodeang($KODE_INS)
-    // {
-    //     $this->db->select('*');
-    //     $this->db->from('keuangan');
-    //     $this->db->where('KODE_INS', $KODE_INS);
-    //     return  $this->db->get()->result_array();
-    // }
-
-    // public function tambahDataAnggota()
-    // {
-    //     $this->data = [
-    //         "KODE_ANG" => $this->input->post('KODE_ANG', true),
-    //         "URUT_ANG" => $this->input->post('URUT_ANG', true),
-    //         "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
-    //         "KODE_INS" => $this->input->post('KODE_INS', true),
-    //         "NAMA_INS" => $this->input->post('NAMA_INS', true),
-    //         "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
-    //         "ALM_ANG" => $this->input->post('ALM_ANG', true),
-    //         "TGLM_ANG" => $this->input->post('TGLM_ANG', true),
-    //         "TGLK_ANG" => $this->input->post('TGLK_ANG', true),
-    //         "GOL" => $this->input->post('GOL', true),
-    //     ];
-
-    //     $this->db->insert('anggota', $this->data);
-    // }
-
-    // public function hapusDataAnggota($URUT_ANG)
-    // {
-    //     $this->db->delete('anggota', ['URUT_ANG' => $URUT_ANG]);
-    // }
-
-    // public function getAnggotaByUrut($URUT_ANG)
-    // {
-    //     return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
-    // }
-
-    // public function editDataAnggota()
-    // {
-    //     $this->data = [
-    //         "KODE_ANG" => $this->input->post('KODE_ANG', true),
-    //         "URUT_ANG" => $this->input->post('URUT_ANG', true),
-    //         "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
-    //         "KODE_INS" => $this->input->post('KODE_INS', true),
-    //         "NAMA_INS" => $this->input->post('NAMA_INS', true),
-    //         "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
-    //         "ALM_ANG" => $this->input->post('ALM_ANG', true),
-    //         "TGLM_ANG" => $this->input->post('TGLM_ANG', true),
-    //         "TGLK_ANG" => $this->input->post('TGLK_ANG', true),
-    //         "GOL" => $this->input->post('GOL', true),
-    //     ];
-
-    //     $this->db->where('URUT_ANG', $this->input->post('URUT_ANG'));
-    //     $this->db->update('anggota', $this->data);
-    // }
+    public function inPembayaran()
+    {
+        $this->db->select('*');
+        $this->db->from('pl');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
+        // $this->db->join('pembayaran', 'pembayaran.KODE_ANG = pl.KODE_ANG', 'right');
+        // $this->db->like('pembayaran.TGL_TGHN', date('Y-m'));
+        $this->db->where('pl.TAHUN', date('Y'));
+        $this->db->where('pl.BULAN', date('m'));
+        $this->db->where('anggota.KODE_INS !=', '99');
+        $this->db->where('anggota.KODE_INS', '03');
+        return $this->db->get()->result_array();
+    }
 }
