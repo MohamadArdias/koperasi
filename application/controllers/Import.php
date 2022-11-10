@@ -31,14 +31,14 @@ class Import extends CI_Controller
         if ($this->upload->do_upload('importexcel')) {
             $file = $this->upload->data();
             $reader = ReaderEntityFactory::createXLSXReader();
-
+            $reader->setShouldFormatDates(true);
             $reader->open('uploads/' . $file['file_name']);
             foreach ($reader->getSheetIterator() as $sheet) {
                 $numRow = 1;
                 foreach ($sheet->getRowIterator() as $row) {
                     if ($numRow > 1) {
                         $datamasuk = array(
-                            'DATE'            => time(),
+                            'DATE'            => $row->getCellAtIndex(0),
                             'KODE_ANG'        => $row->getCellAtIndex(1),
                             'JML_TGHN'        => $row->getCellAtIndex(2),
                             'JML_BAYAR'       => $row->getCellAtIndex(3),
