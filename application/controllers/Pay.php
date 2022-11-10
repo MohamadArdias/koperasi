@@ -18,30 +18,16 @@ class Pay extends CI_Controller
 
     public function autofill()
     {
-        $a = $_GET['URUT_ANG'];
-        $b = $_GET['KODE'];
+        $a = $_GET['KODE'];
 
-        $query = $this->Anggota->getTanggungan($a, $b);
-        $query2 = $this->Anggota->getNama($a);
+        $query = $this->Pay->getKodeAnggota($a);
 
         if ($query != null) {
             $data = array(
-                'nama' => $query['NAMA'],
-                'jangka' => $query['JANGKA'],
-                'periode' => $query['PERIODE'],
-                'sisa' => $query['SISA'],
-                'bunga' => $query['BUNGA'],
+                'nama' => $query['NAMA_ANG'],
+                'tagihan' => $query['JML_TGHN'],
             );
 
-            echo json_encode($data);
-        } else {
-            $data = array(
-                'nama' => $query2['NAMA'],
-                'jangka' => 0,
-                'periode' => 0,
-                'sisa' => 0,
-                'bunga' => 0,
-            );
             echo json_encode($data);
         }
     }

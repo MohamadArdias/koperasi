@@ -11,12 +11,10 @@ $this->load->view('templates/sidebar');
                     <div class="form-group row mb-2">
                         <label class="col-sm-3 text-end control-label col-form-label">Kode Anggota</label>
                         <div class="col-sm-9">
-                            <select id="KODE_INS" name="KODE_INS" class="form-select" aria-label="Default select example">
-                                <option selected="">--Kode Anggota--</option>
-                                <?php foreach ($kodeanggota as $key) : ?>
-                                    <option value="<?= $key['URUT_ANG']; ?>"><?= $key['URUT_ANG']; ?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <div class="input-group input-group-sm">
+                                <input type="text" name="KODE" class="form-control" id="KODE" onkeyup="autofill2()" autofocus>
+                            </div>
+                            <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
                         </div>
                     </div>
                     <div class="form-group row mb-2">
@@ -36,13 +34,7 @@ $this->load->view('templates/sidebar');
                     <div class="form-group row mb-2">
                         <label class="col-sm-3 text-end control-label col-form-label">Tagihan</label>
                         <div class="col-sm-9">
-                            <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" placeholder="-">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-2">
-                        <label class="col-sm-3 text-end control-label col-form-label">Tunggakan</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" placeholder="-">
+                            <input type="text" name="TAGIHAN" class="form-control" id="TAGIHAN" placeholder="-">
                         </div>
                     </div>
                     <div class="form-group row mb-2">
@@ -73,4 +65,20 @@ $this->load->view('templates/footer');
         $("#TGLM_ANG").datepicker()
         $("#TGLM_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
     })
+
+    function autofill2() {
+        var KODE = $('#KODE').val();
+        $.ajax({
+            url: '<?= base_url(); ?>index.php/Pay/autofill',
+            data: {
+                'KODE': KODE
+            },
+        }).success(
+            function(data) {
+                var json = data,
+                    obj = JSON.parse(json);
+                $("#NAMA_ANG").val(obj.nama);
+                $("#TAGIHAN").val(obj.tagihan);
+            });
+    }
 </script>

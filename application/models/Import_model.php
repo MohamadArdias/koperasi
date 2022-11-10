@@ -1,4 +1,7 @@
 <?php
+
+use Mpdf\Tag\Select;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Import_model extends CI_Model
@@ -13,6 +16,9 @@ class Import_model extends CI_Model
 
     public function getDataMasuk()
     {
-        return $this->db->get('temp')->result_array();
+        $this->db->Select('*');
+        $this->db->from('temp');
+        $this->db->like('TANGGAL', date('Y-m'));
+        return $this->db->get()->result_array();
     }
 }

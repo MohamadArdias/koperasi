@@ -38,7 +38,7 @@ class Import extends CI_Controller
                 foreach ($sheet->getRowIterator() as $row) {
                     if ($numRow > 1) {
                         $datamasuk = array(
-                            'TANGGAL'            => $row->getCellAtIndex(0),
+                            'TANGGAL'            => date('Y-m-d'),
                             'NO_REKENING'        => $row->getCellAtIndex(1),
                             'NAMA'               => $row->getCellAtIndex(2),
                             'NOMINAL'            => $row->getCellAtIndex(3),

@@ -2,11 +2,13 @@
 
 class Pay_model extends CI_Model
 {
-    public function getKodeAnggota()
+    public function getKodeAnggota($a)
     {
         $this->db->select('*');
         $this->db->from('anggota');
-        $this->db->where('KODE_INS', '53');
+        $this->db->join('pembayaran', 'pembayaran.KODE_ANG = anggota.KODE_ANG');
+        $this->db->like('TGL_TGHN', date('Y-m', strtotime('-1 month')));
+        $this->db->where('KODE_ANG', $a);
         return $this->db->get()->result_array();
     }
 }
