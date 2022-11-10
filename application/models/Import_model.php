@@ -7,12 +7,12 @@ class Import_model extends CI_Model
     {
         $jumlah = count($datamasuk);
         if ($jumlah > 0) {
-            $this->db->replace('pembayaran', $datamasuk);
+            $this->db->replace('temp', $datamasuk);
         }
     }
 
     public function getDataMasuk()
     {
-        return $this->db->get('pembayaran')->result_array();
+        return $this->db->get('temp')->result_array();
     }
 }

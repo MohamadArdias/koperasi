@@ -18,7 +18,7 @@ class Import extends CI_Controller
     public function index()
     {
         $this->data['title'] = 'Import Bank Jatim';
-        $this->data['pembayaran'] = $this->Import_model->getDataMasuk();
+        $this->data['temp'] = $this->Import_model->getDataMasuk();
         $this->load->view('import/index', $this->data);
     }
 
@@ -38,14 +38,11 @@ class Import extends CI_Controller
                 foreach ($sheet->getRowIterator() as $row) {
                     if ($numRow > 1) {
                         $datamasuk = array(
-                            'DATE'            => $row->getCellAtIndex(0),
-                            'KODE_ANG'        => $row->getCellAtIndex(1),
-                            'JML_TGHN'        => $row->getCellAtIndex(2),
-                            'JML_BAYAR'       => $row->getCellAtIndex(3),
-                            'VIA_BAYAR'       => $row->getCellAtIndex(4),
-                            'STATUS'          => $row->getCellAtIndex(5),
-                            'TUNGGAKAN'       => $row->getCellAtIndex(6),
-
+                            'TANGGAL'            => $row->getCellAtIndex(0),
+                            'NO_REKENING'        => $row->getCellAtIndex(1),
+                            'NAMA'               => $row->getCellAtIndex(2),
+                            'NOMINAL'            => $row->getCellAtIndex(3),
+                            'KOP'                => $row->getCellAtIndex(4),
                         );
                         $this->Import_model->import_data($datamasuk);
                     }

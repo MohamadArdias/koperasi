@@ -58,26 +58,22 @@ $this->load->view('templates/sidebar');
                             <tr>
                                 <th scope="col">NO</th>
                                 <th scope="col">TANGGGAL</th>
-                                <th scope="col">KODE ANGGOTA</th>
-                                <th scope="col">JUMLAH TAGIHAN</th>
-                                <th scope="col">JUMLAH BAYAR</th>
-                                <th scope="col">BAYAR VIA</th>
-                                <th scope="col">STATUS</th>
-                                <th scope="col">TUNGGAKAN</th>
+                                <th scope="col">NOMOR REKENING</th>
+                                <th scope="col">NAMA</th>
+                                <th scope="col">NOMINAL</th>
+                                <th scope="col">KOPERASI</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $i = 1;
-                            foreach ($pembayaran as $bayar) : ?>
+                            foreach ($temp as $bayar) : ?>
                                 <tr>
                                     <td><?= $i++; ?></td>
-                                    <td><?= $bayar['DATE']; ?></td>
-                                    <td><?= $bayar['KODE_ANG']; ?></td>
-                                    <td><?= $bayar['JML_TGHN']; ?></td>
-                                    <td><?= $bayar['JML_BAYAR']; ?></td>
-                                    <td><?= $bayar['VIA_BAYAR']; ?></td>
-                                    <td><?= $bayar['STATUS']; ?></td>
-                                    <td><?= $bayar['TUNGGAKAN']; ?></td>
+                                    <td><?= $bayar['TANGGAL']; ?></td>
+                                    <td><?= $bayar['NO_REKENING']; ?></td>
+                                    <td><?= $bayar['NAMA']; ?></td>
+                                    <td><?= $bayar['NOMINAL']; ?></td>
+                                    <td><?= $bayar['KOP']; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
