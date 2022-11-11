@@ -24,10 +24,6 @@ class Keuangan extends CI_Controller
         $this->data['title'] = 'Data Potongan Anggota';
         $this->data['keuangan'] = $this->Kirim->getAllKirim();
 
-        // if ($this->input->post('keyword')) {
-        //     $this->data['keuangan'] = $this->Kirim->cariDataKirim();
-        // }
-
         $this->load->view('keuangan/index', $this->data);
     }
 
@@ -110,20 +106,10 @@ class Keuangan extends CI_Controller
         $no = 1; // Untuk penomoran tabel, di awal set dengan 1
         $numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
         foreach ($keuangan as $data) { // Lakukan looping pada variabel siswa
-            $potongan = $data['WAJIB'] +
-                $data['POKU1'] + $data['BNGU1'] +
-                $data['POKU2'] + $data['BNGU2'] +
-                $data['POKU3'] + $data['BNGU3'] +
-                $data['POKU4'] + $data['BNGU4'] +
-                $data['POKU5'] + $data['BNGU5'] +
-                $data['POKU6'] + $data['BNGU6'] +
-                $data['POKU7'] + $data['BNGU7'] +
-                $data['POKU8'] + $data['BNGU8'];
-
             $sheet->setCellValue('A' . $numrow, $no);
             $sheet->setCellValue('B' . $numrow, $data['NAMA_ANG']);
             $sheet->setCellValue('C' . $numrow, $data['KODE_ANG']);
-            $sheet->setCellValue('D' . $numrow, $potongan);
+            $sheet->setCellValue('D' . $numrow, $data['JML_TGHN']);
             $sheet->setCellValue('E' . $numrow, 'KPRI "BANGKIT BERSAMA"');
 
             // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
@@ -175,10 +161,7 @@ class Keuangan extends CI_Controller
 
     public function cetakang()
     {
-        $this->load->library('pagination');
-
         $this->data['title'] = 'Cetak Per Anggota';
-
         $this->data['keuangan'] = $this->keuangan->getAllKeuangan();
 
         $this->load->view('keuangan/cetakang', $this->data);

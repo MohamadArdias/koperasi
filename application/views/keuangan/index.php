@@ -67,19 +67,8 @@ $this->load->view('templates/sidebar');
                         <td><?= $i++; ?></td>
                         <td class="text-center"><?= $lap['KODE_ANG']; ?></td>
                         <td><?= $lap['NAMA_ANG']; ?></td>
-                        <td><?= $lap['NAMA_INS']; ?></td>
-                        <?php
-                        $potongan = $lap['WAJIB'] +
-                            $lap['POKU1'] + $lap['BNGU1'] +
-                            $lap['POKU2'] + $lap['BNGU2'] +
-                            $lap['POKU3'] + $lap['BNGU3'] +
-                            $lap['POKU4'] + $lap['BNGU4'] +
-                            $lap['POKU5'] + $lap['BNGU5'] +
-                            $lap['POKU6'] + $lap['BNGU6'] +
-                            $lap['POKU7'] + $lap['BNGU7'] +
-                            $lap['POKU8'] + $lap['BNGU8'];
-                        ?>
-                        <td><?= $potongan; ?></td>
+                        <td><?= $lap['NAMA_INS']; ?></td>                        
+                        <td><?= $lap['JML_TGHN']; ?></td>
                         <td><?= 'KPRI "BANGKIT BERSAMA"'; ?></td>
                     </tr>
                 <?php endforeach ?>

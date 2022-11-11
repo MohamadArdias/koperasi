@@ -1,16 +1,27 @@
 <?php
 class Kirim_model extends CI_model
 {
+    // public function getAllKirim()
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('pl');
+    //     $this->db->join('instan', 'instan.KODE_INS = pl.KODE_INS');
+    //     $this->db->where('pl.KODE_INS !=', '99');
+    //     $this->db->where('TAHUN', (date("Y"))); //untuk sementara (date("Y"))
+    //     $this->db->where('BULAN', (date("m"))); //untuk sementara (date("m"))
+    //     return  $this->db->get()->result_array();
+    // }
     public function getAllKirim()
     {
         $this->db->select('*');
-        // $this->db->select("instan.NAMA_INS AS NAMA_INS");
-        $this->db->from('pl');
-        $this->db->join('instan', 'instan.KODE_INS = pl.KODE_INS');
-        $this->db->where('pl.KODE_INS !=', '99');
-        $this->db->where('TAHUN', '2022'); //untuk sementara (date("Y"))
-        $this->db->where('BULAN', '10'); //untuk sementara (date("m"))
-        return  $this->db->get()->result_array();
+        $this->db->from('pembayaran');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pembayaran.KODE_ANG');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        $this->db->like('TGL_TGHN', date('Y-m'));
+        $this->db->where('instan.KODE_INS !=', 99);
+        // $this->db->where('instan.KODE_INS', "06");
+        $this->db->order_by('instan.KODE_INS ASC, anggota.URUT_ANG ASC');
+        return $this->db->get()->result_array();
     }
 
     public function cariDataKirim()
