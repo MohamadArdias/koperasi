@@ -33,4 +33,20 @@ class Pinsimp_model extends  CI_Model
         $this->db->where('KODE_INS !=', 99);
         return $this->db->get()->result();
     }
+
+    public function getTabungan()
+    {
+        $this->db->select('*');
+        $this->db->from('pinsimp');
+        $this->db->join('pl', 'pl.KODE_ANG = pinsimp.KODE_ANG');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pinsimp.KODE_ANG');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        $this->db->where('pinsimp.TAHUN', date('Y'));
+        $this->db->where('pinsimp.BULAN', date('m'));
+        $this->db->where('pl.TAHUN', date('Y'));
+        $this->db->where('pl.BULAN', date('m'));
+        $this->db->where('instan.KODE_INS !=', 99);
+        $this->db->where('instan.KODE_INS', "06");
+        return $this->db->get()->result_array();
+    }
 }

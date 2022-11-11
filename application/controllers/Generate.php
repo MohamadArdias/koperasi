@@ -9,7 +9,7 @@ class generate extends CI_Controller
 
     public function index()
     {
-        $this->data['title'] = 'Generate Laporan';
+        $this->data['title'] = 'Generate Tagihan';
         $this->data['pembayaran'] = $this->Pembayaran->getPembayaran();
 
         $this->load->view('generate/index', $this->data);

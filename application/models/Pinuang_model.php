@@ -156,4 +156,21 @@ class Pinuang_model extends  CI_Model
         $this->db->order_by('NOFAK', 'ASC');
         return $this->db->get()->result_array();
     }
+
+    public function getPinjaman()
+    {
+        $this->db->select('*');
+        $this->db->from('pinuang');
+        $this->db->join('pl', 'pl.KODE_ANG = pinuang.KODE_ANG');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        $this->db->where('pinuang.TAHUN', date('Y'));
+        $this->db->where('pinuang.BULAN', date('m'));
+        $this->db->where('pl.TAHUN', date('Y'));
+        $this->db->where('pl.BULAN', date('m'));
+        $this->db->where('instan.KODE_INS !=', 99);
+        $this->db->where('instan.KODE_INS', "06");
+        $this->db->order_by('anggota.URUT_ANG', 'ASC');
+        return $this->db->get()->result_array();
+    }
 }

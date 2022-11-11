@@ -35,56 +35,33 @@ $this->load->view('templates/sidebar');
 
 <div class="card">
     <div class="card-body">
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <form action="<?= base_url(); ?>index.php/Pinsim" method="post">
-                    <div class="input-group">
-                        <div class="col-sm-7"></div>
-                        <input type="text" class="form-control" placeholder="Pencarian" name="keyword">
-                        <input type="submit" class="btn btn-primary" name="submit" value="Cari">
-                    </div>
-                </form>
-            </div>
-        </div>
         <div class="overflow-auto">
-            <table class="mt-3" id="customers">
+            <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Nama Anggota</th>
                         <th class="text-center">Instansi</th>
-                        <th class="text-center">Tabungan</th>
-                        <th class="text-center">Hutang</th>
-                        <th class="text-center">Tunggakan</th>
+                        <th class="text-center">Tabungan Awal Tahun</th>
+                        <th class="text-center">Tabungan <?= date('Y'); ?></th>
+                        <th class="text-center">Total Tabungan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($keuangan as $lap) : ?>
+                    <?php 
+                    $i = 1;
+                    foreach ($keuangan as $lap) : ?>
                         <tr>
-                            <td class="text-center"><?= $lap['KODE_ANG']; ?></td>
+                            <td><?= $i++ ?></td>
                             <td><?= $lap['NAMA_ANG']; ?></td>
                             <td><?= $lap['NAMA_INS']; ?></td>
-                            <td><?= $lap['TWAJIB']; ?></td>
-                            <?php
-                            $hutang =
-                                $lap['SIPOKU1'] +
-                                $lap['SIPOKU2'] +
-                                $lap['SIPOKU3'] +
-                                $lap['SIPOKU4'] +
-                                $lap['SIPOKU5'] +
-                                $lap['SIPOKU6'] +
-                                $lap['SIPOKU7'] +
-                                $lap['SIPOKU8'];
-                            ?>
-                            <td><?= $hutang; ?></td>
-                            <td></td>
+                            <td class="text-right"><?= number_format($lap['TOTWJB'], 0, ',', '.')  ?></td>
+                            <td class="text-right"><?= number_format($lap['TWAJIB'] - $lap['TOTWJB'], 0, ',', '.')  ?></td>
+                            <td class="text-right"><?= number_format($lap['TWAJIB'], 0, ',', '.')  ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
-            <div class="mt-3">
-                <?= $this->pagination->create_links(); ?>
-            </div>
         </div>
     </div>
 </div>

@@ -44,12 +44,23 @@
                   <span>Transaksi</span>
               </a>
           </li> -->
-
+          
           <li class="nav-item">
-              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinsim">
-                  <i class="bi bi-bank2"></i>
-                  <span>Simpan Pinjam</span>
+              <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-navsp" aria-controls="forms-nav">
+                  <i class="bi bi-gear-wide-connected"></i><span>Simpan Pinjam</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
+              <ul id="forms-navsp" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinsim">
+                          <i class="bi bi-circle-fill"></i><span>Simpanan</span>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinsim/pinjaman">
+                          <i class="bi bi-circle-fill"></i><span>Pinjaman</span>
+                      </a>
+                  </li>                
+              </ul>
           </li>
 
           <li class="nav-item">
