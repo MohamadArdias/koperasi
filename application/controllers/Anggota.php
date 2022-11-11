@@ -39,15 +39,27 @@ class Anggota extends CI_Controller
         // $this->form_validation->set_rules('TLHR_ANG', 'tanggal lahir', 'required');
         // $this->form_validation->set_rules('TGLM_ANG', 'tanggal masuk', 'required');
         // $this->form_validation->set_rules('TGLK_ANG', 'tanggal keluar', 'required');
-        $this->form_validation->set_rules('GOL', 'golongan', 'required');
-
+        // $this->form_validation->set_rules('GOL', 'golongan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('anggota/tambah', $this->data);
         } else {
-            $this->Anggota->tambahDataAnggota();
-            $this->session->set_flashdata('flash', 'ditambahkan');
-            redirect('Anggota');
+            $query = null;
+            $id   = $_POST['URUT_ANG'];
+    
+            $query = $this->db->get_where('anggota', array(//making selection
+                'URUT_ANG' => $id
+            ));
+            $count = $query->num_rows(); //counting result from query
+
+            if ($count === 0) {                
+                $this->Anggota->tambahDataAnggota();
+                $this->session->set_flashdata('flash', 'ditambahkan');
+                redirect('Anggota');
+            } else {
+                $this->session->set_flashdata('addAng', 'KODE ANGGOTA');
+                $this->load->view('anggota/tambah', $this->data);
+            }
         }
     }
 

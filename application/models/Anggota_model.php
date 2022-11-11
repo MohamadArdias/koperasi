@@ -134,17 +134,14 @@ class Anggota_model extends  CI_Model
 
     public function tambahDataAnggota()
     {
-        $this->data = [
-            "KODE_ANG" => $this->input->post('KODE_ANG', true),
+        $this->data = [            
             "URUT_ANG" => $this->input->post('URUT_ANG', true),
             "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
-            "KODE_INS" => $this->input->post('KODE_INS', true),
-            "NAMA_INS" => $this->input->post('NAMA_INS', true),
+            "KODE_INS" => $this->input->post('KODE_INS', true),            
             "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
             "ALM_ANG" => $this->input->post('ALM_ANG', true),
             "TGLM_ANG" => $this->input->post('TGLM_ANG', true),
-            "TGLK_ANG" => $this->input->post('TGLK_ANG', true),
-            "GOL" => $this->input->post('GOL', true),
+            "GOL" => 'KPRI',
         ];
 
         $this->db->insert('anggota', $this->data);
@@ -155,11 +152,10 @@ class Anggota_model extends  CI_Model
         $this->db->delete('anggota', ['URUT_ANG' => $URUT_ANG]);
     }
 
-    // public function getAnggotaByUrut($URUT_ANG)
-    // {
-    //     return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
-    //     return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
-    // }
+    public function getAnggotaByUrut($URUT_ANG)
+    {
+        return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
+    }
 
     public function editDataAnggota()
     {
