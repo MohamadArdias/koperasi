@@ -12,11 +12,11 @@ class Pay extends CI_Controller
     public function index()
     {
         $this->data['title'] = 'Pembayaran Langsung';
-        $this->data['kodeanggota'] = $this->Pay->getKodeAnggota();;
+        // $this->data['kodeanggota'] = $this->Pay->getKodeAnggota();;
         $this->load->view('PembayaranLangsung/index', $this->data);
     }
 
-    public function autofill()
+    public function autofill2()
     {
         $a = $_GET['KODE'];
 

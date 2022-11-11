@@ -69,16 +69,18 @@ $this->load->view('templates/footer');
     function autofill2() {
         var KODE = $('#KODE').val();
         $.ajax({
-            url: '<?= base_url(); ?>index.php/Pay/autofill',
+            url: '<?= base_url(); ?>index.php/Pay/autofill2s',
             data: {
                 'KODE': KODE
             },
         }).success(
-            function(data) {
-                var json = data,
-                    obj = JSON.parse(json);
-                $("#NAMA_ANG").val(obj.nama);
-                $("#TAGIHAN").val(obj.tagihan);
-            });
+            // function(data) {
+            //     var json = data,
+            //         obj = JSON.parse(json);
+            //     $("#NAMA_ANG").val(obj.nama);
+            //     $("#TAGIHAN").val(obj.tagihan);
+            // }
+            
+        );
     }
 </script>

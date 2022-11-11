@@ -70,11 +70,22 @@ $this->load->view('templates/sidebar');
                         <th class="text-center">Status</th>
                     </tr>
                 </thead>
-                
-                <tbody>
-                    <tr>
 
-                    </tr>                    
+                <tbody>
+                    <?php 
+                    $i = 1;
+                    foreach ($pembayaran as $key) {
+                    ?>
+                    <tr>
+                        <td><?= $i++; ?></td>
+                        <td><?= $key['TGL_TGHN']; ?></td>
+                        <td><?= $key['NAMA_ANG']; ?></td>
+                        <td><?= $key['NAMA_INS']; ?></td>
+                        <td class="text-right"><?= number_format($key['JML_TGHN'], 0, ',', '.'); ?></td>
+                        <td><?= $key['STATUS']; ?></td>
+                    </tr>
+                    <?php
+                    } ?>
                 </tbody>
             </table>
         </div>

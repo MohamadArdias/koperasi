@@ -72,13 +72,11 @@ class Anggota_model extends  CI_Model
 
     public function getAnggota()
     {
-        $this->db->select("anggota.URUT_ANG AS URUT_ANG");
-        $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
-        $this->db->select("anggota.KODE_INS AS KODE_INS");
-        $this->db->select("instan.NAMA_INS AS NAMA_INS");
+        $this->db->select("*");
         $this->db->from('anggota');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-        $this->db->where('anggota.KODE_INS !=', '99');
+        // $this->db->where('anggota.KODE_INS !=', '99');
+        $this->db->order_by('instan.KODE_INS', 'ASC');
         return $this->db->get()->result_array();
     }
     
