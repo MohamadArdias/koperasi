@@ -21,14 +21,19 @@ class Genta extends CI_Controller
         $pembayaran = $this->Keuangan->inPembayaran();
 
         foreach ($simpan as $key) {
-            if (date('m') == 11) {
                 // pinsimp
+                if (date('m' == 11)) {
+                    $totwjb = $key['TWAJIB'] + 100000;
+                } else {
+                    $totwjb = $key['TOTWJB'];
+                }
+
                 $pinsimp = array(
                     'TAHUN' => date('Y', strtotime('+1 month')),
                     'BULAN' => date('m', strtotime('+1 month')),
                     'KODE_ANG' => $key['KODE_ANG'],
-                    'TOTWJB' => $key['TWAJIB'] + 100000,
-                    'TOTPOK' => 50000,
+                    'TOTWJB' => $totwjb,
+                    'TOTPOK' => 50000,                 
                 );
                 $this->db->where('KODE_ANG', $key['KODE_ANG']);
                 $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
@@ -50,36 +55,6 @@ class Genta extends CI_Controller
                 $this->db->where('BULAN', date('m', strtotime('+1 month')));
                 $this->db->delete('pl');
                 $this->db->insert('pl', $pl);
-            } else {
-                // pinsimp
-                $pinsimp = array(
-                    'TAHUN' => date('Y', strtotime('+1 month')),
-                    'BULAN' => date('m', strtotime('+1 month')),
-                    'KODE_ANG' => $key['KODE_ANG'],
-                    'TOTWJB' => $key['TOTWJB'],
-                    'TOTPOK' => $key['TOTPOK'],
-                );
-                $this->db->where('KODE_ANG', $key['KODE_ANG']);
-                $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
-                $this->db->where('BULAN', date('m', strtotime('+1 month')));
-                $this->db->delete('pinsimp');
-                $this->db->insert('pinsimp', $pinsimp);
-
-                // pl
-                $pl = array(
-                    'TAHUN' => date('Y', strtotime('+1 month')),
-                    'BULAN' => date('m', strtotime('+1 month')),
-                    'KODE_ANG' => $key['KODE_ANG'],
-                    'WAJIB' => 100000,
-                    'TPOKOK' => 50000,
-                    'TWAJIB' => $key['TWAJIB'] + 100000,
-                );
-                $this->db->where('KODE_ANG', $key['KODE_ANG']);
-                $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
-                $this->db->where('BULAN', date('m', strtotime('+1 month')));
-                $this->db->delete('pl');
-                $this->db->insert('pl', $pl);
-            }
         }
 
         foreach ($uang as $key) {
