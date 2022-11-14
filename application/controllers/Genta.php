@@ -22,10 +22,18 @@ class Genta extends CI_Controller
 
         foreach ($simpan as $key) {
                 // pinsimp
-                if (date('m' == 11)) {
+                if (date('m') == 11) {
                     $totwjb = $key['TWAJIB'] + 100000;
+                    $totpok = $key['TPOKOK'];
                 } else {
                     $totwjb = $key['TOTWJB'];
+                    $totpok = $key['TOTPOK'];
+                }
+
+                if ($key['TPOKOK'] == 0) {
+                    $pokok = 50000;
+                } else {
+                    $pokok = 0;
                 }
 
                 $pinsimp = array(
@@ -49,6 +57,7 @@ class Genta extends CI_Controller
                     'WAJIB' => 100000,
                     'TPOKOK' => 50000,
                     'TWAJIB' => $key['TWAJIB'] + 100000,
+                    'POKOK' => $pokok,
                 );
                 $this->db->where('KODE_ANG', $key['KODE_ANG']);
                 $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
@@ -370,7 +379,7 @@ class Genta extends CI_Controller
         }
 
         foreach ($pembayaran as $key) {
-            $a = $key['POKU3'] + $key['BNGU3'] + $key['POKU1'] + $key['BNGU1'] + $key['POKU7'] + $key['BNGU7'] + $key['POKU2'] + $key['WAJIB'];
+            $a = $key['POKU3'] + $key['BNGU3'] + $key['POKU1'] + $key['BNGU1'] + $key['POKU7'] + $key['BNGU7'] + $key['POKU2'] + $key['WAJIB'] + $key['POKOK'];
 
             $bayar = array(
                 'KODE_ANG' => $key['KODE_ANG'],
