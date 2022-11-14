@@ -59,7 +59,7 @@ $this->load->view('templates/sidebar');
             </div>
         </div>
         <div class="overflow-auto">
-            <table class="mt-3" id="customers">
+            <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
                         <th class="text-center">No</th>
