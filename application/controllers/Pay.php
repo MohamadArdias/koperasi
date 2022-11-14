@@ -12,11 +12,21 @@ class Pay extends CI_Controller
     public function index()
     {
         $this->data['title'] = 'Pembayaran Langsung';
-        // $this->data['kodeanggota'] = $this->Pay->getKodeAnggota();;
-        $this->load->view('PembayaranLangsung/index', $this->data);
+
+        $this->form_validation->set_rules('KODE', 'Kode anggota', 'required');
+        $this->form_validation->set_rules('TGL_BAYAR', 'Tanggal Bayar', 'required');
+        $this->form_validation->set_rules('TAGIHAN', 'Tagihan', 'required');
+        $this->form_validation->set_rules('JML_BAYAR', 'Bayar', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('PembayaranLangsung/index', $this->data);
+        } else {
+            $this->Pay->bayar();
+            $this->session->set_flashdata('bayar', 'berhasil');
+            redirect('Pay');
+        }
     }
 
-    public function autofill2()
+    public function autofill()
     {
         $a = $_GET['KODE'];
 
@@ -26,6 +36,8 @@ class Pay extends CI_Controller
             $data = array(
                 'nama' => $query['NAMA_ANG'],
                 'tagihan' => $query['JML_TGHN'],
+                'bayar' => $query['JML_BAYAR'],
+                'tunggakan' => $query['TUNGGAKAN'],
             );
 
             echo json_encode($data);

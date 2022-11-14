@@ -88,11 +88,11 @@ class Keuangan_model extends  CI_Model
         $this->db->select('*');
         $this->db->from('pl');
         $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
-        // $this->db->join('pembayaran', 'pembayaran.KODE_ANG = pl.KODE_ANG', 'right');
+        $this->db->join('pembayaran', 'pembayaran.KODE_ANG = pl.KODE_ANG', 'right');
+        $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
         // $this->db->like('pembayaran.TGL_TGHN', date('Y-m'));
-        $this->db->where('pl.TAHUN', date('Y'));
-        // $this->db->where('pl.BULAN', date('m'));
-        $this->db->where('pl.BULAN', date('m')+1);
+        $this->db->where('pl.TAHUN', date('Y', strtotime('+1 month')));
+        $this->db->where('pl.BULAN', date('m', strtotime('+1 month')));
         $this->db->where('anggota.KODE_INS !=', '99');
         $this->db->where('anggota.KODE_INS', '06');
         return $this->db->get()->result_array();

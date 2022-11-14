@@ -6,10 +6,43 @@ class Pay_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('anggota');
-        $this->db->join('pembayaran', 'pembayaran.KODE_ANG = anggota.KODE_ANG');
-        // $this->db->like('TGL_TGHN', date('Y-m', strtotime('-1 month')));
+        $this->db->join('pembayaran', 'pembayaran.KODE_ANG = anggota.URUT_ANG');
+        $this->db->where('STATUS !=', 'TERBAYAR');
         $this->db->like('TGL_TGHN', date('Y-m'));
         $this->db->where('pembayaran.KODE_ANG', $a);
         return $this->db->get()->row_array();
+    }
+
+    public function bayar()
+    {
+        $jml_tghn = $this->input->post('TAGIHAN', true);
+        $jml_bayar = $this->input->post('JML_BAYAR', true);
+
+        if ($jml_bayar == $jml_tghn) {
+            $status = 'TERBAYAR';
+            $tunggakan = 0;
+            $sisa = 0;
+        } elseif ($jml_bayar > $jml_tghn) {
+            $status = 'TERBAYAR';
+            $tunggakan = 0;
+            $sisa = $jml_bayar-$jml_tghn;
+        } else {
+            $status = 'SEBAGIAN';
+            $tunggakan =$jml_tghn - $jml_bayar;
+            $sisa = 0;
+        }
+
+        $data = [            
+            'TGL_BAYAR' => date('Y-m-d'),
+            'JML_BAYAR' => $jml_bayar,
+            'VIA_BAYAR' => 'BAYAR LANGSUNG',            
+            'STATUS' => $status,
+            'TUNGGAKAN' => $tunggakan,
+            'SISA' => $sisa
+        ];
+        $this->db->where('KODE_ANG', $this->input->post('KODE'));
+        $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
+        // $this->db->like('pembayaran.TGL_TGHN', date('Y-m'));
+        $this->db->update('pembayaran', $data);
     }
 }

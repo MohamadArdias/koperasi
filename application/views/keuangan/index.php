@@ -68,7 +68,7 @@ $this->load->view('templates/sidebar');
                         <td class="text-center"><?= $lap['KODE_ANG']; ?></td>
                         <td><?= $lap['NAMA_ANG']; ?></td>
                         <td><?= $lap['NAMA_INS']; ?></td>                        
-                        <td><?= $lap['JML_TGHN']; ?></td>
+                        <td><?= $lap['JML_TGHN'] + $lap['TUNGGAKAN']; ?></td>
                         <td><?= 'KPRI "BANGKIT BERSAMA"'; ?></td>
                     </tr>
                 <?php endforeach ?>

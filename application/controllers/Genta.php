@@ -379,14 +379,24 @@ class Genta extends CI_Controller
         }
 
         foreach ($pembayaran as $key) {
-            $a = $key['POKU3'] + $key['BNGU3'] + $key['POKU1'] + $key['BNGU1'] + $key['POKU7'] + $key['BNGU7'] + $key['POKU2'] + $key['WAJIB'] + $key['POKOK'];
+            if ($key['STATUS'] == 'BELUM TERBAYAR') {
+                $tunggakan = $key['TUNGGAKAN'] + $key['JML_TGHN'];
+            } else {
+                $tunggakan = $key['TUNGGAKAN'];
+            }
+            
+            $a = $key['POKU3'] + $key['BNGU3'] 
+            + $key['POKU1'] + $key['BNGU1'] 
+            + $key['POKU7'] + $key['BNGU7'] 
+            + $key['POKU2'] + $key['WAJIB'] 
+            + $key['POKOK'];
 
             $bayar = array(
                 'KODE_ANG' => $key['KODE_ANG'],
                 'TGL_TGHN' => date('Y-m-d'),
                 'JML_TGHN' => $a,               
                 'STATUS' => 'BELUM TERBAYAR',
-                'TUNGGAKAN' => $a,
+                'TUNGGAKAN' => $tunggakan,
             );
 
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
