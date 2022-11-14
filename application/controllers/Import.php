@@ -1,9 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
-
-use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
-
+require 'vendor/autoload.php';
 class Import extends CI_Controller
 {
 
@@ -19,42 +16,59 @@ class Import extends CI_Controller
     {
         $this->data['title'] = 'Import Bank Jatim';
         $this->data['temp'] = $this->Import_model->getDataMasuk();
-        $this->load->view('import/index', $this->data);
-    }
-
-    public function uploaddata()
-    {
-        $config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'xlsx|xls';
-        $config['file_name'] = 'doc' . time();
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload('importexcel')) {
-            $file = $this->upload->data();
-            $reader = ReaderEntityFactory::createXLSXReader();
-            $reader->setShouldFormatDates(true);
-            $reader->open('uploads/' . $file['file_name']);
-            foreach ($reader->getSheetIterator() as $sheet) {
-                $numRow = 1;
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $upload_status = $this->uploadDoc();
+            if ($upload_status != false) {
+                $inputFileName = 'assets/uploads/imports/' . $upload_status;
+                $inputTileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+                $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputTileType);
+                $spreadsheet = $reader->load($inputFileName);
+                $sheet = $spreadsheet->getSheet(0);
+                $count_Rows = 0;
                 foreach ($sheet->getRowIterator() as $row) {
-                    if ($numRow > 1) {
-                        $datamasuk = array(
-                            'TANGGAL'            => date('Y-m-d'),
-                            'NO_REKENING'        => $row->getCellAtIndex(1),
-                            'NAMA'               => $row->getCellAtIndex(2),
-                            'NOMINAL'            => $row->getCellAtIndex(3),
-                            'KOP'                => $row->getCellAtIndex(4),
-                        );
-                        $this->Import_model->import_data($datamasuk);
-                    }
-                    $numRow++;
+                    // $tanggal = $spreadsheet->getActiveSheet()->getcell('A' . $row->getRowIndex());
+                    $tanggal = $spreadsheet->getActiveSheet()->getcell('A' . $row->getRowIndex())->getFormattedValue();
+                    $norek = $spreadsheet->getActiveSheet()->getcell('B' . $row->getRowIndex());
+                    $nama = $spreadsheet->getActiveSheet()->getcell('C' . $row->getRowIndex());
+                    $nominal = $spreadsheet->getActiveSheet()->getcell('D' . $row->getRowIndex());
+                    $kop = $spreadsheet->getActiveSheet()->getcell('E' . $row->getRowIndex());
+                    $data = array(
+                        'TANGGAL' => date("Y-m-d", strtotime($tanggal)),
+                        'NO_REKENING' => $norek,
+                        'NAMA' => $nama,
+                        'NOMINAL' => $nominal,
+                        'KOP' => $kop,
+                    );
+                    //echo  date("Y-m-d", strtotime($tanggal));
+                    $this->db->insert('temp', $data);
+                    $count_Rows++;
                 }
-                $reader->close();
-                unlink('uploads/' . $file['file_name']);
-                $this->session->set_flashdata('pesan', 'import Data Berhasil');
-                redirect('import');
+                $this->session->set_flashdata('succes', 'Data Berhasil di Import');
+                redirect('Import');
+            } else {
+                $this->session->set_flashdata('error', 'Data Tidak Terupload');
+                redirect('Import');
             }
         } else {
-            echo "Error :" . $this->upload->display_errors();
-        };
+            $this->load->view('import/index', $this->data);
+        }
+    }
+
+    function uploadDoc()
+    {
+        $uploadPath = 'assets/uploads/imports/';
+        if (!is_dir($uploadPath)) {
+            mkdir($uploadPath, 0777, TRUE);
+        }
+        $config['upload_path'] = $uploadPath;
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['max_size'] = 1000000;
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('upload_excel')) {
+            $fileData = $this->upload->data();
+            return $fileData['file_name'];
+        } else {
+            return false;
+        }
     }
 }
