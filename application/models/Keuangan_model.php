@@ -96,4 +96,19 @@ class Keuangan_model extends  CI_Model
         $this->db->where('anggota.KODE_INS', '06');
         return $this->db->get()->result_array();
     }
+
+    public function keuanganAnggota()
+    {
+        $this->data = [            
+            "TAHUN" => date('Y'),
+            "BULAN" => date('m'),
+            "KODE_ANG" => $this->input->post('URUT_ANG', true),            
+            "POKOK" => 0,
+            "WAJIB" => 0,
+            "TPOKOK" => 0,
+            "TWAJIB" => 0,
+            "RELA" => 0,
+        ];
+        $this->db->insert('pl', $this->data);
+    }
 }

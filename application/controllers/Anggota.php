@@ -6,6 +6,8 @@ class Anggota extends CI_Controller
         parent::__construct();
         $this->load->model('Anggota_model', 'Anggota');
         $this->load->model('Instansi_model', 'Instansi');
+        $this->load->model('Pinsimp_model', 'Pinsimp');
+        $this->load->model('Keuangan_model', 'Keuangan');
         $this->load->library('form_validation');
     }
 
@@ -54,6 +56,8 @@ class Anggota extends CI_Controller
 
             if ($count === 0) {                
                 $this->Anggota->tambahDataAnggota();
+                $this->Pinsimp->pinsimpAnggota();
+                $this->Keuangan->keuanganAnggota();
                 $this->session->set_flashdata('flash', 'ditambahkan');
                 redirect('Anggota');
             } else {
