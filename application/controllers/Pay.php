@@ -33,12 +33,22 @@ class Pay extends CI_Controller
         $query = $this->Pay->getKodeAnggota($a);
 
         if ($query != null) {
-            $data = array(
+            if ($query['STATUS'] == 'TERBAYAR') {
+                $data = array(
+                    'nama' => $query['NAMA_ANG'],
+                    'tagihan' => 0,
+                    'bayar' => 0,
+                    'tunggakan' => 0,
+                );
+            }else {
+                $data = array(
                 'nama' => $query['NAMA_ANG'],
                 'tagihan' => $query['JML_TGHN'],
                 'bayar' => $query['JML_BAYAR'],
                 'tunggakan' => $query['TUNGGAKAN'],
             );
+            }
+            
 
             echo json_encode($data);
         }

@@ -13,4 +13,12 @@ class Pembayaran_model extends  CI_Model
         $this->db->order_by('instan.KODE_INS ASC, anggota.URUT_ANG ASC');
         return $this->db->get()->result_array();
     }
+
+    public function getTunggakan()
+    {
+        $this->db->select('*');
+        $this->db->from('pembayaran');
+        $this->db->like('TGL_TGHN', date('Y-m', strtotime('-1 month')));
+        return $this->db->get()->result_array();
+    }
 }

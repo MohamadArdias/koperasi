@@ -6,9 +6,11 @@ class Pay_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('anggota');
-        $this->db->join('pembayaran', 'pembayaran.KODE_ANG = anggota.URUT_ANG');
-        $this->db->where('STATUS !=', 'TERBAYAR');
-        $this->db->like('TGL_TGHN', date('Y-m'));
+        $this->db->join('pembayaran', 'pembayaran.KODE_ANG = anggota.URUT_ANG');        
+        $this->db->join('pl', 'pl.KODE_ANG = pembayaran.KODE_ANG');        
+        $this->db->like('TGL_TGHN', date('Y-m', strtotime('-1 month')));
+        $this->db->where('pl.TAHUN', date('Y'));
+        $this->db->where('pl.BULAN', date('m'));
         $this->db->where('pembayaran.KODE_ANG', $a);
         return $this->db->get()->row_array();
     }

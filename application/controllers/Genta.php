@@ -9,6 +9,7 @@ class Genta extends CI_Controller
         $this->load->model('Keuangan_model', 'Keuangan');
         $this->load->model('Pinsimp_model', 'Pinsimp');
         $this->load->model('Pinuang_model', 'Pinuang');
+        $this->load->model('Pembayaran_model', 'Pembayaran');
     }
 
     public function index()
@@ -19,6 +20,7 @@ class Genta extends CI_Controller
         $kons = $this->Pinuang->getKons();
         $khus = $this->Pinuang->getKhusus();
         $pembayaran = $this->Keuangan->inPembayaran();
+        $tunggakan = $this->Pembayaran->getTunggakan();
 
         foreach ($simpan as $key) {
                 // pinsimp
@@ -378,30 +380,49 @@ class Genta extends CI_Controller
             $this->db->update('pl', $pl_khusus, $where_kons);
         }
 
-        foreach ($pembayaran as $key) {
+        foreach ($tunggakan as $key ) {
+
             if ($key['STATUS'] == 'BELUM TERBAYAR') {
-                $tunggakan = $key['TUNGGAKAN'] + $key['JML_TGHN'];
-            } else {
-                $tunggakan = $key['TUNGGAKAN'];
+                $tunggakan = $key['JML_TGHN'];
+            } elseif ($key['STATUS'] == 'SEBAGIAN') {
+                $tunggakan = $key['JML_TGHN'] - $key['JML_BAYAR'];
+            }else {
+                $tunggakan = 0;
             }
+
+            $tung = array(
+                'TUNGGAKAN' => $tunggakan,
+            );
+
+            // update pl 
+            $where_tung = array(
+                'TAHUN' => date('Y', strtotime('+1 month')),
+                'BULAN' => date('m', strtotime('+1 month')),
+                'KODE_ANG' => $key['KODE_ANG'],
+            );
+
+            $this->db->update('pl', $tung, $where_tung);
+        }
+
+        foreach ($pembayaran as $key) {
             
             $a = $key['POKU3'] + $key['BNGU3'] 
             + $key['POKU1'] + $key['BNGU1'] 
             + $key['POKU7'] + $key['BNGU7'] 
             + $key['POKU2'] + $key['WAJIB'] 
-            + $key['POKOK'];
+            + $key['POKOK'] + $key['TUNGGAKAN'];
 
             $bayar = array(
                 'KODE_ANG' => $key['KODE_ANG'],
                 'TGL_TGHN' => date('Y-m-d'),
                 'JML_TGHN' => $a,               
                 'STATUS' => 'BELUM TERBAYAR',
-                'TUNGGAKAN' => $tunggakan,
             );
 
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
             $this->db->like('TGL_TGHN', date('Y-m'));
             $this->db->delete('pembayaran');
+            // insert pembayaran
 
             $this->db->insert('pembayaran', $bayar);
         }
