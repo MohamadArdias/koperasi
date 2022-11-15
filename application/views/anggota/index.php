@@ -61,17 +61,26 @@ $this->load->view('templates/sidebar');
         <thead class="table-primary">
           <tr>
             <th class="text-center">No. Urut</th>
+            <th class="text-center">No. Rekening</th>
             <th class="text-center">Nama Anggota</th>
             <th class="text-center">Status / Instansi</th>
             <th class="text-center">Aksi</th>
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($anggota as $ang) : ?>
+          <?php 
+          foreach ($anggota as $ang) : 
+            if ($ang['REKENING'] != NULL) {
+              $a = 'XXXXXX'.substr($ang['REKENING'],-4).'';
+            } else {
+              $a = '';
+            }
+            ?>
             <tr>
               <td class="text-center"><?= $ang['URUT_ANG']; ?></td>
+              <td><?= $a; ?></td>
               <td><?= $ang['NAMA_ANG']; ?></td>
-              <td><?= $ang['NAMA_INS']; ?></td>
+              <td><?= $ang['KODE_INS']; ?>/ <?= $ang['NAMA_INS']; ?></td>
               <td class="text-center">
                 <a href="<?= base_url(); ?>index.php/Anggota/detail/<?= $ang['URUT_ANG']; ?>" class="btn btn-info">Detail</a>
                 <a href="<?= base_url(); ?>index.php/Anggota/edit/<?= $ang['URUT_ANG']; ?>" class="btn btn-warning">Edit</a>

@@ -137,6 +137,7 @@ class Anggota_model extends  CI_Model
         $this->data = [            
             "URUT_ANG" => $this->input->post('URUT_ANG', true),
             "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
+            "REKENING" => $this->input->post('REKENING', true),
             "KODE_INS" => $this->input->post('KODE_INS', true),            
             "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
             "ALM_ANG" => $this->input->post('ALM_ANG', true),
@@ -162,6 +163,7 @@ class Anggota_model extends  CI_Model
         $this->data = [
             "URUT_ANG" => $this->input->post('URUT_ANG', true),
             "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
+            "REKENING" => $this->input->post('REKENING', true),
             "KODE_INS" => $this->input->post('KODE_INS', true),
             "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
             "ALM_ANG" => $this->input->post('ALM_ANG', true),

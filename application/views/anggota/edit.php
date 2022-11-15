@@ -23,12 +23,23 @@ $this->load->view('templates/sidebar');
             </div>
 
             <div class="form-group row mb-2">
+                <label for="nama" class="col-sm-2 text-end control-label col-form-label">No. Rekening</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <i class="bi-person-fill input-group-text"></i>
+                        <input type="text" name="REKENING" class="form-control" id="REKENING" value="<?= $anggota['REKENING']; ?>" />
+                    </div>
+                    <small class="form-text text-danger"><?= form_error('REKENING'); ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
                 <label for="kdins" class="col-sm-2 text-end control-label col-form-label">Instansi</label>
                 <div class="col-sm-9">
                     <div class="input-group">
                         <i class="bi-briefcase-fill input-group-text"></i>
                         <select id="KODE_INS" name="KODE_INS" class="form-select" aria-label="Default select example">
-                            <option selected=""><?= $anggota['KODE_INS'] ?> / <?= $anggota['NAMA_INS'] ?></option>
+                            <option value="<?= $anggota['KODE_INS']; ?>"><?= $anggota['KODE_INS'] ?> / <?= $anggota['NAMA_INS'] ?></option>
                             <?php foreach ($instansi as $key) : ?>
                                 <option value="<?= $key['KODE_INS']; ?>" ><?= $key['KODE_INS']; ?>/<?= $key['NAMA_INS']; ?></option>
                             <?php endforeach ?>

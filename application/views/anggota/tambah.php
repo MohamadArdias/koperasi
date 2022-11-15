@@ -38,6 +38,17 @@ $this->load->view('templates/sidebar');
             </div>
 
             <div class="form-group row mb-2">
+                <label for="nama" class="col-sm-2 text-end control-label col-form-label">No. Rekening</label>
+                <div class="col-sm-9">
+                    <div class="input-group input-group-sm">
+                        <i class="bi-person-fill input-group-text"></i>
+                        <input type="text" name="REKENING" class="form-control" id="REKENING" placeholder="-" />
+                    </div>
+                    <small class="form-text text-danger"><?= form_error('REKENING'); ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
                 <label for="kdins" class="col-sm-2 text-end control-label col-form-label">Instansi</label>
                 <div class="col-sm-9">
                     <div class="input-group input-group-sm">
