@@ -18,6 +18,8 @@ class Us_model extends  CI_Model
             "JUMLAH" => $this->input->post('JMLP_ANG', true),
             "PRO" => $this->input->post('PRO_ANG', true),
             "jangka" => $this->input->post('JWKT_ANG', true),
+            "DATE" => date('Y-m-d'),
+            "TIME" => date("H:i:s"),
             "KET" => "PEMBERIAN PINJAMAN PADA $kode/$nama"
         ];
 

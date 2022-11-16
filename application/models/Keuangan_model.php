@@ -68,14 +68,80 @@ class Keuangan_model extends  CI_Model
 
     public function getAnggotaWhereKodeins($KODE_INS)
     {
-        $this->db->select('*');
-        $this->db->from('pl');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG', 'right');
-        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
-        $this->db->where('instan.KODE_INS', $KODE_INS);
-        $this->db->where('TAHUN', date('Y'));
-        $this->db->where('BULAN', date('m'));
-        return  $this->db->get()->result_array();
+        // $this->db->select('*');
+        // $this->db->from('pl');
+        // $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG', 'right');
+        // $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
+        // $this->db->where('instan.KODE_INS', $KODE_INS);
+        // $this->db->where('TAHUN', date('Y'));
+        // $this->db->where('BULAN', date('m'));
+        // return  $this->db->get()->result_array();
+
+        $query = $this->db->query("SELECT
+        *
+        FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+        WHERE
+        pl.TAHUN IN (SELECT MAX(TAHUN) FROM pl) AND
+        instan.KODE_INS = $KODE_INS AND
+        pl.BULAN IN (SELECT MAX(BULAN) FROM pl)");
+
+        return $query->result_array();
+    }
+
+    public function getAnggotaWhereKodeAng($KODE_ANG)
+    {
+        $query = $this->db->query("SELECT
+        anggota.NAMA_ANG, 
+        instan.NAMA_INS, 
+        anggota.URUT_ANG, 
+        pl.POKOK, 
+        pl.WAJIB, 
+        pl.KEU1, 
+        pl.POKU1, 
+        pl.BNGU1, 
+        instan.KODE_INS, 
+        pl.KEU2, 
+        pl.POKU2, 
+        pl.BNGU2, 
+        pl.KEU3, 
+        pl.POKU3, 
+        pl.BNGU3, 
+        pl.KEU7, 
+        pl.POKU7, 
+        pl.BNGU7
+    FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+    WHERE
+        pl.TAHUN IN ((SELECT MAX(TAHUN) FROM pl)) AND
+        pl.BULAN IN ((SELECT MAX(BULAN) FROM pl)) AND
+        anggota.URUT_ANG = 0300");
+        return $query->row_array();
+
+        // $this->db->select('*');
+        // $this->db->from('pl');
+        // $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG', 'right');
+        // $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
+        // $this->db->where('anggota.URUT_ANG', $KODE_ANG);
+        // $this->db->where('TAHUN', date('Y'));
+        // $this->db->where('BULAN', date('m'));
+        // return  $this->db->get()->row_array();
     }
 
     public function getInstansi($KODE_INS)
@@ -96,7 +162,7 @@ class Keuangan_model extends  CI_Model
         $this->db->where('pl.TAHUN', date('Y', strtotime('+1 month')));
         $this->db->where('pl.BULAN', date('m', strtotime('+1 month')));
         $this->db->where('anggota.KODE_INS !=', '99');
-        $this->db->where('anggota.KODE_INS', '06');
+        // $this->db->where('anggota.KODE_INS', '06');
         return $this->db->get()->result_array();
     }
 

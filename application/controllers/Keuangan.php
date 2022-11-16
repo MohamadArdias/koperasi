@@ -40,7 +40,14 @@ class Keuangan extends CI_Controller
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ],
         ];
-
+        
+        $style_sub = [
+            'font' => ['bold' => true], // Set font nya jadi bold
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT, // Set text jadi ditengah secara horizontal (center)
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+            ],
+        ];
         $style_col = [
             'font' => ['bold' => true], // Set font nya jadi bold
             'alignment' => [
@@ -81,36 +88,60 @@ class Keuangan extends CI_Controller
                 'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
             ]
         ];
+        setlocale(LC_ALL, 'id-ID', 'id_ID');
+        date_default_timezone_set("Asia/Jakarta");
 
         $sheet->setCellValue('A1', 'DAFTAR POTONGAN KOPERASI');
-        $sheet->mergeCells('A1:E1'); // Set Merge Cell pada kolom A1 sampai E1
+        $sheet->mergeCells('A1:F1'); // Set Merge Cell pada kolom A1 sampai E1
+        $sheet->setCellValue('A4', 'NAMA');
+        $sheet->setCellValue('C4', 'KOPERASI BANGKIT BERSAMA KANTOR PEMKAB BWI');
+        $sheet->mergeCells('A4:B4'); // Set Merge Cell pada kolom A1 sampai E1
+        $sheet->setCellValue('A5', 'BULAN');
+        $sheet->setCellValue('C5', strftime('%B', strtotime('+1 month')));
+        $sheet->mergeCells('A5:B5'); // Set Merge Cell pada kolom A1 sampai E1
+        $sheet->setCellValue('A6', 'TAHUN');
+        $sheet->setCellValue('C6', date('Y'));
+        $sheet->mergeCells('A6:B6'); // Set Merge Cell pada kolom A1 sampai E1
+        $sheet->setCellValue('A7', 'NO REK KOPERASI');
+        $sheet->mergeCells('A7:B7'); // Set Merge Cell pada kolom A1 sampai E1
         // $sheet->getStyle('A1')->getFont()->setBold(true); // Set bold kolom A1
         $sheet->getStyle('A1')->applyFromArray($style_head);
+        $sheet->getStyle('A4')->applyFromArray($style_sub);
+        $sheet->getStyle('C4')->applyFromArray($style_sub);
+        $sheet->getStyle('A5')->applyFromArray($style_sub);
+        $sheet->getStyle('C5')->applyFromArray($style_sub);
+        $sheet->getStyle('A6')->applyFromArray($style_sub);
+        $sheet->getStyle('C6')->applyFromArray($style_sub);
+        $sheet->getStyle('A7')->applyFromArray($style_sub);
+        $sheet->getStyle('C7')->applyFromArray($style_sub);
 
-        // Buat header tabel nya pada baris ke 3
-        $sheet->setCellValue('A3', "NO"); // Set kolom A3 dengan tulisan "NO"
-        $sheet->setCellValue('B3', "NAMA ANGGOTA"); // Set kolom B3 dengan tulisan "NIS"
-        $sheet->setCellValue('C3', "NO REKENING"); // Set kolom C3 dengan tulisan "NAMA"
-        $sheet->setCellValue('D3', "NOMINAL POTONGAN"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
-        $sheet->setCellValue('E3', "NAMA KOPERASI"); // Set kolom E3 dengan tulisan "ALAMAT"
+        // Buat header tabel nya pada baris ke 10
+        $sheet->setCellValue('A10', "NO"); // Set kolom A10 dengan tulisan "NO"
+        $sheet->setCellValue('B10', "NAMA ANGGOTA"); // Set kolom B10 dengan tulisan "NIS"
+        $sheet->setCellValue('C10', "NO REKENING"); // Set kolom C10 dengan tulisan "NAMA"
+        $sheet->setCellValue('D10', "NOMINAL POTONGAN"); // Set kolom D10 dengan tulisan "JENIS KELAMIN"
+        $sheet->setCellValue('E10', "NAMA KOPERASI"); // Set kolom E10 dengan tulisan "ALAMAT"
+        $sheet->setCellValue('F10', "NAMA KOPERASI"); // Set kolom E10 dengan tulisan "ALAMAT"
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
-        $sheet->getStyle('A3')->applyFromArray($style_col);
-        $sheet->getStyle('B3')->applyFromArray($style_col);
-        $sheet->getStyle('C3')->applyFromArray($style_col);
-        $sheet->getStyle('D3')->applyFromArray($style_col);
-        $sheet->getStyle('E3')->applyFromArray($style_col);
+        $sheet->getStyle('A10')->applyFromArray($style_col);
+        $sheet->getStyle('B10')->applyFromArray($style_col);
+        $sheet->getStyle('C10')->applyFromArray($style_col);
+        $sheet->getStyle('D10')->applyFromArray($style_col);
+        $sheet->getStyle('E10')->applyFromArray($style_col);
+        $sheet->getStyle('F10')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
         $keuangan = $this->Kirim->getAllKirim();
         $no = 1; // Untuk penomoran tabel, di awal set dengan 1
-        $numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
+        $numrow = 11; // Set baris pertama untuk isi tabel adalah baris ke 4
         foreach ($keuangan as $data) { // Lakukan looping pada variabel siswa
             $sheet->setCellValue('A' . $numrow, $no);
             $sheet->setCellValue('B' . $numrow, $data['NAMA_ANG']);
-            $sheet->setCellValue('C' . $numrow, $data['KODE_ANG']);
+            $sheet->setCellValue('C' . $numrow, $data['REKENING']);
             $sheet->setCellValue('D' . $numrow, $data['JML_TGHN']);
             $sheet->setCellValue('E' . $numrow, 'KPRI "BANGKIT BERSAMA"');
+            $sheet->setCellValue('F' . $numrow, $data['NAMA_INS']);
 
             // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
             $sheet->getStyle('A' . $numrow)->applyFromArray($style_row_mid);
@@ -118,6 +149,7 @@ class Keuangan extends CI_Controller
             $sheet->getStyle('C' . $numrow)->applyFromArray($style_row_mid);
             $sheet->getStyle('D' . $numrow)->applyFromArray($style_row);
             $sheet->getStyle('E' . $numrow)->applyFromArray($style_row_mid);
+            $sheet->getStyle('F' . $numrow)->applyFromArray($style_row);
 
             $no++; // Tambah 1 setiap kali looping
             $numrow++; // Tambah 1 setiap kali looping
@@ -128,6 +160,7 @@ class Keuangan extends CI_Controller
         $sheet->getColumnDimension('C')->setWidth(25); // Set width kolom C
         $sheet->getColumnDimension('D')->setWidth(25); // Set width kolom D
         $sheet->getColumnDimension('E')->setWidth(30); // Set width kolom E
+        $sheet->getColumnDimension('F')->setWidth(30); // Set width kolom E
 
         // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
         $sheet->getDefaultRowDimension()->setRowHeight(-1);
@@ -169,7 +202,8 @@ class Keuangan extends CI_Controller
 
     public function printang($KODE_ANG)
     {
-        $this->load->view('keuangan/printang');
+        $this->data['printang'] = $this->keuangan->getAnggotaWhereKodeAng($KODE_ANG);
+        $this->load->view('keuangan/printang', $this->data);
     }
 
 

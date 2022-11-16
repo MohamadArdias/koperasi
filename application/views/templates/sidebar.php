@@ -64,6 +64,13 @@
           </li>
 
           <li class="nav-item">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/tagihan">
+                  <i class="bi bi-bank2"></i>
+                  <span>Tagihan</span>
+              </a>
+          </li>
+
+          <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pay">
                   <i class="bi bi-bank2"></i>
                   <span>Pembayaran Langsung</span>

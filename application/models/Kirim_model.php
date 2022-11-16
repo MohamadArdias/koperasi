@@ -11,18 +11,42 @@ class Kirim_model extends CI_model
     //     $this->db->where('BULAN', (date("m"))); //untuk sementara (date("m"))
     //     return  $this->db->get()->result_array();
     // }
+    public function getTagihan()
+    {
+        $query = $this->db->query("SELECT * 
+        FROM
+        pembayaran
+        INNER JOIN
+        anggota
+        ON 
+            pembayaran.KODE_ANG = anggota.URUT_ANG
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        WHERE
+        TGL_TGHN IN ((SELECT MAX(TGL_TGHN) FROM pembayaran))");
+        return $query->result_array();
+    }
+    
     public function getAllKirim()
     {
-        $this->db->select('*');
-        $this->db->from('pembayaran');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pembayaran.KODE_ANG');
-        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-        $this->db->like('TGL_TGHN', date('Y-m'));
-        $this->db->where('instan.KODE_INS !=', 99);
-        // $this->db->where('instan.KODE_INS', "06");
-        $this->db->order_by('instan.KODE_INS ASC, anggota.URUT_ANG ASC');
-        return $this->db->get()->result_array();
-    }
+        $query = $this->db->query("SELECT *
+        FROM
+        pembayaran
+        INNER JOIN
+        anggota
+        ON 
+            pembayaran.KODE_ANG = anggota.URUT_ANG
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        WHERE
+        TGL_TGHN IN ((SELECT MAX(TGL_TGHN) FROM pembayaran)) AND
+        anggota.REKENING IS NOT NULL");
+        return $query->result_array();        
+    }    
 
     public function cariDataKirim()
     {

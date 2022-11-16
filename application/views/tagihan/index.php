@@ -36,18 +36,6 @@ $this->load->view('templates/sidebar');
 
 <div class="card">
     <div class="card-body">
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <form action="" method="post">
-                    <div class="input-group">
-                        <div>
-                            <a href="<?= base_url(); ?>index.php/keuangan/export" class="btn btn-primary"><i class="bi-download"></i> Export Excel</a>
-                        </div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                </form>
-            </div>
-        </div>
         <div class="overflow-auto">
         <table class="table table-borderless datatable" id="customers">
             <thead class="table-primary">
@@ -62,12 +50,12 @@ $this->load->view('templates/sidebar');
             </thead>
             <tbody>
                 <?php $i = 1;
-                foreach ($keuangan as $lap) : ?>
+                foreach ($tagihan as $lap) : ?>
                     <tr>
                         <td><?= $i++; ?></td>
                         <td class="text-center"><?= $lap['KODE_ANG']; ?></td>
                         <td><?= $lap['NAMA_ANG']; ?></td>
-                        <td><?= $lap['NAMA_INS']; ?></td>                        
+                        <td><?= $lap['KODE_INS'].'/ '.$lap['NAMA_INS']; ?></td>                        
                         <td class="text-right"><?= number_format($lap['JML_TGHN'], 0, ',', '.'); ?></td>
                         <td><?= 'KPRI "BANGKIT BERSAMA"'; ?></td>
                     </tr>

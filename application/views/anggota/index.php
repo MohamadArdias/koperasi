@@ -55,7 +55,6 @@ $this->load->view('templates/sidebar');
         </form>
       </div>
     </div>
-
     <div class="overflow-auto">
       <table class="table table-borderless datatable" id="customers">
         <thead class="table-primary">
