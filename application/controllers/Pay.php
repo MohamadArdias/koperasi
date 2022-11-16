@@ -40,16 +40,14 @@ class Pay extends CI_Controller
                     'bayar' => 0,
                     'tunggakan' => 0,
                 );
-            }else {
+            } else {
                 $data = array(
-                'nama' => $query['NAMA_ANG'],
-                'tagihan' => $query['JML_TGHN'],
-                'bayar' => $query['JML_BAYAR'],
-                'tunggakan' => $query['TUNGGAKAN'],
-            );
+                    'nama' => $query['NAMA_ANG'],
+                    'tagihan' => $query['JML_TGHN'],
+                    'bayar' => $query['JML_BAYAR'],
+                    'tunggakan' => $query['TUNGGAKAN'],
+                );
             }
-            
-
             echo json_encode($data);
         }
     }

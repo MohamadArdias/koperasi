@@ -7,15 +7,13 @@ class Import extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Import_model');
+        $this->load->model('Import_model', 'Import');
     }
-
-
 
     public function index()
     {
         $this->data['title'] = 'Import Bank Jatim';
-        $this->data['temp'] = $this->Import_model->getDataMasuk();
+        $this->data['temp'] = $this->Import->getDataMasuk();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $upload_status = $this->uploadDoc();
             if ($upload_status != false) {
@@ -69,6 +67,36 @@ class Import extends CI_Controller
             return $fileData['file_name'];
         } else {
             return false;
+        }
+    }
+
+    public function potong()
+    {
+        $bayar = $this->Import->getTemp();
+
+        foreach ($bayar as $key ) {
+
+            $inBayar = array(
+                'TGL_BAYAR' => $key['TANGGAL'],
+                'JML_BAYAR' => $key['NOMINAL'],
+                'VIA_BAYAR' => 'BANK JATIM',
+                'STATUS' => 'TERBAYAR',
+                'SISA' => 0,
+            );
+
+            $this->db->where('KODE_ANG', $key['KODE_ANG']);
+            $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
+            $this->db->update('pembayaran', $inBayar);
+
+            $pl = [
+                'TUNGGAKAN' => 0,
+            ];
+            $where = array(
+                'TAHUN' => date('Y'),
+                'BULAN' => date('m'),
+                'KODE_ANG' => $key['KODE_ANG'],
+            );
+            $this->db->update('pl', $pl, $where);
         }
     }
 }

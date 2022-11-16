@@ -34,17 +34,27 @@ class Pay_model extends CI_Model
             $sisa = 0;
         }
 
-        $data = [            
+        $inBayar = [            
             'TGL_BAYAR' => date('Y-m-d'),
             'JML_BAYAR' => $jml_bayar,
             'VIA_BAYAR' => 'BAYAR LANGSUNG',            
             'STATUS' => $status,
-            'TUNGGAKAN' => $tunggakan,
             'SISA' => $sisa
+            // 'TUNGGAKAN' => $tunggakan,
         ];
         $this->db->where('KODE_ANG', $this->input->post('KODE'));
         $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
         // $this->db->like('pembayaran.TGL_TGHN', date('Y-m'));
-        $this->db->update('pembayaran', $data);
+        $this->db->update('pembayaran', $inBayar);
+
+        $pl = [
+            'TUNGGAKAN' => $tunggakan,
+        ];
+        $where = array(
+            'TAHUN' => date('Y'),
+            'BULAN' => date('m'),
+            'KODE_ANG' => $this->input->post('KODE', true),
+        );
+        $this->db->update('pl', $pl, $where);
     }
 }
