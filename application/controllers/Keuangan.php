@@ -15,6 +15,7 @@ class Keuangan extends CI_Controller
         $this->load->model('Kirim_model', 'Kirim');
         // $this->load->model('Instansi_model', 'Instansi'); //'Instansi' adalah alias dari 'Instansi_model'
         $this->load->model('Keuangan_model', 'keuangan');
+        $this->load->model('Pengurus_model', 'Pengurus');
         $this->load->library('pdf');
         $this->load->library('form_validation');
     }
@@ -23,6 +24,7 @@ class Keuangan extends CI_Controller
     {
         $this->data['title'] = 'Data Potongan Anggota';
         $this->data['keuangan'] = $this->Kirim->getAllKirim();
+        
 
         $this->load->view('keuangan/index', $this->data);
     }
@@ -188,6 +190,7 @@ class Keuangan extends CI_Controller
     {
         $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
         $this->data['instansi'] = $this->keuangan->getInstansi($KODE_INS);
+        $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
 
         $this->load->view('keuangan/printins', $this->data);
     }
@@ -203,6 +206,7 @@ class Keuangan extends CI_Controller
     public function printang($KODE_ANG)
     {
         $this->data['printang'] = $this->keuangan->getAnggotaWhereKodeAng($KODE_ANG);
+        $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
         $this->load->view('keuangan/printang', $this->data);
     }
 

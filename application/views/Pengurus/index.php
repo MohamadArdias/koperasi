@@ -46,9 +46,29 @@ $this->load->view('templates/sidebar');
                 <tbody>
                     <?php foreach ($Pengurus as $ang) : ?>
                         <tr>
-                            <td><?= $ang['JABATAN']; ?></td>
-                            <td><?= $ang['NAMA']; ?></td>
-                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['JABATAN']; ?>" class="btn btn-warning">Edit</a></td>
+                            <td>KETUA</td>
+                            <td><?= $ang['KETUA']; ?></td>
+                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['KETUA']; ?>" class="btn btn-warning">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <td>WAKIL</td>
+                            <td><?= $ang['WAKIL']; ?></td>
+                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['WAKIL']; ?>" class="btn btn-warning">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <td>SEKERTARIS</td>
+                            <td><?= $ang['SEKERTARIS']; ?></td>
+                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['SEKERTARIS']; ?>" class="btn btn-warning">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <td>BENDAHARA 1</td>
+                            <td><?= $ang['BENDAH1']; ?></td>
+                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['BENDAH1']; ?>" class="btn btn-warning">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <td>BENDAHARA 2</td>
+                            <td><?= $ang['BENDAH2']; ?></td>
+                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['BENDAH2']; ?>" class="btn btn-warning">Edit</a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

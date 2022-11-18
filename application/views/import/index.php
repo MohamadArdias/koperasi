@@ -75,11 +75,15 @@ $this->load->view('templates/sidebar');
                     </thead>
                     <tbody>
                         <?php $i = 1;
-                        foreach ($temp as $bayar) : ?>
+                        foreach ($temp as $bayar) : 
+                            if ($bayar['NO_REKENING'] != NULL) {
+                            $a = 'XXXXXX'.substr($bayar['NO_REKENING'],-4).'';
+                          } else {
+                            $a = ''; }?>
                             <tr>
                                 <td><?= $i++; ?></td>
                                 <td><?= $bayar['TANGGAL']; ?></td>
-                                <td><?= $bayar['NO_REKENING']; ?></td>
+                                <td><?= $a; ?></td>
                                 <td><?= $bayar['NAMA']; ?></td>
                                 <td><?= $bayar['NOMINAL']; ?></td>
                                 <td><?= $bayar['KOP']; ?></td>

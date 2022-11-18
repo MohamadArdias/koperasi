@@ -14,20 +14,24 @@ class Pengurus extends CI_Controller
         $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
         $this->load->view('Pengurus/index', $this->data);
     }
-    public function edit($JABATAN)
+    public function edit($id)
     {
         $this->data['title'] = 'Edit Data Pengurus';
-        $this->data['Pengurus'] = $this->Pengurus->GetPengurusbyJabatan($JABATAN);
-        // $this->form_validation->set_rules('NAMA', 'Nama Pengurus', 'required');
+        $this->data['KETUA'] = $this->Pengurus->GetPengurusKetua($id);
+        // $this->data['WAKIL'] = $this->Pengurus->GetPengurusWakil($id);
+        // $this->data['SEKERTARIS'] = $this->Pengurus->GetPengurusSekertaris($id);
+        // $this->data['BENDAH1'] = $this->Pengurus->GetPengurusBendah1($id);
+        // $this->data['BENDAH2'] = $this->Pengurus->GetPengurusBendah2($id);
+        $this->form_validation->set_rules('NAMA', 'KETUA', 'required');
 
 
 
-        // if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {
         $this->load->view('Pengurus/edit', $this->data);
-        // } else {
-        // $this->Pengurus->editDataPengurus();
-        // $this->session->set_flashdata('flash', 'diubah');
-        // redirect('Pengurus');
-        // }
+        } else {
+        $this->Pengurus->editDataPengurus();
+        $this->session->set_flashdata('flash', 'diubah');
+        redirect('Pengurus');
+        }
     }
 }

@@ -4,13 +4,15 @@ class Pengurus_model extends CI_Model
 {
     public function getAllPengurus()
     {
-        return $this->db->get('Pengurus')->result_array();
-    }
-    public function GetPengurusbyJabatan($JABATAN)
-    {
         $this->db->select('*');
-        $this->db->from('pengurus');
-        $this->db->where('JABATAN', $JABATAN);
+        $this->db->from('Pengurus');
+        return $this->db->get()->result_array();
+    }
+    public function GetPengurusKetua($id)
+    {
+        $this->db->select('KETUA');
+        $this->db->from('Pengurus');
+        $this->db->where('ID', $id);
         return $this->db->get()->row_array();
     }
     public function editDataPengurus()

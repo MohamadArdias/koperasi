@@ -72,7 +72,7 @@
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pay">
-                  <i class="bi bi-bank2"></i>
+                  <i class="bi bi-cash-coin"></i>
                   <span>Pembayaran Langsung</span>
               </a>
           </li>
@@ -145,6 +145,18 @@
               </ul>
           </li><!-- End Forms Nav -->
 
-      </ul>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav-gen" aria-controls="forms-nav">
+                  <i class="bi bi-three-dots-vertical"></i><span>Option</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="forms-nav-gen" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Pengurus">
+                          <i class="bi bi-circle-fill"></i><span>Pengurus</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+
 
   </aside><!-- End Sidebar-->
