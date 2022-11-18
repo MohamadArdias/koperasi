@@ -41,8 +41,7 @@ $this->load->view('templates/sidebar');
                     <thead class="table-primary">
                         <tr>
                             <th class="text-center">Kode Anggota</th>
-                            <th class="text-center">Nama Anggota</th>
-                            <th class="text-center">Kode Instansi</th>
+                            <th class="text-center">Instansi</th>
                             <th class="text-center">Nama Instansi</th>
                             <th class="text-center">Aksi</th>
                         </tr>
@@ -52,8 +51,7 @@ $this->load->view('templates/sidebar');
                             <tr>
                                 <td><?= $ins['KODE_ANG']; ?></td>
                                 <td><?= $ins['NAMA_ANG']; ?></td>
-                                <td><?= $ins['KODE_INS']; ?></td>
-                                <td><?= $ins['NAMA_INS']; ?></td>
+                                <td><?= $ins['KODE_INS'].'/ '.$ins['NAMA_INS']; ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url(); ?>index.php/keuangan/printang/<?= $ins['KODE_ANG']; ?>" class="btn btn-secondary" target="blank">Print</a>
                                 </td>

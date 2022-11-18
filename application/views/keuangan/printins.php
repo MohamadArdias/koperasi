@@ -74,20 +74,36 @@ $totalc = 0;
 $totald = 0;
 $totale = 0;
 $totalf = 0;
-foreach ($keuangan as $lap) {
+$totalg = 0;
+$totalt = 0;
+foreach ($keuangan as $lap) {    
     $a = $lap['POKU3'] + $lap['BNGU3'];
     $b = $lap['POKU1'] + $lap['BNGU1'];
     $e = $lap['POKU7'] + $lap['BNGU7'];
     $f = $lap['POKU2'];
+    $g = $lap['POKOK'];
+
+    if ($lap['TUNGGAKAN'] != 0) {
+        $t = $lap['TUNGGAKAN'];
+    } else {
+        $t = 0;
+    }
 
     $totala += $a;
     $totalb += $b;
     $totalc += $lap['WAJIB'];
     $totale += $e;
     $totalf += $f;
-    $potongan = $a + $b + $e + $f + $lap['WAJIB'];
+    $totalg += $g;
+    $totalt += $t;
+    $potongan = $a + $b + $e + $f + $g + $t + $lap['WAJIB'];
     $totald += $potongan;
 
+    if ($lap['KEU1'] != 0) {
+        $ke = $lap['KEU1'];
+    } else {
+        $ke = 0;
+    }
 
     $data .= '  <tr>
                                         <td width="20" align="right" style=" border-right: 1px solid black; border-left: 1px solid black; ">' . $i++ . '</td>
@@ -97,10 +113,10 @@ foreach ($keuangan as $lap) {
                                         <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($a, 0, ',', '.') . '</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($e, 0, ',', '.') . '</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($b, 0, ',', '.') . '</td>
-                                        <td width="20" align="right" style="border-right: 1px solid black; ">' . $lap['KEU1'] . '</td>
-                                        <td width="65" align="right" style="border-right: 1px solid black; "></td>
+                                        <td width="20" align="right" style="border-right: 1px solid black; ">' . $ke . '</td>
+                                        <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($lap['POKOK'], 0, ',', '.') . '</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($lap['WAJIB'], 0, ',', '.') . '</td>
-                                        <td width="65" align="right" style="border-right: 1px solid black; "></td>
+                                        <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($t, 0, ',', '.') . '</td>
                                         <td width="65" align="right" style="border-right: 1px solid black; ">' . number_format($potongan, 0, ',', '.') . '</td>
                                     </tr>';
 }
@@ -112,10 +128,10 @@ $data .=    '           <tr>
                                     <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totala, 0, ',', '.') . '</td>
                                     <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totale, 0, ',', '.') . '</td>
                                     <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totalb, 0, ',', '.') . '</td>
-                                    <td style="border-top: 1px solid black; " width="20" align="right">' . $lap['KEU1'] . '</td>
-                                    <td style="border-top: 1px solid black; " width="65" align="right"></td>
+                                    <td style="border-top: 1px solid black; " width="20" align="right"></td>
+                                    <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totalg, 0, ',', '.') . '</td>
                                     <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totalc, 0, ',', '.') . '</td>
-                                    <td style="border-top: 1px solid black; " width="65" align="right"></td>
+                                    <td style="border-top: 1px solid black; " width="65" align="right">' . number_format($totalt, 0, ',', '.') . '</td>
                                     <td style="border-top: 1px solid black; border-right: 1px solid black; " width="65" align="right">' . number_format($totald, 0, ',', '.') . '</td>
                                 </tr>
                                 <tr>
@@ -126,10 +142,10 @@ $data .=    '           <tr>
                                     <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totala, 0, ',', '.') . '</td>
                                     <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totale, 0, ',', '.') . '</td>
                                     <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totalb, 0, ',', '.') . '</td>
-                                    <td style="border-bottom: 1px solid black; " width="20" align="right">' . $lap['KEU1'] . '</td>
-                                    <td style="border-bottom: 1px solid black; " width="65" align="right"></td>
+                                    <td style="border-bottom: 1px solid black; " width="20" align="right"></td>
+                                    <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totalg, 0, ',', '.') . '</td>
                                     <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totalc, 0, ',', '.') . '</td>
-                                    <td style="border-bottom: 1px solid black; " width="65" align="right"></td>
+                                    <td style="border-bottom: 1px solid black; " width="65" align="right">' . number_format($totalt, 0, ',', '.') . '</td>
                                     <td style="border-bottom: 1px solid black; border-right: 1px solid black; " width="65" align="right">' . number_format($totald, 0, ',', '.') . '</td>
                                 </tr>
                                 </tbody>                                                                   

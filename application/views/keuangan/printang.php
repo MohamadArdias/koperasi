@@ -2,7 +2,7 @@
 setlocale(LC_ALL, 'id-ID', 'id_ID');
 date_default_timezone_set("Asia/Jakarta");
 // $mpdf = new Mpdf(['orientation' => 'L', 'default_font_size' => 9]);
-        $date = date("d-M-Y");
+        $date = strftime("%d %B %Y");
         $Month = strftime("%B %Y", strtotime('+1 month'));
         $full = date("l, d-M-Y H:i:s");
 
@@ -20,7 +20,8 @@ date_default_timezone_set("Asia/Jakarta");
         $uang = $printang['POKU1'] + $printang['BNGU1'];
         $kons = $printang['POKU2'] + $printang['BNGU2'];
         $non = $printang['POKU3'] + $printang['BNGU3'];
-        $khus = $printang['POKU7'] + $printang['BNGU7'];        
+        $khus = $printang['POKU7'] + $printang['BNGU7'];   
+        $tung = $printang['TUNGGAKAN'];     
         
         $data ='
 <pre>
@@ -58,8 +59,13 @@ date_default_timezone_set("Asia/Jakarta");
         $data .='
         PINJAMAN KHUSUS         : '.number_format($khus, 0, ',', '.').'     ke'.$printang['KEU7'].'<br>';
         }
+
+        if ($tung != 0) {        
+        $data .='
+        TUNGGAKAN               : '.number_format($tung, 0, ',', '.').'<br>';
+        }
         
-        $ttl = $uang+$kons+$non+$khus+$printang['WAJIB']+$printang['POKOK'];
+        $ttl = $uang+$kons+$non+$khus+$tung+$printang['WAJIB']+$printang['POKOK'];
 
         function penyebut($nilai) {
                 $nilai = abs($nilai);

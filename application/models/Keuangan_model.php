@@ -91,7 +91,7 @@ class Keuangan_model extends  CI_Model
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN IN (SELECT MAX(TAHUN) FROM pl) AND
-        instan.KODE_INS = $KODE_INS AND
+        instan.KODE_INS = '$KODE_INS' AND
         pl.BULAN IN (SELECT MAX(BULAN) FROM pl)");
 
         return $query->result_array();
@@ -104,6 +104,7 @@ class Keuangan_model extends  CI_Model
         instan.NAMA_INS, 
         anggota.URUT_ANG, 
         pl.POKOK, 
+        pl.TUNGGAKAN, 
         pl.WAJIB, 
         pl.KEU1, 
         pl.POKU1, 
@@ -118,7 +119,7 @@ class Keuangan_model extends  CI_Model
         pl.KEU7, 
         pl.POKU7, 
         pl.BNGU7
-    FROM
+        FROM
         anggota
         INNER JOIN
         instan
@@ -128,10 +129,10 @@ class Keuangan_model extends  CI_Model
         pl
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
-    WHERE
+        WHERE
         pl.TAHUN IN ((SELECT MAX(TAHUN) FROM pl)) AND
         pl.BULAN IN ((SELECT MAX(BULAN) FROM pl)) AND
-        anggota.URUT_ANG = 0300");
+        anggota.URUT_ANG = '$KODE_ANG'");
         return $query->row_array();
 
         // $this->db->select('*');

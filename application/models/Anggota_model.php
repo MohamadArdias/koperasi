@@ -188,12 +188,7 @@ class Anggota_model extends  CI_Model
         $bulan = date("m");
 
         $sql = $this->db->query("SELECT 
-        pinuang.NOFAK AS FAKTUR,
-        anggota.NAMA_ANG AS NAMA, 
-        pinuang.JWKT_ANG AS JANGKA,
-        pl.KEU3 AS PERIODE, 
-        pl.SIPOKU3 AS SISA, 
-        pl.BNGU3 AS BUNGA
+        *
         FROM 
         anggota 
         LEFT JOIN 
@@ -208,6 +203,8 @@ class Anggota_model extends  CI_Model
         anggota.URUT_ANG = '$a' AND 
         pl.TAHUN = $tahun AND
         pl.BULAN = $bulan AND
+        pinuang.TAHUN = $tahun AND
+        pinuang.BULAN = $bulan AND
         pinuang.NOFAK LIKE '%$b%' 
         ");
 

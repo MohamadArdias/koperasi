@@ -1,4 +1,5 @@
 <?php
+ini_set('default_socket_timeout', 6000);
 class generate extends CI_Controller
 {
     public function __construct()

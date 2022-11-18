@@ -9,8 +9,8 @@ class Pembayaran_model extends  CI_Model
         $this->db->join('anggota', 'anggota.URUT_ANG = pembayaran.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         $this->db->where('instan.KODE_INS !=', '99');
-        // $this->db->like('TGL_TGHN', date('Y-m'));
-        $this->db->order_by('pembayaran.TGL_TGHN DESC, instan.KODE_INS ASC, anggota.URUT_ANG ASC');
+        $this->db->like('TGL_TGHN', date('Y-m'));
+        // $this->db->order_by('pembayaran.TGL_TGHN DESC, instan.KODE_INS ASC, anggota.URUT_ANG ASC');
         return $this->db->get()->result_array();
     }
 

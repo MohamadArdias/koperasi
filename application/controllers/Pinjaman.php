@@ -45,7 +45,9 @@ class Pinjaman extends CI_Controller
         $this->form_validation->set_rules('JWKT_ANG', 'Jangka Waktu', 'required');
         $this->form_validation->set_rules('TGLP_ANG', 'Tanggal Pinjam', 'required');
 
-        if ($this->form_validation->run() == FALSE) {
+        $bung = $this->input->post('PRO_ANG');
+
+        if ($this->form_validation->run() == FALSE ) {
             $this->load->view('pinjaman/form', $this->data);
         } else {
             $this->Pinuang->deleteTransaksi($a);
@@ -71,12 +73,38 @@ class Pinjaman extends CI_Controller
         $query2 = $this->Anggota->getNama($a);
 
         if ($query != null) {
+            if ($b == 'U') {
+                $jangka = $query['JWK1'];
+                $periode = $query['KEU1'];
+                $sisa = $query['SIPOKU1'];
+                $bunga = $query['BNGU1'];
+            } elseif ($b == 'O') {
+                $jangka = $query['JWK2'];
+                $periode = $query['KEU2'];
+                $sisa = $query['SIPOKU2'];
+                $bunga = $query['BNGU2'];
+            } elseif ($b == 'N') {
+                $jangka = $query['JWK3'];
+                $periode = $query['KEU3'];
+                $sisa = $query['SIPOKU3'];
+                $bunga = $query['BNGU3'];
+            } elseif ($b == 'Z') {
+                $jangka = $query['JWK7'];
+                $periode = $query['KEU7'];
+                $sisa = $query['SIPOKU7'];
+                $bunga = $query['BNGU7'];
+            }  elseif ($b == 'S') {
+                $jangka = $query['JWK4'];
+                $periode = $query['KEU4'];
+                $sisa = $query['SIPOKU4'];
+                $bunga = $query['BNGU4'];
+            }
             $data = array(
-                'nama' => $query['NAMA'],
-                'jangka' => $query['JANGKA'],
-                'periode' => $query['PERIODE'],
-                'sisa' => $query['SISA'],
-                'bunga' => $query['BUNGA'],
+                'nama' => $query['NAMA_ANG'],
+                'jangka' => $jangka,
+                'periode' => $periode,
+                'sisa' => $sisa,
+                'bunga' => $bunga,
             );
 
             echo json_encode($data);
