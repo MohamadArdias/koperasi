@@ -44,7 +44,7 @@
     } elseif ($kode == 2) {
         $kd = 'S';
         $bg = 2;
-        $max = 5;
+        $max = 10;
     } elseif ($kode == 3) {
         $kd = 'O';
         $bg = 0;

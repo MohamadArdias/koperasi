@@ -182,6 +182,11 @@ class Keuangan_model extends  CI_Model
         $this->db->insert('pl', $this->data);
     }
 
+    public function getPengurus()
+    {
+        return $this->db->get_where('pengurus', ['ID' => 1])->row_array();
+    }
+
     // public function showTunggakan()
     // {
     //     $thn = date('Y', strtotime('+1 month'));

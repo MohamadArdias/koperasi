@@ -6,6 +6,7 @@ class Pinjaman extends CI_Controller
         parent::__construct();
         $this->load->model('Pinuang_model', 'Pinuang');
         $this->load->model('Anggota_model', 'Anggota');
+        $this->load->model('Keuangan_model', 'Keuangan');
         $this->load->model('Us_model', 'Us');
         $this->load->library('form_validation');
     }
@@ -35,6 +36,7 @@ class Pinjaman extends CI_Controller
 
         $this->data['urutan'] = $this->Pinuang->getUrut();
         $this->data['kode'] = $kode;
+        $b = $kode;
 
         $this->form_validation->set_rules('NOFAK', 'Faktur', 'required');
         $this->form_validation->set_rules('URUT_ANG', 'Kode Anggota', 'required');
@@ -53,6 +55,7 @@ class Pinjaman extends CI_Controller
             $this->Pinuang->deleteTransaksi($a);
             $this->Pinuang->tambahTransaksi();
             $this->Us->tambahTransaksi();
+            $this->Keuangan->editPlTransaksi($a, $b);
             $this->session->set_flashdata('flashP', 'ditambahkan');
             redirect('pinjaman');
         }

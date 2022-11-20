@@ -160,7 +160,7 @@ $data .=    '           <tr>
                                                 Jumlah Uang Sebesar RP. <br>
                                                 Telah saya terima <br> 
                                                 bendahara KP-RI Bangkit Bersama <br><br><br><br><br>
-                                                DRA.EC.HJ.ERFIN AGUSTINA,M.SI
+                                                '.$pengurus['BENDAH1'].' 
                                             </td>       
                                             <td width="125"></td> 
                                             <td><pre>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
@@ -171,7 +171,7 @@ $data .=    '           <tr>
                                                 Pengurus KPRI Bangkit Bersama <br> 
                                                 Kantor Pemkab. Banyuwangi <br> 
                                                 Ketua 1 <br><br><br><br>
-                                                DRS A. Kholid Askandar
+                                                '.$pengurus['KETUA'].'
                                             </td>
                                         </tr>        
                                     </table>

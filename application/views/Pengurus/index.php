@@ -2,7 +2,7 @@
 $this->load->view('templates/header');
 $this->load->view('templates/sidebar');
 ?>
-<style>
+<!-- <style>
     #customers {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
@@ -30,52 +30,34 @@ $this->load->view('templates/sidebar');
         background-color: #0066ff;
         color: white;
     }
-</style>
+</style> -->
 <div class="card">
-    <div class="col-12">
-
-        <div class="card-body">
-            <table class="table table-borderless datatable" id="customers">
-                <thead class="table-primary">
-                    <tr>
-                        <th scope="col">Jabatan</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Tool</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($Pengurus as $ang) : ?>
-                        <tr>
-                            <td>KETUA</td>
-                            <td><?= $ang['KETUA']; ?></td>
-                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['KETUA']; ?>" class="btn btn-warning">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td>WAKIL</td>
-                            <td><?= $ang['WAKIL']; ?></td>
-                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['WAKIL']; ?>" class="btn btn-warning">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td>SEKERTARIS</td>
-                            <td><?= $ang['SEKERTARIS']; ?></td>
-                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['SEKERTARIS']; ?>" class="btn btn-warning">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td>BENDAHARA 1</td>
-                            <td><?= $ang['BENDAH1']; ?></td>
-                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['BENDAH1']; ?>" class="btn btn-warning">Edit</a></td>
-                        </tr>
-                        <tr>
-                            <td>BENDAHARA 2</td>
-                            <td><?= $ang['BENDAH2']; ?></td>
-                            <td><a href="<?= base_url(); ?>index.php/Pengurus/edit/<?= $ang['BENDAH2']; ?>" class="btn btn-warning">Edit</a></td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
-
-        </div>
-
+    <div class="card-body">
+        <table>
+                <tr>
+                    <th>Ketua</th>
+                    <td width="20"></td>
+                    <td>: <?= $pengurus['KETUA']; ?></td>
+                </tr>
+                <tr>
+                    <th>Wakil</th>
+                    <td width="20"></td>
+                    <td>: <?= $pengurus['WAKIL']; ?></td>
+                </tr>
+                <tr>
+                    <th>Bendahara 1</th>
+                    <td width="20"></td>
+                    <td>: <?= $pengurus['BENDAH1']; ?></td>
+                </tr>
+                <tr>
+                    <th>Bendahara 2</th>
+                    <td width="20"></td>
+                    <td>: <?= $pengurus['BENDAH2']; ?></td>
+                </tr>
+                <tr>
+                    <td><a href="<?= base_url(); ?>index.php/pengurus/edit/<?= $pengurus['ID']; ?>" class="btn btn-warning">Edit</a></td>
+                </tr>
+        </table>
     </div>
 </div>
 <?php

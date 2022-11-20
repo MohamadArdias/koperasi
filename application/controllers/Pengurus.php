@@ -7,31 +7,28 @@ class Pengurus extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Pengurus_model', 'Pengurus');
+        $this->load->library('form_validation');
     }
     public function index()
     {
         $this->data['title'] = 'Pengurus';
-        $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
+        $this->data['pengurus'] = $this->Pengurus->getAllPengurus();
+        // $d = $this->Pengurus->getAllPengurus();
         $this->load->view('Pengurus/index', $this->data);
     }
-    public function edit($id)
+    public function edit()
     {
         $this->data['title'] = 'Edit Data Pengurus';
-        $this->data['KETUA'] = $this->Pengurus->GetPengurusKetua($id);
-        // $this->data['WAKIL'] = $this->Pengurus->GetPengurusWakil($id);
-        // $this->data['SEKERTARIS'] = $this->Pengurus->GetPengurusSekertaris($id);
-        // $this->data['BENDAH1'] = $this->Pengurus->GetPengurusBendah1($id);
-        // $this->data['BENDAH2'] = $this->Pengurus->GetPengurusBendah2($id);
-        $this->form_validation->set_rules('NAMA', 'KETUA', 'required');
+        $this->data['pengurus'] = $this->Pengurus->getAllPengurus();
 
-
+        $this->form_validation->set_rules('KETUA', 'nomor urut anggota', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-        $this->load->view('Pengurus/edit', $this->data);
+            $this->load->view('pengurus/edit', $this->data);
         } else {
-        $this->Pengurus->editDataPengurus();
-        $this->session->set_flashdata('flash', 'diubah');
-        redirect('Pengurus');
+            $this->Pengurus->editDataPengurus();
+            $this->session->set_flashdata('flash', 'diubah');
+            redirect('Pengurus');
         }
     }
 }
