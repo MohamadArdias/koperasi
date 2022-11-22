@@ -53,7 +53,7 @@ $this->load->view('templates/sidebar');
                 <div class="col-sm-9">
                     <div class="input-group ">
                         <i class="bi-calendar3 input-group-text "></i>
-                        <input type="text" class="form-control" id="TLHR_ANG" name="TLHR_ANG" placeholder="-" value="<?= $anggota['TLHR_ANG']; ?>">
+                        <input type="text" class="form-control" id="TLHR_ANG" name="TLHR_ANG" value="<?= $anggota['TLHR_ANG']; ?>">
                     </div>
                     <small class="form-text text-danger"><?= form_error('TLHR_ANG') ?></small>
                 </div>
@@ -64,7 +64,7 @@ $this->load->view('templates/sidebar');
                 <div class="col-sm-9">
                     <div class="input-group">
                         <i class="bi-geo-alt-fill input-group-text "></i>
-                        <input type="text" class="form-control" id="ALM_ANG" placeholder="-" name="ALM_ANG" value="<?= $anggota['ALM_ANG']; ?>">
+                        <input type="text" class="form-control" id="ALM_ANG" name="ALM_ANG" value="<?= $anggota['ALM_ANG']; ?>">
                     </div>
                 </div>
                 <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small>
@@ -75,7 +75,7 @@ $this->load->view('templates/sidebar');
                 <div class="col-sm-9">
                     <div class="input-group ">
                         <i class="bi-calendar3 input-group-text"></i>
-                        <input type="text" class="form-control" id="TGLM_ANG" placeholder="-" name="TGLM_ANG" value="<?= $anggota['TGLM_ANG']; ?>">
+                        <input type="text" class="form-control" id="TGLM_ANG" name="TGLM_ANG" value="<?= $anggota['TGLM_ANG']; ?>">
                     </div>
                     <small class="form-text text-danger"><?= form_error('TGLM_ANG') ?></small>
                 </div>
@@ -86,7 +86,7 @@ $this->load->view('templates/sidebar');
                 <div class="col-sm-9">
                     <div class="input-group ">
                         <i class="bi-calendar3 input-group-text"></i>
-                        <input type="text" class="form-control" id="TGLK_ANG" placeholder="-" name="TGLK_ANG" value="<?= $anggota['TGLK_ANG']; ?>">
+                        <input type="text" class="form-control" id="TGLK_ANG" name="TGLK_ANG" value="<?= $anggota['TGLK_ANG']; ?>">
                     </div>
                     <small class="form-text text-danger"><?= form_error('TGLK_ANG') ?></small>
                 </div>
@@ -97,7 +97,7 @@ $this->load->view('templates/sidebar');
                 <div class="col-sm-9">
                     <div class="input-group ">
                         <i class="bi-people-fill input-group-text"></i>
-                        <input type="text" class="form-control" id="GOL" placeholder="-" name="GOL" value="<?= $anggota['GOL']; ?>">
+                        <input type="text" class="form-control" id="GOL" name="GOL" value="<?= $anggota['GOL']; ?>">
                     </div>
                     <small class="form-text text-danger"><?= form_error('GOL') ?></small>
                 </div>
@@ -121,15 +121,15 @@ $this->load->view('templates/footer');
     function goBack() {
         window.history.back();
     }
-    $(function() {
-        $("#TLHR_ANG").datepicker({
-            changeMonth: true,
-            changeYear: true
-        })
-        $("#TGLM_ANG").datepicker()
-        $("#TGLK_ANG").datepicker()
-        $("#TLHR_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
-        $("#TGLM_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
-        $("#TGLK_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
-    })
+    // $(function() {
+    //     $("#TLHR_ANG").datepicker({
+    //         changeMonth: true,
+    //         changeYear: true
+    //     })
+    //     $("#TGLM_ANG").datepicker()
+    //     $("#TGLK_ANG").datepicker()
+    //     $("#TLHR_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
+    //     $("#TGLM_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
+    //     $("#TGLK_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
+    // })
 </script>
