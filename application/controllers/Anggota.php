@@ -46,7 +46,6 @@ class Anggota extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('anggota/tambah', $this->data);
         } else {
-            $query = null;
             $id   = $_POST['URUT_ANG'];
     
             $query = $this->db->get_where('anggota', array(//making selection

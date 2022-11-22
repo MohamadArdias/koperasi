@@ -29,9 +29,18 @@ class Instansi extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('instansi/tambah', $this->data);
         } else {
-            $this->Instansi->tambahDataInstansi();
-            $this->session->set_flashdata('flash', 'ditambahkan');
-            redirect('instansi');
+            $id = $_POST['KODE_INS'];
+            $count = $this->db->get_where('instan', ['KODE_INS' => $id])->num_rows();
+
+            if ($count == 0) {
+                $this->Instansi->tambahDataInstansi();
+                $this->session->set_flashdata('flash', 'ditambahkan');
+                redirect('instansi');                
+            }else {
+                $this->session->set_flashdata('insggl', 'KODE INSTANSI');
+                $this->load->view('instansi/tambah', $this->data); 
+            }
+
         }
     }
 

@@ -24,19 +24,24 @@ class Pinjaman extends CI_Controller
 
         if ($kode == 1) {
             $this->data['title'] = 'Pinjaman Uang';
+            $kd = 'U';
         } elseif ($kode == 2) {
-            $this->data['title'] = 'Pinjaman SIM';
+            $this->data['title'] = 'Pinjaman UUB';
+            $kd = 'S';
         } elseif ($kode == 3) {
             $this->data['title'] = 'Pinjaman Konsumsi';
+            $kd = 'O';
         } elseif ($kode == 4) {
             $this->data['title'] = 'Pinjaman Non-Konsumsi';
+            $kd = 'N';
         } else {
             $this->data['title'] = 'Pinjaman Khusus';
+            $kd = 'Z';
         }
 
         $this->data['urutan'] = $this->Pinuang->getUrut();
         $this->data['kode'] = $kode;
-        $b = $kode;
+       
 
         $this->form_validation->set_rules('id', 'Id', 'required');
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
@@ -54,10 +59,10 @@ class Pinjaman extends CI_Controller
         if ($this->form_validation->run() == FALSE ) {
             $this->load->view('pinjaman/form', $this->data);
         } else {
-            $this->Pinuang->deleteTransaksi($a);
+            $this->Pinuang->deleteTransaksi($a, $kd);
             $this->Pinuang->tambahTransaksi();
             $this->Us->tambahTransaksi();
-            $this->Keuangan->editPlTransaksi($a, $b);
+            // $this->Keuangan->editPlTransaksi($a, $kode);
             $this->session->set_flashdata('flashP', 'ditambahkan');
             redirect('pinjaman');
         }

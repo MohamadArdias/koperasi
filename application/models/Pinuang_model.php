@@ -51,12 +51,12 @@ class Pinuang_model extends  CI_Model
         $this->db->insert('pinuang', $this->data);
     }
 
-    public function deleteTransaksi($a)
+    public function deleteTransaksi($a, $kode)
     {
         return $this->db->query("DELETE FROM
             pinuang
         WHERE
-            pinuang.NOFAK LIKE '%n%' AND
+            pinuang.NOFAK LIKE '%$kode%' AND
             pinuang.KODE_ANG = '$a'");
     }
 

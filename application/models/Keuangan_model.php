@@ -15,7 +15,7 @@ class Keuangan_model extends  CI_Model
     }
 
     public function getDistincAllKeuangan()
-    {       
+    {
         $this->db->distinct();
         $this->db->select('anggota.KODE_INS, instan.NAMA_INS');
         $this->db->from('pl');
@@ -169,10 +169,10 @@ class Keuangan_model extends  CI_Model
 
     public function keuanganAnggota()
     {
-        $this->data = [            
+        $this->data = [
             "TAHUN" => date('Y'),
             "BULAN" => date('m'),
-            "KODE_ANG" => $this->input->post('URUT_ANG', true),            
+            "KODE_ANG" => $this->input->post('URUT_ANG', true),
             "POKOK" => 0,
             "WAJIB" => 0,
             "TPOKOK" => 0,
@@ -207,43 +207,63 @@ class Keuangan_model extends  CI_Model
     //     return $this->db->get()->result_array();
     // }
 
-    public function editPlTransaksi($a, $b)
-    {
-        if ($b == 1) {
-            $kd = 'U';
-            $bg = 1.5;
-            $max = 48;
-        } elseif ($b == 2) {
-            $kd = 'S';
-            $bg = 2;
-            $max = 10;
-        } elseif ($b == 3) {
-            $kd = 'O';
-            $bg = 0;
-            $max = 1;
-        } elseif ($b == 4) {
-            $kd = 'N';
-            $bg = 2;
-            $max = 10;
-        } else {
-            $kd = 'Z';
-            $bg = 3;
-            $max = 2;
-        }
+    // public function editPlTransaksi($a, $kode)
+    // {
+    //     if ($kode == 1) {
+    //         $pl_uang = array(
+    //             'KEU1' => $this->input->post('URUT_ANG', true),
+    //             'JWK1' => $this->input->post('URUT_ANG', true),
+    //             'POKU1' => round($this->input->post('URUT_ANG', true)),
+    //             'SIPOKU1' => round($this->input->post('URUT_ANG', true)),
+    //             'BNGU1' => $this->input->post('URUT_ANG', true),
+    //         );
+    //     } elseif ($kode == 2) {
+    //         $pl_uang = array(
+    //             'KEU4' => $this->input->post('URUT_ANG', true),
+    //             'JWK4' => $this->input->post('URUT_ANG', true),
+    //             'POKU4' => round($this->input->post('URUT_ANG', true)),
+    //             'SIPOKU4' => round($this->input->post('URUT_ANG', true)),
+    //             'BNGU4' => $this->input->post('URUT_ANG', true),
+    //         );
+    //     } elseif ($kode == 3) {
+    //         $pl_uang = array(
+    //             'KEU2' => $this->input->post('URUT_ANG', true),
+    //             'JWK2' => $this->input->post('URUT_ANG', true),
+    //             'POKU2' => round($this->input->post('URUT_ANG', true)),
+    //             'SIPOKU2' => round($this->input->post('URUT_ANG', true)),
+    //             'BNGU2' => $this->input->post('URUT_ANG', true),
+    //         );
+    //     } elseif ($kode == 4) {
+    //         $pl_uang = array(
+    //             'KEU3' => $this->input->post('URUT_ANG', true),
+    //             'JWK3' => $this->input->post('URUT_ANG', true),
+    //             'POKU3' => round($this->input->post('URUT_ANG', true)),
+    //             'SIPOKU3' => round($this->input->post('URUT_ANG', true)),
+    //             'BNGU3' => $this->input->post('URUT_ANG', true),
+    //         );
+    //     } else {
+    //         $pl_uang = array(
+    //             'KEU7' => $this->input->post('URUT_ANG', true),
+    //             'JWK7' => $this->input->post('URUT_ANG', true),
+    //             'POKU7' => round($this->input->post('URUT_ANG', true)),
+    //             'SIPOKU7' => round($this->input->post('URUT_ANG', true)),
+    //             'BNGU7' => $this->input->post('URUT_ANG', true),
+    //         );
+    //     }
 
-        $pl_uang = array(
-            'KEU1' => $this->input->post('URUT_ANG', true),
-            'JWK1' => $this->input->post('URUT_ANG', true),
-            'POKU1' => round($this->input->post('URUT_ANG', true)),
-            'SIPOKU1' => round($this->input->post('URUT_ANG', true)),
-            'BNGU1' => $this->input->post('URUT_ANG', true),
-        );
-        // update pl 
-        $where_uang = array(
-            'TAHUN' => date('Y', strtotime('+1 month')),
-            'BULAN' => date('m', strtotime('+1 month')),
-            'KODE_ANG' => $this->input->post('URUT_ANG', true),
-        );
-        $this->db->update('pl', $pl_uang, $where_uang);
-    }
+    //     // $pl_uang = array(
+    //     //     'KEU1' => $this->input->post('URUT_ANG', true),
+    //     //     'JWK1' => $this->input->post('URUT_ANG', true),
+    //     //     'POKU1' => round($this->input->post('URUT_ANG', true)),
+    //     //     'SIPOKU1' => round($this->input->post('URUT_ANG', true)),
+    //     //     'BNGU1' => $this->input->post('URUT_ANG', true),
+    //     // );
+    //     // update pl 
+    //     $where_uang = array(
+    //         'TAHUN' => date('Y'),
+    //         'BULAN' => date('m'),
+    //         'KODE_ANG' => $this->input->post('URUT_ANG', true),
+    //     );
+    //     $this->db->update('pl', $pl_uang, $where_uang);
+    // }
 }

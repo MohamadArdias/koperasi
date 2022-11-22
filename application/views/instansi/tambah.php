@@ -4,6 +4,15 @@ $this->load->view('templates/sidebar');
 ?>
 
 <div class="card">
+    <?php if ($this->session->flashdata('insggl')) : ?>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong><?= $this->session->flashdata('insggl'); ?></strong> Sudah di gunakan
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
     <form action="" method="POST">
         <div class="card-body row mt-4">
             <div class="form-group row mb-2">

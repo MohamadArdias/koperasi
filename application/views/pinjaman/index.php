@@ -70,7 +70,7 @@ $this->load->view('templates/sidebar');
                             </div>
                             <div class="ps-3">
                                 <a href="<?= base_url(); ?>index.php/pinjaman/form/2" class="nav-link">
-                                    <h6>Pinjaman SIM</h6>
+                                    <h6>Pinjaman UUB</h6>
                                 </a>
                             </div>
                         </div>
