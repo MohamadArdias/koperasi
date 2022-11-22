@@ -8,6 +8,7 @@ class Pay_model extends CI_Model
         $this->db->from('anggota');
         $this->db->join('pembayaran', 'pembayaran.KODE_ANG = anggota.URUT_ANG');        
         $this->db->join('pl', 'pl.KODE_ANG = pembayaran.KODE_ANG');        
+        // $this->db->like('TGL_TGHN', date('Y-m'));
         $this->db->like('TGL_TGHN', date('Y-m', strtotime('-1 month')));
         $this->db->where('pl.TAHUN', date('Y'));
         $this->db->where('pl.BULAN', date('m'));

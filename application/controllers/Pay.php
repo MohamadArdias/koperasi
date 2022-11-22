@@ -18,7 +18,7 @@ class Pay extends CI_Controller
         $this->form_validation->set_rules('TAGIHAN', 'Tagihan', 'required');
         $this->form_validation->set_rules('JML_BAYAR', 'Bayar', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('PembayaranLangsung/index', $this->data);
+            $this->load->view('pembayaranLangsung/index', $this->data);
         } else {
             $this->Pay->bayar();
             $this->session->set_flashdata('bayar', 'berhasil');

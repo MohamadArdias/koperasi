@@ -14,7 +14,7 @@ class Pengurus extends CI_Controller
         $this->data['title'] = 'Pengurus';
         $this->data['pengurus'] = $this->Pengurus->getAllPengurus();
         // $d = $this->Pengurus->getAllPengurus();
-        $this->load->view('Pengurus/index', $this->data);
+        $this->load->view('pengurus/index', $this->data);
     }
     public function edit()
     {
