@@ -26,7 +26,7 @@ class Pinsimp_model extends  CI_Model
         pl.BULAN = $bln AND
         pinsimp.TAHUN = $thn AND
         pinsimp.BULAN = $bln AND
-        anggota.KODE_INS <> 99");
+        anggota.KODE_INS != 99");
 
         return $que->result_array();
     }
@@ -36,19 +36,21 @@ class Pinsimp_model extends  CI_Model
         $que = $this->db->query("SELECT
         *
     FROM
-        instan
+        pl
         INNER JOIN
         anggota
         ON 
-            instan.KODE_INS = anggota.KODE_INS
+            pl.KODE_ANG = anggota.URUT_ANG
         INNER JOIN
-        pl
+        instan
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_INS = instan.KODE_INS
     WHERE
-      pl.TAHUN = (SELECT MAX(TAHUN) FROM pl) AND
-      pl.BULAN = (SELECT MAX(BULAN) FROM pl) AND
-        instan.KODE_INS <> 99");
+        pl.TAHUN = (SELECT MAX(TAHUN) FROM pl) AND
+        pl.BULAN = (SELECT MAX(BULAN) FROM pl) AND
+        instan.KODE_INS != 99
+    ORDER BY
+	    instan.KODE_INS ASC");
         return $que->result_array();
     }
 

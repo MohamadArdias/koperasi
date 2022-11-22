@@ -482,9 +482,9 @@ class Genta extends CI_Controller
             $this->db->delete('pl');
             $this->db->insert('pl', $pl);
 
-            $this->session->set_flashdata('simpanGen', 'Berhasil');
-            redirect('generate2');
         }
+        $this->session->set_flashdata('simpanGen', 'Berhasil');
+        redirect('generate2');
     }
 
     public function pinjaman()
