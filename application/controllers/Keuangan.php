@@ -24,7 +24,7 @@ class Keuangan extends CI_Controller
     {
         $this->data['title'] = 'Data Potongan Anggota';
         $this->data['keuangan'] = $this->Kirim->getAllKirim();
-        
+
 
         $this->load->view('keuangan/index', $this->data);
     }
@@ -42,7 +42,7 @@ class Keuangan extends CI_Controller
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
             ],
         ];
-        
+
         $style_sub = [
             'font' => ['bold' => true], // Set font nya jadi bold
             'alignment' => [
@@ -206,7 +206,7 @@ class Keuangan extends CI_Controller
     public function printang($KODE_ANG)
     {
         $this->data['printang'] = $this->keuangan->getAnggotaWhereKodeAng($KODE_ANG);
-        // $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
+        $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
         $this->load->view('keuangan/printang', $this->data);
     }
 
@@ -220,6 +220,4 @@ class Keuangan extends CI_Controller
             echo $BULAN . '-' . $TAHUN . '-' . $row->NAMA_ANG . '-</br>';
         }
     }
-
-    
 }
