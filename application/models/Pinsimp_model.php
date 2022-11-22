@@ -4,24 +4,52 @@ class Pinsimp_model extends  CI_Model
 {
     public function getAllSimp()
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        // $bln = date('m');
-        // $thn = date('Y');
+    //     $bln = date('m', strtotime('-1 month'));
+    //     $thn = date('Y', strtotime('-1 month'));
+        $bln = date('m');
+        $thn = date('Y');
 
-        $this->db->select('*');
-        $this->db->from('pl');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
-        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-        $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('pl.TAHUN', date('Y', strtotime('+1 month')));
-        $this->db->where('pl.BULAN', date('m', strtotime('+1 month')));
-        // $this->db->where('pinsimp.TAHUN', date('Y'));
-        // $this->db->where('pinsimp.BULAN', date('m'));
-        // $this->db->where('anggota.KODE_INS', '06');
-        // $this->db->where('pl.KODE_ANG', '1541');
+        $que = $this->db->query("SELECT
+        *
+    FROM
+        anggota
+        INNER JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+        INNER JOIN
+        pinsimp
+        ON 
+            pl.KODE_ANG = pinsimp.KODE_ANG
+    WHERE
+        pl.TAHUN = $thn AND
+        pl.BULAN = $bln AND
+        pinsimp.TAHUN = $thn AND
+        pinsimp.BULAN = $bln AND
+        anggota.KODE_INS <> 99");
 
-        return $this->db->get()->result_array();
+        return $que->result_array();
+    }
+    
+    public function simp()
+    {
+        $que = $this->db->query("SELECT
+        *
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+    WHERE
+      pl.TAHUN = (SELECT MAX(TAHUN) FROM pl) AND
+      pl.BULAN = (SELECT MAX(BULAN) FROM pl) AND
+        instan.KODE_INS <> 99");
+        return $que->result_array();
     }
 
     public function getAllSimp2()

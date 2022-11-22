@@ -15,7 +15,7 @@ class generate2 extends CI_Controller
     public function index()
     {
         $this->data['title'] = 'Generate Simpanan';
-        $this->data['simpan'] = $this->Pinsimp->getAllSimp();
+        $this->data['simpan'] = $this->Pinsimp->simp();
 
         $this->load->view('generate2/index', $this->data);
     }
