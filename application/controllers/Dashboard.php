@@ -17,7 +17,7 @@ class Dashboard extends CI_Controller
 
         $this->data['aktif'] = $this->Anggota->getAllAnggotaAktif();
         $this->data['tidak'] = $this->Anggota->getAllAnggotaTidakAktif();
-        $this->data['bunga'] = $this->Dashboard->getBunga();
+        $this->data['tunggakan'] = $this->Dashboard->getTotalTunggak();
         $this->data['tung'] = $this->Dashboard->getAnggotaTunggak();
 
         $this->data['data'] = $this->Us->getUs();

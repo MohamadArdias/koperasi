@@ -82,7 +82,7 @@ $this->load->view('templates/sidebar');
             </div>
           </div><!-- End Tidak Aktif Card -->
 
-        
+
 
           <!-- Jumlah Total Tunggakan Card -->
 
@@ -96,7 +96,7 @@ $this->load->view('templates/sidebar');
                     <i class="bi bi-cash"></i>
                   </div>
                   <div class="ps-3">
-                    <h6><?= $tidak ?></h6>
+                    <h6>Rp. <?= number_format($tunggakan->jumlah, 0, ',', '.') ?></h6>
                   </div>
                 </div>
               </div>
@@ -124,12 +124,10 @@ $this->load->view('templates/sidebar');
                   <?php foreach ($tung as $ang) : ?>
                     <tr>
                       <td scope="row"><?= $ang['KODE_ANG']; ?></td>
-                      <td><?= $ang['NAMA_ANG']; ?></td>
+                      <td><?= $ang['NAMA_ANG_pl']; ?></td>
                       <td><?= $ang['NAMA_INS']; ?></td>
-                      <td><?= $ang['SIPOKU3']; ?></td>
-                      <td><span class="badge bg-success">Lunas</span></td>
-                      <!-- <td><span class="badge bg-warning">Belum Lunas</span></td> -->
-                      <!-- <td><span class="badge bg-danger">Jatuh Tempo</span></td> -->
+                      <td><?= $ang['TUNGGAKAN']; ?></td>
+                      <td><span class="badge bg-danger">Belum Lunas</span></td>
                     </tr>
                   <?php endforeach ?>
                 </tbody>
@@ -153,7 +151,7 @@ $this->load->view('templates/sidebar');
               name: 'Sales',
               data: [<?php foreach ($data as $key) {
                         echo $key['HASIL'];  ?>, <?php
-                                                        } ?>],
+                                                } ?>],
             }],
             chart: {
               height: 350,
