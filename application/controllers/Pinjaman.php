@@ -38,6 +38,8 @@ class Pinjaman extends CI_Controller
         $this->data['kode'] = $kode;
         $b = $kode;
 
+        $this->form_validation->set_rules('id', 'Id', 'required');
+        $this->form_validation->set_rules('first_name', 'First Name', 'required');
         $this->form_validation->set_rules('NOFAK', 'Faktur', 'required');
         $this->form_validation->set_rules('URUT_ANG', 'Kode Anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'Nama Anggota', 'required');

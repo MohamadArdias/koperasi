@@ -6,18 +6,18 @@ class Pinsimp_model extends  CI_Model
     {
         // $bln = date('m', strtotime('-1 month'));
         // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
+        // $bln = date('m');
+        // $thn = date('Y');
 
         $this->db->select('*');
         $this->db->from('pl');
-        $this->db->join('pinsimp', 'pinsimp.KODE_ANG = pl.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinsimp.KODE_ANG', 'right');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('pl.TAHUN', $thn);
-        $this->db->where('pl.BULAN', $bln);
-        $this->db->where('pinsimp.TAHUN', $thn);
-        $this->db->where('pinsimp.BULAN', $bln);
+        $this->db->where('pl.TAHUN', date('Y', strtotime('+1 month')));
+        $this->db->where('pl.BULAN', date('m', strtotime('+1 month')));
+        // $this->db->where('pinsimp.TAHUN', date('Y'));
+        // $this->db->where('pinsimp.BULAN', date('m'));
         // $this->db->where('anggota.KODE_INS', '06');
         // $this->db->where('pl.KODE_ANG', '1541');
 

@@ -63,12 +63,12 @@
               </ul>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/tagihan">
                   <i class="bi bi-bank2"></i>
                   <span>Tagihan</span>
               </a>
-          </li>
+          </li> -->
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pay">
@@ -77,40 +77,63 @@
               </a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate">
                   <i class="bi bi-cash"></i>
                   <span>Generate</span>
               </a>
-          </li>
+          </li> -->
           
-          <!-- <li class="nav-item">
-              <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav-gen" aria-controls="forms-nav">
-                  <i class="bi bi-cash"></i><span>Generate</span><i class="bi bi-chevron-down ms-auto"></i>
+          <li class="nav-item">
+              <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav-gen2" aria-controls="forms-nav">
+                  <i class="bi bi-cash"></i><span>Generate2</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
-              <ul id="forms-nav-gen" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+              <ul id="forms-nav-gen2" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate2">
+                          <i class="bi bi-circle-fill"></i><span>Simpanan</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate2/pinjaman">
+                          <i class="bi bi-circle-fill"></i><span>Pinjaman</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate2/tagihan">
+                          <i class="bi bi-circle-fill"></i><span>Tagihan</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+
+          <!-- <li class="nav-item">
+              <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav-gen2" aria-controls="forms-nav">
+                  <i class="bi bi-cash"></i><span>Generate2</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="forms-nav-gen2" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate2">
                           <i class="bi bi-circle-fill"></i><span>Pinjam Simpan</span>
                       </a>
                   </li>
                   <li>
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/uang">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate2/uang">
                           <i class="bi bi-circle-fill"></i><span>Uang</span>
                       </a>
                   </li>
                   <li>
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/nonkonsum">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate2/nonkonsum">
                           <i class="bi bi-circle-fill"></i><span>Non Konsumsi</span>
                       </a>
                   </li>
                   <li>
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/konsum">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate2/konsum">
                           <i class="bi bi-circle-fill"></i><span>Konsumsi</span>
                       </a>
                   </li>
                   <li>
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate/khusus">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/generate2/khusus">
                           <i class="bi bi-circle-fill"></i><span>Khusus</span>
                       </a>
                   </li>

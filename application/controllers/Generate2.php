@@ -1,55 +1,57 @@
 <?php
-class generate extends CI_Controller
+class generate2 extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Anggota_model', 'Anggota');
         $this->load->model('Instansi_model', 'Instansi');
+        $this->load->model('Keuangan_model', 'Keuangan');
         $this->load->model('Pinsimp_model', 'Pinsimp');
         $this->load->model('Pinuang_model', 'Pinuang');
-        $this->load->library('form_validation');
+        $this->load->model('Pembayaran_model', 'Pembayaran');
     }
 
     public function index()
     {
-        $this->data['title'] = 'Generate Laporan Simpanan';
+        $this->data['title'] = 'Generate Simpanan';
         $this->data['simpan'] = $this->Pinsimp->getAllSimp();
 
-        $this->load->view('generate/index', $this->data);
+        $this->load->view('generate2/index', $this->data);
     }
+    
 
-    public function uang()
+    public function pinjaman()
     {
-        $this->data['title'] = 'Generate Pinjaman Uang';
-        $this->data['uang'] = $this->Pinuang->getUang();
+        $this->data['title'] = 'Generate Pinjaman';
+        $this->data['pinjaman'] = $this->Pinuang->pinjaman();
 
-        $this->load->view('generate/uang', $this->data);
+        $this->load->view('generate2/pinjaman', $this->data);
     }
 
-    public function nonkonsum()
+    public function tagihan()
     {
-        $this->data['title'] = 'Generate Pinjaman Non-Konsumi';
-        $this->data['uang'] = $this->Pinuang->getNon();
+        $this->data['title'] = 'Generate Tagihan';
+        $this->data['tagihan'] = $this->Pembayaran->getTagihan();
 
-        $this->load->view('generate/nonkonsum', $this->data);
+        $this->load->view('generate2/tagihan', $this->data);
     }
 
-    public function konsum()
-    {
-        $this->data['title'] = 'Generate Pinjaman Konsumi';
-        $this->data['uang'] = $this->Pinuang->getKons();
+    // public function konsum()
+    // {
+    //     $this->data['title'] = 'Generate Pinjaman Konsumi';
+    //     $this->data['uang'] = $this->Pinuang->getKons();
 
-        $this->load->view('generate/konsum', $this->data);
-    }
+    //     $this->load->view('generate2/konsum', $this->data);
+    // }
 
-    public function khusus()
-    {
-        $this->data['title'] = 'Generate Pinjaman Khusus';
-        $this->data['uang'] = $this->Pinuang->getKhusus();
+    // public function khusus()
+    // {
+    //     $this->data['title'] = 'Generate Pinjaman Khusus';
+    //     $this->data['uang'] = $this->Pinuang->getKhusus();
 
-        $this->load->view('generate/khusus', $this->data);
-    }
+    //     $this->load->view('generate2/khusus', $this->data);
+    // }
 
     // public function tambah()
     // {

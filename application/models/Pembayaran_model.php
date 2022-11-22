@@ -21,4 +21,25 @@ class Pembayaran_model extends  CI_Model
         $this->db->like('TGL_TGHN', date('Y-m', strtotime('-1 month')));
         return $this->db->get()->result_array();
     }
+
+    public function getTagihan()
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pembayaran
+        INNER JOIN
+        anggota
+        ON 
+            pembayaran.KODE_ANG = anggota.URUT_ANG
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+    WHERE
+        TGL_TGHN IN ((SELECT MAX(TGL_TGHN) FROM pembayaran)) AND
+        anggota.KODE_INS <> 99");
+
+        return $query->result_array();
+    }
 }

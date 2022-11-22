@@ -175,4 +175,31 @@ class Pinuang_model extends  CI_Model
         $this->db->order_by('anggota.URUT_ANG', 'ASC');
         return $this->db->get()->result_array();
     }
+
+    public function pinjaman()
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pl
+        INNER JOIN
+        anggota
+        ON 
+            pl.KODE_ANG = anggota.URUT_ANG
+        INNER JOIN
+        pinuang
+        ON 
+            pl.KODE_ANG = pinuang.KODE_ANG
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+    WHERE
+        pl.TAHUN = (SELECT MAX(TAHUN) FROM pl) AND
+        pl.BULAN = (SELECT MAX(BULAN) FROM pl) AND
+        pinuang.TAHUN = (SELECT MAX(TAHUN) FROM pinuang) AND
+        pinuang.BULAN = (SELECT MAX(BULAN) FROM pinuang) AND
+        anggota.KODE_INS <> 99");
+        return $query->result_array();
+    }
 }

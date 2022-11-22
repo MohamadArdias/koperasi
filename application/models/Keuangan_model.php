@@ -206,4 +206,44 @@ class Keuangan_model extends  CI_Model
     //     pembayaran.TGL_TGHN LIKE '%$blnTghn%'");
     //     return $this->db->get()->result_array();
     // }
+
+    public function editPlTransaksi($a, $b)
+    {
+        if ($b == 1) {
+            $kd = 'U';
+            $bg = 1.5;
+            $max = 48;
+        } elseif ($b == 2) {
+            $kd = 'S';
+            $bg = 2;
+            $max = 10;
+        } elseif ($b == 3) {
+            $kd = 'O';
+            $bg = 0;
+            $max = 1;
+        } elseif ($b == 4) {
+            $kd = 'N';
+            $bg = 2;
+            $max = 10;
+        } else {
+            $kd = 'Z';
+            $bg = 3;
+            $max = 2;
+        }
+
+        $pl_uang = array(
+            'KEU1' => $this->input->post('URUT_ANG', true),
+            'JWK1' => $this->input->post('URUT_ANG', true),
+            'POKU1' => round($this->input->post('URUT_ANG', true)),
+            'SIPOKU1' => round($this->input->post('URUT_ANG', true)),
+            'BNGU1' => $this->input->post('URUT_ANG', true),
+        );
+        // update pl 
+        $where_uang = array(
+            'TAHUN' => date('Y', strtotime('+1 month')),
+            'BULAN' => date('m', strtotime('+1 month')),
+            'KODE_ANG' => $this->input->post('URUT_ANG', true),
+        );
+        $this->db->update('pl', $pl_uang, $where_uang);
+    }
 }

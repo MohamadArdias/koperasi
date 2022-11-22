@@ -12,6 +12,8 @@ class Us_model extends  CI_Model
 
         // $date = date('Y-m-d', strtotime('+' . $b . ' month', strtotime($a)));
         $this->data = [
+            "IDUSER" => $this->input->post('id', true),
+            "IDNAMA" => $this->input->post('first_name', true),
             "NOFAK" => $this->input->post('NOFAK', true),
             "TANGGAL" => $this->input->post('TGLP_ANG', true),
             "KODE_ANG" => $this->input->post('URUT_ANG', true),

@@ -41,48 +41,49 @@ $this->load->view('templates/sidebar');
 
 <div class="card">
     <div class="card-body">
+        <?php if ($this->session->flashdata('simpanGen')) : ?>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong><?= $this->session->flashdata('simpanGen') ?></strong> melakukan generate
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <a href="<?= base_url(); ?>index.php/genta/simpan" class="btn btn-primary">Generate</a>
+                </div>
+            </div>
+        </div>
         <div class="overflow-auto">
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
-                        <th>KODE</th>
-                        <th>NAMA</th>
-                        <th>TOTAL WAJIB</th>
-                        <th>TOTAL POKOK</th>
-                        <th>TOTAL REL</th>
+                        <th>TAHUN</th>
+                        <th>BULAN</th>
+                        <th>ANGGOTA</th>
+                        <th>INSTANSI</th>
                         <th>WAJIB</th>
                         <th>POKOK</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($simpan as $key) :
-                        $TAHUN = $key['TAHUN'];
-                        $BULAN = $key['BULAN'];
-                        $KODE_ANG = $key['KODE_ANG'];
-                        $NAMA_ANG = $key['NAMA_ANG'];
-
-                        if ($key['BULAN'] == 12) {
-                            $TOTWJB = $key['TWAJIB'];
-                            $TOTPOK = $key['TPOKOK'];
-                        } else {
-                            $TOTWJB = $key['TOTWJB'];
-                            $TOTPOK = $key['TOTPOK'];
-                        }
-
-                        $TWAJIB = $key['TWAJIB'] + 100000;
-                        $TPOKOK = 50000;
+                    foreach ($simpan as $key) {
                     ?>
                         <tr>
-                            <td style="text-align: center; "><?= $KODE_ANG; ?></td>
-                            <td style="text-align: left; padding-left: 25px;"><?= $NAMA_ANG; ?></td>
-                            <td style="text-align: right; padding-right: 25px;"><?= number_format($TOTWJB, 0, ',', '.') ; ?></td>
-                            <td style="text-align: right; padding-right: 25px;"><?= number_format($TOTPOK, 0, ',', '.') ; ?></td>
-                            <td style="text-align: right; padding-right: 25px;"></td>
-                            <td style="text-align: right; padding-right: 25px;"><?= number_format($TWAJIB, 0, ',', '.') ; ?></td>
-                            <td style="text-align: right; padding-right: 25px;"><?= number_format($TPOKOK, 0, ',', '.') ; ?></td>
+                            <td><?= $key['TAHUN']; ?></td>
+                            <td><?= $key['BULAN']; ?></td>
+                            <td><?= $key['URUT_ANG'] . '/ ' . $key['NAMA_ANG']; ?></td>
+                            <td><?= $key['KODE_INS'] . '/ ' . $key['NAMA_INS']; ?></td>
+                            <td><?= $key['WAJIB']; ?></td>
+                            <td><?= $key['POKOK']; ?></td>
                         </tr>
-                    <?php endforeach ?>
+                    <?php
+                    } ?>
                 </tbody>
             </table>
         </div>

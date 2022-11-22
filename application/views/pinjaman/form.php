@@ -91,6 +91,11 @@
 
     $faktur = $tahun . $a . $kd . $urutan;
 
+ 
+        $user = $this->session->userdata('identity');
+        $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
+
+
     ?>
 
     <div class="row">
@@ -104,10 +109,12 @@
                                 <div class="card-body row mt-4">
                                     <div class="form-group row mb-2">
                                         <label for="nama" class="col-sm-4 text-end control-label col-form-label">Faktur</label>
+                                        <input type="hidden" name="id" class="form-control" id="id" value="<?= $sesUser['id'] ?>" />
+                                        <input type="hidden" name="first_name" class="form-control" id="first_name" value="<?= $sesUser['first_name'] ?>" />
+                                        <input type="hidden" name="KODE" class="form-control" id="KODE" value="<?= $kd ?>" />
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-sm">
                                                 <input type="text" name="NOFAK" class="form-control" id="NOFAK" value="<?= $faktur ?>" />
-                                                <input type="hidden" name="KODE" class="form-control" id="KODE" value="<?= $kd ?>" />
                                                 <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
                                             </div>
                                             <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>

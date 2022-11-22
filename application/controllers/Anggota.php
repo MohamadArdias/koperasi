@@ -100,4 +100,9 @@ class Anggota extends CI_Controller
             redirect('Anggota');
         }
     }
+
+    public function info()
+    {
+        phpinfo();
+    }
 }
