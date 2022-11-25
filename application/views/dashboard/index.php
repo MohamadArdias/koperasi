@@ -125,7 +125,7 @@ $this->load->view('templates/sidebar');
                     <tr>
                       <td scope="row"><?= $ang['KODE_ANG']; ?></td>
                       <td><?= $ang['NAMA_ANG_pl']; ?></td>
-                      <td><?= $ang['NAMA_INS']; ?></td>
+                      <td><?= $ang['NAMA_INS_pl']; ?></td>
                       <td><?= $ang['TUNGGAKAN']; ?></td>
                       <td><span class="badge bg-danger">Belum Lunas</span></td>
                     </tr>

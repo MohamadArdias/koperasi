@@ -8,7 +8,7 @@ class Dashboard_model extends CI_Model
         $bln = date('m');
         $this->db->where('TAHUN', $thn);
         $this->db->where('BULAN', $bln);
-        $this->db->where('KODE_INS !=', '99');
+        $this->db->where('KODE_INS_pl !=', '99');
         $this->db->select_sum('TUNGGAKAN', 'jumlah');
         $this->db->from('pl');
         return $this->db->get('')->row();
@@ -20,7 +20,7 @@ class Dashboard_model extends CI_Model
         $this->db->where('TAHUN', $thn);
         $this->db->where('BULAN', $bln);
         $this->db->where('TUNGGAKAN !=', 'NULL');
-        $this->db->where('KODE_INS !=', '99');
+        $this->db->where('KODE_INS_pl !=', '99');
         return $this->db->get('pl')->result_array();
     }
 }
