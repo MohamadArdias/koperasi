@@ -44,7 +44,7 @@ class Kirim_model extends CI_model
             anggota.KODE_INS = instan.KODE_INS
         WHERE
         TGL_TGHN IN ((SELECT MAX(TGL_TGHN) FROM pembayaran)) AND
-        anggota.REKENING IS NOT NULL");
+        anggota.REKENING > 1");
         return $query->result_array();        
     }    
 

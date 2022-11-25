@@ -40,16 +40,18 @@ $this->load->view('templates/sidebar');
                 <table class="table table-borderless datatable" id="customers">
                     <thead class="table-primary">
                         <tr>
-                            <th class="text-center">Kode Instansi</th>
-                            <th class="text-center">Nama Instansi</th>
+                            <th class="text-center">Tahun</th>
+                            <th class="text-center">Bulan</th>
+                            <th class="text-center">Instansi</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($keuangan as $ins) : ?>
                             <tr>
-                                <td><?= $ins['KODE_INS']; ?></td>
-                                <td><?= $ins['NAMA_INS']; ?></td>
+                                <td><?= $ins['TAHUN']; ?></td>
+                                <td><?= $ins['BULAN']; ?></td>
+                                <td><?= $ins['KODE_INS'].'/ '.$ins['NAMA_INS']; ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>" class="btn btn-secondary" target="blank">Print</a>
                                 </td>
