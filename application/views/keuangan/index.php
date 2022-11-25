@@ -28,8 +28,7 @@ $this->load->view('templates/sidebar');
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
-        background-color: #0066ff
-;
+        background-color: #0066ff;
         color: white;
     }
 </style>
@@ -53,11 +52,11 @@ $this->load->view('templates/sidebar');
             <thead class="table-primary">
                 <tr>
                     <th class="text-center">No</th>
-                    <th class="text-center">Kode</th>
-                    <th class="text-center">Nama Anggota</th>
+                    <th class="text-center">Tanggal Tagihan</th>
+                    <th class="text-center">Anggota</th>
                     <th class="text-center">Instansi</th>
                     <th class="text-center">Potongan</th>
-                    <th class="text-center">Nama Koperasi</th>
+                    <th class="text-center">Koperasi</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,8 +64,8 @@ $this->load->view('templates/sidebar');
                 foreach ($keuangan as $lap) : ?>
                     <tr>
                         <td><?= $i++; ?></td>
-                        <td class="text-center"><?= $lap['KODE_ANG']; ?></td>
-                        <td><?= $lap['NAMA_ANG']; ?></td>
+                        <td><?= $lap['TGL_TGHN']; ?></td>
+                        <td><?= $lap['KODE_ANG'].'/'.$lap['NAMA_ANG']; ?></td>
                         <td><?= $lap['NAMA_INS']; ?></td>                        
                         <td class="text-right"><?= number_format($lap['JML_TGHN'], 0, ',', '.'); ?></td>
                         <td><?= 'KPRI "BANGKIT BERSAMA"'; ?></td>

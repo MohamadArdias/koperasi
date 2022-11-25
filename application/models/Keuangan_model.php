@@ -16,15 +16,35 @@ class Keuangan_model extends  CI_Model
 
     public function getDistincAllKeuangan()
     {
-        $this->db->distinct();
-        $this->db->select('anggota.KODE_INS, instan.NAMA_INS');
-        $this->db->from('pl');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
-        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-        $this->db->where('instan.KODE_INS !=', '99');
-        $this->db->where('pl.TAHUN', date('Y'));
-        $this->db->where('pl.BULAN', date('m'));
-        return  $this->db->get()->result_array();
+        // $this->db->distinct();
+        // $this->db->select('anggota.KODE_INS, instan.NAMA_INS');
+        // $this->db->from('pl');
+        // $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
+        // $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        // $this->db->where('instan.KODE_INS !=', '99');
+        // $this->db->where('pl.TAHUN', date('Y'));
+        // $this->db->where('pl.BULAN', date('m'));
+        // return  $this->db->get()->result_array();
+
+        $query = $this->db->query("SELECT DISTINCT
+        instan.KODE_INS, 
+        instan.NAMA_INS, 
+        pl.TAHUN, 
+        pl.BULAN
+    FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+        WHERE
+            pl.TAHUN IN (SELECT MAX(TAHUN) FROM pl) AND
+        pl.BULAN IN (SELECT MAX(BULAN) FROM pl)");
+        return $query->result_array();
     }
 
     // public function getKeuangan($limit, $start, $keyword = null)

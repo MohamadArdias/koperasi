@@ -28,15 +28,14 @@ $this->load->view('templates/sidebar');
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
-        background-color: #0066ff
-;
+        background-color: #0066ff;
         color: white;
     }
 </style>
 
 <div class="card">
     <div class="card-body">
-    <?php if ($this->session->flashdata('pembayaranGen')) : ?>
+        <?php if ($this->session->flashdata('pembayaranGen')) : ?>
             <div class="row mt-3">
                 <div class="col-md-6">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -54,32 +53,32 @@ $this->load->view('templates/sidebar');
             </div>
         </div>
         <div class="overflow-auto">
-        <table class="table table-borderless datatable" id="customers">
-            <thead class="table-primary">
-                <tr>
-                    <th class="text-center">No</th>
-                    <th class="text-center">Kode</th>
-                    <th class="text-center">Nama Anggota</th>
-                    <th class="text-center">Instansi</th>
-                    <th class="text-center">Potongan</th>
-                    <th class="text-center">Nama Koperasi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1;
-                foreach ($tagihan as $lap) : ?>
+            <table class="table table-borderless datatable" id="customers">
+                <thead class="table-primary">
                     <tr>
-                        <td><?= $i++; ?></td>
-                        <td class="text-center"><?= $lap['KODE_ANG']; ?></td>
-                        <td><?= $lap['NAMA_ANG']; ?></td>
-                        <td><?= $lap['KODE_INS'].'/ '.$lap['NAMA_INS']; ?></td>                        
-                        <td class="text-right"><?= number_format($lap['JML_TGHN'], 0, ',', '.'); ?></td>
-                        <td><?= 'KPRI "BANGKIT BERSAMA"'; ?></td>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Tanggal Tagihan</th>
+                        <th class="text-center">Anggota</th>
+                        <th class="text-center">Instansi</th>
+                        <th class="text-center">Potongan</th>
+                        <th class="text-center">Nama Koperasi</th>
                     </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    <?php $i = 1;
+                    foreach ($tagihan as $lap) : ?>
+                        <tr>
+                            <td><?= $i++; ?></td>
+                            <td class="text-center"><?= $lap['TGL_TGHN']; ?></td>
+                            <td><?= $lap['KODE_ANG'].'/'.$lap['NAMA_ANG']; ?></td>
+                            <td><?= $lap['KODE_INS'] . '/ ' . $lap['NAMA_INS']; ?></td>
+                            <td class="text-right"><?= number_format($lap['JML_TGHN'], 0, ',', '.'); ?></td>
+                            <td><?= 'KPRI "BANGKIT BERSAMA"'; ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

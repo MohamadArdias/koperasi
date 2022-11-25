@@ -84,8 +84,9 @@ class Import extends CI_Controller
                 'SISA' => 0,
             );
 
-            $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
+            $this->db->where('KODE_ANG', $key['URUT_ANG']);
+            $this->db->like('pembayaran.TGL_TGHN', date('Y-m'));
+            // $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
             $this->db->update('pembayaran', $inBayar);
 
             $pl = [
@@ -94,7 +95,7 @@ class Import extends CI_Controller
             $where = array(
                 'TAHUN' => date('Y'),
                 'BULAN' => date('m'),
-                'KODE_ANG' => $key['KODE_ANG'],
+                'KODE_ANG' => $key['URUT_ANG'],
             );
             $this->db->update('pl', $pl, $where);
         }
