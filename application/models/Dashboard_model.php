@@ -6,21 +6,29 @@ class Dashboard_model extends CI_Model
     {
         $thn = date('Y');
         $bln = date('m');
-        $this->db->where('TAHUN', $thn);
-        $this->db->where('BULAN', $bln);
-        $this->db->where('KODE_INS_pl !=', '99');
-        $this->db->select_sum('TUNGGAKAN', 'jumlah');
+        $this->db->select('*');
         $this->db->from('pl');
-        return $this->db->get('')->row();
+        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        $this->db->where('pl.TAHUN', $thn);
+        $this->db->where('pl.BULAN', $bln);
+        $this->db->where('anggota.KODE_INS !=', '99');
+        $this->db->select_sum('pl.TUNGGAKAN', 'jumlah');
+        return $this->db->get()->row();
+
     }
     public function getAnggotaTunggak()
     {
         $thn = date('Y');
         $bln = date('m');
-        $this->db->where('TAHUN', $thn);
-        $this->db->where('BULAN', $bln);
-        $this->db->where('TUNGGAKAN !=', 'NULL');
-        $this->db->where('KODE_INS_pl !=', '99');
-        return $this->db->get('pl')->result_array();
+        $this->db->select('*');
+        $this->db->from('pl');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        $this->db->where('pl.TAHUN', $thn);
+        $this->db->where('pl.BULAN', $bln);
+        $this->db->where('pl.TUNGGAKAN !=', 'NULL');
+        $this->db->where('anggota.KODE_INS !=', '99');
+        return $this->db->get()->result_array();
     }
 }
