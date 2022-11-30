@@ -6,14 +6,14 @@ class Dashboard_model extends CI_Model
     {
         $thn = date('Y');
         $bln = date('m');
-        $this->db->select('*');
+        // $this->db->select('*');
+        $this->db->select_sum('TUNGGAKAN', 'jumlah');
         $this->db->from('pl');
         $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         $this->db->where('pl.TAHUN', $thn);
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('anggota.KODE_INS !=', '99');
-        $this->db->select_sum('pl.TUNGGAKAN', 'jumlah');
         return $this->db->get()->row();
 
     }
