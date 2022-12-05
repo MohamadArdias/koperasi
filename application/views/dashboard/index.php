@@ -124,9 +124,9 @@ $this->load->view('templates/sidebar');
                   <?php foreach ($tung as $ang) : ?>
                     <tr>
                       <td scope="row"><?= $ang['KODE_ANG']; ?></td>
-                      <td><?= $ang['NAMA_ANG_pl']; ?></td>
+                      <td><?= $ang['NAMA_ANG']; ?></td>
                       <td><?= $ang['NAMA_INS']; ?></td>
-                      <td><?= $ang['TUNGGAKAN']; ?></td>
+                      <td style="text-align: right"><?= number_format($ang['TUNGGAKAN'], 0, ',', '.') ?></td>
                       <td><span class="badge bg-danger">Belum Lunas</span></td>
                     </tr>
                   <?php endforeach ?>
