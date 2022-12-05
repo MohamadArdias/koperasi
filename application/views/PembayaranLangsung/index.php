@@ -92,9 +92,9 @@ $this->load->view('templates/footer');
                     obj = JSON.parse(json);
                 $("#NAMA_ANG").val(obj.nama);
                 var tagihan = obj.tagihan;
-                var tunggakan = obj.tunggakan;
+                // var tunggakan = obj.tunggakan;
                 var bayar = obj.bayar;
-                $("#TAGIHAN").val((Number(tagihan)+Number(tunggakan))-Number(bayar));
+                $("#TAGIHAN").val(Number(tagihan)-Number(bayar));
             }
         );
     }
