@@ -14,6 +14,7 @@ class Pinjaman extends CI_Controller
     public function index()
     {
         $this->data['title'] = 'Pinjaman';
+        $this->data['us'] = $this->Us->getTrx();
 
         $this->load->view('pinjaman/index', $this->data);
     }

@@ -44,4 +44,23 @@ class Us_model extends  CI_Model
         $data = $this->db->query("SELECT TGLP_ANG AS TANGGAL FROM pinuang GROUP BY TGLP_ANG");
         return $data->result_array();
     }
+
+    public function getTrx()
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        INNER JOIN
+        us
+        ON 
+            us.KODE_ANG = anggota.URUT_ANG
+    ORDER BY
+        us.TANGGAL DESC");
+        return $query->result_array();
+    }
 }

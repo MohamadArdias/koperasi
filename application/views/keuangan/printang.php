@@ -14,8 +14,10 @@ $pdf->setPrintFooter(false);
 // $pdf->SetLeftMargin(3);
 // $pdf->SetRightMargin(3);
 // $pdf->AddPage('L', 'mm', 'A4');
-$pdf->AddPage('P', '', 'A3');
-$pdf->SetFont('', '', 11);
+$pageLayout = array(150, 170);
+$pdf->AddPage('P', $pageLayout);
+// $pdf->AddPage('P', '', 'A3');
+$pdf->SetFont('', '', 9);
 
 $uang = $printang['POKU1'] + $printang['BNGU1'];
 $kons = $printang['POKU2'] + $printang['BNGU2'];
@@ -25,44 +27,44 @@ $tung = $printang['TUNGGAKAN'];
 
 $data = '
 <pre>
-                               KPRI BANGKIT BERSAMA <br>
-                    Jl.Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
-                                     --o0o-- <br>
-        ====================================================================<br>
-        TAGIHAN UNTUK BULAN ' . $Month . '<br>
-        No. Anggota : ' . $printang['URUT_ANG'] . '(' . $printang['NAMA_ANG'] . ') <br>
-        INSTANSI    : ' . $printang['KODE_INS'] . '(' . $printang['NAMA_INS'] . ') <br>
-        ====================================================================<br>
-        SIMPANAN WAJIB          : ' . number_format($printang['WAJIB'], 0, ',', '.') . ' <br>';
+                       KPRI BANGKIT BERSAMA <br>
+            Jl.Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
+                             --o0o-- <br>
+====================================================================<br>
+TAGIHAN UNTUK BULAN ' . $Month . '<br>
+No. Anggota : ' . $printang['URUT_ANG'] . '(' . $printang['NAMA_ANG'] . ') <br>
+INSTANSI    : ' . $printang['KODE_INS'] . '(' . $printang['NAMA_INS'] . ') <br>
+====================================================================<br>
+SIMPANAN WAJIB          : ' . number_format($printang['WAJIB'], 0, ',', '.') . ' <br>';
 
 if ($printang['POKOK'] != 0) {
     $data .= '
-        SIMPANAN POKOK          : ' . number_format($printang['POKOK'], 0, ',', '.') . ' <br>';
+SIMPANAN POKOK          : ' . number_format($printang['POKOK'], 0, ',', '.') . ' <br>';
 }
 
 if ($printang['POKU1'] != 0) {
     $data .= '
-        PINJAMAN UANG           : ' . number_format($uang, 0, ',', '.') . '     ke' . $printang['KEU1'] . '<br>';
+PINJAMAN UANG           : ' . number_format($uang, 0, ',', '.') . '     ke' . $printang['KEU1'] . '<br>';
 }
 
 if ($printang['POKU2'] != 0) {
     $data .= '
-        PINJAMAN KONSUMSI       : ' . number_format($kons, 0, ',', '.') . '     ke' . $printang['KEU2'] . '<br>';
+PINJAMAN KONSUMSI       : ' . number_format($kons, 0, ',', '.') . '     ke' . $printang['KEU2'] . '<br>';
 }
 
 if ($printang['POKU3'] != 0) {
     $data .= '
-        PINJAMAN NON KONSUMSI   : ' . number_format($non, 0, ',', '.') . '     ke' . $printang['KEU3'] . '<br>';
+PINJAMAN NON KONSUMSI   : ' . number_format($non, 0, ',', '.') . '     ke' . $printang['KEU3'] . '<br>';
 }
 
 if ($printang['POKU7'] != 0) {
     $data .= '
-        PINJAMAN KHUSUS         : ' . number_format($khus, 0, ',', '.') . '     ke' . $printang['KEU7'] . '<br>';
+PINJAMAN KHUSUS         : ' . number_format($khus, 0, ',', '.') . '     ke' . $printang['KEU7'] . '<br>';
 }
 
 if ($tung != 0) {
     $data .= '
-        TUNGGAKAN               : ' . number_format($tung, 0, ',', '.') . '<br>';
+TUNGGAKAN               : ' . number_format($tung, 0, ',', '.') . '<br>';
 }
 
 $ttl = $uang + $kons + $non + $khus + $tung + $printang['WAJIB'] + $printang['POKOK'];
@@ -108,16 +110,16 @@ function terbilang($nilai)
 
 
 $data .= '
-        ____________________________________________________________________<br>
-        JUMLAH                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
-        ====================================================================<br>
-        ' . terbilang($ttl) . ' rupiah<br><br><br>';
+____________________________________________________________________<br>
+JUMLAH                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
+====================================================================<br>
+' . terbilang($ttl) . ' rupiah<br><br><br>';
 
 $data .= '
-        Banyuwangi, ' . $date . '<br>
-        Pengurus KPRI Bangkit Bersama, <br>
-        KETUA 1 <br><br><br>
-        ' . $Pengurus['BENDAH1'] . '
+Banyuwangi, ' . $date . '<br>
+Pengurus KPRI Bangkit Bersama, <br>
+KETUA 1 <br><br><br>
+' . $Pengurus['BENDAH1'] . '
 
 </pre>                         
                 

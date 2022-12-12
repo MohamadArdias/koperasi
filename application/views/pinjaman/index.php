@@ -128,6 +128,36 @@ $this->load->view('templates/sidebar');
                 </div>
             </div>
 
+            <div class="overflow-auto">
+                <table class="table table-borderless datatable" id="customers">
+                    <thead class="table-primary">
+                        <tr>
+                            <th class="text-center">Tanggal</th>
+                            <th class="text-center">Anggota</th>
+                            <th class="text-center">Instansi</th>
+                            <th class="text-center">Jumlah</th>
+                            <th class="text-center">Bunga</th>
+                            <th class="text-center">Jangka</th>
+                            <th class="text-center">Teler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($us as $key) {
+                        ?>
+                        <tr>
+                            <td><?= $key['TANGGAL']; ?></td>
+                            <td><?= $key['URUT_ANG'].'/'.$key['NAMA_ANG']; ?></td>
+                            <td><?= $key['KODE_INS'].'/'.$key['NAMA_INS']; ?></td>
+                            <td><?= $key['JUMLAH']; ?></td>
+                            <td><?= $key['PRO']; ?></td>
+                            <td><?= $key['JANGKA']; ?></td>
+                            <td><?= $key['IDNAMA']; ?></td>
+                        </tr>
+                        <?php
+                        } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
