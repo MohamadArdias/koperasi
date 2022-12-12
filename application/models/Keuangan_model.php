@@ -2,6 +2,27 @@
 
 class Keuangan_model extends  CI_Model
 {
+    public function printInsAng($KODE_INS)
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+    WHERE
+        pl.TAHUN IN ((SELECT MAX(TAHUN) FROM pl)) AND
+        pl.BULAN IN ((SELECT MAX(BULAN) FROM pl)) AND
+        anggota.KODE_INS = '$KODE_INS'");
+        return $query->result_array();
+    }
+
     public function getAllKeuangan()
     {
         $this->db->select('*');
@@ -42,8 +63,10 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
-            pl.TAHUN IN (SELECT MAX(TAHUN) FROM pl) AND
-        pl.BULAN IN (SELECT MAX(BULAN) FROM pl)");
+        pl.TAHUN IN (SELECT MAX(TAHUN) FROM pl) AND
+        pl.BULAN IN (SELECT MAX(BULAN) FROM pl)
+        ORDER BY
+	    instan.KODE_INS ASC");
         return $query->result_array();
     }
 

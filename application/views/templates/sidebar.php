@@ -86,7 +86,7 @@
           
           <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav-gen2" aria-controls="forms-nav">
-                  <i class="bi bi-cash"></i><span>Generate2</span><i class="bi bi-chevron-down ms-auto"></i>
+                  <i class="bi bi-cash"></i><span>Generate</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="forms-nav-gen2" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>

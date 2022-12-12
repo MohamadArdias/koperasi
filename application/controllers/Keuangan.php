@@ -195,6 +195,13 @@ class Keuangan extends CI_Controller
         $this->load->view('keuangan/printins', $this->data);
     }
 
+    public function printinsang($KODE_INS)
+    {
+        $this->data['printang'] = $this->keuangan->printInsAng($KODE_INS);
+        $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
+        $this->load->view('keuangan/coba', $this->data);
+    }
+
     public function cetakang()
     {
         $this->data['title'] = 'Cetak Per Anggota';

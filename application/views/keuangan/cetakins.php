@@ -33,7 +33,7 @@ $this->load->view('templates/sidebar');
     }
 </style>
 
-<div class="col-xxl-4 col-xl-7">
+<div class="col-xxl-7 col-xl-10">
     <div class="card">
         <div class="card-body">
             <div class="overflow-auto">
@@ -53,7 +53,8 @@ $this->load->view('templates/sidebar');
                                 <td><?= $ins['BULAN']; ?></td>
                                 <td><?= $ins['KODE_INS'].'/ '.$ins['NAMA_INS']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>" class="btn btn-secondary" target="blank">Print</a>
+                                    <a href="<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>" class="btn btn-success" target="blank">Print Instansi</a>
+                                    <a href="<?= base_url(); ?>index.php/keuangan/printinsang/<?= $ins['KODE_INS']; ?>" class="btn btn-primary" target="blank">Print Aggota</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
