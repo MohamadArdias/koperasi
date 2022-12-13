@@ -191,14 +191,18 @@ class Keuangan extends CI_Controller
         $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
         $this->data['instansi'] = $this->keuangan->getInstansi($KODE_INS);
         $this->data['pengurus'] = $this->keuangan->getPengurus();
-
+        $this->data['jumlah'] = $this->keuangan->jumlahAnggota($KODE_INS);
+        
         $this->load->view('keuangan/printins', $this->data);
+
     }
 
     public function printinsang($KODE_INS)
     {
         $this->data['printang'] = $this->keuangan->printInsAng($KODE_INS);
         $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
+        $this->data['jumlah'] = $this->keuangan->jumlahAnggota($KODE_INS);
+        
         $this->load->view('keuangan/coba', $this->data);
     }
 

@@ -20,7 +20,9 @@ $pdf->SetFont('', '', 9);
 $data = 'halo';
 // $pdf->AddPage('P', '', 'A3');
 $data = ' ';
+$i = 1;
 foreach  ($printang as $key ) {
+$i++;
 $uang = $key['POKU1'] + $key['BNGU1'];
 $kons = $key['POKU2'] + $key['BNGU2'];
 $non = $key['POKU3'] + $key['BNGU3'];
@@ -123,7 +125,10 @@ Pengurus KPRI Bangkit Bersama, <br>
 KETUA 1 <br><br><br>
 ' . $Pengurus['BENDAH1'] . '
 
-</pre><br pagebreak="true"/>';
+</pre>';
+if ($i <= $jumlah) {
+    $data .= '<br pagebreak="true"/>';
+}
 // $pdf->lastPage();
 }
 

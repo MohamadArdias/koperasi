@@ -94,6 +94,7 @@ $totalf = 0;
 $totalg = 0;
 $totalj = 0;
 $totalt = 0;
+
 foreach ($keuangan as $lap) {   
      
     $a = $lap['POKU3'] + $lap['BNGU3'];
@@ -108,6 +109,7 @@ foreach ($keuangan as $lap) {
     } else {
         $t = 0;
     }
+    
 
     $totala += $a;
     $totalb += $b;
@@ -156,7 +158,10 @@ foreach ($keuangan as $lap) {
                                             <td style="border-top: 1px solid black; " width="55" ></td>
                                             <td style="border-top: 1px solid black; " width="45" ></td>
                                         </tr>
-                                        </table>
+                                        </table>';
+                                        if ($i < $jumlah) {
+                                        
+                                        $data .='
                                         <br pagebreak="true"/>';
                                         $data .= '
                                         <table cellpadding="5">
@@ -193,10 +198,14 @@ foreach ($keuangan as $lap) {
                                                     <th width="50" align="center" style="border: 1px solid black; " >TOTAL</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>';
+                                        </table>';
+                                        }    
+                                        $data .= '<table cellspacing="0" cellpadding="3">';
                                     }
 }
-$data .=    '           <tr>
+$data .=    '           
+                                <tbody>
+                                <tr>
                                     <td style="border: 1px solid black; border-left: 1px solid black; " width="15" align="right"></td>
                                     <td style="border: 1px solid black; " width="140">GRAND TOTAL</td>
                                     <td style="border: 1px solid black; " width="45" align="right">' . number_format($totalj, 0, ',', '.') . '</td>

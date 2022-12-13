@@ -40,17 +40,17 @@ $this->load->view('templates/sidebar');
                 <table class="table table-borderless datatable" id="customers">
                     <thead class="table-primary">
                         <tr>
-                            <th class="text-center">Kode Anggota</th>
+                            <th class="text-center">Tahun & Bulan</th>
+                            <th class="text-center">Anggota</th>
                             <th class="text-center">Instansi</th>
-                            <th class="text-center">Nama Instansi</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($keuangan as $ins) : ?>
                             <tr>
-                                <td><?= $ins['KODE_ANG']; ?></td>
-                                <td><?= $ins['NAMA_ANG']; ?></td>
+                                <td><?= $ins['TAHUN'].'-'.$ins['BULAN']; ?></td>
+                                <td><?= $ins['KODE_ANG'] .'/'.$ins['NAMA_ANG']; ?></td>
                                 <td><?= $ins['KODE_INS'].'/ '.$ins['NAMA_INS']; ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url(); ?>index.php/keuangan/printang/<?= $ins['KODE_ANG']; ?>" class="btn btn-secondary" target="blank">Print</a>
