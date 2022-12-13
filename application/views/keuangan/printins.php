@@ -15,35 +15,50 @@ $full = strftime("%A, %d %B %Y");
 
 $pdf = new \TCPDF();
 $pdf->setPrintHeader(false);
-$pdf->setPrintFooter(false);
+// $pdf->setPrintFooter(false);
 $pdf->SetTopMargin(5);
-$pdf->SetFooterMargin(3);
+$pdf->SetFooterMargin(5);
 $pdf->SetLeftMargin(1);
 // $pdf->SetRightMargin(3);
 // $pdf->AddPage('L', 'mm', 'A4');
 $pageLayout = array(215, 278);
 $pdf->AddPage('P', $pageLayout);
-$pdf->SetFont('', '', 11);
-$pdf->Cell(210, 1, "$full", 0, 1, 'R');
-$pdf->Cell(210, 5, "KPRI BANGKIT BERSAMA", 0, 1, 'C');
-$pdf->Cell(210, 5, "Jl.Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia", 0, 1, 'C');
+// $pdf->SetFont('', '', 14);
+// $pdf->Cell(210, 1, "$full", 0, 1, 'R');
+// $pdf->Cell(210, 5, "KPRI BANGKIT BERSAMA", 0, 1, 'C');
+// $pdf->Cell(210, 5, "Jl.Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia", 0, 1, 'C');
 
-$pdf->SetFont('', '', 7);
-$data =
-    '<!DOCTYPE html>
+$data = '<!DOCTYPE html>
         <html lang="en">
-        
+
         <head>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Document</title>
         </head>
-        
+
             <body>            
                 <div>                                                          
                     <div>
                         <div>
+                        <table cellpadding="5">
+                            <tr>
+                            <th style="font-size: 12px;" width="592" align="right">'.$full.'</th>
+                            </tr>
+                            <tr>
+                            <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
+                            </tr>
+                            <tr>
+                            <th style="font-size: 12px;" width="592" align="center">Jl.Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
+                            </tr>
+                        </table>    ';
+                        
+
+
+$pdf->SetFont('', '', 7);
+$data .=
+    '
                             <table cellpadding="5">
                                 <tr>
                                     <td><b>DAFTAR TAGIHAN BULAN ' . $Month . '</b></td>
@@ -55,16 +70,16 @@ $data =
                                     <tr>
                                         <th width="15" align="center" style="border: 1px solid black; ">No </th>
                                         <th width="140" align="center" style="border: 1px solid black; " >ANGGOTA</th>
-                                        <th width="40" align="center" style="border: 1px solid black; " >SIM</th>
-                                        <th width="50" align="center" style="border: 1px solid black; " >KONSUMSI</th>
-                                        <th width="50" align="center" style="border: 1px solid black; " >NON KONSUMSI</th>
-                                        <th width="40" align="center" style="border: 1px solid black; " >PINJ. KHUSUS</th>
-                                        <th width="40" align="center" style="border: 1px solid black; " >PINJ. SP</th>
+                                        <th width="45" align="center" style="border: 1px solid black; " >SIM</th>
+                                        <th width="45" align="center" style="border: 1px solid black; " >KONSUMSI</th>
+                                        <th width="45" align="center" style="border: 1px solid black; " >NON KONSUMSI</th>
+                                        <th width="45" align="center" style="border: 1px solid black; " >PINJ. KHUSUS</th>
+                                        <th width="50" align="center" style="border: 1px solid black; " >PINJ. SP</th>
                                         <th width="17" align="center" style="border: 1px solid black; " >KE</th>
-                                        <th width="50" align="center" style="border: 1px solid black; " >SIM. POKOK</th>
-                                        <th width="50" align="center" style="border: 1px solid black; " >SIM. WAJIB</th>
+                                        <th width="40" align="center" style="border: 1px solid black; " >SIM. POKOK</th>
+                                        <th width="45" align="center" style="border: 1px solid black; " >SIM. WAJIB</th>
                                         <th width="55" align="center" style="border: 1px solid black; " >TUNGGAKAN</th>
-                                        <th width="45" align="center" style="border: 1px solid black; " >TOTAL</th>
+                                        <th width="50" align="center" style="border: 1px solid black; " >TOTAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -114,35 +129,47 @@ foreach ($keuangan as $lap) {
     $data .= '  <tr>
                                         <td width="15" align="right" style=" border-right: 1px solid black; border-left: 1px solid black; ">' . $i++ . '</td>
                                         <td width="140" style="border-right: 1px solid black; ">' . $lap['KODE_ANG'] . '-' . $lap['NAMA_ANG'] . '</td>
-                                        <td width="40" align="right" style="border-right: 1px solid black; ">' . number_format($j, 0, ',', '.') . '</td>
-                                        <td width="50" align="right" style="border-right: 1px solid black; ">' . number_format($f, 0, ',', '.') . '</td>
-                                        <td width="50" align="right" style="border-right: 1px solid black; ">' . number_format($a, 0, ',', '.') . '</td>
-                                        <td width="40" align="right" style="border-right: 1px solid black; ">' . number_format($e, 0, ',', '.') . '</td>
-                                        <td width="40" align="right" style="border-right: 1px solid black; ">' . number_format($b, 0, ',', '.') . '</td>
+                                        <td width="45" align="right" style="border-right: 1px solid black; ">' . number_format($j, 0, ',', '.') . '</td>
+                                        <td width="45" align="right" style="border-right: 1px solid black; ">' . number_format($f, 0, ',', '.') . '</td>
+                                        <td width="45" align="right" style="border-right: 1px solid black; ">' . number_format($a, 0, ',', '.') . '</td>
+                                        <td width="45" align="right" style="border-right: 1px solid black; ">' . number_format($e, 0, ',', '.') . '</td>
+                                        <td width="50" align="right" style="border-right: 1px solid black; ">' . number_format($b, 0, ',', '.') . '</td>
                                         <td width="17" align="right" style="border-right: 1px solid black; ">' . $ke . '</td>
-                                        <td width="50" align="right" style="border-right: 1px solid black; ">' . number_format($lap['POKOK'], 0, ',', '.') . '</td>
-                                        <td width="50" align="right" style="border-right: 1px solid black; ">' . number_format($lap['WAJIB'], 0, ',', '.') . '</td>
+                                        <td width="40" align="right" style="border-right: 1px solid black; ">' . number_format($lap['POKOK'], 0, ',', '.') . '</td>
+                                        <td width="45" align="right" style="border-right: 1px solid black; ">' . number_format($lap['WAJIB'], 0, ',', '.') . '</td>
                                         <td width="55" align="right" style="border-right: 1px solid black; ">' . number_format($t, 0, ',', '.') . '</td>
-                                        <td width="45" align="right" style="border-right: 1px solid black; ">' . number_format($potongan, 0, ',', '.') . '</td>
+                                        <td width="50" align="right" style="border-right: 1px solid black; ">' . number_format($potongan, 0, ',', '.') . '</td>
                                     </tr>';
                                     if ((($i-1) % 30) == 0) {
                                         $data .= '
                                         <tr>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; " width="15" align="right"></td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="110">TOTAL</td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="50" align="right">' . number_format($totalj, 0, ',', '.') . '</td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="50" align="right">' . number_format($totalf, 0, ',', '.') . '</td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="50" align="right">' . number_format($totala, 0, ',', '.') . '</td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="50" align="right">' . number_format($totale, 0, ',', '.') . '</td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="50" align="right">' . number_format($totalb, 0, ',', '.') . '</td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="17" align="right"></td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="50" align="right">' . number_format($totalg, 0, ',', '.') . '</td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="50" align="right">' . number_format($totalc, 0, ',', '.') . '</td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; " width="55" align="right">' . number_format($totalt, 0, ',', '.') . '</td>
-                                            <td style="border-top: 1px solid black; border-bottom: 1px solid black; border-right: 1px solid black; " width="45" align="right">' . number_format($totald, 0, ',', '.') . '</td>
+                                            <td style="border-top: 1px solid black; " width="15" ></td>
+                                            <td style="border-top: 1px solid black; " width="110"></td>
+                                            <td style="border-top: 1px solid black; " width="50" ></td>
+                                            <td style="border-top: 1px solid black; " width="50" ></td>
+                                            <td style="border-top: 1px solid black; " width="50" ></td>
+                                            <td style="border-top: 1px solid black; " width="50" ></td>
+                                            <td style="border-top: 1px solid black; " width="50" ></td>
+                                            <td style="border-top: 1px solid black; " width="17" ></td>
+                                            <td style="border-top: 1px solid black; " width="50" ></td>
+                                            <td style="border-top: 1px solid black; " width="50" ></td>
+                                            <td style="border-top: 1px solid black; " width="55" ></td>
+                                            <td style="border-top: 1px solid black; " width="45" ></td>
                                         </tr>
                                         </table>
-                                        <br pagebreak="true"/>
+                                        <br pagebreak="true"/>';
+                                        $data .= '
+                                        <table cellpadding="5">
+                                            <tr>
+                                            <th style="font-size: 12px;" width="592" align="right">'.$full.'</th>
+                                            </tr>
+                                            <tr>
+                                            <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
+                                            </tr>
+                                            <tr>
+                                            <th style="font-size: 12px;" width="592" align="center">Jl.Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
+                                            </tr>
+                                        </table>
                                         <table cellpadding="5">
                                             <tr>
                                                 <td><b>DAFTAR TAGIHAN BULAN ' . $Month . '</b></td>
@@ -154,16 +181,16 @@ foreach ($keuangan as $lap) {
                                                 <tr>
                                                     <th width="15" align="center" style="border: 1px solid black; ">No </th>
                                                     <th width="140" align="center" style="border: 1px solid black; " >ANGGOTA</th>
-                                                    <th width="40" align="center" style="border: 1px solid black; " >SIM</th>
-                                                    <th width="50" align="center" style="border: 1px solid black; " >KONSUMSI</th>
-                                                    <th width="50" align="center" style="border: 1px solid black; " >NON KONSUMSI</th>
-                                                    <th width="40" align="center" style="border: 1px solid black; " >PINJ. KHUSUS</th>
-                                                    <th width="40" align="center" style="border: 1px solid black; " >PINJ. SP</th>
+                                                    <th width="45" align="center" style="border: 1px solid black; " >SIM</th>
+                                                    <th width="45" align="center" style="border: 1px solid black; " >KONSUMSI</th>
+                                                    <th width="45" align="center" style="border: 1px solid black; " >NON KONSUMSI</th>
+                                                    <th width="45" align="center" style="border: 1px solid black; " >PINJ. KHUSUS</th>
+                                                    <th width="50" align="center" style="border: 1px solid black; " >PINJ. SP</th>
                                                     <th width="17" align="center" style="border: 1px solid black; " >KE</th>
-                                                    <th width="50" align="center" style="border: 1px solid black; " >SIM. POKOK</th>
-                                                    <th width="50" align="center" style="border: 1px solid black; " >SIM. WAJIB</th>
+                                                    <th width="40" align="center" style="border: 1px solid black; " >SIM. POKOK</th>
+                                                    <th width="45" align="center" style="border: 1px solid black; " >SIM. WAJIB</th>
                                                     <th width="55" align="center" style="border: 1px solid black; " >TUNGGAKAN</th>
-                                                    <th width="45" align="center" style="border: 1px solid black; " >TOTAL</th>
+                                                    <th width="50" align="center" style="border: 1px solid black; " >TOTAL</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';
@@ -172,16 +199,16 @@ foreach ($keuangan as $lap) {
 $data .=    '           <tr>
                                     <td style="border: 1px solid black; border-left: 1px solid black; " width="15" align="right"></td>
                                     <td style="border: 1px solid black; " width="140">GRAND TOTAL</td>
-                                    <td style="border: 1px solid black; " width="40" align="right">' . number_format($totalj, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="50" align="right">' . number_format($totalf, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="50" align="right">' . number_format($totala, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="40" align="right">' . number_format($totale, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="40" align="right">' . number_format($totalb, 0, ',', '.') . '</td>
+                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totalj, 0, ',', '.') . '</td>
+                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totalf, 0, ',', '.') . '</td>
+                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totala, 0, ',', '.') . '</td>
+                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totale, 0, ',', '.') . '</td>
+                                    <td style="border: 1px solid black; " width="50" align="right">' . number_format($totalb, 0, ',', '.') . '</td>
                                     <td style="border: 1px solid black; " width="17" align="right"></td>
-                                    <td style="border: 1px solid black; " width="50" align="right">' . number_format($totalg, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="50" align="right">' . number_format($totalc, 0, ',', '.') . '</td>
+                                    <td style="border: 1px solid black; " width="40" align="right">' . number_format($totalg, 0, ',', '.') . '</td>
+                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totalc, 0, ',', '.') . '</td>
                                     <td style="border: 1px solid black; " width="55" align="right">' . number_format($totalt, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; border-right: 1px solid black; " width="45" align="right">' . number_format($totald, 0, ',', '.') . '</td>
+                                    <td style="border: 1px solid black; border-right: 1px solid black; " width="50" align="right">' . number_format($totald, 0, ',', '.') . '</td>
                                 </tr>
                                 </tbody>                                                                   
                             </table>
