@@ -9,14 +9,6 @@
                   <span>Dashboard</span>
               </a>
           </li>
-
-          <li class="nav-item">
-              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/">
-                  <i class="bi bi-person-circle"></i>
-                  <span>User</span>
-              </a>
-          </li>
-
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/anggota">
                   <i class="bi bi-people-fill"></i>
@@ -24,12 +16,7 @@
               </a>
           </li>
 
-          <li class="nav-item">
-              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/instansi">
-                  <i class="bi bi-building"></i>
-                  <span>Instansi</span>
-              </a>
-          </li>
+
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinjaman">
@@ -44,7 +31,7 @@
                   <span>Transaksi</span>
               </a>
           </li> -->
-          
+
           <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-navsp" aria-controls="forms-nav">
                   <i class="bi bi-gear-wide-connected"></i><span>Simpan Pinjam</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -59,7 +46,7 @@
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinsim/pinjaman">
                           <i class="bi bi-circle-fill"></i><span>Pinjaman</span>
                       </a>
-                  </li>                
+                  </li>
               </ul>
           </li>
 
@@ -83,7 +70,7 @@
                   <span>Generate</span>
               </a>
           </li> -->
-          
+
           <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav-gen2" aria-controls="forms-nav">
                   <i class="bi bi-cash"></i><span>Generate</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -176,6 +163,16 @@
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Pengurus">
                           <i class="bi bi-circle-fill"></i><span>Pengurus</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/instansi">
+                          <i class="bi bi-circle-fill"></i><span>Instansi</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/">
+                          <i class="bi bi-circle-fill"></i><span>User</span>
                       </a>
                   </li>
               </ul>

@@ -155,7 +155,33 @@ class Pinuang_model extends  CI_Model
         // $this->db->where('anggota.URUT_ANG', '1541');
         // $this->db->where('anggota.URUT_ANG', '4040');
         $this->db->like('pinuang.NOFAK', 'Z');
-        $this->db->order_by('NOFAK', 'ASC');
+        // $this->db->order_by('NOFAK', 'ASC');
+        return $this->db->get()->result_array();
+    }
+
+    public function getUub()
+    {
+        // $bln = date('m', strtotime('-1 month'));
+        // $thn = date('Y', strtotime('-1 month'));
+        $bln = date('m');
+        $thn = date('Y');;
+
+        $this->db->select('*');
+        $this->db->from('pl');
+        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
+        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
+        $this->db->where('pl.TAHUN', $thn);
+        $this->db->where('pl.BULAN', $bln);
+        $this->db->where('pinuang.TAHUN', $thn);
+        $this->db->where('pinuang.BULAN', $bln);
+        $this->db->where('anggota.KODE_INS !=', 99);
+        // $this->db->where('anggota.KODE_INS', '06');
+        // $this->db->where('pl.KODE_ANG', '1541');
+        // $this->db->where('anggota.URUT_ANG', '1541');
+        // $this->db->where('anggota.URUT_ANG', '4040');
+        $this->db->like('pinuang.NOFAK', 'S');
+        // $this->db->order_by('NOFAK', 'ASC');
         return $this->db->get()->result_array();
     }
 

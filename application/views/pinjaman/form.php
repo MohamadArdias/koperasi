@@ -91,13 +91,22 @@
 
     $faktur = $tahun . $a . $kd . $urutan;
 
- 
-        $user = $this->session->userdata('identity');
-        $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
+
+    $user = $this->session->userdata('identity');
+    $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
 
 
     ?>
-
+    
+    <?php if ($this->session->flashdata('flashP')) : ?>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Data Anggota <strong>Berhasil</strong> <?= $this->session->flashdata('flashP'); ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="row">
         <div class="col-lg-12">
             <div class="row">
@@ -296,7 +305,9 @@
                     var a = Math.ceil((jang - per) / 5);
                     var Tanggungan = Number(a * bung) + Number(sis);
                     $("#TANGGUNGAN").val(Tanggungan);
-                });
+                }).fail(function() {
+                alert();
+            });
         }
 
         $(document).ready(function() {

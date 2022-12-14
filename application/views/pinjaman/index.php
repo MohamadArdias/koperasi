@@ -44,6 +44,15 @@ $this->load->view('templates/sidebar');
                 </div>
             </div>
         <?php endif; ?>
+        <?php if ($this->session->flashdata('pinggl')) : ?>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Kode Anggota</strong> <?= $this->session->flashdata('pinggl'); ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="row">
             <div class="col-xxl-4 col-md-6">
                 <div class="card info-card sales-card">

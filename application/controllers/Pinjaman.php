@@ -42,7 +42,7 @@ class Pinjaman extends CI_Controller
 
         $this->data['urutan'] = $this->Pinuang->getUrut();
         $this->data['kode'] = $kode;
-       
+
 
         $this->form_validation->set_rules('id', 'Id', 'required');
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
@@ -57,15 +57,22 @@ class Pinjaman extends CI_Controller
 
         $bung = $this->input->post('PRO_ANG');
 
-        if ($this->form_validation->run() == FALSE ) {
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('pinjaman/form', $this->data);
         } else {
-            $this->Pinuang->deleteTransaksi($a, $kd);
-            $this->Pinuang->tambahTransaksi();
-            $this->Us->tambahTransaksi();
-            // $this->Keuangan->editPlTransaksi($a, $kode);
-            $this->session->set_flashdata('flashP', 'ditambahkan');
-            redirect('pinjaman');
+            $aku = $this->Anggota->cekAnggota();
+
+            if ($aku != 0) {
+                $this->Pinuang->deleteTransaksi($a, $kd);
+                $this->Pinuang->tambahTransaksi();
+                $this->Us->tambahTransaksi();
+                // $this->Keuangan->editPlTransaksi($a, $kode);
+                $this->session->set_flashdata('flashP', 'ditambahkan');
+                redirect('pinjaman');
+            } else {
+                $this->session->set_flashdata('pinggl', 'salah');
+                redirect('pinjaman');
+            }
         }
     }
 
@@ -104,7 +111,7 @@ class Pinjaman extends CI_Controller
                 $periode = $query['KEU7'];
                 $sisa = $query['SIPOKU7'];
                 $bunga = $query['BNGU7'];
-            }  elseif ($b == 'S') {
+            } elseif ($b == 'S') {
                 $jangka = $query['JWK4'];
                 $periode = $query['KEU4'];
                 $sisa = $query['SIPOKU4'];

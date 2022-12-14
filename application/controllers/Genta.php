@@ -493,6 +493,7 @@ class Genta extends CI_Controller
         $non = $this->Pinuang->getNon();
         $kons = $this->Pinuang->getKons();
         $khus = $this->Pinuang->getKhusus();
+        $uub = $this->Pinuang->getUub();
 
         foreach ($uang as $key) {
 
@@ -806,6 +807,84 @@ class Genta extends CI_Controller
             $this->db->update('pl', $pl_khusus, $where_kons);
         }
 
+        foreach ($uub as $key) {
+
+            if ($key['KEU4'] == $key['JWKT_ANG']) {
+                $STATUS = 'LUNAS';
+            } else {
+                $STATUS = 'BELUM LUNAS';
+            }
+
+            if ($STATUS == 'LUNAS') {
+                $JMLP_ANG = 0;
+                $PRO_ANG = 0;
+                $KE_ANG = 0;
+                $KEU4 = 0;
+                $POKU4 = 0;
+                $SIPOKU4 = 0;
+                $JWKT_ANG = 0;
+                $BNGU4 = 0;
+                // $CICILAN = 0;
+            } else {
+                $JMLP_ANG = $key['JMLP_ANG'];
+                $PRO_ANG = $key['PRO_ANG'];
+                $KEU4 = $key['KEU4'] + 1;
+                $JWKT_ANG = $key['JWKT_ANG'];
+
+
+                if (date('m') == 11) {
+                    $KE_ANG = $KEU4;
+                } else {
+                    $KE_ANG = $key['KE_ANG'];
+                }
+
+                if ($JMLP_ANG == 0 || $JWKT_ANG == 0) {
+                    $POKU4 = 0;
+                } else {
+                    $POKU4 = $JMLP_ANG / $JWKT_ANG; //apakah seLisih sedikit pengaruh atau tidak? jika tidak = $key['POKU4']                                
+                }
+                $SIPOKU4 = $JMLP_ANG - ($POKU4 * $KEU4); //$key['SIPOKU4']-$key['POKU4'] //$key['SIPOKU4']-$POKU4;
+                $BNGU4 = $JMLP_ANG * ($PRO_ANG / 100);
+                // $CICILAN = $JMLP_ANG - $SIPOKU4;
+            }
+
+            $pinuang_kons = array(
+                'TAHUN' => date('Y', strtotime('+1 month')),
+                'BULAN' => date('m', strtotime('+1 month')),
+                'NOFAK' => $key['NOFAK'],
+                'KODE_ANG' => $key['KODE_ANG'],
+                'TGLP_ANG' => $key['TGLP_ANG'],
+                'TGLT_ANG' => $key['TGLT_ANG'],
+                'JMLP_ANG' => $JMLP_ANG,
+                'PRO_ANG' => $PRO_ANG,
+                'KE_ANG' => $KE_ANG,
+                'JWKT_ANG' =>  $JWKT_ANG,
+            );
+            // delete pinunag
+            $this->db->where('KODE_ANG', $key['KODE_ANG']);
+            $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
+            $this->db->where('BULAN', date('m', strtotime('+1 month')));
+            $this->db->where('NOFAK', $key['NOFAK']);
+            $this->db->delete('pinuang');
+            // insert pinuang 
+            $this->db->insert('pinuang', $pinuang_kons);
+
+            $pl_khusus = array(
+                'KEU4' => $KEU4,
+                'JWK2' => $JWKT_ANG,
+                'POKU4' => round($POKU4),
+                'SIPOKU4' => round($SIPOKU4),
+                'BNGU4' => $BNGU4,
+            );
+            // update pl 
+            $where_kons = array(
+                'TAHUN' => date('Y', strtotime('+1 month')),
+                'BULAN' => date('m', strtotime('+1 month')),
+                'KODE_ANG' => $key['KODE_ANG'],
+            );
+            $this->db->update('pl', $pl_khusus, $where_kons);
+        }
+
         $this->session->set_flashdata('pinjamGen', 'Berhasil');
         redirect('generate2/pinjaman');
     }
@@ -816,9 +895,7 @@ class Genta extends CI_Controller
         $tunggakan = $this->Pembayaran->getTunggakan();
         foreach ($tunggakan as $key) {
 
-            if ($key['STATUS'] == 'BELUM TERBAYAR') {
-                $tunggakan = $key['JML_TGHN'];
-            } elseif ($key['STATUS'] == 'SEBAGIAN') {
+            if ($key['JML_BAYAR'] < $key['JML_TGHN']) {
                 $tunggakan = $key['JML_TGHN'] - $key['JML_BAYAR'];
             } else {
                 $tunggakan = 0;
@@ -841,6 +918,7 @@ class Genta extends CI_Controller
         foreach ($pembayaran as $key) {
 
             $a = $key['POKU3'] + $key['BNGU3']
+                + $key['POKU4'] + $key['BNGU4']
                 + $key['POKU1'] + $key['BNGU1']
                 + $key['POKU7'] + $key['BNGU7']
                 + $key['POKU2'] + $key['WAJIB']

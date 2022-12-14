@@ -210,4 +210,10 @@ class Anggota_model extends  CI_Model
 
         return $sql->row_array();
     }
+
+    public function cekAnggota()
+    {
+        $URUT_ANG = $this->input->post('URUT_ANG', true);
+        return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->num_rows();
+    }
 }
