@@ -136,6 +136,13 @@ $this->load->view('templates/sidebar');
                     </div>
                 </div>
             </div>
+            <?php
+
+            $que = $this->db->query("SELECT MAX(generate_date) AS TGL FROM `generate_log`  WHERE tahun = date('Y') AND bulan = date('m')")->row();
+            echo $que->TGL;
+            echo 'halo';
+            ?>
+
 
             <div class="overflow-auto">
                 <table class="table table-borderless datatable" id="customers">
@@ -148,20 +155,32 @@ $this->load->view('templates/sidebar');
                             <th class="text-center">Bunga</th>
                             <th class="text-center">Jangka</th>
                             <th class="text-center">Teler</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($us as $key) {
                         ?>
-                        <tr>
-                            <td><?= $key['TANGGAL']; ?></td>
-                            <td><?= $key['URUT_ANG'].'/'.$key['NAMA_ANG']; ?></td>
-                            <td><?= $key['KODE_INS'].'/'.$key['NAMA_INS']; ?></td>
-                            <td><?= $key['JUMLAH']; ?></td>
-                            <td><?= $key['PRO']; ?></td>
-                            <td><?= $key['JANGKA']; ?></td>
-                            <td><?= $key['IDNAMA']; ?></td>
-                        </tr>
+                            <tr>
+                                <td><?= $key['TANGGAL']; ?></td>
+                                <td><?= $key['URUT_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
+                                <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
+                                <td><?= number_format($key['JUMLAH'], 0, ',', '.'); ?></td>
+                                <td><?= $key['PRO']; ?></td>
+                                <td><?= $key['JANGKA']; ?></td>
+                                <td><?= $key['IDNAMA']; ?></td>
+                                <td>
+                                    <?php
+                                    $log = $this->db->query("SELECT MAX(TGL_TGHN) AS tanggal FROM pembayaran")->row();
+                                    if ($key['TANGGAL'] > $log->tanggal AND $key['STATUS_US'] == 'WAIT') {
+                                    ?>
+                                        <a href="<?= base_url(); ?>index.php/Pinjaman/edit/<?= $key['KODE_ANG']; ?>" class="btn btn-warning">Edit</a>
+                                        <a href="<?= base_url(); ?>index.php/Pinjaman/hapus/<?= $key['KODE_ANG']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">Off</a>
+                                    <?php
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
                         <?php
                         } ?>
                     </tbody>

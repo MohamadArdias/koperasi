@@ -2,6 +2,11 @@
 
 class Us_model extends  CI_Model
 {
+    public function getGenerate()
+    {
+        return $this->db->query("SELECT MAX(TANGGAL) AS tanggal FROM us")->row();
+    }
+    
     public function tambahTransaksi()
     {
         $a = $this->input->post('TGLP_ANG');
@@ -22,7 +27,8 @@ class Us_model extends  CI_Model
             "jangka" => $this->input->post('JWKT_ANG', true),
             "DATE" => date('Y-m-d'),
             "TIME" => date("H:i:s"),
-            "KET" => "PEMBERIAN PINJAMAN PADA $kode/$nama"
+            "KET" => "PEMBERIAN PINJAMAN PADA $kode/$nama",
+            "STATUS_US" => "WAIT",
         ];
 
         $this->db->insert('us', $this->data);
@@ -31,7 +37,8 @@ class Us_model extends  CI_Model
     public function getUs()
     {
         // SELECT TGLP_ANG,SUM(JMLP_ANG) FROM pinuang GROUP BY TGLP_ANG
-        $data =  $this->db->query("SELECT TANGGAL, SUM(JUMLAH) AS HASIL FROM us GROUP BY TANGGAL");
+        // $data =  $this->db->query("SELECT TANGGAL, SUM(JUMLAH) AS HASIL FROM us GROUP BY TANGGAL");
+        $data =  $this->db->query("SELECT SUM(JUMLAH) AS HASIL,	MONTH(TANGGAL) AS TANGGAL FROM	us WHERE YEAR(TANGGAL) = 2022 GROUP BY MONTH(TANGGAL)");
         return $data->result_array();
         // $this->db->select('*');
         // $this->db->from('us');

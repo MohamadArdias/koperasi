@@ -137,4 +137,11 @@ class Pinjaman extends CI_Controller
             echo json_encode($data);
         }
     }
+
+    public function hapus($KODE_ANG)
+    {
+        $this->db->delete('us', ['KODE_ANG' => $KODE_ANG]);
+        // $this->session->set_flashdata('flash', 'dihapus');
+        redirect('pinjaman');
+    }
 }

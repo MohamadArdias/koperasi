@@ -46,6 +46,7 @@ class Pinuang_model extends  CI_Model
             "TGLT_ANG" => $date,
             "JWKT_ANG" => $this->input->post('JWKT_ANG', true),
             "PRO_ANG" => $this->input->post('PRO_ANG', true),
+            "STATUS_PIN" => 'WAIT',
         ];
 
         $this->db->insert('pinuang', $this->data);
@@ -53,11 +54,13 @@ class Pinuang_model extends  CI_Model
 
     public function deleteTransaksi($a, $kode)
     {
-        return $this->db->query("DELETE FROM
-            pinuang
-        WHERE
-            pinuang.NOFAK LIKE '%$kode%' AND
-            pinuang.KODE_ANG = '$a'");
+        return $this->db->query("UPDATE pinuang SET STATUS_PIN = 'OFF' WHERE pinuang.NOFAK LIKE '%$kode%' AND pinuang.KODE_ANG = '$a'");
+
+        // return $this->db->query("DELETE FROM
+        //     pinuang
+        // WHERE
+        //     pinuang.NOFAK LIKE '%$kode%' AND
+        //     pinuang.KODE_ANG = '$a'");
     }
 
     public function getUang()
@@ -75,6 +78,7 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('pinuang.TAHUN', $thn);
         $this->db->where('pinuang.BULAN', $bln);
+        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
         $this->db->where('anggota.KODE_INS !=', 99);
         // $this->db->where('anggota.KODE_INS', '06');
         // $this->db->where('pl.KODE_ANG', '1541');
@@ -100,6 +104,7 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('pinuang.TAHUN', $thn);
         $this->db->where('pinuang.BULAN', $bln);
+        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
         $this->db->where('anggota.KODE_INS !=', 99);
         // $this->db->where('anggota.KODE_INS', '06');
         // $this->db->where('pl.KODE_ANG', '1541');
@@ -125,6 +130,7 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('pinuang.TAHUN', $thn);
         $this->db->where('pinuang.BULAN', $bln);
+        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
         $this->db->where('anggota.KODE_INS !=', 99);
         // $this->db->where('anggota.KODE_INS', '06');
         // $this->db->where('pl.KODE_ANG', '1541');
@@ -149,6 +155,7 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('pinuang.TAHUN', $thn);
         $this->db->where('pinuang.BULAN', $bln);
+        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
         $this->db->where('anggota.KODE_INS !=', 99);
         // $this->db->where('anggota.KODE_INS', '06');
         // $this->db->where('pl.KODE_ANG', '1541');
@@ -175,6 +182,7 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('pinuang.TAHUN', $thn);
         $this->db->where('pinuang.BULAN', $bln);
+        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
         $this->db->where('anggota.KODE_INS !=', 99);
         // $this->db->where('anggota.KODE_INS', '06');
         // $this->db->where('pl.KODE_ANG', '1541');
