@@ -54,20 +54,36 @@ class Us_model extends  CI_Model
 
     public function getTrx()
     {
+    //     $query = $this->db->query("SELECT
+    //     *
+    // FROM
+    //     anggota
+    //     INNER JOIN
+    //     instan
+    //     ON 
+    //         anggota.KODE_INS = instan.KODE_INS
+    //     INNER JOIN
+    //     us
+    //     ON 
+    //         us.KODE_ANG = anggota.URUT_ANG
+    // ORDER BY
+    //     us.TANGGAL DESC");
         $query = $this->db->query("SELECT
-        *
-    FROM
-        anggota
-        INNER JOIN
-        instan
-        ON 
-            anggota.KODE_INS = instan.KODE_INS
-        INNER JOIN
-        us
-        ON 
-            us.KODE_ANG = anggota.URUT_ANG
-    ORDER BY
-        us.TANGGAL DESC");
+            *
+        FROM
+            anggota
+            INNER JOIN
+            instan
+            ON 
+                anggota.KODE_INS = instan.KODE_INS
+            INNER JOIN
+            us
+            ON 
+                us.KODE_ANG = anggota.URUT_ANG
+        WHERE
+            us.STATUS_US != 'OFF'
+        ORDER BY
+            us.TANGGAL DESC");
         return $query->result_array();
     }
 }

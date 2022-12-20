@@ -140,7 +140,6 @@ $this->load->view('templates/sidebar');
 
             $que = $this->db->query("SELECT MAX(generate_date) AS TGL FROM `generate_log`  WHERE tahun = date('Y') AND bulan = date('m')")->row();
             echo $que->TGL;
-            echo 'halo';
             ?>
 
 
@@ -165,17 +164,17 @@ $this->load->view('templates/sidebar');
                                 <td><?= $key['TANGGAL']; ?></td>
                                 <td><?= $key['URUT_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                                 <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
-                                <td><?= number_format($key['JUMLAH'], 0, ',', '.'); ?></td>
-                                <td><?= $key['PRO']; ?></td>
-                                <td><?= $key['JANGKA']; ?></td>
-                                <td><?= $key['IDNAMA']; ?></td>
+                                <td align="right" ><?= number_format($key['JUMLAH'], 0, ',', '.'); ?></td>
+                                <td align="right" ><?= $key['PRO']; ?></td>
+                                <td align="right" ><?= $key['JANGKA']; ?></td>
+                                <td ><?= $key['IDNAMA']; ?></td>
                                 <td>
                                     <?php
                                     $log = $this->db->query("SELECT MAX(TGL_TGHN) AS tanggal FROM pembayaran")->row();
                                     if ($key['TANGGAL'] > $log->tanggal AND $key['STATUS_US'] == 'WAIT') {
                                     ?>
-                                        <a href="<?= base_url(); ?>index.php/Pinjaman/edit/<?= $key['KODE_ANG']; ?>" class="btn btn-warning">Edit</a>
-                                        <a href="<?= base_url(); ?>index.php/Pinjaman/hapus/<?= $key['KODE_ANG']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">Off</a>
+                                        <!-- <a href="<?= base_url(); ?>index.php/Pinjaman/edit/<?= $key['KODE_ANG']; ?>" class="btn btn-warning">Edit</a> -->
+                                        <a href="<?= base_url(); ?>index.php/Pinjaman/off/<?= $key['NOFAK']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">Hapus</a>
                                     <?php
                                     }
                                     ?>
