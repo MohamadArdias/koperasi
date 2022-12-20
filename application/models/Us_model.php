@@ -34,11 +34,11 @@ class Us_model extends  CI_Model
         $this->db->insert('us', $this->data);
     }
 
-    public function getUs()
+    public function getUs($thn)
     {
         // SELECT TGLP_ANG,SUM(JMLP_ANG) FROM pinuang GROUP BY TGLP_ANG
         // $data =  $this->db->query("SELECT TANGGAL, SUM(JUMLAH) AS HASIL FROM us GROUP BY TANGGAL");
-        $data =  $this->db->query("SELECT SUM(JUMLAH) AS HASIL,	MONTH(TANGGAL) AS TANGGAL FROM	us WHERE YEAR(TANGGAL) = 2022 GROUP BY MONTH(TANGGAL)");
+        $data =  $this->db->query("SELECT SUM(JUMLAH) AS HASIL,	MONTH(TANGGAL) AS TANGGAL FROM	us WHERE YEAR(TANGGAL) = $thn GROUP BY MONTH(TANGGAL)");
         return $data->result_array();
         // $this->db->select('*');
         // $this->db->from('us');

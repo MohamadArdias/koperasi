@@ -139,8 +139,18 @@ $this->load->view('templates/sidebar');
         </div><!-- End Recent Sales -->
       </form>
 
+      <select id="thn" onchange="a()" class="form-select col-md-2" aria-label="Default select example">
+        <option hidden> pilih tahun </option>
+        <?php
+        $lg = $this->db->query("SELECT DISTINCT YEAR(TANGGAL) AS TANG FROM us ORDER BY YEAR(TANGGAL) ASC")->result_array();
+        foreach ($lg as $key) {
+        ?>
+          <option value="<?= $key['TANG']; ?>"><?= $key['TANG']; ?></option>
+        <?php
+        }
+        ?>
 
-
+      </select>
 
       <div id="lineChart"></div>
 
@@ -148,7 +158,7 @@ $this->load->view('templates/sidebar');
         document.addEventListener("DOMContentLoaded", () => {
           new ApexCharts(document.querySelector("#lineChart"), {
             series: [{
-              name: 'Sales',
+              name: 'Jumlah Pinjaman',
               data: [<?php foreach ($data as $key) {
                         echo $key['HASIL'];  ?>, <?php
                                                 } ?>],
@@ -184,6 +194,14 @@ $this->load->view('templates/sidebar');
             }
           }).render();
         });
+      </script>
+
+      <script>
+        function a() {
+          var option = document.getElementById("thn").value;
+          console.log(option);
+          window.location.assign("?TAHUN=" + option);
+        }
       </script>
     </div>
 

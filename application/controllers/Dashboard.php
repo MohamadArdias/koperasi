@@ -11,16 +11,31 @@ class Dashboard extends CI_Controller
         $this->load->library('form_validation');
     }
 
+    //public function index()
+    //{
+    //     $this->rekap;
+    //}
+
     public function index()
     {
+        $TAHUN = $this->input->get('TAHUN');
+
+
+
+
         $this->data['title'] = 'Dashboard';
 
         $this->data['aktif'] = $this->Anggota->getAllAnggotaAktif();
         $this->data['tidak'] = $this->Anggota->getAllAnggotaTidakAktif();
         $this->data['tunggakan'] = $this->Dashboard->getTotalTunggak();
         $this->data['tung'] = $this->Dashboard->getAnggotaTunggak();
+        if ($TAHUN == '') {
+            $THN = date('Y');
+        } else {
+            $THN = $TAHUN;
+        }
 
-        $this->data['data'] = $this->Us->getUs();
+        $this->data['data'] = $this->Us->getUs($THN);
 
         $this->load->view('dashboard/index', $this->data);
     }
