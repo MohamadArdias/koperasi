@@ -14,7 +14,9 @@ class Import extends CI_Controller
     {
         $this->data['title'] = 'Import Bank Jatim';
         $this->data['temp'] = $this->Import->getDataMasuk();
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->db->query("DELETE FROM temp");
             $upload_status = $this->uploadDoc();
             if ($upload_status != false) {
                 $inputFileName = 'assets/uploads/imports/' . $upload_status;
@@ -36,6 +38,7 @@ class Import extends CI_Controller
                         'NAMA' => $nama,
                         'NOMINAL' => $nominal,
                         'KOP' => $kop,
+                        'DATE' => date("Y-m-d"),
                     );
                     //echo  date("Y-m-d", strtotime($tanggal));
                     $this->db->insert('temp', $data);
@@ -74,7 +77,7 @@ class Import extends CI_Controller
     {
         $bayar = $this->Import->getTemp();
 
-        foreach ($bayar as $key ) {
+        foreach ($bayar as $key) {
 
             $inBayar = array(
                 'TGL_BAYAR' => $key['TANGGAL'],

@@ -10,7 +10,7 @@ class Import_model extends CI_Model
     {
         $this->db->Select('*');
         $this->db->from('temp');
-        $this->db->like('TANGGAL', date('Y-m'));
+        $this->db->like('DATE', date('Y-m'));
         return $this->db->get()->result_array();
     }
 
