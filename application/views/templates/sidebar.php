@@ -10,15 +10,6 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/anggota">
-                  <i class="bi bi-people-fill"></i>
-                  <span>Anggota</span>
-              </a>
-          </li>
-
-
-
-          <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinjaman">
                   <i class="bi bi-bank"></i>
                   <span>Pinjaman</span>
@@ -163,6 +154,12 @@
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Pengurus">
                           <i class="bi bi-circle-fill"></i><span>Pengurus</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/anggota">
+                          <i class="bi bi-circle-fill"></i>
+                          <span>Anggota</span>
                       </a>
                   </li>
                   <li>
