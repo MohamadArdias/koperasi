@@ -486,24 +486,6 @@ class Genta extends CI_Controller
 
 
         }
-		
-		
-				
-            $log = array(
-                'jenis' => 'simpanan',
-                'bulan' => date('m'),
-                'tahun' => date('Y'),
-				'generate_date' =>date('Y-m-d'),
-				'generate_by' => 'xxx',
-				
-            );		
-		
-				
-			
-			 // $this->db->insert('generate_log', $log);
-			
-				
-		
         $this->session->set_flashdata('simpanGen', 'Berhasil');
         redirect('generate2');
     }

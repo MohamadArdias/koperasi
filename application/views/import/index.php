@@ -73,7 +73,10 @@ $this->load->view('templates/sidebar');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1;
+                    <?php
+                    // $temp = $this->db->get('temp')->result_array();
+                    
+                    $i = 1;
                     foreach ($temp as $bayar) :
                         if ($bayar['NO_REKENING'] != NULL) {
                             $a = 'XXXXXX' . substr($bayar['NO_REKENING'], -4) . '';

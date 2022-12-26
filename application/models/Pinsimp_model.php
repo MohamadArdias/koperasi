@@ -26,7 +26,10 @@ class Pinsimp_model extends  CI_Model
         pl.BULAN = $bln AND
         pinsimp.TAHUN = $thn AND
         pinsimp.BULAN = $bln AND
-        anggota.KODE_INS != 99");
+        anggota.KODE_INS != 99 AND
+        anggota.KODE_INS != 98 AND
+        anggota.KODE_INS != 97 AND
+        anggota.KODE_INS != 96");
 
         return $que->result_array();
     }

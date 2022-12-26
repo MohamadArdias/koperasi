@@ -84,23 +84,23 @@ class Import extends CI_Controller
                 'JML_BAYAR' => $key['NOMINAL'],
                 'VIA_BAYAR' => 'BANK JATIM',
                 'STATUS' => 'TERBAYAR',
-                'SISA' => 0,
             );
 
             $this->db->where('KODE_ANG', $key['URUT_ANG']);
-            $this->db->like('pembayaran.TGL_TGHN', date('Y-m'));
-            // $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
+            // $this->db->like('pembayaran.TGL_TGHN', date('Y-m'));
+            $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
             $this->db->update('pembayaran', $inBayar);
 
-            $pl = [
-                'TUNGGAKAN' => 0,
-            ];
-            $where = array(
-                'TAHUN' => date('Y'),
-                'BULAN' => date('m'),
-                'KODE_ANG' => $key['URUT_ANG'],
-            );
-            $this->db->update('pl', $pl, $where);
+            // $pl = [
+            //     'TUNGGAKAN' => 0,
+            // ];
+            // $where = array(
+            //     'TAHUN' => date('Y'),
+            //     'BULAN' => date('m'),
+            //     'KODE_ANG' => $key['URUT_ANG'],
+            // );
+            // $this->db->update('pl', $pl, $where);
         }
+        redirect('Import');
     }
 }

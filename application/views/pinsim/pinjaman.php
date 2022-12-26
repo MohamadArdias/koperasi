@@ -42,7 +42,7 @@ $this->load->view('templates/sidebar');
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Faktur</th>
-                        <th class="text-center">Nama Anggota</th>
+                        <th class="text-center">Anggota</th>
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Jenis Pinjaman</th>
                         <th class="text-center">Jumlah Pinjaman</th>
@@ -82,8 +82,8 @@ $this->load->view('templates/sidebar');
                         <tr>
                             <td><?= $i++; ?></td>
                             <td><?= $key['NOFAK']; ?></td>
-                            <td><?= $key['NAMA_ANG']; ?></td>
-                            <td><?= $key['NAMA_INS']; ?></td>
+                            <td><?= $key['URUT_ANG'].'/'.$key['NAMA_ANG']; ?></td>
+                            <td><?= $key['KODE_INS'].'/'.$key['NAMA_INS']; ?></td>
                             <td><?= $jenis; ?></td>
                             <td class="text-right"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>
                             <td class="text-right"><?= number_format($sisa, 0, ',', '.'); ?></td>

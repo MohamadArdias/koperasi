@@ -203,7 +203,7 @@
                                         </div>
                                         <div class="col-sm-6 text-end mt-3 ">
                                             <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
-                                            <button type="submit" name="edit" class="btn btn-primary">Simpan</button>
+                                            <button type="submit" name="edit" class="btn btn-primary">Pinjam</button>
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +227,7 @@
                                 </tr>
                                 <tr>
                                     <td>S</td>
-                                    <td>SIM</td>
+                                    <td>Uang Untuk Barang</td>
                                     <td>2%</td>
                                 </tr>
                                 <tr>

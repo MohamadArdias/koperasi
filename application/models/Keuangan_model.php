@@ -228,7 +228,10 @@ class Keuangan_model extends  CI_Model
         // $this->db->where('pl.BULAN', date('m'));
         $this->db->where('pl.TAHUN', date('Y', strtotime('+1 month')));
         $this->db->where('pl.BULAN', date('m', strtotime('+1 month')));
-        $this->db->where('anggota.KODE_INS !=', '99');
+        $this->db->where('anggota.KODE_INS !=', 99);
+        $this->db->where('anggota.KODE_INS !=', 98);
+        $this->db->where('anggota.KODE_INS !=', 97);
+        $this->db->where('anggota.KODE_INS !=', 96);
         // $this->db->where('anggota.KODE_INS', '06');
         return $this->db->get()->result_array();
     }

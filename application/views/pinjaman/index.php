@@ -147,7 +147,7 @@ $this->load->view('templates/sidebar');
                 <table class="table table-borderless datatable" id="customers">
                     <thead class="table-primary">
                         <tr>
-                            <th class="text-center">Tanggal</th>
+                            <th style="padding-left: 20px; padding-right: 20px;" class="text-center">Tanggal</th>
                             <th class="text-center">Anggota</th>
                             <th class="text-center">Instansi</th>
                             <th class="text-center">Jumlah</th>
