@@ -79,6 +79,7 @@ class Pinsimp_model extends  CI_Model
         $this->db->where('pl.TAHUN', date('Y'));
         $this->db->where('pl.BULAN', date('m'));
         $this->db->where('instan.KODE_INS !=', 99);
+        $this->db->order_by('instan.KODE_INS', 'ASC');
         // $this->db->where('instan.KODE_INS', "06");
         return $this->db->get()->result_array();
     }

@@ -221,7 +221,7 @@ class Pinuang_model extends  CI_Model
         $this->db->where('pl.BULAN', date('m'));
         // $this->db->where('instan.KODE_INS !=', 99);
         // $this->db->where('instan.KODE_INS', '06');
-        $this->db->order_by('anggota.URUT_ANG', 'ASC');
+        $this->db->order_by('instan.KODE_INS', 'ASC');
         return $this->db->get()->result_array();
     }
 
