@@ -47,16 +47,16 @@
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
-        <?php 
+        <?php
         $user = $this->session->userdata('identity');
         $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
         ?>
 
-    <!-- Profil -->
+        <!-- Profil -->
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-6">
-                    <a class="nav-link nav-profile collapsed pe-2" data-toggle="collapse" data-target="#forms-nav2" aria-controls="forms-nav">
+                    <a class="nav-link nav-profile collapsed pe-5" data-toggle="collapse" data-target="#forms-nav2" aria-controls="forms-nav">
                         <span class="d-none d-md-block dropdown-toggle ps-2"><?= $sesUser['first_name']; ?></span>
                     </a>
                     <ul id="forms-nav2" data-bs-parent="#header-nav" class="dropdown-menu nav-content collapse position-absolute">
