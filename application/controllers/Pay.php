@@ -6,6 +6,7 @@ class Pay extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Pay_model', 'Pay');
+        $this->load->model('Anggota_model', 'Anggota');
         $this->load->library('form_validation');
     }
 
@@ -20,9 +21,15 @@ class Pay extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('pembayaranLangsung/index', $this->data);
         } else {
-            $this->Pay->bayar();
-            $this->session->set_flashdata('bayar', 'berhasil');
-            redirect('Pay');
+            $aku = $this->Anggota->cekAnggotaPin();
+            if ($aku != 0) {
+                $this->Pay->bayar();
+                $this->session->set_flashdata('bayarB', 'berhasil');
+                redirect('Pay');
+            } else {
+                $this->session->set_flashdata('bayarG', 'salah');
+                redirect('Pay');
+            }
         }
     }
 

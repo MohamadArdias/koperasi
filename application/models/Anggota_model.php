@@ -231,4 +231,20 @@ class Anggota_model extends  CI_Model
         $URUT_ANG = $this->input->post('URUT_ANG', true);
         return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->num_rows();
     }
+
+    public function cekAnggotaPin()
+    {
+        $URUT_ANG = $this->input->post('KODE', true);
+        $query = $this->db->query("SELECT
+            *
+        FROM
+            anggota
+            INNER JOIN
+            pembayaran
+            ON 
+                anggota.URUT_ANG = pembayaran.KODE_ANG
+        WHERE
+            anggota.URUT_ANG = $URUT_ANG");
+        return $query->num_rows();
+    }
 }

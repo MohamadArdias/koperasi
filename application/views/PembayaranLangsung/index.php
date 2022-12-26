@@ -7,11 +7,21 @@ $this->load->view('templates/sidebar');
     <div class="card col-lg-8">
         <div class="col-12">
             <div class="card-body">
-                <?php if ($this->session->flashdata('bayar')) : ?>
+                <?php if ($this->session->flashdata('bayarB')) : ?>
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                Pembayaran <strong><?= $this->session->flashdata('bayar'); ?></strong>
+                                Pembayaran <strong><?= $this->session->flashdata('bayarB'); ?></strong>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($this->session->flashdata('bayarG')) : ?>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Kode anggota <strong><?= $this->session->flashdata('bayarG'); ?></strong>
                             </div>
                         </div>
                     </div>
