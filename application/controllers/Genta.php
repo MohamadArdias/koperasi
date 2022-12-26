@@ -453,29 +453,52 @@ class Genta extends CI_Controller
                 $pokok = 0;
             }
 
-            $pinsimp = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
-                'KODE_ANG' => $key['KODE_ANG'],
-                'TOTWJB' => $totwjb,
-                'TOTPOK' => 50000,
-            );
+            if ($key['KODE_INS'] != 95) {
+                $pinsimp = array(
+                    'TAHUN' => date('Y', strtotime('+1 month')),
+                    'BULAN' => date('m', strtotime('+1 month')),
+                    'KODE_ANG' => $key['KODE_ANG'],
+                    'TOTWJB' => $totwjb,
+                    'TOTPOK' => 50000,
+                );
+                
+                // pl
+                $pl = array(
+                    'TAHUN' => date('Y', strtotime('+1 month')),
+                    'BULAN' => date('m', strtotime('+1 month')),
+                    'KODE_ANG' => $key['KODE_ANG'],
+                    'WAJIB' => 100000,
+                    'TPOKOK' => 50000,
+                    'TWAJIB' => $key['TWAJIB'] + 100000,
+                    'POKOK' => $pokok,
+                );
+            } else {
+                $pinsimp = array(
+                    'TAHUN' => date('Y', strtotime('+1 month')),
+                    'BULAN' => date('m', strtotime('+1 month')),
+                    'KODE_ANG' => $key['KODE_ANG'],
+                    'TOTWJB' => $key['TWAJIB'],
+                    'TOTPOK' => $key['TOTPOK'],
+                );
+                
+                // pl
+                $pl = array(
+                    'TAHUN' => date('Y', strtotime('+1 month')),
+                    'BULAN' => date('m', strtotime('+1 month')),
+                    'KODE_ANG' => $key['KODE_ANG'],
+                    'WAJIB' => $key['WAJIB'],
+                    'TPOKOK' => $key['TPOKOK'],
+                    'TWAJIB' => $key['TWAJIB'],
+                    'POKOK' => $key['POKOK'],
+                );
+            }
+
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
             $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
             $this->db->where('BULAN', date('m', strtotime('+1 month')));
             $this->db->delete('pinsimp');
             $this->db->insert('pinsimp', $pinsimp);
 
-            // pl
-            $pl = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
-                'KODE_ANG' => $key['KODE_ANG'],
-                'WAJIB' => 100000,
-                'TPOKOK' => 50000,
-                'TWAJIB' => $key['TWAJIB'] + 100000,
-                'POKOK' => $pokok,
-            );
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
             $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
             $this->db->where('BULAN', date('m', strtotime('+1 month')));
