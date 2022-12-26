@@ -7,6 +7,21 @@ class Anggota_model extends  CI_Model
     //     return $this->db->get('anggota')->result_array();
     // }
 
+    public function editStatus()
+    {
+        $this->data = [
+            "KODE_INS" => $this->input->post('STATUS', true),
+        ];
+
+        $this->db->where('URUT_ANG', $this->input->post('URUT_ANG'));
+        $this->db->update('anggota', $this->data);
+    }
+
+    public function berhenti($URUT_ANG)
+    {
+        return $this->db->get('anggota');
+    }
+
     public function getAllAnggota($a)
     {
         return $this->db->query("SELECT anggota.NAMA_ANG AS aga FROM anggota WHERE URUT_ANG = '$a'")->row_array();

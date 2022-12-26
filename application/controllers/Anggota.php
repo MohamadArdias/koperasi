@@ -20,6 +20,23 @@ class Anggota extends CI_Controller
         $this->load->view('anggota/index', $this->data);
     }
 
+    public function berhenti($URUT_ANG)
+    {
+        $this->data['title'] = 'Detail Data Anggota';
+        $this->data['berhenti'] = $this->Anggota->getAnggotaById($URUT_ANG);
+
+        $this->form_validation->set_rules('STATUS', 'Status', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('anggota/berhenti', $this->data);
+        } else {
+            $this->Anggota->editStatus();
+            $this->session->set_flashdata('flash', 'diubah');
+            redirect('anggota');
+        }
+
+    }
+
     public function detail($URUT_ANG)
     {
         $this->data['title'] = 'Detail Data Anggota';
@@ -96,12 +113,7 @@ class Anggota extends CI_Controller
         } else {
             $this->Anggota->editDataAnggota();
             $this->session->set_flashdata('flash', 'diubah');
-            redirect('Anggota');
+            redirect('anggota');
         }
-    }
-
-    public function info()
-    {
-        phpinfo();
     }
 }
