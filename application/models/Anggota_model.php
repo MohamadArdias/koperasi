@@ -11,6 +11,7 @@ class Anggota_model extends  CI_Model
     {
         $this->data = [
             "KODE_INS" => $this->input->post('STATUS', true),
+            "TGLK_ANG" => $this->input->post('TGLK_ANG', true),
         ];
 
         $this->db->where('URUT_ANG', $this->input->post('URUT_ANG'));
@@ -156,6 +157,7 @@ class Anggota_model extends  CI_Model
             "KODE_INS" => $this->input->post('KODE_INS', true),            
             "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
             "ALM_ANG" => $this->input->post('ALM_ANG', true),
+			"TELP_ANG" => $this->input->post('TELP_ANG', true),
             "TGLM_ANG" => $this->input->post('TGLM_ANG', true),
             "GOL" => 'KPRI',
         ];
@@ -182,9 +184,7 @@ class Anggota_model extends  CI_Model
             "KODE_INS" => $this->input->post('KODE_INS', true),
             "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
             "ALM_ANG" => $this->input->post('ALM_ANG', true),
-            "TGLM_ANG" => $this->input->post('TGLM_ANG', true),
-            "TGLK_ANG" => $this->input->post('TGLK_ANG', true),
-            "GOL" => $this->input->post('GOL', true),
+            "TELP_ANG" => $this->input->post('TELP_ANG', true),
         ];
 
         $this->db->where('URUT_ANG', $this->input->post('URUT_ANG'));

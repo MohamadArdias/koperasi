@@ -78,6 +78,7 @@ $this->load->view('templates/sidebar');
                     </div>
                     <small class="form-text text-danger"><?= form_error('STATUS'); ?></small>
                 </div>
+                <input type="hidden" name="TGLK_ANG" class="form-control" id="TGLK_ANG" value="<?= date("Y-m-d"); ?>" />
             </div>
 
             <div class="col-sm-4 text-end mt-3 ">

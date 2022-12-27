@@ -69,37 +69,14 @@ $this->load->view('templates/sidebar');
                 </div>
                 <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small>
             </div>
-
-            <div class="form-group row mb-2">
-                <label for="In" class="col-sm-2 text-end control-label col-form-label">Tanggal Masuk</label>
+			
+			<div class="form-group row mb-2">
+                <label for="telp" class="col-sm-2 text-end control-label col-form-label">No. Telpon</label>
                 <div class="col-sm-9">
-                    <div class="input-group ">
-                        <i class="bi-calendar3 input-group-text"></i>
-                        <input type="text" class="form-control" id="TGLM_ANG" name="TGLM_ANG" value="<?= $anggota['TGLM_ANG']; ?>">
+                    <div class="input-group">
+                        <i class="bi-telephone-fill input-group-text "></i>
+                        <input type="text" class="form-control" id="TELP_ANG" name="TELP_ANG" value="<?= $anggota['TELP_ANG']; ?>">
                     </div>
-                    <small class="form-text text-danger"><?= form_error('TGLM_ANG') ?></small>
-                </div>
-            </div>
-
-            <div class="form-group row mb-2">
-                <label for="Out" class="col-sm-2 text-end control-label col-form-label">Tanggal Keluar</label>
-                <div class="col-sm-9">
-                    <div class="input-group ">
-                        <i class="bi-calendar3 input-group-text"></i>
-                        <input type="text" class="form-control" id="TGLK_ANG" name="TGLK_ANG" value="<?= $anggota['TGLK_ANG']; ?>">
-                    </div>
-                    <small class="form-text text-danger"><?= form_error('TGLK_ANG') ?></small>
-                </div>
-            </div>
-
-            <div class="form-group row mb-2">
-                <label for="Golongan" class="col-sm-2 text-end control-label col-form-label">Golongan</label>
-                <div class="col-sm-9">
-                    <div class="input-group ">
-                        <i class="bi-people-fill input-group-text"></i>
-                        <input type="text" class="form-control" id="GOL" name="GOL" value="<?= $anggota['GOL']; ?>">
-                    </div>
-                    <small class="form-text text-danger"><?= form_error('GOL') ?></small>
                 </div>
             </div>
             

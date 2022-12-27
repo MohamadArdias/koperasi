@@ -54,7 +54,7 @@ $this->load->view('templates/sidebar');
                     <div class="input-group input-group-sm">
                         <i class="bi-briefcase-fill input-group-text"></i>
                         <select id="KODE_INS" name="KODE_INS" class="form-select" aria-label="Default select example">
-                            <option selected="">--Pilih Instansi--</option>
+                            
                             <?php foreach ($instansi as $key) : ?>
                                 <option value="<?= $key['KODE_INS']; ?>"><?= $key['KODE_INS']; ?>/<?= $key['NAMA_INS']; ?></option>
                             <?php endforeach ?>
@@ -86,6 +86,17 @@ $this->load->view('templates/sidebar');
                     <!-- <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small> -->
                 </div>
             </div>
+			
+			<div class="form-group row mb-2">
+                <label for="telp" class="col-sm-2 text-end control-label col-form-label">No. Telpon</label>
+                <div class="col-sm-9">
+                    <div class="input-group input-group-sm">
+                        <i class="bi-geo-alt-fill input-group-text"></i>
+                        <input type="text" class="form-control" id="TELP_ANG" placeholder="-" name="TELP_ANG">
+                    </div>
+                    <!-- <small class="form-text text-danger"><?= form_error('TELP_ANG') ?></small> -->
+                </div>
+            </div>
 
             <div class="form-group row mb-2">
                 <label for="In" class="col-sm-2 text-end control-label col-form-label">Tanggal Masuk</label>
@@ -94,7 +105,7 @@ $this->load->view('templates/sidebar');
                         <i class="bi-calendar3 input-group-text"></i>
                         <input type="text" class="form-control" id="TGLM_ANG" placeholder="-" name="TGLM_ANG">
                     </div>
-                    <!-- <small class="form-text text-danger"><?= form_error('TGLM_ANG') ?></small> -->
+                    <small class="form-text text-danger"><?= form_error('TGLM_ANG') ?></small>
                 </div>
                 <div class="col-sm-3 text-end mt-3 ">
                     <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
