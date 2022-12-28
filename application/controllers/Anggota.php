@@ -20,6 +20,13 @@ class Anggota extends CI_Controller
         $this->load->view('anggota/index', $this->data);
     }
 
+    public function keluar()
+    {
+        $this->data['title'] = 'Tabel Anggota Keluar';
+
+        $this->load->view('anggota/keluar', $this->data);
+    }
+
     public function berhenti($URUT_ANG)
     {
         $this->data['title'] = 'Detail Data Anggota';

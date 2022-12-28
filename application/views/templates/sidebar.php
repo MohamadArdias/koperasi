@@ -10,19 +10,17 @@
               </a>
           </li>
           <li class="nav-item">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/anggota">
+                  <i class="bi bi-bank2"></i>
+                  <span>Anggota</span>
+              </a>
+          </li>
+          <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinjaman">
                   <i class="bi bi-bank"></i>
                   <span>Pinjaman</span>
               </a>
           </li>
-
-          <!-- <li class="nav-item">
-              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/transaksi">
-                  <i class="bi bi-bank2"></i>
-                  <span>Transaksi</span>
-              </a>
-          </li> -->
-
           <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-navsp" aria-controls="forms-nav">
                   <i class="bi bi-gear-wide-connected"></i><span>Simpan Pinjam</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -152,14 +150,13 @@
               </a>
               <ul id="forms-nav-gen" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Pengurus">
-                          <i class="bi bi-circle-fill"></i><span>Pengurus</span>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/">
+                          <i class="bi bi-circle-fill"></i><span>User</span>
                       </a>
                   </li>
                   <li>
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/anggota">
-                          <i class="bi bi-circle-fill"></i>
-                          <span>Anggota</span>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Pengurus">
+                          <i class="bi bi-circle-fill"></i><span>Pengurus</span>
                       </a>
                   </li>
                   <li>
@@ -168,8 +165,8 @@
                       </a>
                   </li>
                   <li>
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/">
-                          <i class="bi bi-circle-fill"></i><span>User</span>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/anggota/keluar">
+                          <i class="bi bi-circle-fill"></i><span>Anggota Berhenti</span>
                       </a>
                   </li>
               </ul>
