@@ -21,6 +21,7 @@ class Import_model extends CI_Model
         // $this->db->join('anggota', 'anggota.REKENING = temp.NO_REKENING');;
         // $this->db->like('temp.DATE', date('Y-m'));
         // return $this->db->get()->result_array();
+        $date = date("Y-m");
 
         $query = $this->db->query("SELECT
             temp.TANGGAL, 
@@ -33,7 +34,7 @@ class Import_model extends CI_Model
             ON 
                 anggota.REKENING = temp.NO_REKENING
         WHERE
-            temp.DATE LIKE '%2022-12%'");
+            temp.DATE LIKE '%$date%'");
         
         return $query->result_array();
     }

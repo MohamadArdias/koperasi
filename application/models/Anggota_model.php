@@ -41,16 +41,25 @@ class Anggota_model extends  CI_Model
         $this->db->select('*');
         $this->db->from('anggota');
         $this->db->where('KODE_INS !=', '99');
+        $this->db->where('KODE_INS !=', '98');
+        $this->db->where('KODE_INS !=', '97');
+        $this->db->where('KODE_INS !=', '96');
         return  $this->db->get()->num_rows();
     }
 
     public function getAllAnggotaTidakAktif()
     {
-        // return $this->db->get('instan')->result_array();
-        $this->db->select('*');
-        $this->db->from('anggota');
-        $this->db->where('KODE_INS', '99');
-        return  $this->db->get()->num_rows();
+        $query = $this->db->query("SELECT
+            *
+        FROM
+            anggota
+        WHERE
+            anggota.KODE_INS = 99 OR
+            anggota.KODE_INS = 98 OR
+            anggota.KODE_INS = 97 OR
+            anggota.KODE_INS = 96");
+        
+        return  $query->num_rows();
     }
     // public function cariDataAnggota()
     // {
