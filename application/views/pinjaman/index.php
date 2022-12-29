@@ -139,7 +139,7 @@ $this->load->view('templates/sidebar');
             <?php
 
             $que = $this->db->query("SELECT MAX(generate_date) AS TGL FROM `generate_log`  WHERE tahun = date('Y') AND bulan = date('m')")->row();
-            echo $que->TGL;
+
             ?>
 
 
