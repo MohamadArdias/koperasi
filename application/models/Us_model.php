@@ -27,8 +27,7 @@ class Us_model extends  CI_Model
             "jangka" => $this->input->post('JWKT_ANG', true),
             "DATE" => date('Y-m-d'),
             "TIME" => date("H:i:s"),
-            "KET" => "PEMBERIAN PINJAMAN PADA $kode/$nama",
-            "STATUS_US" => "WAIT",
+            "KET" => "PEMBERIAN PINJAMAN PADA $kode/$nama"
         ];
 
         $this->db->insert('us', $this->data);

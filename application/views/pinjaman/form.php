@@ -40,23 +40,18 @@
     if ($kode == 1) {
         $kd = 'U';
         $bg = 1.5;
-        $max = 48;
     } elseif ($kode == 2) {
         $kd = 'S';
         $bg = 2;
-        $max = 10;
     } elseif ($kode == 3) {
         $kd = 'O';
         $bg = 0;
-        $max = 1;
     } elseif ($kode == 4) {
         $kd = 'N';
         $bg = 2;
-        $max = 10;
     } else {
         $kd = 'Z';
         $bg = 3;
-        $max = 2;
     }
 
     $hari = date("d");
@@ -188,7 +183,7 @@
                                         <label for="namains" class="col-sm-4 text-end control-label col-form-label">Jangka Waktu</label>
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-sm">
-                                                <input type="number" name="JWKT_ANG" class="form-control" id="JWKT_ANG" min="1" max="<?= $max; ?>">
+                                                <input type="number" name="JWKT_ANG" class="form-control" id="JWKT_ANG" min="1">
                                             </div>
                                             <small class="form-text text-danger"><?= form_error('JWKT_ANG'); ?></small>
                                         </div>
