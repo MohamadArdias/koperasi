@@ -11,6 +11,11 @@ class Anggota extends CI_Controller
         $this->load->library('form_validation');
     }
 
+    public function contoh()
+    {
+        $this->load->view('anggota/contoh');
+    }
+
     public function index()
     {
         $this->data['title'] = 'Tabel Anggota';

@@ -97,7 +97,7 @@
 
 
     ?>
-    
+
     <?php if ($this->session->flashdata('flashP')) : ?>
         <div class="row mt-3">
             <div class="col-md-6">
@@ -111,7 +111,7 @@
         <div class="col-lg-12">
             <div class="row">
                 <!-- Sales Card -->
-                <div class="col-xxl-4 col-md-7">
+                <div class="col-xxl-4 col-md-6">
                     <div class="card info-card sales-card">
                         <div class="card-body">
                             <form action="" method="POST">
@@ -123,7 +123,7 @@
                                         <input type="hidden" name="KODE" class="form-control" id="KODE" value="<?= $kd ?>" />
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-sm">
-                                                <input type="text" name="NOFAK" class="form-control" id="NOFAK" value="<?= $faktur ?>" />
+                                                <input type="text" name="NOFAK" class="form-control" id="NOFAK" value="<?= $faktur ?>" readonly />
                                                 <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
                                             </div>
                                             <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
@@ -215,41 +215,27 @@
                 <?php date('Y-m-d', strtotime('+7 month', strtotime($a))); ?>
                 <!-- Revenue Card -->
 
-                <div class="col-xxl-4 col-md-5">
+                <div class="col-xxl-4 col-md-6">
                     <div class="card info-card revenue-card">
                         <div class="card-body">
-                            <h2>Jenis Pinjaman</h2>
-                            <table class="table">
+                            <h2>Anggota</h2>
+                            <table class="table table-borderless datatable">
                                 <tr>
                                     <th>Kode</th>
-                                    <th>Jenis Pinjaman</th>
-                                    <th>Bunga</th>
+                                    <th>Anggota</th>
                                 </tr>
-                                <tr>
-                                    <td>S</td>
-                                    <td>Uang Untuk Barang</td>
-                                    <td>2%</td>
-                                </tr>
-                                <tr>
-                                    <td>Z</td>
-                                    <td>Pinjaman Khusus</td>
-                                    <td>3%</td>
-                                </tr>
-                                <tr>
-                                    <td>O</td>
-                                    <td>Konsumsi</td>
-                                    <td>0%</td>
-                                </tr>
-                                <tr>
-                                    <td>N</td>
-                                    <td>Non Konsumsi</td>
-                                    <td>2%</td>
-                                </tr>
-                                <tr>
-                                    <td>U</td>
-                                    <td>Uang</td>
-                                    <td>1.5%</td>
-                                </tr>
+                                <?php
+                                $query = $this->db->query("SELECT * FROM anggota WHERE anggota.KODE_INS != 99 AND anggota.KODE_INS != 98 AND anggota.KODE_INS != 97 AND	anggota.KODE_INS != 96")->result_array();
+
+                                foreach ($query as $key) {
+                                ?>
+                                    <tr>
+                                        <td><?= $key['URUT_ANG']; ?></td>
+                                        <td><?= $key['NAMA_ANG']; ?></td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
                             </table>
                         </div>
                     </div>
