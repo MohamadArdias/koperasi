@@ -11,6 +11,7 @@ class Anggota_model extends  CI_Model
     {
         $this->data = [
             "KODE_INS" => $this->input->post('STATUS', true),
+            "TGLK_ANG" => $this->input->post('TGLK_ANG', true),
         ];
 
         $this->db->where('URUT_ANG', $this->input->post('URUT_ANG'));
@@ -40,16 +41,25 @@ class Anggota_model extends  CI_Model
         $this->db->select('*');
         $this->db->from('anggota');
         $this->db->where('KODE_INS !=', '99');
+        $this->db->where('KODE_INS !=', '98');
+        $this->db->where('KODE_INS !=', '97');
+        $this->db->where('KODE_INS !=', '96');
         return  $this->db->get()->num_rows();
     }
 
     public function getAllAnggotaTidakAktif()
     {
-        // return $this->db->get('instan')->result_array();
-        $this->db->select('*');
-        $this->db->from('anggota');
-        $this->db->where('KODE_INS', '99');
-        return  $this->db->get()->num_rows();
+        $query = $this->db->query("SELECT
+            *
+        FROM
+            anggota
+        WHERE
+            anggota.KODE_INS = 99 OR
+            anggota.KODE_INS = 98 OR
+            anggota.KODE_INS = 97 OR
+            anggota.KODE_INS = 96");
+        
+        return  $query->num_rows();
     }
     // public function cariDataAnggota()
     // {
@@ -156,6 +166,7 @@ class Anggota_model extends  CI_Model
             "KODE_INS" => $this->input->post('KODE_INS', true),            
             "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
             "ALM_ANG" => $this->input->post('ALM_ANG', true),
+			"TELP_ANG" => $this->input->post('TELP_ANG', true),
             "TGLM_ANG" => $this->input->post('TGLM_ANG', true),
             "GOL" => 'KPRI',
         ];
@@ -182,9 +193,7 @@ class Anggota_model extends  CI_Model
             "KODE_INS" => $this->input->post('KODE_INS', true),
             "TLHR_ANG" => $this->input->post('TLHR_ANG', true),
             "ALM_ANG" => $this->input->post('ALM_ANG', true),
-            "TGLM_ANG" => $this->input->post('TGLM_ANG', true),
-            "TGLK_ANG" => $this->input->post('TGLK_ANG', true),
-            "GOL" => $this->input->post('GOL', true),
+            "TELP_ANG" => $this->input->post('TELP_ANG', true),
         ];
 
         $this->db->where('URUT_ANG', $this->input->post('URUT_ANG'));

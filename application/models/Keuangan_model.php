@@ -52,6 +52,9 @@ class Keuangan_model extends  CI_Model
         $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         $this->db->where('instan.KODE_INS !=', 99);
+        $this->db->where('instan.KODE_INS !=', 98);
+        $this->db->where('instan.KODE_INS !=', 97);
+        $this->db->where('instan.KODE_INS !=', 96);
         $this->db->where('TAHUN', date('Y'));
         $this->db->where('BULAN', date('m'));
         $this->db->order_by('anggota.KODE_INS', 'ASC');

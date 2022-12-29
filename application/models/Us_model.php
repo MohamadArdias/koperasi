@@ -80,8 +80,6 @@ class Us_model extends  CI_Model
             us
             ON 
                 us.KODE_ANG = anggota.URUT_ANG
-        WHERE
-            us.STATUS_US != 'OFF'
         ORDER BY
             us.TANGGAL DESC");
         return $query->result_array();

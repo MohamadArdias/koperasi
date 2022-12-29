@@ -137,13 +137,4 @@ class Pinjaman extends CI_Controller
             echo json_encode($data);
         }
     }
-
-    public function off($NOFAK)
-    {
-        $this->db->query("UPDATE us SET STATUS_US = 'OFF' WHERE NOFAK = '$NOFAK'");
-        $this->db->query("UPDATE pinuang SET STATUS_PIN = 'OFF' WHERE NOFAK = '$NOFAK'");
-        // $this->db->delete('us', ['KODE_ANG' => $KODE_ANG]);
-        // $this->session->set_flashdata('flash', 'dihapus');
-        redirect('pinjaman');
-    }
 }

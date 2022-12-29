@@ -154,7 +154,6 @@ $this->load->view('templates/sidebar');
                             <th class="text-center">Bunga</th>
                             <th class="text-center">Jangka</th>
                             <th class="text-center">Teler</th>
-                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -168,17 +167,6 @@ $this->load->view('templates/sidebar');
                                 <td align="right" ><?= $key['PRO']; ?></td>
                                 <td align="right" ><?= $key['JANGKA']; ?></td>
                                 <td ><?= $key['IDNAMA']; ?></td>
-                                <td>
-                                    <?php
-                                    $log = $this->db->query("SELECT MAX(TGL_TGHN) AS tanggal FROM pembayaran")->row();
-                                    if ($key['TANGGAL'] > $log->tanggal AND $key['STATUS_US'] == 'WAIT') {
-                                    ?>
-                                        <!-- <a href="<?= base_url(); ?>index.php/Pinjaman/edit/<?= $key['KODE_ANG']; ?>" class="btn btn-warning">Edit</a> -->
-                                        <a href="<?= base_url(); ?>index.php/Pinjaman/off/<?= $key['NOFAK']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">Hapus</a>
-                                    <?php
-                                    }
-                                    ?>
-                                </td>
                             </tr>
                         <?php
                         } ?>

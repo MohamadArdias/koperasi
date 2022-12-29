@@ -14,6 +14,9 @@ class Dashboard_model extends CI_Model
         $this->db->where('pl.TAHUN', $thn);
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('anggota.KODE_INS !=', '99');
+        $this->db->where('anggota.KODE_INS !=', '98');
+        $this->db->where('anggota.KODE_INS !=', '97');
+        $this->db->where('anggota.KODE_INS !=', '96');
         return $this->db->get()->row();
 
     }
@@ -29,6 +32,10 @@ class Dashboard_model extends CI_Model
         $this->db->where('pl.BULAN', $bln);
         $this->db->where('pl.TUNGGAKAN !=', 'NULL');
         $this->db->where('anggota.KODE_INS !=', '99');
+        $this->db->where('anggota.KODE_INS !=', '98');
+        $this->db->where('anggota.KODE_INS !=', '97');
+        $this->db->where('anggota.KODE_INS !=', '96');
+        $this->db->order_by('anggota.KODE_INS', 'ASC');
         return $this->db->get()->result_array();
     }
 }

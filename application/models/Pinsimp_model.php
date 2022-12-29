@@ -51,9 +51,12 @@ class Pinsimp_model extends  CI_Model
     WHERE
         pl.TAHUN = (SELECT MAX(TAHUN) FROM pl) AND
         pl.BULAN = (SELECT MAX(BULAN) FROM pl) AND
-        instan.KODE_INS != 99
+        instan.KODE_INS != 99 AND
+        instan.KODE_INS != 98 AND
+        instan.KODE_INS != 97 AND
+        instan.KODE_INS != 96
     ORDER BY
-	    instan.KODE_INS ASC");
+        instan.KODE_INS ASC");
         return $que->result_array();
     }
 
@@ -64,6 +67,9 @@ class Pinsimp_model extends  CI_Model
         $this->db->where('TAHUN', 2022);
         $this->db->where('BULAN', 01);
         $this->db->where('KODE_INS !=', 99);
+        $this->db->where('KODE_INS !=', 98);
+        $this->db->where('KODE_INS !=', 97);
+        $this->db->where('KODE_INS !=', 96);
         return $this->db->get()->result();
     }
 
@@ -79,6 +85,9 @@ class Pinsimp_model extends  CI_Model
         $this->db->where('pl.TAHUN', date('Y'));
         $this->db->where('pl.BULAN', date('m'));
         $this->db->where('instan.KODE_INS !=', 99);
+        $this->db->where('instan.KODE_INS !=', 98);
+        $this->db->where('instan.KODE_INS !=', 97);
+        $this->db->where('instan.KODE_INS !=', 96);
         $this->db->order_by('instan.KODE_INS', 'ASC');
         // $this->db->where('instan.KODE_INS', "06");
         return $this->db->get()->result_array();

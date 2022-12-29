@@ -113,19 +113,21 @@ $this->load->view('templates/sidebar');
               <table class="table table-borderless datatable" id="customers">
                 <thead>
                   <tr>
-                    <th scope="col">Kode Anggota</th>
-                    <th scope="col">Nama</th>
+                    <th scope="col">No</th>
+                    <th scope="col">Anggota</th>
                     <th scope="col">Instansi</th>
                     <th scope="col">Total Tunggakan</th>
                     <th scope="col">Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($tung as $ang) : ?>
+                  <?php 
+                  $i = 1;
+                  foreach ($tung as $ang) : ?>
                     <tr>
-                      <td scope="row"><?= $ang['KODE_ANG']; ?></td>
-                      <td><?= $ang['NAMA_ANG']; ?></td>
-                      <td><?= $ang['NAMA_INS']; ?></td>
+                      <td><?= $i++ ?></td>
+                      <td><?= $ang['URUT_ANG'].'/'.$ang['NAMA_ANG']; ?></td>
+                      <td><?= $ang['KODE_INS'].'/'.$ang['NAMA_INS']; ?></td>
                       <td style="text-align: right"><?= number_format($ang['TUNGGAKAN'], 0, ',', '.') ?></td>
                       <td><span class="badge bg-danger">Belum Lunas</span></td>
                     </tr>
