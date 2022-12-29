@@ -35,6 +35,7 @@ class Dashboard_model extends CI_Model
         $this->db->where('anggota.KODE_INS !=', '98');
         $this->db->where('anggota.KODE_INS !=', '97');
         $this->db->where('anggota.KODE_INS !=', '96');
+        $this->db->order_by('anggota.KODE_INS', 'ASC');
         return $this->db->get()->result_array();
     }
 }
