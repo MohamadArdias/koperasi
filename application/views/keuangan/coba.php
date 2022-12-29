@@ -14,9 +14,9 @@ $pdf = new \TCPDF();
 // $pdf->AddPage('L', 'mm', 'A4');
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
-$pageLayout = array(150, 170);
+$pageLayout = array(95, 140);
 $pdf->AddPage('P', $pageLayout);
-$pdf->SetFont('', '', 9);
+$pdf->SetFont('', '', 8);
 $data = 'halo';
 // $pdf->AddPage('P', '', 'A3');
 $data = ' ';
@@ -31,14 +31,14 @@ $tung = $key['TUNGGAKAN'];
 
 $data .= '
 <pre>
-                       KPRI BANGKIT BERSAMA <br>
-            Jl.Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
-                             --o0o-- <br>
-====================================================================<br>
+            KPRI BANGKIT BERSAMA <br>
+Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
+                   --o0o-- <br>
+============================================<br>
 TAGIHAN UNTUK BULAN ' . $Month . '<br>
 No. Anggota : ' . $key['URUT_ANG'] . '(' . $key['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $key['KODE_INS'] . '(' . $key['NAMA_INS'] . ') <br>
-====================================================================<br>
+============================================<br>
 SIMPANAN WAJIB          : ' . number_format($key['WAJIB'], 0, ',', '.') . ' <br>';
 
 if ($key['POKOK'] != 0) {
@@ -114,16 +114,16 @@ $ttl = $uang + $kons + $non + $khus + $tung + $key['WAJIB'] + $key['POKOK'];
 
 
 $data .= '
-____________________________________________________________________<br>
+____________________________________________<br>
 JUMLAH                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
-====================================================================<br>
+============================================<br>
 ' .$ttl . ' rupiah<br><br><br>';
 
 $data .= '
 Banyuwangi, ' . $date . '<br>
 Pengurus KPRI Bangkit Bersama, <br>
 KETUA 1 <br><br><br>
-' . $Pengurus['BENDAH1'] . '
+' . $Pengurus['KETUA'] . '
 
 </pre>';
 if ($i <= $jumlah) {

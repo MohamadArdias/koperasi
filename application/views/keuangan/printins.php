@@ -16,17 +16,17 @@ $full = strftime("%A, %d %B %Y");
 $pdf = new \TCPDF();
 $pdf->setPrintHeader(false);
 // $pdf->setPrintFooter(false);
-$pdf->SetTopMargin(5);
+$pdf->SetTopMargin(1);
 $pdf->SetFooterMargin(5);
 $pdf->SetLeftMargin(1);
 // $pdf->SetRightMargin(3);
 // $pdf->AddPage('L', 'mm', 'A4');
 $pageLayout = array(215, 278);
 $pdf->AddPage('P', $pageLayout);
-// $pdf->SetFont('', '', 14);
+//$pdf->SetFont('', '', 20);
 // $pdf->Cell(210, 1, "$full", 0, 1, 'R');
 // $pdf->Cell(210, 5, "KPRI BANGKIT BERSAMA", 0, 1, 'C');
-// $pdf->Cell(210, 5, "Jl.Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia", 0, 1, 'C');
+// $pdf->Cell(210, 5, "Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia", 0, 1, 'C');
 
 $data = '<!DOCTYPE html>
         <html lang="en">
@@ -50,7 +50,7 @@ $data = '<!DOCTYPE html>
                             <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
                             </tr>
                             <tr>
-                            <th style="font-size: 12px;" width="592" align="center">Jl.Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
+                            <th style="font-size: 12px;" width="592" align="center">Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
                             </tr>
                         </table>    ';
                         
@@ -61,8 +61,8 @@ $data .=
     '
                             <table cellpadding="5">
                                 <tr>
-                                    <td><b>DAFTAR TAGIHAN BULAN ' . $Month . '</b></td>
-                                    <td align="right"><b>UNTUK ' . $instansi['KODE_INS'] . '/' . $instansi['NAMA_INS'] . '</b></td>
+                                    <td style="font-size: 10px;">DAFTAR TAGIHAN BULAN ' . $Month . '</td>
+                                    <td style="font-size: 10px;" align="right">UNTUK ' . $instansi['KODE_INS'] . '/' . $instansi['NAMA_INS'] . '</td>
                                 </tr>
                             </table>
                             <table cellspacing="0" cellpadding="3">
@@ -172,7 +172,7 @@ foreach ($keuangan as $lap) {
                                             <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
                                             </tr>
                                             <tr>
-                                            <th style="font-size: 12px;" width="592" align="center">Jl.Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
+                                            <th style="font-size: 12px;" width="592" align="center">Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
                                             </tr>
                                         </table>
                                         <table cellpadding="5">
