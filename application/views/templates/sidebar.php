@@ -11,8 +11,14 @@
           </li>
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/anggota">
-                  <i class="bi bi-bank2"></i>
+                  <i class="bi bi-people-fill"></i>
                   <span>Anggota</span>
+              </a>
+          </li>
+		  <li class="nav-item">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Historipembayaran">
+                  <i class="bi bi-book"></i>
+                  <span>Histori Pembayaran</span>
               </a>
           </li>
           <li class="nav-item">
@@ -62,7 +68,7 @@
 
           <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#forms-nav-gen2" aria-controls="forms-nav">
-                  <i class="bi bi-cash"></i><span>Generate</span><i class="bi bi-chevron-down ms-auto"></i>
+                  <i class="bi bi-cash"></i><span>Penyesuaian</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="forms-nav-gen2" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                   <li>
