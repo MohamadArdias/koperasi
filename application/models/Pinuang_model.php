@@ -65,10 +65,10 @@ class Pinuang_model extends  CI_Model
 
     public function getUang()
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
+        $bln = date('m', strtotime('-1 month'));
+        $thn = date('Y', strtotime('-1 month'));
+        // $bln = date('m');
+        // $thn = date('Y');
 
         $this->db->select('*');
         $this->db->from('pl');
@@ -93,10 +93,10 @@ class Pinuang_model extends  CI_Model
 
     public function getNon()
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
+        $bln = date('m', strtotime('-1 month'));
+        $thn = date('Y', strtotime('-1 month'));
+        // $bln = date('m');
+        // $thn = date('Y');
 
         $this->db->select('*');
         $this->db->from('pl');
@@ -122,10 +122,10 @@ class Pinuang_model extends  CI_Model
 
     public function getKons()
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
+        $bln = date('m', strtotime('-1 month'));
+        $thn = date('Y', strtotime('-1 month'));
+        // $bln = date('m');
+        // $thn = date('Y');
 
         $this->db->select('*');
         $this->db->from('pl');
@@ -150,10 +150,10 @@ class Pinuang_model extends  CI_Model
 
     public function getKhusus()
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');;
+        $bln = date('m', strtotime('-1 month'));
+        $thn = date('Y', strtotime('-1 month'));
+        // $bln = date('m');
+        // $thn = date('Y');;
 
         $this->db->select('*');
         $this->db->from('pl');
@@ -180,10 +180,10 @@ class Pinuang_model extends  CI_Model
 
     public function getUub()
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');;
+        $bln = date('m', strtotime('-1 month'));
+        $thn = date('Y', strtotime('-1 month'));
+        // $bln = date('m');
+        // $thn = date('Y');;
 
         $this->db->select('*');
         $this->db->from('pl');
@@ -215,8 +215,10 @@ class Pinuang_model extends  CI_Model
         $this->db->join('pl', 'pl.KODE_ANG = pinuang.KODE_ANG');
         $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-        $this->db->where('pinuang.TAHUN', date('Y'));
-        $this->db->where('pinuang.BULAN', date('m'));
+        $this->db->where('pinuang.TAHUN', date('Y', strtotime('-1 month')));
+        $this->db->where('pinuang.BULAN', date('m', strtotime('-1 month')));
+        // $this->db->where('pinuang.TAHUN', date('Y'));
+        // $this->db->where('pinuang.BULAN', date('m'));
         $this->db->where('pl.TAHUN', date('Y'));
         $this->db->where('pl.BULAN', date('m'));
         // $this->db->where('instan.KODE_INS !=', 99);

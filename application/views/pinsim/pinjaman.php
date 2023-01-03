@@ -40,9 +40,9 @@ $this->load->view('templates/sidebar');
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">Faktur</th>
-                        <th class="text-center">Anggota</th>
+                        <th style="padding-left: 20px; padding-right: 20px;" class="text-center">Bulan</th>
+                        <th style="padding-left: 20px; padding-right: 20px;" class="text-center">Faktur</th>
+                        <th style="padding-left: 60px; padding-right: 60px;" class="text-center">Anggota</th>
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Jenis Pinjaman</th>
                         <th class="text-center">Jumlah Pinjaman</th>
@@ -52,7 +52,6 @@ $this->load->view('templates/sidebar');
                 </thead>
                 <tbody>
                     <?php
-                    $i = 1;
                     foreach ($pinjaman as $key) {
 
                         // jenis pinjaman
@@ -80,7 +79,7 @@ $this->load->view('templates/sidebar');
                         }
                     ?>
                         <tr>
-                            <td><?= $i++; ?></td>
+                            <td><?= $key['TAHUN'].'-'.$key['BULAN'] ?></td>
                             <td><?= $key['NOFAK']; ?></td>
                             <td><?= $key['URUT_ANG'].'/'.$key['NAMA_ANG']; ?></td>
                             <td><?= $key['KODE_INS'].'/'.$key['NAMA_INS']; ?></td>

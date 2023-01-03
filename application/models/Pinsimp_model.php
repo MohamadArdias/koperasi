@@ -4,10 +4,10 @@ class Pinsimp_model extends  CI_Model
 {
     public function getAllSimp()
     {
-    //     $bln = date('m', strtotime('-1 month'));
-    //     $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
+        $bln = date('m', strtotime('-1 month'));
+        $thn = date('Y', strtotime('-1 month'));
+        // $bln = date('m');
+        // $thn = date('Y');
 
         $que = $this->db->query("SELECT
         *

@@ -21,7 +21,8 @@ class Pembayaran_model extends  CI_Model
     {
         $this->db->select('*');
         $this->db->from('pembayaran');
-        $this->db->like('TGL_TGHN', date('Y-m', strtotime('-1 month')));
+        $this->db->like('TGL_TGHN', date('Y-m'));
+        // $this->db->like('TGL_TGHN', date('Y-m', strtotime('-1 month')));
         return $this->db->get()->result_array();
     }
 
