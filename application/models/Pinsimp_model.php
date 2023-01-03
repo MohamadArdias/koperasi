@@ -4,8 +4,8 @@ class Pinsimp_model extends  CI_Model
 {
     public function getAllSimp()
     {
-    //     $bln = date('m', strtotime('-1 month'));
-    //     $thn = date('Y', strtotime('-1 month'));
+        // $bln = date('m', strtotime('-1 month'));
+        // $thn = date('Y', strtotime('-1 month'));
         $bln = date('m');
         $thn = date('Y');
 
@@ -36,6 +36,9 @@ class Pinsimp_model extends  CI_Model
     
     public function simp()
     {
+        $bln = date('m');
+        $thn = date('Y');
+
         $que = $this->db->query("SELECT
         *
     FROM
@@ -49,8 +52,8 @@ class Pinsimp_model extends  CI_Model
         ON 
             anggota.KODE_INS = instan.KODE_INS
     WHERE
-        pl.TAHUN = (SELECT MAX(TAHUN) FROM pl) AND
-        pl.BULAN = (SELECT MAX(BULAN) FROM pl) AND
+        pl.TAHUN = $thn AND
+        pl.BULAN = $bln AND
         instan.KODE_INS != 99 AND
         instan.KODE_INS != 98 AND
         instan.KODE_INS != 97 AND

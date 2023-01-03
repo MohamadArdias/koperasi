@@ -153,7 +153,7 @@ class Pinuang_model extends  CI_Model
         // $bln = date('m', strtotime('-1 month'));
         // $thn = date('Y', strtotime('-1 month'));
         $bln = date('m');
-        $thn = date('Y');;
+        $thn = date('Y');
 
         $this->db->select('*');
         $this->db->from('pl');
@@ -183,7 +183,7 @@ class Pinuang_model extends  CI_Model
         // $bln = date('m', strtotime('-1 month'));
         // $thn = date('Y', strtotime('-1 month'));
         $bln = date('m');
-        $thn = date('Y');;
+        $thn = date('Y');
 
         $this->db->select('*');
         $this->db->from('pl');
@@ -227,6 +227,9 @@ class Pinuang_model extends  CI_Model
 
     public function pinjaman()
     {
+        $bln = date('m');
+        $thn = date('Y');
+
         $query = $this->db->query("SELECT
             *
         FROM
@@ -244,10 +247,10 @@ class Pinuang_model extends  CI_Model
             ON 
                 anggota.KODE_INS = instan.KODE_INS
         WHERE
-            pl.TAHUN = (SELECT MAX(TAHUN) FROM pl) AND
-            pl.BULAN = (SELECT MAX(BULAN) FROM pl) AND
-            pinuang.TAHUN = (SELECT MAX(TAHUN) FROM pinuang) AND
-            pinuang.BULAN = (SELECT MAX(BULAN) FROM pinuang) AND
+            pl.TAHUN = $thn AND
+            pl.BULAN = $bln AND
+            pinuang.TAHUN = $thn AND
+            pinuang.BULAN = $bln AND
             anggota.KODE_INS != 99 AND
             anggota.KODE_INS != 98 AND
             anggota.KODE_INS != 97 AND
