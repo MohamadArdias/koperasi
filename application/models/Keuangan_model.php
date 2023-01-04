@@ -2,6 +2,26 @@
 
 class Keuangan_model extends  CI_Model
 {
+    public function histo($URUT_ANG)
+    {
+        $query = $this->db->query("SELECT
+            *
+        FROM
+            anggota
+            INNER JOIN
+            instan
+            ON 
+                anggota.KODE_INS = instan.KODE_INS
+            INNER JOIN
+            pl
+            ON 
+                pl.KODE_ANG = anggota.URUT_ANG
+        WHERE
+            anggota.URUT_ANG = $URUT_ANG");
+        
+        return $query->result_array();
+    }
+
     public function jumlahAnggota($KODE_INS)
     {
         $query = $this->db->query("SELECT
@@ -26,6 +46,9 @@ class Keuangan_model extends  CI_Model
 
     public function printInsAng($KODE_INS)
     {
+        $thn = date("Y");
+        $bln = date("m");
+
         $query = $this->db->query("SELECT
         *
     FROM
@@ -39,8 +62,8 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
     WHERE
-        pl.TAHUN IN ((SELECT MAX(TAHUN) FROM pl)) AND
-        pl.BULAN IN ((SELECT MAX(BULAN) FROM pl)) AND
+        pl.TAHUN = $thn AND
+        pl.BULAN = $bln AND
         anggota.KODE_INS = '$KODE_INS'");
         return $query->result_array();
     }
@@ -73,6 +96,8 @@ class Keuangan_model extends  CI_Model
         // $this->db->where('pl.BULAN', date('m'));
         // return  $this->db->get()->result_array();
 
+        $thn = date("Y");
+        $bln = date("m");
         $query = $this->db->query("SELECT DISTINCT
         instan.KODE_INS, 
         instan.NAMA_INS, 
@@ -89,8 +114,8 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
-        pl.TAHUN IN (SELECT MAX(TAHUN) FROM pl) AND
-        pl.BULAN IN (SELECT MAX(BULAN) FROM pl)
+        pl.TAHUN = $thn AND
+        pl.BULAN = $bln
         ORDER BY
 	    instan.KODE_INS ASC");
         return $query->result_array();
@@ -145,6 +170,8 @@ class Keuangan_model extends  CI_Model
         // $this->db->where('TAHUN', date('Y'));
         // $this->db->where('BULAN', date('m'));
         // return  $this->db->get()->result_array();
+        $thn = date("Y");
+        $bln = date("m");
 
         $query = $this->db->query("SELECT
         *
@@ -159,15 +186,18 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
-        pl.TAHUN IN (SELECT MAX(TAHUN) FROM pl) AND
+        pl.TAHUN = $thn AND
         instan.KODE_INS = '$KODE_INS' AND
-        pl.BULAN IN (SELECT MAX(BULAN) FROM pl)");
+        pl.BULAN = $bln");
 
         return $query->result_array();
     }
 
     public function getAnggotaWhereKodeAng($KODE_ANG)
     {
+        $thn = date("Y");
+        $bln = date("m");
+
         $query = $this->db->query("SELECT
         anggota.NAMA_ANG, 
         instan.NAMA_INS, 
@@ -199,8 +229,8 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
-        pl.TAHUN IN ((SELECT MAX(TAHUN) FROM pl)) AND
-        pl.BULAN IN ((SELECT MAX(BULAN) FROM pl)) AND
+        pl.TAHUN = $thn AND
+        pl.BULAN = $bln AND
         anggota.URUT_ANG = '$KODE_ANG'");
         return $query->row_array();
 

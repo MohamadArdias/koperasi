@@ -22,6 +22,7 @@ $uang = $printang['POKU1'] + $printang['BNGU1'];
 $kons = $printang['POKU2'] + $printang['BNGU2'];
 $non = $printang['POKU3'] + $printang['BNGU3'];
 $khus = $printang['POKU7'] + $printang['BNGU7'];
+$uub = $printang['POKU4'] + $printang['BNGU4'];
 $tung = $printang['TUNGGAKAN'];
 
 $data = '
@@ -54,6 +55,11 @@ if ($printang['POKU2'] != 0) {
 if ($printang['POKU3'] != 0) {
     $data .= '
         PINJAMAN NON KONSUMSI   : ' . number_format($non, 0, ',', '.') . '     ke' . $printang['KEU3'] . '<br>';
+}
+
+if ($printang['POKU4'] != 0) {
+    $data .= '
+        UUB                     : ' . number_format($uub, 0, ',', '.') . '     ke' . $printang['KEU4'] . '<br>';
 }
 
 if ($printang['POKU7'] != 0) {

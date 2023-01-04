@@ -78,7 +78,7 @@ $this->load->view('templates/sidebar');
             <tr>
               <td class="text-center"><?= $ang['URUT_ANG']; ?></td>
               <td><?= $a; ?></td>
-              <td><?= $ang['NAMA_ANG']; ?></td>
+              <td><a href="<?= base_url(); ?>index.php/Anggota/histori/<?= $ang['URUT_ANG']; ?>" ><?= $ang['NAMA_ANG']; ?></a></td>
               <td><?= $ang['KODE_INS']; ?>/ <?= $ang['NAMA_INS']; ?></td>
               <td class="text-center">
                 <a href="<?= base_url(); ?>index.php/Anggota/detail/<?= $ang['URUT_ANG']; ?>" class="btn btn-info">Detail</a>
