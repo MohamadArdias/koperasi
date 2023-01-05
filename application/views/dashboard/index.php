@@ -109,6 +109,18 @@ $this->load->view('templates/sidebar');
 
             <div class="card-body">
               <h5 class="card-title">Tunggakan Anggota <span>| Keseluruhan</span></h5>
+              
+              <label for="Riwayat">Pilih:</label>
+                <select  name="Riwayat" id="Bulan">
+                  <optgroup label="Bulan">
+                    <option value="Januari">Januari</option>
+                    <option value="Februari">Februari</option>
+                  </optgroup>
+                  <optgroup label="Tahun">
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                  </optgroup>
+                </select>
 
               <table class="table table-borderless datatable" id="customers">
                 <thead>
@@ -141,8 +153,10 @@ $this->load->view('templates/sidebar');
         </div><!-- End Recent Sales -->
       </form>
 
+      <h5 class="card-title"> Grafik Total Peminjaman<span> | Per Bulan</span></h5>
+
       <select id="thn" onchange="a()" class="form-select col-md-2" aria-label="Default select example">
-        <option hidden> pilih tahun </option>
+        <option hidden> Pilih Tahun </option>
         <?php
         $lg = $this->db->query("SELECT DISTINCT YEAR(TANGGAL) AS TANG FROM us ORDER BY YEAR(TANGGAL) ASC")->result_array();
         foreach ($lg as $key) {
