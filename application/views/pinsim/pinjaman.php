@@ -37,6 +37,16 @@ $this->load->view('templates/sidebar');
 <div class="card">
     <div class="card-body">
         <div class="overflow-auto">
+            <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
+                <option hidden>Date</option>
+                <?php $query = $this->db->query("SELECT DISTINCT TAHUN, BULAN FROM pl")->result_array();
+                foreach ($query as $key) {
+                ?>
+                    <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
+                <?php
+                }
+                ?>
+            </select>
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
@@ -76,8 +86,8 @@ $this->load->view('templates/sidebar');
                             $jenis = 'UUB';
                             $sisa = $key['SIPOKU4']; //belum teridentifikasi
                             $ke = $key['KEU4'];
-                        }             
-                        
+                        }
+
                         if ($sisa == 0) {
                             $status = 'LUNAS';
                         } else {
@@ -85,10 +95,10 @@ $this->load->view('templates/sidebar');
                         }
                     ?>
                         <tr>
-                            <td><?= $key['TAHUN'].'-'.$key['BULAN'] ?></td>
+                            <td><?= $key['TAHUN'] . '-' . $key['BULAN'] ?></td>
                             <td><?= $key['NOFAK']; ?></td>
-                            <td><?= $key['URUT_ANG'].'/'.$key['NAMA_ANG']; ?></td>
-                            <td><?= $key['KODE_INS'].'/'.$key['NAMA_INS']; ?></td>
+                            <td><?= $key['URUT_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
+                            <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
                             <td><?= $jenis; ?></td>
                             <td class="text-right"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>
                             <td><?= $ke ?></td>
@@ -103,6 +113,13 @@ $this->load->view('templates/sidebar');
     </div>
 </div>
 
+<script>
+    function pins() {
+        var option = document.getElementById("pinsimp").value;
+        console.log(option);
+        window.location.assign("?TAHUN=" + option.substr(0, 4) + "&&BULAN=" + option.substr(-2));
+    }
+</script>
 
 <?php
 $this->load->view('templates/footer');

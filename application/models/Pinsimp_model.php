@@ -76,17 +76,21 @@ class Pinsimp_model extends  CI_Model
         return $this->db->get()->result();
     }
 
-    public function getTabungan()
+    public function getTabungan($THN, $BLN)
     {
         $this->db->select('*');
         $this->db->from('pinsimp');
         $this->db->join('pl', 'pl.KODE_ANG = pinsimp.KODE_ANG');
         $this->db->join('anggota', 'anggota.URUT_ANG = pinsimp.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-        $this->db->where('pinsimp.TAHUN', date('Y', strtotime('-1 month')));
-        $this->db->where('pinsimp.BULAN', date('m', strtotime('-1 month')));
-        $this->db->where('pl.TAHUN', date('Y'));
-        $this->db->where('pl.BULAN', date('m'));
+        // $this->db->where('pinsimp.TAHUN', date('Y', strtotime('-1 month')));
+        // $this->db->where('pinsimp.BULAN', date('m', strtotime('-1 month')));
+        // $this->db->where('pl.TAHUN', date('Y'));
+        // $this->db->where('pl.BULAN', date('m'));
+        $this->db->where('pinsimp.TAHUN', $THN);
+        $this->db->where('pinsimp.BULAN', $BLN);
+        $this->db->where('pl.TAHUN', $THN);
+        $this->db->where('pl.BULAN', $BLN);
         $this->db->where('instan.KODE_INS !=', 99);
         $this->db->where('instan.KODE_INS !=', 98);
         $this->db->where('instan.KODE_INS !=', 97);
