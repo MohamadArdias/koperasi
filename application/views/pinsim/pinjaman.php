@@ -46,6 +46,7 @@ $this->load->view('templates/sidebar');
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Jenis Pinjaman</th>
                         <th class="text-center">Jumlah Pinjaman</th>
+                        <th class="text-center">Ke</th>
                         <th class="text-center">Sisa Pinjaman</th>
                         <th class="text-center">Status</th>
                     </tr>
@@ -58,18 +59,23 @@ $this->load->view('templates/sidebar');
                         if (strpos($key['NOFAK'], 'U') !== false) {
                             $jenis = 'Uang';
                             $sisa = $key['SIPOKU1'];
+                            $ke = $key['KEU1'];
                         } elseif (strpos($key['NOFAK'], 'N') !== false) {
                             $jenis = 'Non Konsumsi';
                             $sisa = $key['SIPOKU3'];
+                            $ke = $key['KEU3'];
                         } elseif (strpos($key['NOFAK'], 'O') !== false) {
                             $jenis = 'Konsumsi';
                             $sisa = $key['SIPOKU2'];
+                            $ke = $key['KEU2'];
                         } elseif (strpos($key['NOFAK'], 'Z') !== false) {
                             $jenis = 'Pinjaman Khusus';
                             $sisa = $key['SIPOKU7'];
+                            $ke = $key['KEU7'];
                         } elseif (strpos($key['NOFAK'], 'S') !== false) {
-                            $jenis = 'SIM';
-                            $sisa = $key['SIPOKU1']; //belum teridentifikasi
+                            $jenis = 'UUB';
+                            $sisa = $key['SIPOKU4']; //belum teridentifikasi
+                            $ke = $key['KEU4'];
                         }             
                         
                         if ($sisa == 0) {
@@ -85,6 +91,7 @@ $this->load->view('templates/sidebar');
                             <td><?= $key['KODE_INS'].'/'.$key['NAMA_INS']; ?></td>
                             <td><?= $jenis; ?></td>
                             <td class="text-right"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>
+                            <td><?= $ke ?></td>
                             <td class="text-right"><?= number_format($sisa, 0, ',', '.'); ?></td>
                             <td><?= $status; ?></td>
                         </tr>

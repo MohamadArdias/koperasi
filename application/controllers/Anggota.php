@@ -14,7 +14,7 @@ class Anggota extends CI_Controller
         $this->load->library('form_validation');
     }
 
-        public function histori($URUT_ANG)
+    public function histori($URUT_ANG)
     {
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();

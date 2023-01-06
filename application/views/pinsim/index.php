@@ -39,7 +39,7 @@ $this->load->view('templates/sidebar');
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
-                        <th class="text-center">No</th>
+                        <th class="text-center">Tanggal</th>
                         <th class="text-center">Nama Anggota</th>
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Tabungan Awal Tahun</th>
@@ -48,11 +48,9 @@ $this->load->view('templates/sidebar');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                    $i = 1;
-                    foreach ($keuangan as $lap) : ?>
+                    <?php foreach ($keuangan as $lap) : ?>
                         <tr>
-                            <td><?= $i++ ?></td>
+                            <td><?= $lap['TAHUN'].'-'.$lap['BULAN'] ?></td>
                             <td><?= $lap['NAMA_ANG']; ?></td>
                             <td><?= $lap['NAMA_INS']; ?></td>
                             <td class="text-right"><?= number_format($lap['TOTWJB'], 0, ',', '.')  ?></td>
