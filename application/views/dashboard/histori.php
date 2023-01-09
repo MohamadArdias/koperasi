@@ -74,23 +74,23 @@ $this->load->view('templates/sidebar');
                       <td><?= $ang['NAMA_INS']; ?></td>
                       <td><?= $ang['TAHUN']; ?></td>
                       <td><?= $ang['BULAN']; ?></td>
-					  <td><?= $ang['WAJIB']; ?></td>
-                      <td><?= $uang ?></td>
+					  <td><?= number_format($ang['WAJIB'], 0, ',', '.') ?></td>
+                      <td><?= number_format($uang, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU1']; ?></td>
-                      <td><?= $non ?></td>
+                      <td><?= number_format($non, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU3']; ?></td>
-                      <td><?= $khus ?></td>
+                      <td><?= number_format($khus, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU7']; ?></td>
-                      <td><?= $kons ?></td>
+                      <td><?= number_format($kons, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU2']; ?></td>
-                      <td><?= $uub ?></td>
+                      <td><?= number_format($uub, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU4']; ?></td>
 					  <td><?= $ang['TGL_TGHN']; ?></td>
                       <td><?= $ang['TGL_BAYAR']; ?></td>
-                      <td><?= $ang['JML_TGHN']; ?></td>
-                      <td><?= $ang['JML_BAYAR']; ?></td>
+                      <td><?= number_format($ang['JML_TGHN'], 0, ',', '.') ?></td>
+                      <td><?= number_format($ang['JML_BAYAR'], 0, ',', '.') ?></td>
                       <td><?= $ang['VIA_BAYAR']; ?></td>
-                      <td><?= $ang['TUNGGAKAN']; ?></td>
+                      <td><?= number_format($ang['TUNGGAKAN'], 0, ',', '.') ?></td>
                     </tr>
                   <?php endforeach ?>
                 </tbody>
