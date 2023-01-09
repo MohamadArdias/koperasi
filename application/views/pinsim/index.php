@@ -36,11 +36,21 @@ $this->load->view('templates/sidebar');
 <div class="card">
     <div class="card-body">
         <div class="overflow-auto">
+            <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
+                <option hidden>Date</option>
+                <?php $query = $this->db->query("SELECT DISTINCT TAHUN, BULAN FROM pl")->result_array();
+                foreach ($query as $key) {
+                ?>
+                    <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
+                <?php
+                }
+                ?>
+            </select>
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
                         <th class="text-center">Tanggal</th>
-                        <th class="text-center">Nama Anggota</th>
+                        <th class="text-center">Anggota</th>
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Tabungan Awal Tahun</th>
                         <th class="text-center">Tabungan <?= date('Y'); ?></th>
@@ -50,9 +60,9 @@ $this->load->view('templates/sidebar');
                 <tbody>
                     <?php foreach ($keuangan as $lap) : ?>
                         <tr>
-                            <td><?= $lap['TAHUN'].'-'.$lap['BULAN'] ?></td>
-                            <td><?= $lap['NAMA_ANG']; ?></td>
-                            <td><?= $lap['NAMA_INS']; ?></td>
+                            <td><?= $lap['TAHUN'] . '-' . $lap['BULAN'] ?></td>
+                            <td><?= $lap['URUT_ANG'] . '/' . $lap['NAMA_ANG']; ?></td>
+                            <td><?= $lap['KODE_INS'] . '/' . $lap['NAMA_INS']; ?></td>
                             <td class="text-right"><?= number_format($lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'] - $lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'], 0, ',', '.')  ?></td>
@@ -64,6 +74,13 @@ $this->load->view('templates/sidebar');
     </div>
 </div>
 
+<script>
+    function pins() {
+        var option = document.getElementById("pinsimp").value;
+        console.log(option);
+        window.location.assign("?TAHUN=" + option.substr(0, 4) + "&&BULAN=" + option.substr(-2));
+    }
+</script>
 
 <?php
 $this->load->view('templates/footer');

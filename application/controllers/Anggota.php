@@ -94,7 +94,8 @@ class Anggota extends CI_Controller
         // $sheet->setCellValue('F4', "Khusus"); // Set kolom E10 dengan tulisan "ALAMAT"
         $sheet->setCellValue('E4', "Wajib"); // Set kolom E10 dengan tulisan "ALAMAT"
         $sheet->setCellValue('F4', "Tagihan"); // Set kolom E10 dengan tulisan "ALAMAT"
-        $sheet->setCellValue('G4', "Tunggakan"); // Set kolom E10 dengan tulisan "ALAMAT"
+        $sheet->setCellValue('G4', "Terbayar"); // Set kolom E10 dengan tulisan "ALAMAT"
+        $sheet->setCellValue('H4', "Tunggakan"); // Set kolom E10 dengan tulisan "ALAMAT"
 
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
@@ -105,7 +106,7 @@ class Anggota extends CI_Controller
         $sheet->getStyle('E4')->applyFromArray($style_col);
         $sheet->getStyle('F4')->applyFromArray($style_col);
         $sheet->getStyle('G4')->applyFromArray($style_col);
-        // $sheet->getStyle('H4')->applyFromArray($style_col);
+        $sheet->getStyle('H4')->applyFromArray($style_col);
         // $sheet->getStyle('I4')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
@@ -130,6 +131,7 @@ class Anggota extends CI_Controller
             // $sheet->setCellValue('F' . $numrow, $khus.' (X'.$data['KEU7'].')');
             $sheet->setCellValue('E' . $numrow, $data['WAJIB']);
             $sheet->setCellValue('F' . $numrow, $tagihan);
+            $sheet->setCellValue('G' . $numrow, $data['JML_BAYAR']);
 
             // $thn = $data['TAHUN'];
             // $bln = $data['BULAN'];
@@ -137,7 +139,7 @@ class Anggota extends CI_Controller
 
             // $didi = $this->db->query("SELECT pembayaran.JML_BAYAR AS hal FROM pembayaran WHERE TGL_TGHN LIKE '%$thn-$bln%' AND pembayaran.KODE_ANG = $kd")->row_array();
                 
-            $sheet->setCellValue('G' . $numrow, $tung);
+            $sheet->setCellValue('h' . $numrow, $tung);
 
             // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
             $sheet->getStyle('A' . $numrow)->applyFromArray($style_row_mid);
@@ -147,7 +149,7 @@ class Anggota extends CI_Controller
             $sheet->getStyle('E' . $numrow)->applyFromArray($style_row);
             $sheet->getStyle('F' . $numrow)->applyFromArray($style_row);
             $sheet->getStyle('G' . $numrow)->applyFromArray($style_row);
-            // $sheet->getStyle('H' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('H' . $numrow)->applyFromArray($style_row);
             // $sheet->getStyle('I' . $numrow)->applyFromArray($style_row);
 
             // $no++; // Tambah 1 setiap kali looping
@@ -161,7 +163,7 @@ class Anggota extends CI_Controller
         $sheet->getColumnDimension('E')->setAutoSize(true); // Set width kolom E
         $sheet->getColumnDimension('F')->setAutoSize(true); // Set width kolom E
         $sheet->getColumnDimension('G')->setAutoSize(true); // Set width kolom E
-        // $sheet->getColumnDimension('H')->setAutoSize(true); // Set width kolom E
+        $sheet->getColumnDimension('H')->setAutoSize(true); // Set width kolom E
         // $sheet->getColumnDimension('I')->setAutoSize(true); // Set width kolom E
 
         // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)

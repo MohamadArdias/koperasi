@@ -15,7 +15,19 @@ class generate2 extends CI_Controller
     public function index()
     {
         $this->data['title'] = 'Generate Simpanan';
-        $this->data['simpan'] = $this->Pinsimp->simp();
+
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
+
+        if ($TAHUN == '' AND $BULAN == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = $TAHUN;
+            $BLN = $BULAN;
+        }
+
+        $this->data['simpan'] = $this->Pinsimp->simp($THN, $BLN);
 
         $this->load->view('generate2/index', $this->data);
     }

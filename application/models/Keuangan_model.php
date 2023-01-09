@@ -4,6 +4,20 @@ class Keuangan_model extends  CI_Model
 {
     public function histo($URUT_ANG)
     {
+        // $query = $this->db->query("SELECT
+        //     *
+        // FROM
+        //     anggota
+        //     INNER JOIN
+        //     instan
+        //     ON 
+        //         anggota.KODE_INS = instan.KODE_INS
+        //     INNER JOIN
+        //     pl
+        //     ON 
+        //         pl.KODE_ANG = anggota.URUT_ANG
+        // WHERE
+        //     anggota.URUT_ANG = $URUT_ANG");
         $query = $this->db->query("SELECT
             *
         FROM
@@ -16,8 +30,14 @@ class Keuangan_model extends  CI_Model
             pl
             ON 
                 pl.KODE_ANG = anggota.URUT_ANG
+            INNER JOIN
+            pembayaran
+            ON 
+                pl.KODE_ANG = pembayaran.KODE_ANG
         WHERE
-            anggota.URUT_ANG = $URUT_ANG");
+            anggota.URUT_ANG = $URUT_ANG AND
+            pl.TAHUN = pembayaran.TAHUN AND
+            pl.BULAN = pembayaran.BULAN ");
         
         return $query->result_array();
     }
@@ -215,6 +235,9 @@ class Keuangan_model extends  CI_Model
         pl.KEU3, 
         pl.POKU3, 
         pl.BNGU3, 
+        pl.KEU4, 
+        pl.POKU4, 
+        pl.BNGU4, 
         pl.KEU7, 
         pl.POKU7, 
         pl.BNGU7

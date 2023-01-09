@@ -208,17 +208,21 @@ class Pinuang_model extends  CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function getPinjaman()
+    public function getPinjaman($THN, $BLN)
     {
         $this->db->select('*');
         $this->db->from('pinuang');
         $this->db->join('pl', 'pl.KODE_ANG = pinuang.KODE_ANG');
         $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-        $this->db->where('pinuang.TAHUN', date('Y'));
-        $this->db->where('pinuang.BULAN', date('m'));
-        $this->db->where('pl.TAHUN', date('Y'));
-        $this->db->where('pl.BULAN', date('m'));
+        // $this->db->where('pinuang.TAHUN', date('Y'));
+        // $this->db->where('pinuang.BULAN', date('m'));
+        // $this->db->where('pl.TAHUN', date('Y'));
+        // $this->db->where('pl.BULAN', date('m'));
+        $this->db->where('pinuang.TAHUN', $THN);
+        $this->db->where('pinuang.BULAN', $BLN);
+        $this->db->where('pl.TAHUN', $THN);
+        $this->db->where('pl.BULAN', $BLN);
         // $this->db->where('instan.KODE_INS !=', 99);
         // $this->db->where('instan.KODE_INS', '06');
         $this->db->order_by('instan.KODE_INS', 'ASC');
