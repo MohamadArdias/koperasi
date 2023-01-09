@@ -26,12 +26,12 @@ $this->load->view('templates/sidebar');
   #customers th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #0066ff;
     color: white;
   }
 </style>
-<div class="overflow-auto mt-2">
+<div class="row mt-3">
   <table class="table table-borderless datatable" id="customers">
                 <thead>
                   <tr>
@@ -42,7 +42,7 @@ $this->load->view('templates/sidebar');
                     <th scope="col">Bulan</th>
                     <th scope="col">Uang</th>
 					<th scope="col">Ke</th>
-                    <th scope="col">Non Konsumsi</th>
+                    <th scope="col">Konsumsi</th>
 					<th scope="col">Ke</th>
                     <th scope="col">Khusus</th>
 					<th scope="col">Ke</th>
@@ -50,9 +50,10 @@ $this->load->view('templates/sidebar');
 					<th scope="col">Ke</th>
                     <th scope="col">UUB</th>
 					<th scope="col">Ke</th>
+					<th scope="col">Tanggal Tagihan</th>
                     <th scope="col">Tanggal Bayar</th>
-                    <th scope="col">Jumlah Tagihan</th>
-                    <th scope="col">Jumlah Bayar</th>
+                    <th scope="col">Total Tagihan</th>
+                    <th scope="col">Total Bayar</th>
                     <th scope="col">Via Bayar</th>
                     <th scope="col">Sisa Tunggakan</th>
                   </tr>
@@ -77,6 +78,7 @@ $this->load->view('templates/sidebar');
 					  <td><?= $ang['KEU2']; ?></td>
                       <td><?= $ang['POKU4']; ?></td>
 					  <td><?= $ang['KEU4']; ?></td>
+					  <td><?= $ang['TGL_TGHN']; ?></td>
                       <td><?= $ang['TGL_BAYAR']; ?></td>
                       <td><?= $ang['JML_TGHN']; ?></td>
                       <td><?= $ang['JML_BAYAR']; ?></td>
