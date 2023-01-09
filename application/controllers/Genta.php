@@ -975,6 +975,8 @@ class Genta extends CI_Controller
 
             $bayar = array(
                 'KODE_ANG' => $key['KODE_ANG'],
+                'TAHUN' => date('Y', strtotime('+1 month')),
+                'BULAN' => date('m', strtotime('+1 month')),
                 'TGL_TGHN' => date('Y-m-d'),
                 'JML_TGHN' => $a,
                 'STATUS' => 'BELUM TERBAYAR',
