@@ -2,12 +2,12 @@
 
 class Pinsimp_model extends  CI_Model
 {
-    public function getAllSimp()
+    public function getAllSimp($THN, $BLN)
     {
         // $bln = date('m', strtotime('-1 month'));
         // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
+        // $bln = date('m');
+        // $thn = date('Y');
 
         $que = $this->db->query("SELECT
         *
@@ -22,22 +22,23 @@ class Pinsimp_model extends  CI_Model
         ON 
             pl.KODE_ANG = pinsimp.KODE_ANG
     WHERE
-        pl.TAHUN = $thn AND
-        pl.BULAN = $bln AND
-        pinsimp.TAHUN = $thn AND
-        pinsimp.BULAN = $bln AND
+        pl.TAHUN = $THN AND
+        pl.BULAN = $BLN AND
+        pinsimp.TAHUN = $THN AND
+        pinsimp.BULAN = $BLN AND
         anggota.KODE_INS != 99 AND
         anggota.KODE_INS != 98 AND
         anggota.KODE_INS != 97 AND
-        anggota.KODE_INS != 96");
+        anggota.KODE_INS != 96
+        LIMIT 10");
 
         return $que->result_array();
     }
     
-    public function simp()
+    public function simp($THN, $BLN)
     {
-        $bln = date('m');
-        $thn = date('Y');
+        // $bln = date('m');
+        // $thn = date('Y');
 
         $que = $this->db->query("SELECT
         *
@@ -52,8 +53,8 @@ class Pinsimp_model extends  CI_Model
         ON 
             anggota.KODE_INS = instan.KODE_INS
     WHERE
-        pl.TAHUN = $thn AND
-        pl.BULAN = $bln AND
+        pl.TAHUN = $THN AND
+        pl.BULAN = $BLN AND
         instan.KODE_INS != 99 AND
         instan.KODE_INS != 98 AND
         instan.KODE_INS != 97 AND

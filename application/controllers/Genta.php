@@ -435,9 +435,36 @@ class Genta extends CI_Controller
 
     public function simpan()
     {
-        $simpan = $this->Pinsimp->getAllSimp();
+        $DATE = $this->input->get('GEN_SIMP');
+
+        if ($DATE == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = substr($DATE, 0, 4);
+            $BLN = substr($DATE, -2);
+        }
+
+        $simpan = $this->Pinsimp->getAllSimp($THN, $BLN);
 
         foreach ($simpan as $key) {
+
+            if ($key['BULAN'] > 8) {
+                if ($key['BULAN'] == 12) {
+                    $thn = $key['TAHUN'] + 1;
+                    $bln = '01';
+                } else {
+                    $thn = $key['TAHUN'];
+                    $bln = $key['BULAN'] + 1;
+                }
+            } else {
+                $thn = $key['TAHUN'];
+                $bln = "0" . ($key['BULAN'] + 1);
+            }
+
+            // echo $thn."-".$bln."<br>";
+            // echo "halo";
+
             // pinsimp
             if (date('m') == 11) {
                 $totwjb = $key['TWAJIB'] + 100000;
@@ -455,17 +482,17 @@ class Genta extends CI_Controller
 
             if ($key['KODE_INS'] != 95) {
                 $pinsimp = array(
-                    'TAHUN' => date('Y', strtotime('+1 month')),
-                    'BULAN' => date('m', strtotime('+1 month')),
+                    'TAHUN' => $THN,
+                    'BULAN' => $BLN,
                     'KODE_ANG' => $key['KODE_ANG'],
                     'TOTWJB' => $totwjb,
                     'TOTPOK' => 50000,
                 );
-                
+
                 // pl
                 $pl = array(
-                    'TAHUN' => date('Y', strtotime('+1 month')),
-                    'BULAN' => date('m', strtotime('+1 month')),
+                    'TAHUN' => $THN,
+                    'BULAN' => $BLN,
                     'KODE_ANG' => $key['KODE_ANG'],
                     'WAJIB' => 100000,
                     'TPOKOK' => 50000,
@@ -474,17 +501,17 @@ class Genta extends CI_Controller
                 );
             } else {
                 $pinsimp = array(
-                    'TAHUN' => date('Y', strtotime('+1 month')),
-                    'BULAN' => date('m', strtotime('+1 month')),
+                    'TAHUN' => $THN,
+                    'BULAN' => $BLN,
                     'KODE_ANG' => $key['KODE_ANG'],
                     'TOTWJB' => $key['TWAJIB'],
                     'TOTPOK' => $key['TOTPOK'],
                 );
-                
+
                 // pl
                 $pl = array(
-                    'TAHUN' => date('Y', strtotime('+1 month')),
-                    'BULAN' => date('m', strtotime('+1 month')),
+                    'TAHUN' => $THN,
+                    'BULAN' => $BLN,
                     'KODE_ANG' => $key['KODE_ANG'],
                     'WAJIB' => $key['WAJIB'],
                     'TPOKOK' => $key['TPOKOK'],
@@ -494,20 +521,16 @@ class Genta extends CI_Controller
             }
 
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
-            $this->db->where('BULAN', date('m', strtotime('+1 month')));
+            $this->db->where('TAHUN', $THN);
+            $this->db->where('BULAN', $BLN);
             $this->db->delete('pinsimp');
             $this->db->insert('pinsimp', $pinsimp);
 
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
-            $this->db->where('BULAN', date('m', strtotime('+1 month')));
+            $this->db->where('TAHUN', $THN);
+            $this->db->where('BULAN', $BLN);
             $this->db->delete('pl');
             $this->db->insert('pl', $pl);
-		
-			
-
-
         }
         $this->session->set_flashdata('simpanGen', 'Berhasil');
         redirect('generate2');
