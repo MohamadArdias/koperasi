@@ -444,29 +444,27 @@ class Genta extends CI_Controller
             $THN = substr($DATE, 0, 4);
             $BLN = substr($DATE, -2);
         }
-
+        
+        if ($BLN > 8) {
+            if ($BLN == 12) {
+                $thn = $THN + 1;
+                $bln = '01';
+            } else {
+                $thn = $THN;
+                $bln = $BLN + 1;
+            }
+        } else {
+            $thn = $THN;
+            $bln = "0" . ($BLN + 1);
+        }
         $simpan = $this->Pinsimp->getAllSimp($THN, $BLN);
 
+        // echo $thn."-".$bln."<br>";
+        // echo "halo";
+
         foreach ($simpan as $key) {
-
-            if ($key['BULAN'] > 8) {
-                if ($key['BULAN'] == 12) {
-                    $thn = $key['TAHUN'] + 1;
-                    $bln = '01';
-                } else {
-                    $thn = $key['TAHUN'];
-                    $bln = $key['BULAN'] + 1;
-                }
-            } else {
-                $thn = $key['TAHUN'];
-                $bln = "0" . ($key['BULAN'] + 1);
-            }
-
-            // echo $thn."-".$bln."<br>";
-            // echo "halo";
-
             // pinsimp
-            if (date('m') == 11) {
+            if ($bln == 12) {
                 $totwjb = $key['TWAJIB'] + 100000;
                 $totpok = $key['TPOKOK'];
             } else {
@@ -482,8 +480,8 @@ class Genta extends CI_Controller
 
             if ($key['KODE_INS'] != 95) {
                 $pinsimp = array(
-                    'TAHUN' => $THN,
-                    'BULAN' => $BLN,
+                    'TAHUN' => $thn,
+                    'BULAN' => $bln,
                     'KODE_ANG' => $key['KODE_ANG'],
                     'TOTWJB' => $totwjb,
                     'TOTPOK' => 50000,
@@ -491,8 +489,8 @@ class Genta extends CI_Controller
 
                 // pl
                 $pl = array(
-                    'TAHUN' => $THN,
-                    'BULAN' => $BLN,
+                    'TAHUN' => $thn,
+                    'BULAN' => $bln,
                     'KODE_ANG' => $key['KODE_ANG'],
                     'WAJIB' => 100000,
                     'TPOKOK' => 50000,
@@ -501,8 +499,8 @@ class Genta extends CI_Controller
                 );
             } else {
                 $pinsimp = array(
-                    'TAHUN' => $THN,
-                    'BULAN' => $BLN,
+                    'TAHUN' => $thn,
+                    'BULAN' => $bln,
                     'KODE_ANG' => $key['KODE_ANG'],
                     'TOTWJB' => $key['TWAJIB'],
                     'TOTPOK' => $key['TOTPOK'],
@@ -510,8 +508,8 @@ class Genta extends CI_Controller
 
                 // pl
                 $pl = array(
-                    'TAHUN' => $THN,
-                    'BULAN' => $BLN,
+                    'TAHUN' => $thn,
+                    'BULAN' => $bln,
                     'KODE_ANG' => $key['KODE_ANG'],
                     'WAJIB' => $key['WAJIB'],
                     'TPOKOK' => $key['TPOKOK'],
@@ -521,19 +519,20 @@ class Genta extends CI_Controller
             }
 
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->where('TAHUN', $THN);
-            $this->db->where('BULAN', $BLN);
+            $this->db->where('TAHUN', $thn);
+            $this->db->where('BULAN', $bln);
             $this->db->delete('pinsimp');
             $this->db->insert('pinsimp', $pinsimp);
 
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->where('TAHUN', $THN);
-            $this->db->where('BULAN', $BLN);
+            $this->db->where('TAHUN', $thn);
+            $this->db->where('BULAN', $bln);
             $this->db->delete('pl');
             $this->db->insert('pl', $pl);
         }
         $this->session->set_flashdata('simpanGen', 'Berhasil');
-        redirect('generate2');
+        redirect('generate2?TAHUN='.$thn.'&&BULAN='.$bln);
+
     }
 
     public function pinjaman()

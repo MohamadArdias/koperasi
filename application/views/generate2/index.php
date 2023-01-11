@@ -52,44 +52,28 @@ $this->load->view('templates/sidebar');
         <?php endif; ?>
 
         <div class="row g-3 mt-3">
-            <div class="col-md-6">
-                <div class="input-group">
-                    <label for="ttl" class="text-end control-label col-form-label">Tampilkan</label>
-                    <div class="col-sm-6">
-                        <select id="pinsimp" onchange="pins()" class="form-select" aria-label="Default select example">
-                            <option hidden>--Pilih--</option>
-                            <?php $query = $this->db->query("SELECT DISTINCT
-                                                                pl.TAHUN, 
-                                                                pl.BULAN
-                                                            FROM
-                                                                pl
-                                                                INNER JOIN
-                                                                pinsimp
-                                                                ON 
-                                                                    pl.KODE_ANG = pinsimp.KODE_ANG
-                                                            WHERE
-                                                                pl.TAHUN = pinsimp.TAHUN AND
-                                                                pl.BULAN = pinsimp.BULAN
-                                                            ORDER BY
-                                                                pl.TAHUN DESC, 
-                                                                pl.BULAN DESC")->result_array();
-                            foreach ($query as $key) {
-                            ?>
-                                <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-4 text-end">
+            <div class="col-md-4">
                 <form action="<?= base_url(); ?>index.php/genta/simpan">
                     <div class="input-group">
                         <select id="GEN_SIMP" name="GEN_SIMP" class="form-select" aria-label="Default select example">
                             <option hidden>--Pilih--</option>
                             <?php
+                            $query = $this->db->query("SELECT DISTINCT
+                                pl.TAHUN, 
+                                pl.BULAN
+                            FROM
+                                pl
+                                INNER JOIN
+                                pinsimp
+                                ON 
+                                    pl.KODE_ANG = pinsimp.KODE_ANG
+                            WHERE
+                                pl.TAHUN = pinsimp.TAHUN AND
+                                pl.BULAN = pinsimp.BULAN
+                            ORDER BY
+                                pl.TAHUN DESC, 
+                                pl.BULAN DESC")->result_array();
+
                             foreach ($query as $key) {
                             ?>
                                 <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
