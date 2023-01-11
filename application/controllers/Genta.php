@@ -969,8 +969,31 @@ class Genta extends CI_Controller
 
     public function pembayaran()
     {
-        $pembayaran = $this->Keuangan->inPembayaran();
-        $tunggakan = $this->Pembayaran->getTunggakan();
+        $DATE = $this->input->get('GEN_SIMP');
+
+        if ($DATE == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = substr($DATE, 0, 4);
+            $BLN = substr($DATE, -2);
+        }
+        
+        if ($BLN > 8) {
+            if ($BLN == 12) {
+                $thn = $THN + 1;
+                $bln = '01';
+            } else {
+                $thn = $THN;
+                $bln = $BLN + 1;
+            }
+        } else {
+            $thn = $THN;
+            $bln = "0" . ($BLN + 1);
+        }
+
+        $pembayaran = $this->Keuangan->inPembayaran($THN, $BLN);
+        $tunggakan = $this->Pembayaran->getTunggakan($THN, $BLN);
         foreach ($tunggakan as $key) {
 
             if ($key['JML_BAYAR'] < $key['JML_TGHN']) {
@@ -985,8 +1008,8 @@ class Genta extends CI_Controller
 
             // update pl 
             $where_tung = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'KODE_ANG' => $key['KODE_ANG'],
             );
 
@@ -1004,8 +1027,8 @@ class Genta extends CI_Controller
 
             $bayar = array(
                 'KODE_ANG' => $key['KODE_ANG'],
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'TGL_TGHN' => date('Y-m-d'),
                 'JML_TGHN' => $a,
                 'STATUS' => 'BELUM TERBAYAR',
@@ -1020,6 +1043,6 @@ class Genta extends CI_Controller
         }
 
         $this->session->set_flashdata('pembayaranGen', 'Berhasil');
-        redirect('generate2/tagihan');
+        redirect('generate2/tagihan?TAHUN='.$thn.'&&BULAN='.$bln);
     }
 }

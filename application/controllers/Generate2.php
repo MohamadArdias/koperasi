@@ -55,7 +55,18 @@ class generate2 extends CI_Controller
     public function tagihan()
     {
         $this->data['title'] = 'Generate Tagihan';
-        $this->data['tagihan'] = $this->Pembayaran->getTagihan();
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
+
+        if ($TAHUN == '' AND $BULAN == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = $TAHUN;
+            $BLN = $BULAN;
+        }
+
+        $this->data['tagihan'] = $this->Pembayaran->getTagihan($THN, $BLN);
 
         $this->load->view('generate2/tagihan', $this->data);
     }
