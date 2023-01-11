@@ -457,6 +457,7 @@ class Genta extends CI_Controller
             $thn = $THN;
             $bln = "0" . ($BLN + 1);
         }
+
         $simpan = $this->Pinsimp->getAllSimp($THN, $BLN);
 
         // echo $thn."-".$bln."<br>";
@@ -537,14 +538,42 @@ class Genta extends CI_Controller
 
     public function pinjaman()
     {
-        $uang = $this->Pinuang->getUang();
-        $non = $this->Pinuang->getNon();
-        $kons = $this->Pinuang->getKons();
-        $khus = $this->Pinuang->getKhusus();
-        $uub = $this->Pinuang->getUub();
+        $DATE = $this->input->get('GEN_SIMP');
+
+        if ($DATE == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = substr($DATE, 0, 4);
+            $BLN = substr($DATE, -2);
+        }
+        
+        if ($BLN > 8) {
+            if ($BLN == 12) {
+                $thn = $THN + 1;
+                $bln = '01';
+            } else {
+                $thn = $THN;
+                $bln = $BLN + 1;
+            }
+        } else {
+            $thn = $THN;
+            $bln = "0" . ($BLN + 1);
+        }
+
+        // echo $thn.'+'.$bln;
+        // echo "halo2";
+
+        $uang = $this->Pinuang->getUang($THN, $BLN);
+        $non = $this->Pinuang->getNon($THN, $BLN);
+        $kons = $this->Pinuang->getKons($THN, $BLN);
+        $khus = $this->Pinuang->getKhusus($THN, $BLN);
+        $uub = $this->Pinuang->getUub($THN, $BLN);
 
         foreach ($uang as $key) {
 
+            // echo $key['JMLP_ANG'].'<BR>';
+            // echo "halo";
             if ($key['KEU1'] == $key['JWKT_ANG']) {
                 $STATUS = 'LUNAS';
             } else {
@@ -568,7 +597,7 @@ class Genta extends CI_Controller
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
-                if (date('m') == 11) {
+                if ($bln == 12) {
                     $KE_ANG = $KEU1;
                 } else {
                     $KE_ANG = $key['KE_ANG'];
@@ -585,8 +614,8 @@ class Genta extends CI_Controller
             }
 
             $pinuang_uang = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'NOFAK' => $key['NOFAK'],
                 'KODE_ANG' => $key['KODE_ANG'],
                 'TGLP_ANG' => $key['TGLP_ANG'],
@@ -598,8 +627,8 @@ class Genta extends CI_Controller
             );
             // delete pinunag
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
-            $this->db->where('BULAN', date('m', strtotime('+1 month')));
+            $this->db->where('TAHUN', $thn);
+            $this->db->where('BULAN', $bln);
             $this->db->where('NOFAK', $key['NOFAK']);
             $this->db->delete('pinuang');
             // insert pinuang 
@@ -614,8 +643,8 @@ class Genta extends CI_Controller
             );
             // update pl 
             $where_uang = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'KODE_ANG' => $key['KODE_ANG'],
             );
             $this->db->update('pl', $pl_uang, $where_uang);
@@ -646,7 +675,7 @@ class Genta extends CI_Controller
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
-                if (date('m') == 11) {
+                if ($bln == 12) {
                     $KE_ANG = $KEU3;
                 } else {
                     $KE_ANG = $key['KE_ANG'];
@@ -663,8 +692,8 @@ class Genta extends CI_Controller
             }
 
             $pinuang_non = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'NOFAK' => $key['NOFAK'],
                 'KODE_ANG' => $key['KODE_ANG'],
                 'TGLP_ANG' => $key['TGLP_ANG'],
@@ -676,8 +705,8 @@ class Genta extends CI_Controller
             );
             // delete pinunag
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
-            $this->db->where('BULAN', date('m', strtotime('+1 month')));
+            $this->db->where('TAHUN', $thn);
+            $this->db->where('BULAN', $bln);
             $this->db->where('NOFAK', $key['NOFAK']);
             $this->db->delete('pinuang');
             // insert pinuang 
@@ -692,8 +721,8 @@ class Genta extends CI_Controller
             );
             // update pl 
             $where_non = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'KODE_ANG' => $key['KODE_ANG'],
             );
             $this->db->update('pl', $pl_non, $where_non);
@@ -724,7 +753,7 @@ class Genta extends CI_Controller
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
-                if (date('m') == 11) {
+                if ($bln == 12) {
                     $KE_ANG = $KEU7;
                 } else {
                     $KE_ANG = $key['KE_ANG'];
@@ -741,8 +770,8 @@ class Genta extends CI_Controller
             }
 
             $pinuang_khusus = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'NOFAK' => $key['NOFAK'],
                 'KODE_ANG' => $key['KODE_ANG'],
                 'TGLP_ANG' => $key['TGLP_ANG'],
@@ -754,8 +783,8 @@ class Genta extends CI_Controller
             );
             // delete pinunag
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
-            $this->db->where('BULAN', date('m', strtotime('+1 month')));
+            $this->db->where('TAHUN', $thn);
+            $this->db->where('BULAN', $bln);
             $this->db->where('NOFAK', $key['NOFAK']);
             $this->db->delete('pinuang');
             // insert pinuang 
@@ -770,8 +799,8 @@ class Genta extends CI_Controller
             );
             // update pl 
             $where_khusus = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'KODE_ANG' => $key['KODE_ANG'],
             );
             $this->db->update('pl', $pl_khusus, $where_khusus);
@@ -802,7 +831,7 @@ class Genta extends CI_Controller
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
-                if (date('m') == 11) {
+                if ($bln == 12) {
                     $KE_ANG = $KEU2;
                 } else {
                     $KE_ANG = $key['KE_ANG'];
@@ -819,8 +848,8 @@ class Genta extends CI_Controller
             }
 
             $pinuang_kons = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'NOFAK' => $key['NOFAK'],
                 'KODE_ANG' => $key['KODE_ANG'],
                 'TGLP_ANG' => $key['TGLP_ANG'],
@@ -832,8 +861,8 @@ class Genta extends CI_Controller
             );
             // delete pinunag
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
-            $this->db->where('BULAN', date('m', strtotime('+1 month')));
+            $this->db->where('TAHUN', $thn);
+            $this->db->where('BULAN', $bln);
             $this->db->where('NOFAK', $key['NOFAK']);
             $this->db->delete('pinuang');
             // insert pinuang 
@@ -848,8 +877,8 @@ class Genta extends CI_Controller
             );
             // update pl 
             $where_kons = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'KODE_ANG' => $key['KODE_ANG'],
             );
             $this->db->update('pl', $pl_khusus, $where_kons);
@@ -880,7 +909,7 @@ class Genta extends CI_Controller
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
-                if (date('m') == 11) {
+                if ($bln == 12) {
                     $KE_ANG = $KEU4;
                 } else {
                     $KE_ANG = $key['KE_ANG'];
@@ -897,8 +926,8 @@ class Genta extends CI_Controller
             }
 
             $pinuang_kons = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'NOFAK' => $key['NOFAK'],
                 'KODE_ANG' => $key['KODE_ANG'],
                 'TGLP_ANG' => $key['TGLP_ANG'],
@@ -910,8 +939,8 @@ class Genta extends CI_Controller
             );
             // delete pinunag
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->where('TAHUN', date('Y', strtotime('+1 month')));
-            $this->db->where('BULAN', date('m', strtotime('+1 month')));
+            $this->db->where('TAHUN', $thn);
+            $this->db->where('BULAN', $bln);
             $this->db->where('NOFAK', $key['NOFAK']);
             $this->db->delete('pinuang');
             // insert pinuang 
@@ -926,15 +955,16 @@ class Genta extends CI_Controller
             );
             // update pl 
             $where_kons = array(
-                'TAHUN' => date('Y', strtotime('+1 month')),
-                'BULAN' => date('m', strtotime('+1 month')),
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
                 'KODE_ANG' => $key['KODE_ANG'],
             );
             $this->db->update('pl', $pl_khusus, $where_kons);
         }
 
         $this->session->set_flashdata('pinjamGen', 'Berhasil');
-        redirect('generate2/pinjaman');
+        redirect('generate2/pinjaman?TAHUN='.$thn.'&&BULAN='.$bln);
+
     }
 
     public function pembayaran()

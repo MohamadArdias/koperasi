@@ -63,149 +63,139 @@ class Pinuang_model extends  CI_Model
         //     pinuang.KODE_ANG = '$a'");
     }
 
-    public function getUang()
+    public function getUang($THN, $BLN)
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
-
-        $this->db->select('*');
-        $this->db->from('pl');
-        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
-        $this->db->where('pl.TAHUN', $thn);
-        $this->db->where('pl.BULAN', $bln);
-        $this->db->where('pinuang.TAHUN', $thn);
-        $this->db->where('pinuang.BULAN', $bln);
-        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
-        $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('anggota.KODE_INS !=', 98);
-        $this->db->where('anggota.KODE_INS !=', 97);
-        $this->db->where('anggota.KODE_INS !=', 96);
-        // $this->db->where('anggota.KODE_INS', '06');
-        // $this->db->where('pl.KODE_ANG', '1541');
-        // $this->db->where('anggota.URUT_ANG', '4040');
-        // $this->db->where('pl.KODE_ANG', 1541);
-        $this->db->like('pinuang.NOFAK', 'U');
-        return $this->db->get()->result_array();
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pinuang
+        INNER JOIN
+        pl
+        ON 
+            pinuang.KODE_ANG = pl.KODE_ANG
+        INNER JOIN
+        anggota
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+    WHERE
+        pinuang.TAHUN = $THN AND
+        pl.TAHUN = $THN AND
+        pinuang.BULAN = $BLN AND
+        pl.BULAN = $BLN AND
+        anggota.KODE_INS <> 96 AND
+        anggota.KODE_INS <> 97 AND
+        anggota.KODE_INS <> 98 AND
+        anggota.KODE_INS <> 99 AND
+        pinuang.NOFAK LIKE '%U%'");
+        return $query->result_array();
     }
 
-    public function getNon()
+    public function getNon($THN, $BLN)
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
-
-        $this->db->select('*');
-        $this->db->from('pl');
-        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
-        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
-        $this->db->where('pl.TAHUN', $thn);
-        $this->db->where('pl.BULAN', $bln);
-        $this->db->where('pinuang.TAHUN', $thn);
-        $this->db->where('pinuang.BULAN', $bln);
-        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
-        $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('anggota.KODE_INS !=', 98);
-        $this->db->where('anggota.KODE_INS !=', 97);
-        $this->db->where('anggota.KODE_INS !=', 96);
-        // $this->db->where('anggota.KODE_INS', '06');
-        // $this->db->where('pl.KODE_ANG', '1541');
-        // $this->db->where('anggota.URUT_ANG', '1541');
-        // $this->db->where('pl.KODE_ANG', '1275');
-        $this->db->like('pinuang.NOFAK', 'N');
-        return $this->db->get()->result_array();
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pinuang
+        INNER JOIN
+        pl
+        ON 
+            pinuang.KODE_ANG = pl.KODE_ANG
+        INNER JOIN
+        anggota
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+    WHERE
+        pinuang.TAHUN = $THN AND
+        pl.TAHUN = $THN AND
+        pinuang.BULAN = $BLN AND
+        pl.BULAN = $BLN AND
+        anggota.KODE_INS <> 96 AND
+        anggota.KODE_INS <> 97 AND
+        anggota.KODE_INS <> 98 AND
+        anggota.KODE_INS <> 99 AND
+        pinuang.NOFAK LIKE '%N%'");
+        return $query->result_array();
     }
 
-    public function getKons()
+    public function getKons($THN, $BLN)
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
-
-        $this->db->select('*');
-        $this->db->from('pl');
-        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
-        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
-        $this->db->where('pl.TAHUN', $thn);
-        $this->db->where('pl.BULAN', $bln);
-        $this->db->where('pinuang.TAHUN', $thn);
-        $this->db->where('pinuang.BULAN', $bln);
-        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
-        $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('anggota.KODE_INS !=', 98);
-        $this->db->where('anggota.KODE_INS !=', 97);
-        $this->db->where('anggota.KODE_INS !=', 96);
-        // $this->db->where('anggota.KODE_INS', '06');
-        // $this->db->where('pl.KODE_ANG', '1541');
-        // $this->db->where('anggota.URUT_ANG', '1541');
-        $this->db->like('pinuang.NOFAK', 'O');
-        return $this->db->get()->result_array();
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pinuang
+        INNER JOIN
+        pl
+        ON 
+            pinuang.KODE_ANG = pl.KODE_ANG
+        INNER JOIN
+        anggota
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+    WHERE
+        pinuang.TAHUN = $THN AND
+        pl.TAHUN = $THN AND
+        pinuang.BULAN = $BLN AND
+        pl.BULAN = $BLN AND
+        anggota.KODE_INS <> 96 AND
+        anggota.KODE_INS <> 97 AND
+        anggota.KODE_INS <> 98 AND
+        anggota.KODE_INS <> 99 AND
+        pinuang.NOFAK LIKE '%O%'");
+        return $query->result_array();
     }
 
-    public function getKhusus()
+    public function getKhusus($THN, $BLN)
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
-
-        $this->db->select('*');
-        $this->db->from('pl');
-        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
-        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
-        $this->db->where('pl.TAHUN', $thn);
-        $this->db->where('pl.BULAN', $bln);
-        $this->db->where('pinuang.TAHUN', $thn);
-        $this->db->where('pinuang.BULAN', $bln);
-        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
-        $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('anggota.KODE_INS !=', 98);
-        $this->db->where('anggota.KODE_INS !=', 97);
-        $this->db->where('anggota.KODE_INS !=', 96);
-        // $this->db->where('anggota.KODE_INS', '06');
-        // $this->db->where('pl.KODE_ANG', '1541');
-        // $this->db->where('anggota.URUT_ANG', '1541');
-        // $this->db->where('anggota.URUT_ANG', '4040');
-        $this->db->like('pinuang.NOFAK', 'Z');
-        // $this->db->order_by('NOFAK', 'ASC');
-        return $this->db->get()->result_array();
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pinuang
+        INNER JOIN
+        pl
+        ON 
+            pinuang.KODE_ANG = pl.KODE_ANG
+        INNER JOIN
+        anggota
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+    WHERE
+        pinuang.TAHUN = $THN AND
+        pl.TAHUN = $THN AND
+        pinuang.BULAN = $BLN AND
+        pl.BULAN = $BLN AND
+        anggota.KODE_INS <> 96 AND
+        anggota.KODE_INS <> 97 AND
+        anggota.KODE_INS <> 98 AND
+        anggota.KODE_INS <> 99 AND
+        pinuang.NOFAK LIKE '%Z%'");
+        return $query->result_array();
     }
 
-    public function getUub()
+    public function getUub($THN, $BLN)
     {
-        // $bln = date('m', strtotime('-1 month'));
-        // $thn = date('Y', strtotime('-1 month'));
-        $bln = date('m');
-        $thn = date('Y');
-
-        $this->db->select('*');
-        $this->db->from('pl');
-        $this->db->join('pinuang', 'pinuang.KODE_ANG = pl.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG', 'right');
-        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
-        $this->db->where('pl.TAHUN', $thn);
-        $this->db->where('pl.BULAN', $bln);
-        $this->db->where('pinuang.TAHUN', $thn);
-        $this->db->where('pinuang.BULAN', $bln);
-        $this->db->where('pinuang.STATUS_PIN !=', 'OFF');
-        $this->db->where('anggota.KODE_INS !=', 99);
-        $this->db->where('anggota.KODE_INS !=', 98);
-        $this->db->where('anggota.KODE_INS !=', 97);
-        $this->db->where('anggota.KODE_INS !=', 96);
-        // $this->db->where('anggota.KODE_INS', '06');
-        // $this->db->where('pl.KODE_ANG', '1541');
-        // $this->db->where('anggota.URUT_ANG', '1541');
-        // $this->db->where('anggota.URUT_ANG', '4040');
-        $this->db->like('pinuang.NOFAK', 'S');
-        // $this->db->order_by('NOFAK', 'ASC');
-        return $this->db->get()->result_array();
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pinuang
+        INNER JOIN
+        pl
+        ON 
+            pinuang.KODE_ANG = pl.KODE_ANG
+        INNER JOIN
+        anggota
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+    WHERE
+        pinuang.TAHUN = $THN AND
+        pl.TAHUN = $THN AND
+        pinuang.BULAN = $BLN AND
+        pl.BULAN = $BLN AND
+        anggota.KODE_INS <> 96 AND
+        anggota.KODE_INS <> 97 AND
+        anggota.KODE_INS <> 98 AND
+        anggota.KODE_INS <> 99 AND
+        pinuang.NOFAK LIKE '%S%'");
+        return $query->result_array();
     }
 
     public function getPinjaman($THN, $BLN)
@@ -229,10 +219,10 @@ class Pinuang_model extends  CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function pinjaman()
+    public function pinjaman($THN, $BLN)
     {
-        $bln = date('m');
-        $thn = date('Y');
+        // $bln = date('m');
+        // $thn = date('Y');
 
         $query = $this->db->query("SELECT
             *
@@ -251,10 +241,10 @@ class Pinuang_model extends  CI_Model
             ON 
                 anggota.KODE_INS = instan.KODE_INS
         WHERE
-            pl.TAHUN = $thn AND
-            pl.BULAN = $bln AND
-            pinuang.TAHUN = $thn AND
-            pinuang.BULAN = $bln AND
+            pl.TAHUN = $THN AND
+            pl.BULAN = $BLN AND
+            pinuang.TAHUN = $THN AND
+            pinuang.BULAN = $BLN AND
             anggota.KODE_INS != 99 AND
             anggota.KODE_INS != 98 AND
             anggota.KODE_INS != 97 AND

@@ -51,13 +51,50 @@ $this->load->view('templates/sidebar');
             </div>
         <?php endif; ?>
 
-        <div class="row mt-3">
+        <div class="row g-3 mt-3">
+            <div class="col-md-4">
+                <form action="<?= base_url(); ?>index.php/genta/pinjaman">
+                    <div class="input-group">
+                        <select id="GEN_SIMP" name="GEN_SIMP" class="form-select" aria-label="Default select example">
+                            <option hidden>--Pilih--</option>
+                            <?php
+                            $query = $this->db->query("SELECT DISTINCT
+                            pl.TAHUN, 
+                            pl.BULAN
+                        FROM
+                            pl
+                            INNER JOIN
+                            pinuang
+                            ON 
+                                pl.KODE_ANG = pinuang.KODE_ANG
+                        WHERE
+                            pl.TAHUN = pinuang.TAHUN AND
+                            pl.BULAN = pinuang.BULAN
+                        ORDER BY
+                            pl.TAHUN DESC, 
+                            pl.BULAN DESC")->result_array();
+
+                            foreach ($query as $key) {
+                            ?>
+                                <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <button type="submit" name="generate" class="btn btn-primary">Generate</button>
+                        <!-- <a href="<?= base_url(); ?>index.php/genta/simpan" class="btn btn-primary">Generate</a> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- <div class="row mt-3">
             <div class="col-md-12">
                 <div class="input-group">
                     <a href="<?= base_url(); ?>index.php/genta/pinjaman" class="btn btn-primary">Generate</a>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="overflow-auto">
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">

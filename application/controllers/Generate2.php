@@ -36,7 +36,18 @@ class generate2 extends CI_Controller
     public function pinjaman()
     {
         $this->data['title'] = 'Generate Pinjaman';
-        $this->data['pinjaman'] = $this->Pinuang->pinjaman();
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
+
+        if ($TAHUN == '' AND $BULAN == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = $TAHUN;
+            $BLN = $BULAN;
+        }
+
+        $this->data['pinjaman'] = $this->Pinuang->pinjaman($THN, $BLN);
 
         $this->load->view('generate2/pinjaman', $this->data);
     }
