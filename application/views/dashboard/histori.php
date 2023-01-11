@@ -40,9 +40,10 @@ $this->load->view('templates/sidebar');
                     <th scope="col">Instansi</th>
                     <th scope="col">Tahun</th>
                     <th scope="col">Bulan</th>
+					<th scope="col">Simpanan Wajib</th>
                     <th scope="col">Uang</th>
 					<th scope="col">Ke</th>
-                    <th scope="col">Konsumsi</th>
+                    <th scope="col">Non Konsumsi</th>
 					<th scope="col">Ke</th>
                     <th scope="col">Khusus</th>
 					<th scope="col">Ke</th>
@@ -61,29 +62,35 @@ $this->load->view('templates/sidebar');
                 <tbody>
                   <?php 
                   $i = 1;
-                  foreach ($anggota as $ang) : ?>
+                  foreach ($anggota as $ang) :
+				  $uang = $ang['POKU1'] + $ang['BNGU1'];
+				  $kons = $ang['POKU2'] + $ang['BNGU2'];
+				  $non = $ang['POKU3'] + $ang['BNGU3'];
+				  $khus = $ang['POKU7'] + $ang['BNGU7'];
+				  $uub = $ang['POKU4'] + $ang['BNGU4'];?>
                     <tr>
                       <td><?= $i++ ?></td>
                       <td><?= $ang['KODE_ANG'].'/'.$ang['NAMA_ANG']; ?></td>
                       <td><?= $ang['NAMA_INS']; ?></td>
                       <td><?= $ang['TAHUN']; ?></td>
                       <td><?= $ang['BULAN']; ?></td>
-                      <td><?= $ang['POKU1']; ?></td>
+					  <td><?= number_format($ang['WAJIB'], 0, ',', '.') ?></td>
+                      <td><?= number_format($uang, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU1']; ?></td>
-                      <td><?= $ang['POKU3']; ?></td>
+                      <td><?= number_format($non, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU3']; ?></td>
-                      <td><?= $ang['POKU7']; ?></td>
+                      <td><?= number_format($khus, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU7']; ?></td>
-                      <td><?= $ang['POKU2']; ?></td>
+                      <td><?= number_format($kons, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU2']; ?></td>
-                      <td><?= $ang['POKU4']; ?></td>
+                      <td><?= number_format($uub, 0, ',', '.') ?></td>
 					  <td><?= $ang['KEU4']; ?></td>
 					  <td><?= $ang['TGL_TGHN']; ?></td>
                       <td><?= $ang['TGL_BAYAR']; ?></td>
-                      <td><?= $ang['JML_TGHN']; ?></td>
-                      <td><?= $ang['JML_BAYAR']; ?></td>
+                      <td><?= number_format($ang['JML_TGHN'], 0, ',', '.') ?></td>
+                      <td><?= number_format($ang['JML_BAYAR'], 0, ',', '.') ?></td>
                       <td><?= $ang['VIA_BAYAR']; ?></td>
-                      <td><?= $ang['TUNGGAKAN']; ?></td>
+                      <td><?= number_format($ang['TUNGGAKAN'], 0, ',', '.') ?></td>
                     </tr>
                   <?php endforeach ?>
                 </tbody>
