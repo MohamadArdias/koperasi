@@ -992,7 +992,7 @@ class Genta extends CI_Controller
             $bln = "0" . ($BLN + 1);
         }
 
-        $pembayaran = $this->Keuangan->inPembayaran($THN, $BLN);
+        $pembayaran = $this->Keuangan->inPembayaran($thn, $bln);
         $tunggakan = $this->Pembayaran->getTunggakan($THN, $BLN);
         foreach ($tunggakan as $key) {
 
@@ -1035,7 +1035,7 @@ class Genta extends CI_Controller
             );
 
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->like('TGL_TGHN', date('Y-m'));
+            $this->db->like('TGL_TGHN', $thn.'-'.$bln);
             $this->db->delete('pembayaran');
             // insert pembayaran
 

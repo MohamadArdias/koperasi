@@ -35,6 +35,26 @@ $this->load->view('templates/sidebar');
 </style>
 
 <div class="card">
+    <?php if ($this->session->flashdata('lunasB')) : ?>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Pelunasan <strong><?= $this->session->flashdata('lunasB'); ?></strong>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($this->session->flashdata('lunasG')) : ?>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Pelunasan <strong><?= $this->session->flashdata('lunasG'); ?></strong>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <div class="card-body">
         <div class="overflow-auto">
             <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
@@ -96,7 +116,7 @@ $this->load->view('templates/sidebar');
                     ?>
                         <tr>
                             <td><?= $key['TAHUN'] . '-' . $key['BULAN'] ?></td>
-                            <td><?= $key['NOFAK']; ?></td>
+                            <td><a href="<?= base_url(); ?>index.php/pelunasan?NOFAK=<?= $key['NOFAK']; ?>&&KODE=<?= $key['URUT_ANG'] ?>"><?= $key['NOFAK']; ?></a></td>
                             <td><?= $key['URUT_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                             <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
                             <td><?= $jenis; ?></td>
