@@ -2,6 +2,34 @@
 
 class Pinuang_model extends  CI_Model
 {
+    public function tunggakan($THN, $BLN)
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            pl.KODE_ANG = anggota.URUT_ANG
+    WHERE
+        instan.KODE_INS != 99 AND
+        instan.KODE_INS != 98 AND
+        instan.KODE_INS != 97 AND
+        instan.KODE_INS != 96 AND
+        pl.TAHUN = $THN AND
+        pl.BULAN = '$BLN'AND
+	    pl.TUNGGAKAN >= 1
+    ORDER BY
+        instan.KODE_INS ASC");
+
+        return $query->result_array();
+    }
+
     public function getPinuang()
     {
         $this->db->like('NAMA_ANG');

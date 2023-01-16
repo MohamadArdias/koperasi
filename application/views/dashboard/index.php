@@ -105,7 +105,7 @@ $this->load->view('templates/sidebar');
           </div><!-- End Tidak Aktif Card -->
 
           <!-- Tabel Anggota Tunggakan -->
-          <div class="col-12">
+          <!-- <div class="col-12">
 
             <div class="card-body">
               <h5 class="card-title">Tunggakan Anggota <span>| Keseluruhan</span></h5>
@@ -149,7 +149,7 @@ $this->load->view('templates/sidebar');
 
             </div>
 
-          </div>
+          </div> -->
         </div><!-- End Recent Sales -->
       </form>
 

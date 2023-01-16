@@ -47,25 +47,25 @@ $this->load->view('templates/sidebar');
                 ?>
             </select>
             <table class="table table-borderless datatable" id="customers">
-                <thead class="table-primary">
+                <thead>
                     <tr>
-                        <th class="text-center">Tanggal</th>
-                        <th class="text-center">Anggota</th>
-                        <th class="text-center">Instansi</th>
-                        <th class="text-center">Tabungan Awal Tahun</th>
-                        <th class="text-center">Tabungan <?= date('Y'); ?></th>
-                        <th class="text-center">Total Tabungan</th>
+                        <th scope="col">No</th>
+                        <th scope="col">Anggota</th>
+                        <th scope="col">Instansi</th>
+                        <th scope="col">Total Tunggakan</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($keuangan as $lap) : ?>
+                    <?php
+                    $i = 1;
+                    foreach ($tunggakan as $ang) : ?>
                         <tr>
-                            <td><?= $lap['TAHUN'] . '-' . $lap['BULAN'] ?></td>
-                            <td><?= $lap['URUT_ANG'] . '/' . $lap['NAMA_ANG']; ?></td>
-                            <td><?= $lap['KODE_INS'] . '/' . $lap['NAMA_INS']; ?></td>
-                            <td class="text-right"><?= number_format($lap['TOTWJB'], 0, ',', '.')  ?></td>
-                            <td class="text-right"><?= number_format($lap['TWAJIB'] - $lap['TOTWJB'], 0, ',', '.')  ?></td>
-                            <td class="text-right"><?= number_format($lap['TWAJIB'], 0, ',', '.')  ?></td>
+                            <td><?= $i++ ?></td>
+                            <td><?= $ang['URUT_ANG'] . '/' . $ang['NAMA_ANG']; ?></td>
+                            <td><?= $ang['KODE_INS'] . '/' . $ang['NAMA_INS']; ?></td>
+                            <td style="text-align: right"><?= number_format($ang['TUNGGAKAN'], 0, ',', '.') ?></td>
+                            <td><span class="badge bg-danger">Belum Lunas</span></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

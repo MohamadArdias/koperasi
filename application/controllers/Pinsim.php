@@ -30,13 +30,13 @@ class Pinsim extends CI_Controller
         $this->load->view('pinsim/index', $this->data);
     }
 
-    public function cetak($KODE_ANG)
-    {
-        $this->data['title'] = 'Cetak Anggota';
-        $this->data['keuangan'] = $this->Keuangan->getKeuanganByKode($KODE_ANG);
+    // public function cetak($KODE_ANG)
+    // {
+    //     $this->data['title'] = 'Cetak Anggota';
+    //     $this->data['keuangan'] = $this->Keuangan->getKeuanganByKode($KODE_ANG);
 
-        $this->load->view('pinsim/cetak', $this->data);
-    }
+    //     $this->load->view('pinsim/cetak', $this->data);
+    // }
 
     public function pinjaman()
     {
@@ -56,5 +56,24 @@ class Pinsim extends CI_Controller
         $this->data['pinjaman'] = $this->Pinuang->getPinjaman($THN, $BLN);
 
         $this->load->view('pinsim/pinjaman', $this->data);
+    }
+
+    public function tunggakan()
+    {
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
+
+        if ($TAHUN == '' AND $BULAN == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = $TAHUN;
+            $BLN = $BULAN;
+        }
+
+        $this->data['title'] = 'Tunggakan '.$THN.'-'.$BLN;
+        $this->data['tunggakan'] = $this->Pinuang->tunggakan($THN, $BLN);
+
+        $this->load->view('pinsim/tunggakan', $this->data);
     }
 }

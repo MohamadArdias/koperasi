@@ -44,7 +44,7 @@ $data = '<!DOCTYPE html>
                         <div>
                         <table cellpadding="5">
                             <tr>
-                            <th style="font-size: 12px;" width="592" align="right">'.$full.'</th>
+                            <th style="font-size: 12px;" width="592" align="right">' . $full . '</th>
                             </tr>
                             <tr>
                             <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
@@ -53,10 +53,10 @@ $data = '<!DOCTYPE html>
                             <th style="font-size: 12px;" width="592" align="center">Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
                             </tr>
                         </table>    ';
-                        
 
 
-$pdf->SetFont('', '', 7);
+
+$pdf->SetFont('', '', 8);
 $data .=
     '
                             <table cellpadding="5">
@@ -68,18 +68,18 @@ $data .=
                             <table cellspacing="0" cellpadding="3">
                                 <thead>
                                     <tr>
-                                        <th width="15" align="center" style="border: 1px solid black; ">No </th>
-                                        <th width="140" align="center" style="border: 1px solid black; " >ANGGOTA</th>
-                                        <th width="45" align="center" style="border: 1px solid black; " >SIM</th>
-                                        <th width="45" align="center" style="border: 1px solid black; " >KONSUMSI</th>
-                                        <th width="45" align="center" style="border: 1px solid black; " >NON KONSUMSI</th>
-                                        <th width="45" align="center" style="border: 1px solid black; " >PINJ. KHUSUS</th>
-                                        <th width="50" align="center" style="border: 1px solid black; " >PINJ. SP</th>
-                                        <th width="17" align="center" style="border: 1px solid black; " >KE</th>
-                                        <th width="40" align="center" style="border: 1px solid black; " >SIM. POKOK</th>
-                                        <th width="45" align="center" style="border: 1px solid black; " >SIM. WAJIB</th>
-                                        <th width="55" align="center" style="border: 1px solid black; " >TUNGGAKAN</th>
-                                        <th width="50" align="center" style="border: 1px solid black; " >TOTAL</th>
+                                        <th width="15" align="center" style="font-size:7px; border: 1px solid black; ">No </th>
+                                        <th width="140" align="center" style="font-size:7px; border: 1px solid black; " >ANGGOTA</th>
+                                        <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >SIM</th>
+                                        <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >KONSUMSI</th>
+                                        <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >NON KONSUMSI</th>
+                                        <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. KHUSUS</th>
+                                        <th width="50" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. SP</th>
+                                        <th width="17" align="center" style="font-size:7px; border: 1px solid black; " >KE</th>
+                                        <th width="40" align="center" style="font-size:7px; border: 1px solid black; " >SIM. POKOK</th>
+                                        <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >SIM. WAJIB</th>
+                                        <th width="55" align="center" style="font-size:7px; border: 1px solid black; " >TUNGGAKAN</th>
+                                        <th width="50" align="center" style="font-size:7px; border: 1px solid black; " >TOTAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -95,8 +95,8 @@ $totalg = 0;
 $totalj = 0;
 $totalt = 0;
 
-foreach ($keuangan as $lap) {   
-     
+foreach ($keuangan as $lap) {
+
     $a = $lap['POKU3'] + $lap['BNGU3'];
     $b = $lap['POKU1'] + $lap['BNGU1'];
     $j = $lap['POKU4'] + $lap['BNGU4'];
@@ -109,7 +109,7 @@ foreach ($keuangan as $lap) {
     } else {
         $t = 0;
     }
-    
+
 
     $totala += $a;
     $totalb += $b;
@@ -142,8 +142,8 @@ foreach ($keuangan as $lap) {
                                         <td width="55" align="right" style="border-right: 1px solid black; ">' . number_format($t, 0, ',', '.') . '</td>
                                         <td width="50" align="right" style="border-right: 1px solid black; ">' . number_format($potongan, 0, ',', '.') . '</td>
                                     </tr>';
-                                    if ((($i-1) % 30) == 0) {
-                                        $data .= '
+    if ((($i - 1) % 30) == 0) {
+        $data .= '
                                         <tr>
                                             <td style="border-top: 1px solid black; " width="15" ></td>
                                             <td style="border-top: 1px solid black; " width="110"></td>
@@ -159,14 +159,14 @@ foreach ($keuangan as $lap) {
                                             <td style="border-top: 1px solid black; " width="45" ></td>
                                         </tr>
                                         </table>';
-                                        if ($i < $jumlah) {
-                                        
-                                        $data .='
+        if ($i < $jumlah) {
+
+            $data .= '
                                         <br pagebreak="true"/>';
-                                        $data .= '
+            $data .= '
                                         <table cellpadding="5">
                                             <tr>
-                                            <th style="font-size: 12px;" width="592" align="right">'.$full.'</th>
+                                            <th style="font-size: 12px;" width="592" align="right">' . $full . '</th>
                                             </tr>
                                             <tr>
                                             <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
@@ -184,24 +184,24 @@ foreach ($keuangan as $lap) {
                                         <table cellspacing="0" cellpadding="3">
                                             <thead>
                                                 <tr>
-                                                    <th width="15" align="center" style="border: 1px solid black; ">No </th>
-                                                    <th width="140" align="center" style="border: 1px solid black; " >ANGGOTA</th>
-                                                    <th width="45" align="center" style="border: 1px solid black; " >SIM</th>
-                                                    <th width="45" align="center" style="border: 1px solid black; " >KONSUMSI</th>
-                                                    <th width="45" align="center" style="border: 1px solid black; " >NON KONSUMSI</th>
-                                                    <th width="45" align="center" style="border: 1px solid black; " >PINJ. KHUSUS</th>
-                                                    <th width="50" align="center" style="border: 1px solid black; " >PINJ. SP</th>
-                                                    <th width="17" align="center" style="border: 1px solid black; " >KE</th>
-                                                    <th width="40" align="center" style="border: 1px solid black; " >SIM. POKOK</th>
-                                                    <th width="45" align="center" style="border: 1px solid black; " >SIM. WAJIB</th>
-                                                    <th width="55" align="center" style="border: 1px solid black; " >TUNGGAKAN</th>
-                                                    <th width="50" align="center" style="border: 1px solid black; " >TOTAL</th>
+                                                    <th width="15" align="center" style="font-size:7px; border: 1px solid black; ">No </th>
+                                                    <th width="140" align="center" style="font-size:7px; border: 1px solid black; " >ANGGOTA</th>
+                                                    <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >SIM</th>
+                                                    <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >KONSUMSI</th>
+                                                    <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >NON KONSUMSI</th>
+                                                    <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. KHUSUS</th>
+                                                    <th width="50" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. SP</th>
+                                                    <th width="17" align="center" style="font-size:7px; border: 1px solid black; " >KE</th>
+                                                    <th width="40" align="center" style="font-size:7px; border: 1px solid black; " >SIM. POKOK</th>
+                                                    <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >SIM. WAJIB</th>
+                                                    <th width="55" align="center" style="font-size:7px; border: 1px solid black; " >TUNGGAKAN</th>
+                                                    <th width="50" align="center" style="font-size:7px; border: 1px solid black; " >TOTAL</th>
                                                 </tr>
                                             </thead>
                                         </table>';
-                                        }    
-                                        $data .= '<table cellspacing="0" cellpadding="3">';
-                                    }
+        }
+        $data .= '<table cellspacing="0" cellpadding="3">';
+    }
 }
 $data .=    '           
                                 <tbody>
@@ -222,8 +222,7 @@ $data .=    '
                                 </tbody>                                                                   
                             </table>
                         <br>
-                        <div>
-                            <div>
+                        <br>                        
                                 <div>
                                     <table>
                                         <tr>
@@ -231,24 +230,23 @@ $data .=    '
                                                 Jumlah Uang Sebesar RP. <br>
                                                 Telah saya terima <br> 
                                                 bendahara KP-RI Bangkit Bersama <br><br><br><br><br>
-                                                '.$pengurus['BENDAH1'].' 
+                                                ' . $pengurus['BENDAH1'] . ' 
                                             </td>       
                                             <td width="60"></td> 
                                             <td width="150"><pre>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
     '<br>Terbayar       Rp. 0<br>==============================<br>Sisa           Rp. 0 </pre></td>
                                             <td width="50"></td>
-                                            <td align="left" width="125">
+                                            <td align="left" width="140">
                                                 Banyuwangi, 25 ' . $date . ' <br>
                                                 Pengurus KPRI Bangkit Bersama <br> 
                                                 Kantor Pemkab. Banyuwangi <br> 
                                                 Ketua 1 <br><br><br><br>
-                                                '.$pengurus['KETUA'].'
+                                                ' . $pengurus['KETUA'] . '
                                             </td>
                                         </tr>        
                                     </table>
                                 </div>
-                            </div>
-                        </div>        
+                                 
                     </div>
                 </div>            
         </body>

@@ -59,7 +59,7 @@ $this->load->view('templates/sidebar');
         <div class="overflow-auto">
             <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
                 <option hidden>Date</option>
-                <?php $query = $this->db->query("SELECT DISTINCT TAHUN, BULAN FROM pl")->result_array();
+                <?php $query = $this->db->query("SELECT DISTINCT TAHUN, BULAN FROM pl ORDER BY pl.TAHUN DESC, pl.BULAN DESC")->result_array();
                 foreach ($query as $key) {
                 ?>
                     <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
