@@ -16,28 +16,34 @@ class Keuangan_model extends  CI_Model
         //     pl
         //     ON 
         //         pl.KODE_ANG = anggota.URUT_ANG
+        //     INNER JOIN
+        //     pembayaran
+        //     ON 
+        //         pl.KODE_ANG = pembayaran.KODE_ANG
         // WHERE
-        //     anggota.URUT_ANG = $URUT_ANG");
+        //     anggota.URUT_ANG = $URUT_ANG AND
+        //     pl.TAHUN = pembayaran.TAHUN AND
+        //     pl.BULAN = pembayaran.BULAN ");
         $query = $this->db->query("SELECT
             *
         FROM
-            anggota
-            INNER JOIN
             instan
+            INNER JOIN
+            anggota
             ON 
-                anggota.KODE_INS = instan.KODE_INS
+                instan.KODE_INS = anggota.KODE_INS
             INNER JOIN
             pl
             ON 
-                pl.KODE_ANG = anggota.URUT_ANG
-            INNER JOIN
+                anggota.URUT_ANG = pl.KODE_ANG
+            LEFT JOIN
             pembayaran
             ON 
-                pl.KODE_ANG = pembayaran.KODE_ANG
+                pl.KODE_ANG = pembayaran.KODE_ANG AND
+                pl.TAHUN = pembayaran.TAHUN_byr AND
+                pl.BULAN = pembayaran.BULAN_byr
         WHERE
-            anggota.URUT_ANG = $URUT_ANG AND
-            pl.TAHUN = pembayaran.TAHUN AND
-            pl.BULAN = pembayaran.BULAN ");
+            pl.KODE_ANG = $URUT_ANG");
         
         return $query->result_array();
     }
