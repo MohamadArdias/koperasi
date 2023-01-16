@@ -15,12 +15,12 @@
                   <span>Anggota</span>
               </a>
           </li>
-		  <li class="nav-item">
+		  <!-- <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/Historipembayaran">
                   <i class="bi bi-book"></i>
                   <span>Histori Pembayaran</span>
               </a>
-          </li>
+          </li> -->
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinjaman">
                   <i class="bi bi-bank"></i>

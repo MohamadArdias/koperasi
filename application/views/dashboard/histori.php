@@ -31,57 +31,71 @@ $this->load->view('templates/sidebar');
     color: white;
   }
 </style>
-<div class="row mt-3">
-  <table class="table table-borderless datatable" id="customers">
-    <thead>
-      <tr>
-        <th style="padding-left: 30px; padding-right: 30px;">Bulan</th>
-        <th>Simpanan Wajib</th>
-        <th>Ke</th>
-        <th>Uang</th>
-        <th>Ke</th>
-        <th>Non Konsumsi</th>
-        <th>Ke</th>
-        <th>Khusus</th>
-        <th>Ke</th>
-        <th>Konsumsi</th>
-        <th>Ke</th>
-        <th>UUB</th>
-        <th>Tunggakan</th>
-        <th>Jumlah Tagihan</th>
-        <th>Terbayar</th>
-        <th>Via Bayar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      foreach ($anggota as $ang) :
-        $uang = $ang['POKU1'] + $ang['BNGU1'];
-        $kons = $ang['POKU2'] + $ang['BNGU2'];
-        $non = $ang['POKU3'] + $ang['BNGU3'];
-        $khus = $ang['POKU7'] + $ang['BNGU7'];
-        $uub = $ang['POKU4'] + $ang['BNGU4']; ?>
-        <tr>
-          <td><?= $ang['TAHUN'].'-'.$ang['BULAN']; ?></td>
-          <td><?= number_format($ang['WAJIB'], 0, ',', '.') ?></td>
-          <td><?= $ang['KEU1']; ?></td>
-          <td><?= number_format($uang, 0, ',', '.') ?></td>
-          <td><?= $ang['KEU3']; ?></td>
-          <td><?= number_format($non, 0, ',', '.') ?></td>
-          <td><?= $ang['KEU7']; ?></td>
-          <td><?= number_format($khus, 0, ',', '.') ?></td>
-          <td><?= $ang['KEU2']; ?></td>
-          <td><?= number_format($kons, 0, ',', '.') ?></td>
-          <td><?= $ang['KEU4']; ?></td>
-          <td><?= number_format($uub, 0, ',', '.') ?></td>
-          <td><?= number_format($ang['TUNGGAKAN'], 0, ',', '.') ?></td>
-          <td><?= number_format($ang['JML_TGHN'], 0, ',', '.') ?></td>
-          <td><?= number_format($ang['JML_BAYAR'], 0, ',', '.') ?></td>
-          <td><?= $ang['VIA_BAYAR']; ?></td>
-        </tr>
-      <?php endforeach ?>
-    </tbody>
-  </table>
+<div class="card">
+  <div class="card-body">
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <form action="<?= base_url(); ?>index.php/anggota/histori/<?= $get['URUT_ANG']; ?>" method="post">
+          <div class="input-group">
+            <button class="btn btn-primary">Cetak Excel</button>
+            <!-- <a href="<?= base_url(); ?>index.php/anggota/tambah" class="btn btn-primary">Tambah Anggota</a> -->
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row mt-3 overflow-auto">
+      <table class="table table-borderless " id="customers">
+        <thead>
+          <tr>
+            <th style="padding-left: 30px; padding-right: 30px;">Bulan</th>
+            <th>Simpanan Wajib</th>
+            <th>Ke</th>
+            <th>Uang</th>
+            <th>Ke</th>
+            <th>Non Konsumsi</th>
+            <th>Ke</th>
+            <th>Khusus</th>
+            <th>Ke</th>
+            <th>Konsumsi</th>
+            <th>Ke</th>
+            <th>UUB</th>
+            <th>Tunggakan</th>
+            <th>Jumlah Tagihan</th>
+            <th>Terbayar</th>
+            <th>Via Bayar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($anggota as $ang) :
+            $uang = $ang['POKU1'] + $ang['BNGU1'];
+            $kons = $ang['POKU2'] + $ang['BNGU2'];
+            $non = $ang['POKU3'] + $ang['BNGU3'];
+            $khus = $ang['POKU7'] + $ang['BNGU7'];
+            $uub = $ang['POKU4'] + $ang['BNGU4']; ?>
+            <tr>
+              <td><?= $ang['TAHUN'] . '-' . $ang['BULAN']; ?></td>
+              <td><?= number_format($ang['WAJIB'], 0, ',', '.') ?></td>
+              <td><?= $ang['KEU1']; ?></td>
+              <td><?= number_format($uang, 0, ',', '.') ?></td>
+              <td><?= $ang['KEU3']; ?></td>
+              <td><?= number_format($non, 0, ',', '.') ?></td>
+              <td><?= $ang['KEU7']; ?></td>
+              <td><?= number_format($khus, 0, ',', '.') ?></td>
+              <td><?= $ang['KEU2']; ?></td>
+              <td><?= number_format($kons, 0, ',', '.') ?></td>
+              <td><?= $ang['KEU4']; ?></td>
+              <td><?= number_format($uub, 0, ',', '.') ?></td>
+              <td><?= number_format($ang['TUNGGAKAN'], 0, ',', '.') ?></td>
+              <td><?= number_format($ang['JML_TGHN'], 0, ',', '.') ?></td>
+              <td><?= number_format($ang['JML_BAYAR'], 0, ',', '.') ?></td>
+              <td><?= $ang['VIA_BAYAR']; ?></td>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 <?php
 $this->load->view('templates/footer');
