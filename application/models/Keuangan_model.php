@@ -44,6 +44,9 @@ class Keuangan_model extends  CI_Model
 
     public function jumlahAnggota($KODE_INS)
     {
+        $thn = date("Y");
+        $bln = date("m");
+
         $query = $this->db->query("SELECT
         *
         FROM
@@ -57,9 +60,9 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
-        pl.TAHUN IN (SELECT MAX(TAHUN) FROM pl) AND
-        instan.KODE_INS = '$KODE_INS' AND
-        pl.BULAN IN (SELECT MAX(BULAN) FROM pl)");
+        pl.TAHUN = $thn AND
+        pl.BULAN = $bln AND
+        anggota.KODE_INS = '$KODE_INS'");
 
         return $query->num_rows();
     }
