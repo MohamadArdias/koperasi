@@ -181,6 +181,16 @@ class Anggota extends CI_Controller
         $writer->save('php://output');
     }
 
+    public function histori2($URUT_ANG)
+    {
+        $query = $this->db->query("SELECT * FROM anggota WHERE URUT_ANG = $URUT_ANG")->row_array();
+
+        $this->data['title'] = 'Histori '.$query['NAMA_ANG'];
+		// $this->data['anggota'] = $this->Dashboard->getHistori($URUT_ANG);
+        $this->data['anggota'] = $this->Keuangan->histo($URUT_ANG);
+		$this->load->view('dashboard/histori', $this->data);
+    }
+
     public function contoh()
     {
         $this->load->view('anggota/contoh');
