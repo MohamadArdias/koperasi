@@ -22,8 +22,19 @@ class Keuangan extends CI_Controller
 
     public function index()
     {
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
+
+        if ($TAHUN == '' AND $BULAN == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = $TAHUN;
+            $BLN = $BULAN;
+        }
+
         $this->data['title'] = 'Data Potongan Anggota';
-        $this->data['keuangan'] = $this->Kirim->getAllKirim();
+        $this->data['keuangan'] = $this->Kirim->getAllKirim($THN, $BLN);
 
 
         $this->load->view('keuangan/index', $this->data);
@@ -134,7 +145,10 @@ class Keuangan extends CI_Controller
         $sheet->getStyle('F10')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-        $keuangan = $this->Kirim->getAllKirim();
+        $THN = $this->input->post('TAHUN');
+        $BLN = $this->input->post('BULAN');
+
+        $keuangan = $this->Kirim->getAllKirim($THN, $BLN);
         $no = 1; // Untuk penomoran tabel, di awal set dengan 1
         $numrow = 11; // Set baris pertama untuk isi tabel adalah baris ke 4
         foreach ($keuangan as $data) { // Lakukan looping pada variabel siswa

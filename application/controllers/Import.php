@@ -75,6 +75,16 @@ class Import extends CI_Controller
 
     public function potong()
     {
+        $DATE = $this->input->post('GET_POTONG');
+
+        if ($DATE == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = substr($DATE, 0, 4);
+            $BLN = substr($DATE, -2);
+        }
+        
         $bayar = $this->Import->getTemp();
 
         foreach ($bayar as $key) {
@@ -87,8 +97,10 @@ class Import extends CI_Controller
             );
 
             $this->db->where('KODE_ANG', $key['URUT_ANG']);
+            $this->db->where('TAHUN', $THN);
+            $this->db->where('BULAN', $BLN);
             // $this->db->like('pembayaran.TGL_TGHN', date('Y-m'));
-            $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
+            // $this->db->like('pembayaran.TGL_TGHN', date('Y-m', strtotime('-1 month')));
             $this->db->update('pembayaran', $inBayar);
 
             // $pl = [

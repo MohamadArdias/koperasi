@@ -29,25 +29,46 @@ class Kirim_model extends CI_model
         return $query->result_array();
     }
     
-    public function getAllKirim()
+    public function getAllKirim($THN, $BLN)
     {
-        $query = $this->db->query("SELECT *
+        // $query = $this->db->query("SELECT *
+        // FROM
+        // pembayaran
+        // INNER JOIN
+        // anggota
+        // ON 
+        //     pembayaran.KODE_ANG = anggota.URUT_ANG
+        // INNER JOIN
+        // instan
+        // ON 
+        //     anggota.KODE_INS = instan.KODE_INS
+        // WHERE
+        // TGL_TGHN IN ((SELECT MAX(TGL_TGHN) FROM pembayaran)) AND
+        // anggota.REKENING > 1
+        // ORDER BY
+	    // instan.KODE_INS ASC, 
+	    // anggota.URUT_ANG ASC");
+        // return $query->result_array();
+
+        $query = $this->db->query("SELECT
+            *
         FROM
-        pembayaran
-        INNER JOIN
-        anggota
-        ON 
-            pembayaran.KODE_ANG = anggota.URUT_ANG
-        INNER JOIN
-        instan
-        ON 
-            anggota.KODE_INS = instan.KODE_INS
+            pembayaran
+            INNER JOIN
+            anggota
+            ON 
+                pembayaran.KODE_ANG = anggota.URUT_ANG
+            INNER JOIN
+            instan
+            ON 
+                anggota.KODE_INS = instan.KODE_INS
         WHERE
-        TGL_TGHN IN ((SELECT MAX(TGL_TGHN) FROM pembayaran)) AND
-        anggota.REKENING > 1
+            anggota.REKENING > 1 AND
+            pembayaran.TAHUN = $THN AND
+            pembayaran.BULAN = '$BLN'
         ORDER BY
-	    instan.KODE_INS ASC, 
-	    anggota.URUT_ANG ASC");
+            instan.KODE_INS ASC, 
+            anggota.URUT_ANG ASC");
         return $query->result_array();        
     }    
 

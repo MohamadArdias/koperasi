@@ -53,9 +53,39 @@ $this->load->view('templates/sidebar');
                                 <?php } ?>
                             </form>
                         </div>
-                        <div class="col text-end">
+                        <div class="col-md-3 text-end">
                             <form action="<?= base_url(); ?>index.php/import/potong" method="post">
-                                <button type="submit" class="btn btn-warning">Potong</button>
+                                <div class="input-group">
+                                    <select id="GET_POTONG" name="GET_POTONG" class="form-select" aria-label="Default select example">
+                                        <option hidden>--Pilih--</option>
+                                        <?php
+                                        $query = $this->db->query("SELECT DISTINCT
+                                            pl.TAHUN, 
+                                            pl.BULAN
+                                        FROM
+                                            pl
+                                            INNER JOIN
+                                            pinuang
+                                            ON 
+                                                pl.KODE_ANG = pinuang.KODE_ANG
+                                        WHERE
+                                            pl.TAHUN = pinuang.TAHUN AND
+                                            pl.BULAN = pinuang.BULAN
+                                        ORDER BY
+                                            pl.TAHUN DESC, 
+                                            pl.BULAN DESC")->result_array();
+
+                                        foreach ($query as $key) {
+                                        ?>
+                                            <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <button type="submit" name="generate" class="btn btn-warning">Potong</button>
+                                    <!-- <a href="<?= base_url(); ?>index.php/genta/simpan" class="btn btn-primary">Generate</a> -->
+                                </div>
+                                <!-- <button type="submit" class="btn btn-warning">Potong</button> -->
                             </form>
                         </div>
                     </div>
@@ -75,7 +105,7 @@ $this->load->view('templates/sidebar');
                 <tbody>
                     <?php
                     // $temp = $this->db->get('temp')->result_array();
-                    
+
                     $i = 1;
                     foreach ($temp as $bayar) :
                         if ($bayar['NO_REKENING'] != NULL) {
