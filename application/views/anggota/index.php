@@ -59,7 +59,7 @@ $this->load->view('templates/sidebar');
       <table class="table table-borderless datatable" id="customers">
         <thead class="table-primary">
           <tr>
-            <th class="text-center">No. Urut</th>
+            <th class="text-center">Kode Anggota</th>
             <th class="text-center">No. Rekening</th>
             <th class="text-center">Nama Anggota</th>
             <th class="text-center">Status / Instansi</th>

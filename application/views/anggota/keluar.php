@@ -39,14 +39,17 @@ $this->load->view('templates/sidebar');
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
+                        <th class="text-center">No.</th>
                         <th class="text-center">Anggota</th>
                         <th class="text-center">No. Rekening</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Tanggal Berhenti</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+                    $i = 1;
                     $anggota = $this->db->query("SELECT * FROM `anggota` INNER JOIN instan ON anggota.KODE_INS = instan.KODE_INS WHERE instan.KODE_INS = 96 OR instan.KODE_INS = 97 OR instan.KODE_INS = 98 OR instan.KODE_INS = 99 ORDER BY instan.KODE_INS ASC")->result_array();
                     foreach ($anggota as $ang) :
                         if ($ang['REKENING'] != NULL) {
@@ -56,10 +59,12 @@ $this->load->view('templates/sidebar');
                         }
                     ?>
                         <tr>
-                            <td><a href="<?= base_url(); ?>index.php/Anggota/detail/<?= $ang['URUT_ANG']; ?>"><?= $ang['URUT_ANG'] . '/' . $ang['NAMA_ANG']; ?></a></td>
+                            <td><?= $i; $i++;?></td>
+                            <td><a href="<?= base_url(); ?>index.php/Anggota/histori2/<?= $ang['URUT_ANG']; ?>"><?= $ang['URUT_ANG'] . '/' . $ang['NAMA_ANG']; ?></a></td>
                             <td><?= $a; ?></td>
                             <td><?= $ang['KODE_INS']; ?>/ <?= $ang['NAMA_INS']; ?></td>
                             <td><?= $ang['TGLK_ANG']; ?></td>
+                            <td><a href="<?= base_url(); ?>index.php/Anggota/detail/<?= $ang['URUT_ANG']; ?>" class="btn btn-warning">Detail</a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
