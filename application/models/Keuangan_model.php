@@ -113,7 +113,7 @@ class Keuangan_model extends  CI_Model
         return  $this->db->get()->result_array();
     }
 
-    public function getDistincAllKeuangan()
+    public function getDistincAllKeuangan($THN, $BLN)
     {
         // $this->db->distinct();
         // $this->db->select('anggota.KODE_INS, instan.NAMA_INS');
@@ -125,8 +125,8 @@ class Keuangan_model extends  CI_Model
         // $this->db->where('pl.BULAN', date('m'));
         // return  $this->db->get()->result_array();
 
-        $thn = date("Y");
-        $bln = date("m");
+        // $thn = date("Y");
+        // $bln = date("m");
         $query = $this->db->query("SELECT DISTINCT
         instan.KODE_INS, 
         instan.NAMA_INS, 
@@ -143,8 +143,8 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
-        pl.TAHUN = $thn AND
-        pl.BULAN = $bln
+        pl.TAHUN = $THN AND
+        pl.BULAN = $BLN
         ORDER BY
 	    instan.KODE_INS ASC");
         return $query->result_array();

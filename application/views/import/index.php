@@ -57,7 +57,7 @@ $this->load->view('templates/sidebar');
                             <form action="<?= base_url(); ?>index.php/import/potong" method="post">
                                 <div class="input-group">
                                     <select id="GET_POTONG" name="GET_POTONG" class="form-select" aria-label="Default select example">
-                                        <option hidden>--Pilih--</option>
+                                        <!-- <option hidden>--Pilih--</option> -->
                                         <?php
                                         $query = $this->db->query("SELECT DISTINCT
                                             pl.TAHUN, 

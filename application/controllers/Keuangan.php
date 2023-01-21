@@ -194,14 +194,28 @@ class Keuangan extends CI_Controller
 
     public function cetakins()
     {
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
+
+        if ($TAHUN == '' AND $BULAN == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = $TAHUN;
+            $BLN = $BULAN;
+        }
+
         $this->data['title'] = 'Cetak Per Instansi';
-        $this->data['keuangan'] = $this->keuangan->getDistincAllKeuangan();
+        $this->data['keuangan'] = $this->keuangan->getDistincAllKeuangan($THN, $BLN);
 
         $this->load->view('keuangan/cetakins', $this->data);
     }
 
     public function printins($KODE_INS)
     {
+        $TAHUN = $this->input->post('TAHUN');
+        $BULAN = $this->input->post('BULAN');
+
         $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
         $this->data['instansi'] = $this->keuangan->getInstansi($KODE_INS);
         $this->data['pengurus'] = $this->keuangan->getPengurus();
