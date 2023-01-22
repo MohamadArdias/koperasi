@@ -4,22 +4,23 @@ $BULAN = $this->input->get('BULAN');
 
 function tanggal_indo2($tanggal)
 {
-	$bulan = array (1 =>   'Januari',
-				'Februari',
-				'Maret',
-				'April',
-				'Mei',
-				'Juni',
-				'Juli',
-				'Agustus',
-				'September',
-				'Oktober',
-				'November',
-				'Desember'
-			);
-	$split = explode('-', $tanggal);
-	// return $split[0] . ' ' . $bulan[ (int)$split[1] ];
-	return $bulan[ (int)$split[1] ] . ' ' . $split[0];
+    $bulan = array(
+        1 =>   'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+    $split = explode('-', $tanggal);
+    // return $split[0] . ' ' . $bulan[ (int)$split[1] ];
+    return $bulan[(int)$split[1]] . ' ' . $split[0];
 }
 
 // echo tanggal_indo2($TAHUN.'-'.$BULAN); // 20 Maret 2016
@@ -29,36 +30,38 @@ function tanggal_indo2($tanggal)
 
 function tanggal_indo($tanggal, $cetak_hari = false)
 {
-	$hari = array ( 1 =>    'Senin',
-				'Selasa',
-				'Rabu',
-				'Kamis',
-				'Jumat',
-				'Sabtu',
-				'Minggu'
-			);
-			
-	$bulan = array (1 =>   'Januari',
-				'Februari',
-				'Maret',
-				'April',
-				'Mei',
-				'Juni',
-				'Juli',
-				'Agustus',
-				'September',
-				'Oktober',
-				'November',
-				'Desember'
-			);
-	$split 	  = explode('-', $tanggal);
-	$tgl_indo = $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
-	
-	if ($cetak_hari) {
-		$num = date('N', strtotime($tanggal));
-		return $hari[$num] . ', ' . $tgl_indo;
-	}
-	return $tgl_indo;
+    $hari = array(
+        1 =>    'Senin',
+        'Selasa',
+        'Rabu',
+        'Kamis',
+        'Jumat',
+        'Sabtu',
+        'Minggu'
+    );
+
+    $bulan = array(
+        1 =>   'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+    $split       = explode('-', $tanggal);
+    $tgl_indo = $split[2] . ' ' . $bulan[(int)$split[1]] . ' ' . $split[0];
+
+    if ($cetak_hari) {
+        $num = date('N', strtotime($tanggal));
+        return $hari[$num] . ', ' . $tgl_indo;
+    }
+    return $tgl_indo;
 }
 // echo tanggal_indo (date("Y-m-d"), true);
 
@@ -107,7 +110,7 @@ $data = '<!DOCTYPE html>
                         <div>
                         <table cellpadding="5">
                             <tr>
-                            <th style="font-size: 12px;" width="592" align="right">' . $full . '</th>
+                            <th style="font-size: 12px;" width="592" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
                             </tr>
                             <tr>
                             <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
@@ -124,7 +127,7 @@ $data .=
     '
                             <table cellpadding="5">
                                 <tr>
-                                    <td style="font-size: 10px;">DAFTAR TAGIHAN BULAN ' . $Month . '</td>
+                                    <td style="font-size: 10px;">DAFTAR TAGIHAN BULAN ' . tanggal_indo2($TAHUN . '-' . $BULAN) . '</td>
                                     <td style="font-size: 10px;" align="right">UNTUK ' . $instansi['KODE_INS'] . '/' . $instansi['NAMA_INS'] . '</td>
                                 </tr>
                             </table>
@@ -229,7 +232,7 @@ foreach ($keuangan as $lap) {
             $data .= '
                                         <table cellpadding="5">
                                             <tr>
-                                            <th style="font-size: 12px;" width="592" align="right">' . $full . '</th>
+                                            <th style="font-size: 12px;" width="592" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
                                             </tr>
                                             <tr>
                                             <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
@@ -240,7 +243,7 @@ foreach ($keuangan as $lap) {
                                         </table>
                                         <table cellpadding="5">
                                             <tr>
-                                                <td><b>DAFTAR TAGIHAN BULAN ' . $Month . '</b></td>
+                                                <td><b>DAFTAR TAGIHAN BULAN ' . tanggal_indo2($TAHUN . '-' . $BULAN) . '</b></td>
                                                 <td align="right"><b>UNTUK ' . $instansi['KODE_INS'] . '/' . $instansi['NAMA_INS'] . '</b></td>
                                             </tr>
                                         </table>
@@ -300,7 +303,7 @@ $data .=    '
     '<br>Terbayar       Rp. 0<br>==============================<br>Sisa           Rp. 0 </pre></td>
                                             <td width="50"></td>
                                             <td align="left" width="140">
-                                                Banyuwangi, 25 ' . $date . ' <br>
+                                                Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . ($BULAN-1)) . ' <br>
                                                 Pengurus KPRI Bangkit Bersama <br> 
                                                 Kantor Pemkab. Banyuwangi <br> 
                                                 Ketua 1 <br><br><br><br>
@@ -316,4 +319,4 @@ $data .=    '
         
         </html>';
 $pdf->WriteHTML($data);
-$pdf->Output("Koperasi Bangkit Bersama $date .pdf", 'I');
+$pdf->Output("Koperasi Bangkit Bersama ".tanggal_indo2($TAHUN.'-'.$BULAN)." .pdf", 'I');

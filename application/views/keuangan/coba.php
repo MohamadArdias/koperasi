@@ -1,4 +1,70 @@
 <?php
+$TAHUN = $this->input->get('TAHUN');
+$BULAN = $this->input->get('BULAN');
+
+function tanggal_indo2($tanggal)
+{
+    $bulan = array(
+        1 =>   'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+    $split = explode('-', $tanggal);
+    // return $split[0] . ' ' . $bulan[ (int)$split[1] ];
+    return $bulan[(int)$split[1]] . ' ' . $split[0];
+}
+
+// echo tanggal_indo2($TAHUN.'-'.$BULAN); // 20 Maret 2016
+// echo "<br>";
+
+
+
+function tanggal_indo($tanggal, $cetak_hari = false)
+{
+    $hari = array(
+        1 =>    'Senin',
+        'Selasa',
+        'Rabu',
+        'Kamis',
+        'Jumat',
+        'Sabtu',
+        'Minggu'
+    );
+
+    $bulan = array(
+        1 =>   'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+    $split       = explode('-', $tanggal);
+    $tgl_indo = $split[2] . ' ' . $bulan[(int)$split[1]] . ' ' . $split[0];
+
+    if ($cetak_hari) {
+        $num = date('N', strtotime($tanggal));
+        return $hari[$num] . ', ' . $tgl_indo;
+    }
+    return $tgl_indo;
+}
+// echo tanggal_indo (date("Y-m-d"), true);
+
 setlocale(LC_ALL, 'id-ID', 'id_ID');
 date_default_timezone_set("Asia/Jakarta");
 // $mpdf = new Mpdf(['orientation' => 'L', 'default_font_size' => 9]);
@@ -75,7 +141,7 @@ $data .= '
 Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
                    --o0o-- <br>
 ============================================<br>
-TAGIHAN UNTUK BULAN ' . $Month . '<br>
+TAGIHAN UNTUK BULAN ' . tanggal_indo2($TAHUN . '-' . $BULAN) . '<br>
 No. Anggota : ' . $key['URUT_ANG'] . '(' . $key['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $key['KODE_INS'] . '(' . $key['NAMA_INS'] . ') <br>
 ============================================<br>
@@ -120,7 +186,7 @@ JUMLAH                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
 ' .terbilang($ttl). ' rupiah<br><br><br>';
 
 $data .= '
-Banyuwangi, ' . $date . '<br>
+Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . ($BULAN-1)) . '<br>
 Pengurus KPRI Bangkit Bersama, <br>
 KETUA 1 <br><br><br>
 ' . $Pengurus['KETUA'] . '
