@@ -97,7 +97,7 @@ class Keuangan_model extends  CI_Model
         return $query->result_array();
     }
 
-    public function getAllKeuangan()
+    public function getAllKeuangan($THN, $BLN)
     {
         $this->db->select('*');
         $this->db->from('pl');
@@ -107,8 +107,8 @@ class Keuangan_model extends  CI_Model
         $this->db->where('instan.KODE_INS !=', 98);
         $this->db->where('instan.KODE_INS !=', 97);
         $this->db->where('instan.KODE_INS !=', 96);
-        $this->db->where('TAHUN', date('Y'));
-        $this->db->where('BULAN', date('m'));
+        $this->db->where('TAHUN', $THN);
+        $this->db->where('BULAN', $BLN);
         $this->db->order_by('anggota.KODE_INS', 'ASC');
         return  $this->db->get()->result_array();
     }
@@ -222,10 +222,10 @@ class Keuangan_model extends  CI_Model
         return $query->result_array();
     }
 
-    public function getAnggotaWhereKodeAng($KODE_ANG)
+    public function getAnggotaWhereKodeAng($KODE_ANG, $TAHUN, $BULAN)
     {
-        $thn = date("Y");
-        $bln = date("m");
+        // $thn = date("Y");
+        // $bln = date("m");
 
         $query = $this->db->query("SELECT
         anggota.NAMA_ANG, 
@@ -261,8 +261,8 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
-        pl.TAHUN = $thn AND
-        pl.BULAN = $bln AND
+        pl.TAHUN = $TAHUN AND
+        pl.BULAN = $BULAN AND
         anggota.URUT_ANG = '$KODE_ANG'");
         return $query->row_array();
 

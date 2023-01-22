@@ -199,4 +199,4 @@ $pdf->lastPage();
 }
 
 $pdf->WriteHTML($data);
-$pdf->Output("Koperasi Bangkit Bersama $date .pdf", 'I');
+$pdf->Output("Koperasi Bangkit Bersama tanggal_indo2($TAHUN . '-' . ($BULAN-1)) .pdf", 'I');

@@ -239,15 +239,29 @@ class Keuangan extends CI_Controller
 
     public function cetakang()
     {
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
+
+        if ($TAHUN == '' AND $BULAN == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = $TAHUN;
+            $BLN = $BULAN;
+        }
+
         $this->data['title'] = 'Cetak Per Anggota';
-        $this->data['keuangan'] = $this->keuangan->getAllKeuangan();
+        $this->data['keuangan'] = $this->keuangan->getAllKeuangan($THN, $BLN);
 
         $this->load->view('keuangan/cetakang', $this->data);
     }
 
     public function printang($KODE_ANG)
     {
-        $this->data['printang'] = $this->keuangan->getAnggotaWhereKodeAng($KODE_ANG);
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
+
+        $this->data['printang'] = $this->keuangan->getAnggotaWhereKodeAng($KODE_ANG, $TAHUN, $BULAN);
         $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
         $this->load->view('keuangan/printang', $this->data);
     }

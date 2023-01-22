@@ -36,6 +36,52 @@ $this->load->view('templates/sidebar');
 <div class="col-xxl-4 col-xl-12">
     <div class="card">
         <div class="card-body">
+            <div class="input-group">
+                <div class="col-md-3">
+                    <?php
+                    $TAHUN = $this->input->get('TAHUN');
+                    $BULAN = $this->input->get('BULAN');
+
+                    if ($TAHUN == '' and $BULAN == '') {
+                        $THN = date('Y');
+                        $BLN = date('m');
+                    } else {
+                        $THN = $TAHUN;
+                        $BLN = $BULAN;
+                    }
+
+                    ?>
+                    <select id="GETEX" name="GETEX" onchange="getEx()" class="form-select" aria-label="Default select example">
+                        <option hidden><?= $THN . '-' . $BLN; ?></option>
+
+                        <?php
+                        $query = $this->db->query("SELECT DISTINCT
+                                pl.TAHUN, 
+                                pl.BULAN
+                            FROM
+                                pl
+                                INNER JOIN
+                                pembayaran
+                                ON 
+                                    pl.KODE_ANG = pembayaran.KODE_ANG AND
+                                    pl.TAHUN = pembayaran.TAHUN AND
+                                    pl.BULAN = pembayaran.BULAN
+                            WHERE
+                                pl.TAHUN = pembayaran.TAHUN AND
+                                pl.BULAN = pembayaran.BULAN
+                            ORDER BY
+                                pl.TAHUN DESC, 
+                                pl.BULAN DESC")->result_array();
+
+                        foreach ($query as $key) {
+                        ?>
+                            <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
             <div class="overflow-auto">
                 <table class="table table-borderless datatable" id="customers">
                     <thead class="table-primary">
@@ -49,11 +95,11 @@ $this->load->view('templates/sidebar');
                     <tbody>
                         <?php foreach ($keuangan as $ins) : ?>
                             <tr>
-                                <td><?= $ins['TAHUN'].'-'.$ins['BULAN']; ?></td>
-                                <td><?= $ins['KODE_ANG'] .'/'.$ins['NAMA_ANG']; ?></td>
-                                <td><?= $ins['KODE_INS'].'/ '.$ins['NAMA_INS']; ?></td>
+                                <td><?= $ins['TAHUN'] . '-' . $ins['BULAN']; ?></td>
+                                <td><?= $ins['KODE_ANG'] . '/' . $ins['NAMA_ANG']; ?></td>
+                                <td><?= $ins['KODE_INS'] . '/ ' . $ins['NAMA_INS']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url(); ?>index.php/keuangan/printang/<?= $ins['KODE_ANG']; ?>" class="btn btn-secondary" target="blank">Print</a>
+                                    <a href="<?= base_url(); ?>index.php/keuangan/printang/<?= $ins['KODE_ANG']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-secondary" target="blank">Print</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -64,6 +110,13 @@ $this->load->view('templates/sidebar');
     </div>
 </div>
 
+<script>
+    function getEx() {
+        var option = document.getElementById("GETEX").value;
+        console.log(option);
+        window.location.assign("?TAHUN=" + option.substr(0, 4) + "&&BULAN=" + option.substr(-2));
+    }
+</script>
 
 <?php
 $this->load->view('templates/footer');
