@@ -48,10 +48,10 @@ class Keuangan_model extends  CI_Model
         return $query->result_array();
     }
 
-    public function jumlahAnggota($KODE_INS)
+    public function jumlahAnggota($KODE_INS, $TAHUN, $BULAN)
     {
-        $thn = date("Y");
-        $bln = date("m");
+        // $thn = date("Y");
+        // $bln = date("m");
 
         $query = $this->db->query("SELECT
         *
@@ -66,17 +66,17 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
-        pl.TAHUN = $thn AND
-        pl.BULAN = $bln AND
+        pl.TAHUN = $TAHUN AND
+        pl.BULAN = $BULAN AND
         anggota.KODE_INS = '$KODE_INS'");
 
         return $query->num_rows();
     }
 
-    public function printInsAng($KODE_INS)
+    public function printInsAng($KODE_INS, $TAHUN, $BULAN)
     {
-        $thn = date("Y");
-        $bln = date("m");
+        // $thn = date("Y");
+        // $bln = date("m");
 
         $query = $this->db->query("SELECT
         *
@@ -91,8 +91,8 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
     WHERE
-        pl.TAHUN = $thn AND
-        pl.BULAN = $bln AND
+        pl.TAHUN = $TAHUN AND
+        pl.BULAN = $BULAN AND
         anggota.KODE_INS = '$KODE_INS'");
         return $query->result_array();
     }
@@ -189,7 +189,7 @@ class Keuangan_model extends  CI_Model
     //     return $this->db->get('instan')->result_array();
     // }
 
-    public function getAnggotaWhereKodeins($KODE_INS)
+    public function getAnggotaWhereKodeins($KODE_INS, $TAHUN, $BULAN)
     {
         // $this->db->select('*');
         // $this->db->from('pl');
@@ -199,8 +199,8 @@ class Keuangan_model extends  CI_Model
         // $this->db->where('TAHUN', date('Y'));
         // $this->db->where('BULAN', date('m'));
         // return  $this->db->get()->result_array();
-        $thn = date("Y");
-        $bln = date("m");
+        // $thn = date("Y");
+        // $bln = date("m");
 
         $query = $this->db->query("SELECT
         *
@@ -215,9 +215,9 @@ class Keuangan_model extends  CI_Model
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
         WHERE
-        pl.TAHUN = $thn AND
+        pl.TAHUN = $TAHUN AND
         instan.KODE_INS = '$KODE_INS' AND
-        pl.BULAN = $bln");
+        pl.BULAN = $BULAN");
 
         return $query->result_array();
     }

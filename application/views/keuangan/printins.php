@@ -1,4 +1,67 @@
 <?php
+$TAHUN = $this->input->get('TAHUN');
+$BULAN = $this->input->get('BULAN');
+
+function tanggal_indo2($tanggal)
+{
+	$bulan = array (1 =>   'Januari',
+				'Februari',
+				'Maret',
+				'April',
+				'Mei',
+				'Juni',
+				'Juli',
+				'Agustus',
+				'September',
+				'Oktober',
+				'November',
+				'Desember'
+			);
+	$split = explode('-', $tanggal);
+	// return $split[0] . ' ' . $bulan[ (int)$split[1] ];
+	return $bulan[ (int)$split[1] ] . ' ' . $split[0];
+}
+
+// echo tanggal_indo2($TAHUN.'-'.$BULAN); // 20 Maret 2016
+// echo "<br>";
+
+
+
+function tanggal_indo($tanggal, $cetak_hari = false)
+{
+	$hari = array ( 1 =>    'Senin',
+				'Selasa',
+				'Rabu',
+				'Kamis',
+				'Jumat',
+				'Sabtu',
+				'Minggu'
+			);
+			
+	$bulan = array (1 =>   'Januari',
+				'Februari',
+				'Maret',
+				'April',
+				'Mei',
+				'Juni',
+				'Juli',
+				'Agustus',
+				'September',
+				'Oktober',
+				'November',
+				'Desember'
+			);
+	$split 	  = explode('-', $tanggal);
+	$tgl_indo = $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+	
+	if ($cetak_hari) {
+		$num = date('N', strtotime($tanggal));
+		return $hari[$num] . ', ' . $tgl_indo;
+	}
+	return $tgl_indo;
+}
+// echo tanggal_indo (date("Y-m-d"), true);
+
 // $mpdf = new Mpdf(['orientation' => 'L', 'default_font_size' => 9]);
 setlocale(LC_ALL, 'id-ID', 'id_ID');
 date_default_timezone_set("Asia/Jakarta");

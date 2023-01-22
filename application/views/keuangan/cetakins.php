@@ -37,26 +37,25 @@ $this->load->view('templates/sidebar');
     <div class="card">
         <div class="card-body">
             <div class="input-group">
-                <?php
-                $TAHUN = $this->input->get('TAHUN');
-                $BULAN = $this->input->get('BULAN');
-
-                if ($TAHUN == '' and $BULAN == '') {
-                    $THN = date('Y');
-                    $BLN = date('m');
-                } else {
-                    $THN = $TAHUN;
-                    $BLN = $BULAN;
-                }
-
-                ?>
-                <input type="hidden" name="TAHUN" class="form-control" id="TAHUN" value="<?= $THN ?>" />
-                <input type="hidden" name="BULAN" class="form-control" id="BULAN" value="<?= $BLN; ?>" />
-
-                <select id="GETEX" name="GETEX" onchange="getEx()" class="form-select" aria-label="Default select example">
-                    <option hidden><?= $THN . '-' . $BLN; ?></option>
+                <div class="col-md-3">
                     <?php
-                    $query = $this->db->query("SELECT DISTINCT
+                    $TAHUN = $this->input->get('TAHUN');
+                    $BULAN = $this->input->get('BULAN');
+
+                    if ($TAHUN == '' and $BULAN == '') {
+                        $THN = date('Y');
+                        $BLN = date('m');
+                    } else {
+                        $THN = $TAHUN;
+                        $BLN = $BULAN;
+                    }
+
+                    ?>
+                    <select id="GETEX" name="GETEX" onchange="getEx()" class="form-select" aria-label="Default select example">
+                        <option hidden><?= $THN . '-' . $BLN; ?></option>
+
+                        <?php
+                        $query = $this->db->query("SELECT DISTINCT
                                 pl.TAHUN, 
                                 pl.BULAN
                             FROM
@@ -74,13 +73,14 @@ $this->load->view('templates/sidebar');
                                 pl.TAHUN DESC, 
                                 pl.BULAN DESC")->result_array();
 
-                    foreach ($query as $key) {
-                    ?>
-                        <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
-                    <?php
-                    }
-                    ?>
-                </select>
+                        foreach ($query as $key) {
+                        ?>
+                            <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
             </div>
             <div class="overflow-auto">
                 <table class="table table-borderless datatable" id="customers">
@@ -99,8 +99,8 @@ $this->load->view('templates/sidebar');
                                 <td><?= $ins['BULAN']; ?></td>
                                 <td><?= $ins['KODE_INS'] . '/ ' . $ins['NAMA_INS']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>" class="btn btn-success" target="blank">Print Instansi</a>
-                                    <a href="<?= base_url(); ?>index.php/keuangan/printinsang/<?= $ins['KODE_INS']; ?>" class="btn btn-primary" target="blank">Print Aggota</a>
+                                    <a href="<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-success" target="blank">Print Instansi</a>
+                                    <a href="<?= base_url(); ?>index.php/keuangan/printinsang/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-primary" target="blank">Print Aggota</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

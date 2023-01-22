@@ -213,13 +213,13 @@ class Keuangan extends CI_Controller
 
     public function printins($KODE_INS)
     {
-        $TAHUN = $this->input->post('TAHUN');
-        $BULAN = $this->input->post('BULAN');
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
 
-        $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS);
+        $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS, $TAHUN, $BULAN);
         $this->data['instansi'] = $this->keuangan->getInstansi($KODE_INS);
         $this->data['pengurus'] = $this->keuangan->getPengurus();
-        $this->data['jumlah'] = $this->keuangan->jumlahAnggota($KODE_INS);
+        $this->data['jumlah'] = $this->keuangan->jumlahAnggota($KODE_INS, $TAHUN, $BULAN);
         
         $this->load->view('keuangan/printins', $this->data);
 
@@ -227,9 +227,12 @@ class Keuangan extends CI_Controller
 
     public function printinsang($KODE_INS)
     {
-        $this->data['printang'] = $this->keuangan->printInsAng($KODE_INS);
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
+
+        $this->data['printang'] = $this->keuangan->printInsAng($KODE_INS, $TAHUN, $BULAN);
         $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
-        $this->data['jumlah'] = $this->keuangan->jumlahAnggota($KODE_INS);
+        $this->data['jumlah'] = $this->keuangan->jumlahAnggota($KODE_INS, $TAHUN, $BULAN);
         
         $this->load->view('keuangan/coba', $this->data);
     }

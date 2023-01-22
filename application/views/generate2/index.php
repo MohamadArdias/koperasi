@@ -64,12 +64,14 @@ $this->load->view('templates/sidebar');
                             FROM
                                 pl
                                 INNER JOIN
-                                pinuang
+                                pinsimp
                                 ON 
-                                    pl.KODE_ANG = pinuang.KODE_ANG
+                                    pl.KODE_ANG = pinsimp.KODE_ANG AND
+                                    pl.BULAN = pinsimp.BULAN AND
+                                    pl.TAHUN = pinsimp.TAHUN
                             WHERE
-                                pl.TAHUN = pinuang.TAHUN AND
-                                pl.BULAN = pinuang.BULAN
+                                pl.TAHUN = pinsimp.TAHUN AND
+                                pl.BULAN = pinsimp.BULAN
                             ORDER BY
                                 pl.TAHUN DESC, 
                                 pl.BULAN DESC")->result_array();
