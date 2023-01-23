@@ -1035,7 +1035,9 @@ class Genta extends CI_Controller
             );
 
             $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            $this->db->like('TGL_TGHN', $thn.'-'.$bln);
+            $this->db->where('TAHUN', $thn);
+            $this->db->where('BULAN', $bln);
+            // $this->db->like('TGL_TGHN', $thn.'-'.$bln);
             $this->db->delete('pembayaran');
             // insert pembayaran
 

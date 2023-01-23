@@ -1,6 +1,14 @@
 <?php
-$TAHUN = $this->input->get('TAHUN');
-$BULAN = $this->input->get('BULAN');
+$tahun = $this->input->get('TAHUN');
+$bulan = $this->input->get('BULAN');
+
+if ($bulan == '01') {
+    $TAHUN = $tahun-1;
+    $BULAN = '12';
+} else {
+    $TAHUN = $tahun;
+    $BULAN = $bulan-1;
+}
 
 function tanggal_indo2($tanggal)
 {
@@ -141,7 +149,7 @@ $data .= '
 Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
                    --o0o-- <br>
 ============================================<br>
-TAGIHAN UNTUK BULAN ' . tanggal_indo2($TAHUN . '-' . $BULAN) . '<br>
+TAGIHAN UNTUK BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '<br>
 No. Anggota : ' . $key['URUT_ANG'] . '(' . $key['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $key['KODE_INS'] . '(' . $key['NAMA_INS'] . ') <br>
 ============================================<br>
@@ -186,7 +194,7 @@ JUMLAH                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
 ' .terbilang($ttl). ' rupiah<br><br><br>';
 
 $data .= '
-Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . ($BULAN-1)) . '<br>
+Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . $BULAN) . '<br>
 Pengurus KPRI Bangkit Bersama, <br>
 KETUA 1 <br><br><br>
 ' . $Pengurus['KETUA'] . '
@@ -199,4 +207,4 @@ $pdf->lastPage();
 }
 
 $pdf->WriteHTML($data);
-$pdf->Output("Koperasi Bangkit Bersama tanggal_indo2($TAHUN . '-' . ($BULAN-1)) .pdf", 'I');
+$pdf->Output("Koperasi Bangkit Bersama tanggal_indo2($TAHUN . '-' . $BULAN) .pdf", 'I');

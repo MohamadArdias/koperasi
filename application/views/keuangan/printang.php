@@ -1,6 +1,14 @@
 <?php
-$TAHUN = $this->input->get('TAHUN');
-$BULAN = $this->input->get('BULAN');
+$tahun = $this->input->get('TAHUN');
+$bulan = $this->input->get('BULAN');
+
+if ($bulan == '01') {
+    $TAHUN = $tahun-1;
+    $BULAN = '12';
+} else {
+    $TAHUN = $tahun;
+    $BULAN = $bulan-1;
+}
 
 function tanggal_indo2($tanggal)
 {
@@ -187,7 +195,7 @@ JUMLAH                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
 ' . terbilang($ttl) . ' rupiah<br><br><br>';
 
 $data .= '
-Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . ($BULAN-1)) . '<br>
+Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . $BULAN) . '<br>
 Pengurus KPRI Bangkit Bersama, <br>
 KETUA 1 <br><br><br>
 ' . $Pengurus['KETUA'] . '
@@ -195,4 +203,4 @@ KETUA 1 <br><br><br>
 </pre>';
 
 $pdf->WriteHTML($data);
-$pdf->Output("Koperasi Bangkit Bersama tanggal_indo2($TAHUN . '-' . ($BULAN-1)) .pdf", 'I');
+$pdf->Output("Koperasi Bangkit Bersama tanggal_indo2($TAHUN . '-' . $BULAN) .pdf", 'I');

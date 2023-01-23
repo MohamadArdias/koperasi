@@ -1,6 +1,14 @@
 <?php
-$TAHUN = $this->input->get('TAHUN');
-$BULAN = $this->input->get('BULAN');
+$tahun = $this->input->get('TAHUN');
+$bulan = $this->input->get('BULAN');
+
+if ($bulan == '01') {
+    $TAHUN = $tahun-1;
+    $BULAN = '12';
+} else {
+    $TAHUN = $tahun;
+    $BULAN = $bulan-1;
+}
 
 function tanggal_indo2($tanggal)
 {
@@ -127,7 +135,7 @@ $data .=
     '
                             <table cellpadding="5">
                                 <tr>
-                                    <td style="font-size: 10px;">DAFTAR TAGIHAN BULAN ' . tanggal_indo2($TAHUN . '-' . $BULAN) . '</td>
+                                    <td style="font-size: 10px;">DAFTAR TAGIHAN BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '</td>
                                     <td style="font-size: 10px;" align="right">UNTUK ' . $instansi['KODE_INS'] . '/' . $instansi['NAMA_INS'] . '</td>
                                 </tr>
                             </table>
@@ -303,7 +311,7 @@ $data .=    '
     '<br>Terbayar       Rp. 0<br>==============================<br>Sisa           Rp. 0 </pre></td>
                                             <td width="50"></td>
                                             <td align="left" width="140">
-                                                Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . ($BULAN-1)) . ' <br>
+                                                Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . $BULAN) . ' <br>
                                                 Pengurus KPRI Bangkit Bersama <br> 
                                                 Kantor Pemkab. Banyuwangi <br> 
                                                 Ketua 1 <br><br><br><br>
