@@ -23,7 +23,7 @@ class Pinuang_model extends  CI_Model
         instan.KODE_INS != 96 AND
         pl.TAHUN = $THN AND
         pl.BULAN = '$BLN'AND
-	    pl.TUNGGAKAN >= 1
+	    pl.POKU6 >= 1
     ORDER BY
         instan.KODE_INS ASC");
 
@@ -82,13 +82,13 @@ class Pinuang_model extends  CI_Model
 
     public function deleteTransaksi($a, $kode)
     {
-        return $this->db->query("UPDATE pinuang SET STATUS_PIN = 'OFF' WHERE pinuang.NOFAK LIKE '%$kode%' AND pinuang.KODE_ANG = '$a'");
+        // return $this->db->query("UPDATE pinuang SET STATUS_PIN = 'OFF' WHERE pinuang.NOFAK LIKE '%$kode%' AND pinuang.KODE_ANG = '$a'");
 
-        // return $this->db->query("DELETE FROM
-        //     pinuang
-        // WHERE
-        //     pinuang.NOFAK LIKE '%$kode%' AND
-        //     pinuang.KODE_ANG = '$a'");
+        return $this->db->query("DELETE FROM
+            pinuang
+        WHERE
+            pinuang.NOFAK LIKE '%$kode%' AND
+            pinuang.KODE_ANG = '$a'");
     }
 
     public function getUang($THN, $BLN)

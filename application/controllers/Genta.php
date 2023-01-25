@@ -486,6 +486,7 @@ class Genta extends CI_Controller
                     'KODE_ANG' => $key['KODE_ANG'],
                     'TOTWJB' => $totwjb,
                     'TOTPOK' => 50000,
+                    'TOTREL' => $key['TOTREL'],
                 );
 
                 // pl
@@ -505,6 +506,7 @@ class Genta extends CI_Controller
                     'KODE_ANG' => $key['KODE_ANG'],
                     'TOTWJB' => $key['TWAJIB'],
                     'TOTPOK' => $key['TOTPOK'],
+                    'TOTREL' => $key['TOTREL'],
                 );
 
                 // pl
@@ -1003,7 +1005,7 @@ class Genta extends CI_Controller
             }
 
             $tung = array(
-                'TUNGGAKAN' => $tunggakan,
+                'POKU6' => $tunggakan,
             );
 
             // update pl 
@@ -1023,7 +1025,7 @@ class Genta extends CI_Controller
                 + $key['POKU1'] + $key['BNGU1']
                 + $key['POKU7'] + $key['BNGU7']
                 + $key['POKU2'] + $key['WAJIB']
-                + $key['POKOK'] + $key['TUNGGAKAN'];
+                + $key['POKOK'] + $key['POKU6'];  // POKU6 adalah tunggakan
 
             $bayar = array(
                 'KODE_ANG' => $key['KODE_ANG'],

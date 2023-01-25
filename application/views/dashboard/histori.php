@@ -86,7 +86,7 @@ $this->load->view('templates/sidebar');
               <td><?= number_format($kons, 0, ',', '.') ?></td>
               <td><?= $ang['KEU4']; ?></td>
               <td><?= number_format($uub, 0, ',', '.') ?></td>
-              <td><?= number_format($ang['TUNGGAKAN'], 0, ',', '.') ?></td>
+              <td><?= number_format($ang['POKU6'], 0, ',', '.') ?></td>
               <td><?= number_format($ang['JML_TGHN'], 0, ',', '.') ?></td>
               <td><?= number_format($ang['JML_BAYAR'], 0, ',', '.') ?></td>
               <td><?= $ang['VIA_BAYAR']; ?></td>

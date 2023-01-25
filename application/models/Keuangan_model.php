@@ -25,7 +25,10 @@ class Keuangan_model extends  CI_Model
         //     pl.TAHUN = pembayaran.TAHUN AND
         //     pl.BULAN = pembayaran.BULAN ");
         $query = $this->db->query("SELECT
-            *
+            pl.*,
+            pembayaran.JML_BAYAR,
+            pembayaran.VIA_BAYAR,
+            pembayaran.JML_TGHN
         FROM
             instan
             INNER JOIN
@@ -40,10 +43,13 @@ class Keuangan_model extends  CI_Model
             pembayaran
             ON 
                 pl.KODE_ANG = pembayaran.KODE_ANG AND
-                pl.TAHUN = pembayaran.TAHUN_byr AND
-                pl.BULAN = pembayaran.BULAN_byr
+                pl.TAHUN = pembayaran.TAHUN AND
+                pl.BULAN = pembayaran.BULAN
         WHERE
-            pl.KODE_ANG = $URUT_ANG");
+            pl.KODE_ANG = $URUT_ANG 
+        ORDER BY
+            pl.TAHUN DESC, 
+            pl.BULAN DESC");
         
         return $query->result_array();
     }

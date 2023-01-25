@@ -38,7 +38,14 @@ $this->load->view('templates/sidebar');
         <div class="overflow-auto">
             <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
                 <option hidden>Date</option>
-                <?php $query = $this->db->query("SELECT DISTINCT TAHUN, BULAN FROM pl ORDER BY pl.TAHUN DESC, pl.BULAN DESC")->result_array();
+                <?php 
+                if ($this->input->get('TAHUN') == '') {
+                    $TAH = date('Y');
+                } else {
+                    $TAH = $this->input->get('TAHUN');
+                }
+                
+                $query = $this->db->query("SELECT DISTINCT pl.TAHUN, pl.BULAN FROM pl INNER JOIN pinsimp ON pl.TAHUN = pinsimp.TAHUN AND pl.BULAN = pinsimp.BULAN AND pl.KODE_ANG = pinsimp.KODE_ANG ORDER BY pl.TAHUN DESC, pl.BULAN DESC")->result_array();
                 foreach ($query as $key) {
                 ?>
                     <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
@@ -52,9 +59,13 @@ $this->load->view('templates/sidebar');
                         <th class="text-center">Tanggal</th>
                         <th class="text-center">Anggota</th>
                         <th class="text-center">Instansi</th>
-                        <th class="text-center">Tabungan Awal Tahun</th>
-                        <th class="text-center">Tabungan <?= date('Y'); ?></th>
-                        <th class="text-center">Total Tabungan</th>
+                        <th class="text-center">Pokok</th>
+                        <th class="text-center">Wajib Awal Tahun</th>
+                        <th class="text-center">Wajib <?= $TAH; ?></th>
+                        <th class="text-center">Total Wajib</th>
+                        <th class="text-center">Rela Awal Tahun</th>
+                        <th class="text-center">Rela <?= $TAH; ?></th>
+                        <th class="text-center">Total Rela</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,9 +74,13 @@ $this->load->view('templates/sidebar');
                             <td><?= $lap['TAHUN'] . '-' . $lap['BULAN'] ?></td>
                             <td><?= $lap['URUT_ANG'] . '/' . $lap['NAMA_ANG']; ?></td>
                             <td><?= $lap['KODE_INS'] . '/' . $lap['NAMA_INS']; ?></td>
-                            <td class="text-right"><?= number_format($lap['TOTWJB'], 0, ',', '.')  ?></td>
+                            <td><?= $lap['TOTPOK'] ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;" class="text-right"><?= number_format($lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'] - $lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'], 0, ',', '.')  ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

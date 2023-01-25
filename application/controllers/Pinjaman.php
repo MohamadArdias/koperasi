@@ -40,6 +40,8 @@ class Pinjaman extends CI_Controller
             $kd = 'Z';
         }
 
+        
+
         $this->data['urutan'] = $this->Pinuang->getUrut();
         $this->data['kode'] = $kode;
 
@@ -64,8 +66,10 @@ class Pinjaman extends CI_Controller
 
             if ($aku != 0) {
                 $this->Pinuang->deleteTransaksi($a, $kd);
+                $this->db->update('pl', ['KEU'.$kode => 0], $a);
                 $this->Pinuang->tambahTransaksi();
                 $this->Us->tambahTransaksi();
+                // $this->db->update('pl', $pl_uang, $where_uang);
                 // $this->Keuangan->editPlTransaksi($a, $kode);
                 $this->session->set_flashdata('flashP', 'ditambahkan');
                 redirect('pinjaman');
