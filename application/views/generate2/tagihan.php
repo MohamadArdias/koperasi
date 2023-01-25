@@ -51,23 +51,37 @@ $this->load->view('templates/sidebar');
                     <select id="GEN_SIMP" name="GEN_SIMP" class="form-select" aria-label="Default select example">
                             <option hidden>--Pilih--</option>
                             <?php
+                            // $query = $this->db->query("SELECT DISTINCT
+                            //     pl.TAHUN, 
+                            //     pl.BULAN
+                            // FROM
+                            //     pl
+                            //     INNER JOIN
+                            //     pinsimp
+                            //     ON 
+                            //         pl.KODE_ANG = pinsimp.KODE_ANG AND
+                            //         pl.BULAN = pinsimp.BULAN AND
+                            //         pl.TAHUN = pinsimp.TAHUN
+                            // WHERE
+                            //     pl.TAHUN = pinsimp.TAHUN AND
+                            //     pl.BULAN = pinsimp.BULAN
+                            // ORDER BY
+                            //     pl.TAHUN DESC, 
+                            //     pl.BULAN DESC")->result_array();
                             $query = $this->db->query("SELECT DISTINCT
-                                pl.TAHUN, 
-                                pl.BULAN
-                            FROM
-                                pl
-                                INNER JOIN
-                                pinsimp
-                                ON 
-                                    pl.KODE_ANG = pinsimp.KODE_ANG AND
-                                    pl.BULAN = pinsimp.BULAN AND
-                                    pl.TAHUN = pinsimp.TAHUN
-                            WHERE
-                                pl.TAHUN = pinsimp.TAHUN AND
-                                pl.BULAN = pinsimp.BULAN
-                            ORDER BY
-                                pl.TAHUN DESC, 
-                                pl.BULAN DESC")->result_array();
+                            pl.TAHUN, 
+                            pl.BULAN
+                        FROM
+                            pl
+                            INNER JOIN
+                            pembayaran
+                            ON 
+                                pl.KODE_ANG = pembayaran.KODE_ANG AND
+                                pl.TAHUN = pembayaran.TAHUN AND
+                                pl.BULAN = pembayaran.BULAN
+                        ORDER BY
+                            pl.TAHUN DESC, 
+                            pl.BULAN DESC")->result_array();
 
                             foreach ($query as $key) {
                             ?>

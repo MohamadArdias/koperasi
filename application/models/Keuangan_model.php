@@ -48,8 +48,8 @@ class Keuangan_model extends  CI_Model
         WHERE
             pl.KODE_ANG = $URUT_ANG 
         ORDER BY
-            pl.TAHUN DESC, 
-            pl.BULAN DESC");
+            pl.TAHUN ASC, 
+            pl.BULAN ASC");
         
         return $query->result_array();
     }

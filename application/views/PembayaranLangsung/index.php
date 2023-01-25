@@ -43,6 +43,16 @@ $this->load->view('templates/sidebar');
                             <label class="col-sm-4 text-end control-label col-form-label">Nama</label>
                             <div class="col-sm-7">
                                 <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG">
+                                <input type="hidden" name="DETAIL" class="form-control" id="DETAIL">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-2">
+                            <label class="col-sm-4 text-end control-label col-form-label">Periode</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="TAHUN" class="form-control" id="TAHUN">
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="BULAN" class="form-control" id="BULAN">
                             </div>
                         </div>
                         <div class="form-group row mb-2">
@@ -132,10 +142,14 @@ $this->load->view('templates/footer');
                 var json = data,
                     obj = JSON.parse(json);
                 $("#NAMA_ANG").val(obj.nama);
-                var tagihan = obj.tagihan;
+                $("#TAGIHAN").val(obj.tagihan);
+                $("#TAHUN").val(obj.TAHUN);
+                $("#BULAN").val(obj.BULAN);
+                $("#DETAIL").val(obj.detail);
+                // var tagihan = obj.tagihan;
                 // var tunggakan = obj.tunggakan;
-                var bayar = obj.bayar;
-                $("#TAGIHAN").val(Number(tagihan) - Number(bayar));
+                // var bayar = obj.bayar;
+                // $("#TAGIHAN").val(Number(tagihan) - Number(bayar));
             }
         );
     }
