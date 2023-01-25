@@ -139,6 +139,7 @@ foreach  ($printang as $key ) {
 $uang = $key['POKU1'] + $key['BNGU1'];
 $kons = $key['POKU2'] + $key['BNGU2'];
 $non = $key['POKU3'] + $key['BNGU3'];
+$uub = $key['POKU4'] + $key['BNGU4'];
 $khus = $key['POKU7'] + $key['BNGU7'];
 $tung = $key['POKU6']; //POKU6 = TUNGGAKAN
 $i++;
@@ -153,43 +154,48 @@ TAGIHAN UNTUK BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '<br>
 No. Anggota : ' . $key['URUT_ANG'] . '(' . $key['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $key['KODE_INS'] . '(' . $key['NAMA_INS'] . ') <br>
 ============================================<br>
-SIMPANAN WAJIB          : ' . number_format($key['WAJIB'], 0, ',', '.') . ' <br>';
+SIMPANAN WAJIB        : ' . number_format($key['WAJIB'], 0, ',', '.') . ' <br>';
 
 if ($key['POKOK'] != 0) {
     $data .= '
-SIMPANAN POKOK          : ' . number_format($key['POKOK'], 0, ',', '.') . ' <br>';
+SIMPANAN POKOK        : ' . number_format($key['POKOK'], 0, ',', '.') . ' <br>';
 }
 
 if ($key['POKU1'] != 0) {
     $data .= '
-PINJAMAN UANG           : ' . number_format($uang, 0, ',', '.') . '     ke ' . $key['KEU1'] . '<br>';
+PINJAMAN UANG         : ' . number_format($uang, 0, ',', '.') . '     ke ' . $key['KEU1'] . '<br>';
 }
 
 if ($key['POKU2'] != 0) {
     $data .= '
-PINJAMAN KONSUMSI       : ' . number_format($kons, 0, ',', '.') . '     ke ' . $key['KEU2'] . '<br>';
+PINJAMAN KONSUMSI     : ' . number_format($kons, 0, ',', '.') . '     ke ' . $key['KEU2'] . '<br>';
 }
 
 if ($key['POKU3'] != 0) {
     $data .= '
-PINJAMAN NON KONSUMSI   : ' . number_format($non, 0, ',', '.') . '     ke ' . $key['KEU3'] . '<br>';
+PINJAMAN NON KONSUMSI : ' . number_format($non, 0, ',', '.') . '     ke ' . $key['KEU3'] . '<br>';
+}
+
+if ($key['POKU4'] != 0) {
+    $data .= '
+PINJAMAN UUB          : ' . number_format($uub, 0, ',', '.') . '     ke ' . $key['KEU4'] . '<br>';
 }
 
 if ($key['POKU7'] != 0) {
     $data .= '
-PINJAMAN KHUSUS         : ' . number_format($khus, 0, ',', '.') . '     ke ' . $key['KEU7'] . '<br>';
+PINJAMAN KHUSUS       : ' . number_format($khus, 0, ',', '.') . '     ke ' . $key['KEU7'] . '<br>';
 }
 
 if ($tung != 0) {
     $data .= '
-TUNGGAKAN               : ' . number_format($tung, 0, ',', '.') . '<br>';
+TUNGGAKAN             : ' . number_format($tung, 0, ',', '.') . '<br>';
 }
 
-$ttl = $uang + $kons + $non + $khus + $tung + $key['WAJIB'] + $key['POKOK'];
+$ttl = $uang + $kons + $non + $khus + $uub + $tung + $key['WAJIB'] + $key['POKOK'];
 
 $data .= '
 ____________________________________________<br>
-JUMLAH                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
+JUMLAH                : ' . number_format($ttl, 0, ',', '.') . ' <br>
 ============================================<br>
 ' .terbilang($ttl). ' rupiah<br><br><br>';
 

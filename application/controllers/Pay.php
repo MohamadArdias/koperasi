@@ -25,10 +25,10 @@ class Pay extends CI_Controller
             if ($aku != 0) {
                 $this->Pay->bayar();
                 $this->session->set_flashdata('bayarB', 'berhasil');
-                redirect('Pay');
+                redirect('pay');
             } else {
                 $this->session->set_flashdata('bayarG', 'salah');
-                redirect('Pay');
+                redirect('pay');
             }
         }
     }
@@ -62,4 +62,14 @@ class Pay extends CI_Controller
             echo json_encode($data);
         }
     }
+
+    public function cetak()
+    {
+        $this->data['title'] = 'Cetak Pembayaran Langsung';
+        $this->data['data'] = $this->Pay->getCetak();
+
+        $this->load->view('pembayaranLangsung/cetak', $this->data);
+    }
+
+    
 }

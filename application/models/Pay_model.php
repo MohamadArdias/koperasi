@@ -2,24 +2,86 @@
 
 class Pay_model extends CI_Model
 {
+    public function getPrint($URUT_ANG)
+    {
+        $time = $this->input->get('time');
+
+        $query = $this->db->query("SELECT
+            pembayaran_detail.TAHUN, 
+            pembayaran_detail.BULAN, 
+            anggota.URUT_ANG, 
+            anggota.NAMA_ANG, 
+            instan.KODE_INS, 
+            instan.NAMA_INS, 
+            pembayaran_detail.JML_TGHN, 
+            pembayaran_detail.TGL_BAYAR, 
+            pembayaran_detail.JML_BAYAR, 
+            pembayaran_detail.VIA_BAYAR, 
+            pembayaran_detail.CREATED
+        FROM
+            instan
+            INNER JOIN
+            anggota
+            ON 
+                instan.KODE_INS = anggota.KODE_INS
+            INNER JOIN
+            pembayaran_detail
+            ON 
+                anggota.URUT_ANG = pembayaran_detail.KODE_ANG
+        WHERE
+            anggota.URUT_ANG = $URUT_ANG AND
+            pembayaran_detail.CREATED = '$time'");
+
+            return $query->row_array();
+    }
+
+    public function getCetak()
+    {
+        $query = $this->db->query("SELECT
+            pembayaran_detail.TAHUN, 
+            pembayaran_detail.BULAN, 
+            anggota.URUT_ANG, 
+            anggota.NAMA_ANG, 
+            instan.KODE_INS, 
+            instan.NAMA_INS, 
+            pembayaran_detail.JML_TGHN, 
+            pembayaran_detail.TGL_BAYAR, 
+            pembayaran_detail.JML_BAYAR, 
+            pembayaran_detail.VIA_BAYAR, 
+            pembayaran_detail.CREATED
+        FROM
+            instan
+            INNER JOIN
+            anggota
+            ON 
+                instan.KODE_INS = anggota.KODE_INS
+            INNER JOIN
+            pembayaran_detail
+            ON 
+                anggota.URUT_ANG = pembayaran_detail.KODE_ANG
+        ORDER BY
+            pembayaran_detail.CREATED DESC");
+        return $query->result_array();
+    }
+
     public function getKodeAnggota($a)
     {
         $date = date("Y-m");
         $query = $this->db->query("SELECT
         *
-    FROM
-        anggota
-        INNER JOIN
-        pembayaran
-        ON 
-            anggota.URUT_ANG = pembayaran.KODE_ANG
-    WHERE
-        pembayaran.KODE_ANG = $a AND
-        pembayaran.TGL_TGHN LIKE '%$date%'
-    ORDER BY
-        pembayaran.TAHUN DESC, 
-        pembayaran.BULAN DESC
-    LIMIT 1");
+        FROM
+            anggota
+            INNER JOIN
+            pembayaran
+            ON 
+                anggota.URUT_ANG = pembayaran.KODE_ANG
+        WHERE
+            pembayaran.KODE_ANG = $a AND
+            pembayaran.TGL_TGHN LIKE '%$date%'
+        ORDER BY
+            pembayaran.TAHUN DESC, 
+            pembayaran.BULAN DESC
+        LIMIT 1");
 
         return $query->row_array();
         // $this->db->select('*');
@@ -43,25 +105,25 @@ class Pay_model extends CI_Model
     {
         $query = $this->db->query("SELECT
         *
-    FROM
-        pinuang
-        INNER JOIN
-        pl
-        ON
-            pinuang.KODE_ANG = pl.KODE_ANG AND
-            pinuang.TAHUN = pl.TAHUN AND
-            pinuang.BULAN = pl.BULAN
-        INNER JOIN
-        anggota
-        ON
-            pl.KODE_ANG = anggota.URUT_ANG
-        INNER JOIN
-        pembayaran
-        ON
-            pl.KODE_ANG = pembayaran.KODE_ANG AND
-            pl.TAHUN = pembayaran.TAHUN AND
-            pl.BULAN = pembayaran.BULAN
-    WHERE
+        FROM
+            pinuang
+            INNER JOIN
+            pl
+            ON
+                pinuang.KODE_ANG = pl.KODE_ANG AND
+                pinuang.TAHUN = pl.TAHUN AND
+                pinuang.BULAN = pl.BULAN
+            INNER JOIN
+            anggota
+            ON
+                pl.KODE_ANG = anggota.URUT_ANG
+            INNER JOIN
+            pembayaran
+            ON
+                pl.KODE_ANG = pembayaran.KODE_ANG AND
+                pl.TAHUN = pembayaran.TAHUN AND
+                pl.BULAN = pembayaran.BULAN
+        WHERE
         pinuang.NOFAK = '$NOFAK' AND
         pembayaran.TGL_TGHN IN (SELECT MAX(TGL_TGHN) FROM pembayaran WHERE KODE_ANG = '$KODE')");
 
@@ -92,7 +154,7 @@ class Pay_model extends CI_Model
 
         $inBayar = [
             'TGL_BAYAR' => date('Y-m-d'),
-            'JML_BAYAR' => $jml_bayar+$DETAIL,
+            'JML_BAYAR' => $jml_bayar + $DETAIL,
             'VIA_BAYAR' => 'BAYAR LANGSUNG',
             'STATUS' => $status,
             'SISA' => $sisa

@@ -12,6 +12,7 @@ class Keuangan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Pay_model', 'Pay');
         $this->load->model('Kirim_model', 'Kirim');
         // $this->load->model('Instansi_model', 'Instansi'); //'Instansi' adalah alias dari 'Instansi_model'
         $this->load->model('Keuangan_model', 'keuangan');
@@ -261,6 +262,8 @@ class Keuangan extends CI_Controller
         $TAHUN = $this->input->get('TAHUN');
         $BULAN = $this->input->get('BULAN');
 
+        // echo $TAHUN.'-'.$BULAN;
+
         $this->data['printang'] = $this->keuangan->getAnggotaWhereKodeAng($KODE_ANG, $TAHUN, $BULAN);
         $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
         $this->load->view('keuangan/printang', $this->data);
@@ -275,5 +278,12 @@ class Keuangan extends CI_Controller
         foreach ($ANG as $row) {
             echo $BULAN . '-' . $TAHUN . '-' . $row->NAMA_ANG . '-</br>';
         }
+    }
+
+    public function print($URUT_ANG)
+    {
+        $this->data['print'] = $this->Pay->getPrint($URUT_ANG);
+        
+        $this->load->view('keuangan/print', $this->data);
     }
 }

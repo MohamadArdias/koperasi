@@ -56,11 +56,17 @@
                   <span>Tagihan</span>
               </a>
           </li> -->
-
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pay">
                   <i class="bi bi-cash-coin"></i>
                   <span>Pembayaran Langsung</span>
+              </a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pay/cetak">
+                  <i class="bi bi-cash-coin"></i>
+                  <span>Ceta Pembayaran</span>
               </a>
           </li>
 

@@ -155,7 +155,7 @@
                                         <label for="alamat" class="col-sm-4 text-end control-label col-form-label">Jumlah</label>
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-sm">
-                                                <input type="text" class="form-control" id="JMLP_ANG" name="JMLP_ANG">
+                                                <input type="number" class="form-control" id="JMLP_ANG" name="JMLP_ANG" min="1">
                                             </div>
                                             <small class="form-text text-danger"><?= form_error('JMLP_ANG'); ?></small>
                                         </div>

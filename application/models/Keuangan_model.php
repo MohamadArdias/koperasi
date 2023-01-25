@@ -50,7 +50,7 @@ class Keuangan_model extends  CI_Model
         ORDER BY
             pl.TAHUN ASC, 
             pl.BULAN ASC");
-        
+
         return $query->result_array();
     }
 
@@ -85,7 +85,28 @@ class Keuangan_model extends  CI_Model
         // $bln = date("m");
 
         $query = $this->db->query("SELECT
-        *
+        anggota.NAMA_ANG, 
+        instan.NAMA_INS, 
+        anggota.URUT_ANG, 
+        pl.POKOK, 
+        pl.POKU6, 
+        pl.WAJIB, 
+        pl.KEU1, 
+        pl.POKU1, 
+        pl.BNGU1, 
+        instan.KODE_INS, 
+        pl.KEU2, 
+        pl.POKU2, 
+        pl.BNGU2, 
+        pl.KEU3, 
+        pl.POKU3, 
+        pl.BNGU3, 
+        pl.KEU4, 
+        pl.POKU4, 
+        pl.BNGU4, 
+        pl.KEU7, 
+        pl.POKU7, 
+        pl.BNGU7
     FROM
         anggota
         INNER JOIN
@@ -238,7 +259,7 @@ class Keuangan_model extends  CI_Model
         instan.NAMA_INS, 
         anggota.URUT_ANG, 
         pl.POKOK, 
-        pl.TUNGGAKAN, 
+        pl.POKU6, 
         pl.WAJIB, 
         pl.KEU1, 
         pl.POKU1, 

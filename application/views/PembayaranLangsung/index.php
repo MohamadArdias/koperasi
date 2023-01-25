@@ -8,7 +8,7 @@ $this->load->view('templates/sidebar');
     <div class="row mt-3">
         <div class="col-md-6">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Pembayaran <strong><?= $this->session->flashdata('bayarB'); ?></strong>
+                Pembayaran <strong><?= $this->session->flashdata('bayarB'); ?>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@ $this->load->view('templates/sidebar');
     <div class="row mt-3">
         <div class="col-md-6">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Kode anggota <strong><?= $this->session->flashdata('bayarG'); ?></strong>
+                Kode anggota <strong><?= $this->session->flashdata('bayarG'); ?></strong> 
             </div>
         </div>
     </div>
@@ -49,10 +49,10 @@ $this->load->view('templates/sidebar');
                         <div class="form-group row mb-2">
                             <label class="col-sm-4 text-end control-label col-form-label">Periode</label>
                             <div class="col-sm-3">
-                                <input type="text" name="TAHUN" class="form-control" id="TAHUN">
+                                <input type="text" name="TAHUN" class="form-control" id="TAHUN" readonly>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" name="BULAN" class="form-control" id="BULAN">
+                                <input type="text" name="BULAN" class="form-control" id="BULAN" readonly>
                             </div>
                         </div>
                         <div class="form-group row mb-2">
@@ -67,14 +67,14 @@ $this->load->view('templates/sidebar');
                         <div class="form-group row mb-2">
                             <label class="col-sm-4 text-end control-label col-form-label">Tagihan</label>
                             <div class="col-sm-7">
-                                <input type="text" name="TAGIHAN" class="form-control" id="TAGIHAN">
+                                <input type="text" name="TAGIHAN" class="form-control" id="TAGIHAN" readonly>
                             </div>
                         </div>
                         <div class="form-group row mb-2">
                             <label class="col-sm-4 text-end control-label col-form-label">Jumlah Uang Yang dibayar</label>
                             <div class="col-sm-7">
                                 <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" id="JML_BAYAR" name="JML_BAYAR">
+                                    <input type="number" class="form-control" id="JML_BAYAR" name="JML_BAYAR" min="1">
                                 </div>
                                 <small class="form-text text-danger"><?= form_error('JML_BAYAR') ?></small>
                             </div>
@@ -88,30 +88,30 @@ $this->load->view('templates/sidebar');
             </div>
 
             <div class="col-xxl-4 col-md-6">
-                    <div class="card info-card revenue-card">
-                        <div class="card-body">
-                            <h2>Anggota</h2>
-                            <table class="table table-borderless datatable">
-                                <tr>
-                                    <th>Kode</th>
-                                    <th>Anggota</th>
-                                </tr>
-                                <?php
-                                $query = $this->db->query("SELECT * FROM anggota WHERE anggota.KODE_INS != 99 AND anggota.KODE_INS != 98 AND anggota.KODE_INS != 97 AND	anggota.KODE_INS != 96")->result_array();
+                <div class="card info-card revenue-card">
+                    <div class="card-body">
+                        <h2>Anggota</h2>
+                        <table class="table table-borderless datatable">
+                            <tr>
+                                <th>Kode</th>
+                                <th>Anggota</th>
+                            </tr>
+                            <?php
+                            $query = $this->db->query("SELECT * FROM anggota WHERE anggota.KODE_INS != 99 AND anggota.KODE_INS != 98 AND anggota.KODE_INS != 97 AND	anggota.KODE_INS != 96")->result_array();
 
-                                foreach ($query as $key) {
-                                ?>
-                                    <tr>
-                                        <td><?= $key['URUT_ANG']; ?></td>
-                                        <td><?= $key['NAMA_ANG']; ?></td>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
-                            </table>
-                        </div>
+                            foreach ($query as $key) {
+                            ?>
+                                <tr>
+                                    <td><?= $key['URUT_ANG']; ?></td>
+                                    <td><?= $key['NAMA_ANG']; ?></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </table>
                     </div>
                 </div>
+            </div>         
         </div>
     </div>
 </div>
