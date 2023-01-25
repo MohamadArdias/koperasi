@@ -49,6 +49,17 @@ $this->load->view('templates/sidebar');
             </div>
 
             <div class="form-group row mb-2">
+                <label for="nama" class="col-sm-2 text-end control-label col-form-label">NIK</label>
+                <div class="col-sm-9">
+                    <div class="input-group input-group-sm">
+                        <i class="bi-briefcase-fill input-group-text"></i>
+                        <input type="text" name="NIK" class="form-control" id="NIK" placeholder="-" />
+                    </div>
+                    <small class="form-text text-danger"><?= form_error('NIK'); ?></small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
                 <label for="kdins" class="col-sm-2 text-end control-label col-form-label">Instansi</label>
                 <div class="col-sm-9">
                     <div class="input-group input-group-sm">

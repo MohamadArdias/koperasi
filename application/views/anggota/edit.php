@@ -34,6 +34,16 @@ $this->load->view('templates/sidebar');
             </div>
 
             <div class="form-group row mb-2">
+                <label for="kdins" class="col-sm-2 text-end control-label col-form-label">NIK</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <i class="bi-briefcase-fill input-group-text"></i>
+                        <input type="text" name="NIK" class="form-control" id="NIK" value="<?= $anggota['NIK']; ?>" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
                 <label for="kdins" class="col-sm-2 text-end control-label col-form-label">Instansi</label>
                 <div class="col-sm-9">
                     <div class="input-group">
@@ -41,9 +51,10 @@ $this->load->view('templates/sidebar');
                         <select id="KODE_INS" name="KODE_INS" class="form-select" aria-label="Default select example">
                             <option value="<?= $anggota['KODE_INS']; ?>"><?= $anggota['KODE_INS'] ?> / <?= $anggota['NAMA_INS'] ?></option>
                             <?php foreach ($instansi as $key) : ?>
-                                <option value="<?= $key['KODE_INS']; ?>" ><?= $key['KODE_INS']; ?>/<?= $key['NAMA_INS']; ?></option>
+                                <option value="<?= $key['KODE_INS']; ?>"><?= $key['KODE_INS']; ?>/<?= $key['NAMA_INS']; ?></option>
                             <?php endforeach ?>
-                        </select>                    </div>
+                        </select>
+                    </div>
                     <small class="form-text text-danger"><?= form_error('KODE_INS'); ?></small>
                 </div>
             </div>
@@ -69,8 +80,8 @@ $this->load->view('templates/sidebar');
                 </div>
                 <small class="form-text text-danger"><?= form_error('ALM_ANG') ?></small>
             </div>
-			
-			<div class="form-group row mb-2">
+
+            <div class="form-group row mb-2">
                 <label for="telp" class="col-sm-2 text-end control-label col-form-label">No. Telpon</label>
                 <div class="col-sm-9">
                     <div class="input-group">
@@ -79,7 +90,7 @@ $this->load->view('templates/sidebar');
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-sm-4 text-end mt-3 ">
                 <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
                 <button type="submit" name="edit" class="btn btn-primary">Simpan</button>
@@ -98,15 +109,15 @@ $this->load->view('templates/footer');
     function goBack() {
         window.history.back();
     }
-    // $(function() {
-    //     $("#TLHR_ANG").datepicker({
-    //         changeMonth: true,
-    //         changeYear: true
-    //     })
-    //     $("#TGLM_ANG").datepicker()
-    //     $("#TGLK_ANG").datepicker()
-    //     $("#TLHR_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
-    //     $("#TGLM_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
-    //     $("#TGLK_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
-    // })
+    $(function() {
+        $("#TLHR_ANG").datepicker({
+            changeMonth: true,
+            changeYear: true
+        })
+        // $("#TGLM_ANG").datepicker()
+        // $("#TGLK_ANG").datepicker()
+        // $("#TLHR_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
+        // $("#TGLM_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
+        // $("#TGLK_ANG").datepicker("option", "dateFormat", "yy-mm-dd")
+    })
 </script>

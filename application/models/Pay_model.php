@@ -104,7 +104,7 @@ class Pay_model extends CI_Model
     public function pelunasan($NOFAK, $KODE)
     {
         $query = $this->db->query("SELECT
-        *
+            *
         FROM
             pinuang
             INNER JOIN

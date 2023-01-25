@@ -36,6 +36,16 @@ $this->load->view('templates/sidebar');
         </div>
 
         <div class="form-group row mb-2">
+            <label for="kdins" class="col-sm-2 text-end control-label col-form-label">NIK</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <i class="bi-briefcase-fill input-group-text"></i>
+                    <input type="text" name="NIK" class="form-control" id="NIK" value="<?= $anggota['NIK'] ?>" readonly >
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
             <label for="kdins" class="col-sm-2 text-end control-label col-form-label">Instansi</label>
             <div class="col-sm-9">
                 <div class="input-group">
