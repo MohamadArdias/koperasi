@@ -140,7 +140,7 @@ $uang = $key['POKU1'] + $key['BNGU1'];
 $kons = $key['POKU2'] + $key['BNGU2'];
 $non = $key['POKU3'] + $key['BNGU3'];
 $khus = $key['POKU7'] + $key['BNGU7'];
-$tung = $key['TUNGGAKAN'];
+$tung = $key['POKU6']; //POKU6 = TUNGGAKAN
 $i++;
 
 $data .= '

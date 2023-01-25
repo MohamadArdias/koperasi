@@ -178,8 +178,8 @@ foreach ($keuangan as $lap) {
     $f = $lap['POKU2'];
     $g = $lap['POKOK'];
 
-    if ($lap['TUNGGAKAN'] != 0) {
-        $t = $lap['TUNGGAKAN'];
+    if ($lap['POKU6'] != 0) {
+        $t = $lap['POKU6']; //POKU6 = TUNGGAKAN
     } else {
         $t = 0;
     }

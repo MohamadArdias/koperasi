@@ -97,7 +97,7 @@ $kons = $printang['POKU2'] + $printang['BNGU2'];
 $non = $printang['POKU3'] + $printang['BNGU3'];
 $khus = $printang['POKU7'] + $printang['BNGU7'];
 $uub = $printang['POKU4'] + $printang['BNGU4'];
-$tung = $printang['TUNGGAKAN'];
+$tung = $printang['POKU6']; //POKU6 = TUNGGAKAN
 
 $data = '
 <pre>

@@ -39,22 +39,26 @@ class Pay extends CI_Controller
 
         $query = $this->Pay->getKodeAnggota($a);
 
+        //  echo $this->db->last_query();
+
+        $tahun = $query['TAHUN'];
+        $bulan = $query['BULAN'];
+
+        $detail = $this->db->query("SELECT SUM(JML_BAYAR) AS jumlah FROM pembayaran_detail WHERE TAHUN = $tahun and BULAN = '$bulan'")->row();
+        //   echo $detail->jumlah;
+        // $tagihan = $query['JML_TGHN'] - $detail;
+
         if ($query != null) {
-            if ($query['STATUS'] == 'TERBAYAR') {
-                $data = array(
-                    'nama' => $query['NAMA_ANG'],
-                    'tagihan' => 0,
-                    'bayar' => 0,
-                    'tunggakan' => 0,
-                );
-            } else {
-                $data = array(
-                    'nama' => $query['NAMA_ANG'],
-                    'tagihan' => $query['JML_TGHN'],
-                    'bayar' => $query['JML_BAYAR'],
-                    'tunggakan' => $query['TUNGGAKAN'],
-                );
-            }
+            $data = array(
+                'nama' => $query['NAMA_ANG'],
+                // 'tagihan' => $query['JML_TGHN'],
+                'tagihan' => $query['JML_TGHN']-$detail->jumlah,
+                // 'bayar' => $query['JML_BAYAR'],
+                'TAHUN' => $tahun,
+                'BULAN' => $bulan,
+                'detail' => $detail->jumlah,
+                //  'tunggakan' => $query['POKU6'],
+            );
             echo json_encode($data);
         }
     }
