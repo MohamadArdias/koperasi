@@ -102,7 +102,6 @@ $this->load->view('templates/sidebar');
                     </div>
                 </div>
             </div>
-
             <div class="col-xxl-4 col-md-6">
                 <div class="card info-card sales-card">
                     <div class="card-body">
@@ -137,11 +136,8 @@ $this->load->view('templates/sidebar');
                 </div>
             </div>
             <?php
-
             $que = $this->db->query("SELECT MAX(generate_date) AS TGL FROM `generate_log`  WHERE tahun = date('Y') AND bulan = date('m')")->row();
-
             ?>
-
 
             <div class="overflow-auto">
                 <table class="table table-borderless datatable" id="customers">
@@ -154,6 +150,7 @@ $this->load->view('templates/sidebar');
                             <th class="text-center">Bunga</th>
                             <th class="text-center">Jangka</th>
                             <th class="text-center">Teler</th>
+                            <!-- <th class="text-center">Aksi</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -167,6 +164,9 @@ $this->load->view('templates/sidebar');
                                 <td align="right" ><?= $key['PRO']; ?></td>
                                 <td align="right" ><?= $key['JANGKA']; ?></td>
                                 <td ><?= $key['IDNAMA']; ?></td>
+                                <!-- <td class="text-center">
+                                    <a href="<?= base_url(); ?>index.php/keuangan/cetakPinj/<?= $key['URUT_ANG']; ?>?NOFAK=<?= $key['NOFAK']; ?>&&TGL=<?= $key['TANGGAL']; ?>" class="btn btn-secondary" target="blank">Print</a>
+                                </td> -->
                             </tr>
                         <?php
                         } ?>

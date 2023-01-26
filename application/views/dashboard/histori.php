@@ -59,8 +59,9 @@ $this->load->view('templates/sidebar');
             <th>Konsumsi</th>
             <th>Ke</th>
             <th>UUB</th>
+            <th>Tagihan</th>
             <th>Tunggakan</th>
-            <th>Jumlah Tagihan</th>
+            <th>Total</th>
             <th>Terbayar</th>
             <th>Via Bayar</th>
           </tr>
@@ -72,7 +73,9 @@ $this->load->view('templates/sidebar');
             $kons = $ang['POKU2'] + $ang['BNGU2'];
             $non = $ang['POKU3'] + $ang['BNGU3'];
             $khus = $ang['POKU7'] + $ang['BNGU7'];
-            $uub = $ang['POKU4'] + $ang['BNGU4']; ?>
+            $uub = $ang['POKU4'] + $ang['BNGU4']; 
+            
+            $tghn = $uang+$kons+$non+$khus+$uub+$ang['WAJIB']?>
             <tr>
               <td><?= $ang['TAHUN'] . '-' . $ang['BULAN']; ?></td>
               <td><?= number_format($ang['WAJIB'], 0, ',', '.') ?></td>
@@ -86,8 +89,9 @@ $this->load->view('templates/sidebar');
               <td><?= number_format($kons, 0, ',', '.') ?></td>
               <td><?= $ang['KEU4']; ?></td>
               <td><?= number_format($uub, 0, ',', '.') ?></td>
+              <td><?= number_format($tghn, 0, ',', '.') ?></td>
               <td><?= number_format($ang['POKU6'], 0, ',', '.') ?></td>
-              <td><?= number_format($ang['JML_TGHN'], 0, ',', '.') ?></td>
+              <td><?= number_format($tghn+$ang['POKU6'], 0, ',', '.') ?></td>
               <td><?= number_format($ang['JML_BAYAR'], 0, ',', '.') ?></td>
               <td><?= $ang['VIA_BAYAR']; ?></td>
             </tr>

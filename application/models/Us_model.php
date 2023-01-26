@@ -2,6 +2,37 @@
 
 class Us_model extends  CI_Model
 {
+    public function getPrint($URUT_ANG)
+    {
+        $NOFAK = $this->input->get('NOFAK');
+        $TGL = $this->input->get('TGL');
+
+        $query = $this->db->query("SELECT
+            instan.KODE_INS, 
+            instan.NAMA_INS, 
+            anggota.URUT_ANG, 
+            anggota.NAMA_ANG, 
+            us.TANGGAL, 
+            us.JUMLAH, 
+            us.PRO, 
+            us.JANGKA
+        FROM
+            anggota
+            INNER JOIN
+            us
+            ON 
+                anggota.URUT_ANG = us.KODE_ANG
+            INNER JOIN
+            instan
+            ON 
+                instan.KODE_INS = anggota.KODE_INS
+        WHERE
+            us.KODE_ANG = $URUT_ANG AND
+            us.NOFAK = '$NOFAK' AND
+            us.TANGGAL = '$TGL'");
+        
+        return $query->row_array();
+    }
     public function getGenerate()
     {
         return $this->db->query("SELECT MAX(TANGGAL) AS tanggal FROM us")->row();

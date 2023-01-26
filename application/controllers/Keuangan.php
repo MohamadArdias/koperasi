@@ -17,8 +17,8 @@ class Keuangan extends CI_Controller
         // $this->load->model('Instansi_model', 'Instansi'); //'Instansi' adalah alias dari 'Instansi_model'
         $this->load->model('Keuangan_model', 'keuangan');
         $this->load->model('Pengurus_model', 'Pengurus');
+        $this->load->model('Us_model', 'Us');
         $this->load->library('pdf');
-        $this->load->library('form_validation');
     }
 
     public function index()
@@ -285,5 +285,12 @@ class Keuangan extends CI_Controller
         $this->data['print'] = $this->Pay->getPrint($URUT_ANG);
         
         $this->load->view('keuangan/print', $this->data);
+    }
+
+    public function cetakPinj($URUT_ANG)
+    {
+        $this->data['print'] = $this->Us->getPrint($URUT_ANG);
+        
+        $this->load->view('keuangan/printPinj', $this->data);        
     }
 }

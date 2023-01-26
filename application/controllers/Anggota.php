@@ -92,13 +92,18 @@ class Anggota extends CI_Controller
         $sheet->mergeCells('B4:C4');
         $sheet->setCellValue('D4', "SP"); // Set kolom D10 dengan tulisan "JENIS KELAMIN"
         $sheet->mergeCells('D4:E4');
-        $sheet->setCellValue('F4', "NON"); // Set kolom E10 dengan tulisan "ALAMAT"
+        $sheet->setCellValue('F4', "NON"); 
         $sheet->mergeCells('F4:G4');
-        // $sheet->setCellValue('F4', "Khusus"); // Set kolom E10 dengan tulisan "ALAMAT"
-        $sheet->setCellValue('H4', "Wajib"); // Set kolom E10 dengan tulisan "ALAMAT"
-        $sheet->setCellValue('I4', "Tagihan"); // Set kolom E10 dengan tulisan "ALAMAT"
-        $sheet->setCellValue('J4', "Terbayar"); // Set kolom E10 dengan tulisan "ALAMAT"
-        $sheet->setCellValue('K4', "Tunggakan"); // Set kolom E10 dengan tulisan "ALAMAT"
+        $sheet->setCellValue('H4', "KHUSUS"); 
+        $sheet->mergeCells('H4:I4');
+        $sheet->setCellValue('J4', "UUB"); 
+        $sheet->mergeCells('J4:K4');
+        // $sheet->setCellValue('F4', "Khusus"); 
+        $sheet->setCellValue('L4', "Wajib"); 
+        $sheet->setCellValue('M4', "Tagihan"); 
+        $sheet->setCellValue('N4', "Tunggakan"); 
+        $sheet->setCellValue('O4', "Total"); 
+        $sheet->setCellValue('P4', "Terbayar"); 
 
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
@@ -113,6 +118,11 @@ class Anggota extends CI_Controller
         $sheet->getStyle('I4')->applyFromArray($style_col);
         $sheet->getStyle('J4')->applyFromArray($style_col);
         $sheet->getStyle('K4')->applyFromArray($style_col);
+        $sheet->getStyle('L4')->applyFromArray($style_col);
+        $sheet->getStyle('M4')->applyFromArray($style_col);
+        $sheet->getStyle('N4')->applyFromArray($style_col);
+        $sheet->getStyle('O4')->applyFromArray($style_col);
+        $sheet->getStyle('P4')->applyFromArray($style_col);
         // $sheet->getStyle('I4')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
@@ -123,10 +133,10 @@ class Anggota extends CI_Controller
             $uang = $data['POKU1'] + $data['BNGU1'];
             $kons = $data['POKU2'] + $data['BNGU2'];
             $non = $data['POKU3'] + $data['BNGU3'];
-            // $khus = $data['POKU7'] + $data['BNGU7'];
-            // $uub = $data['POKU4'] + $data['BNGU4'];
+            $khus = $data['POKU7'] + $data['BNGU7'];
+            $uub = $data['POKU4'] + $data['BNGU4'];
             // $tagihan = $uang+$kons+$non+$khus+$uub+$data['WAJIB'];
-            $tagihan = $uang+$kons+$non+$data['WAJIB'];
+            $tagihan = $uang+$kons+$non+$khus+$uub+$data['WAJIB'];
             $tung = $data['POKU6'];
 
             $sheet->setCellValue('A' . $numrow, $data['TAHUN'].'-'.$data['BULAN']);
@@ -137,11 +147,16 @@ class Anggota extends CI_Controller
             $sheet->setCellValue('E' . $numrow, $uang);
             $sheet->setCellValue('F' . $numrow, $data['KEU3']);
             $sheet->setCellValue('G' . $numrow, $non);
+            $sheet->setCellValue('H' . $numrow, $data['KEU7']);
+            $sheet->setCellValue('I' . $numrow, $khus);
+            $sheet->setCellValue('J' . $numrow, $data['KEU4']);
+            $sheet->setCellValue('K' . $numrow, $uub);
             // $sheet->setCellValue('F' . $numrow, $khus.' (X'.$data['KEU7'].')');
-            $sheet->setCellValue('H' . $numrow, $data['WAJIB']);
-            $sheet->setCellValue('I' . $numrow, $tagihan);
-            $sheet->setCellValue('J' . $numrow, $data['JML_BAYAR']);
-            $sheet->setCellValue('K' . $numrow, $tung);
+            $sheet->setCellValue('L' . $numrow, $data['WAJIB']);
+            $sheet->setCellValue('M' . $numrow, $tagihan);
+            $sheet->setCellValue('N' . $numrow, $tung);
+            $sheet->setCellValue('O' . $numrow, $tagihan+$tung);
+            $sheet->setCellValue('P' . $numrow, $data['JML_BAYAR']);
 
             // $thn = $data['TAHUN'];
             // $bln = $data['BULAN'];
@@ -162,6 +177,11 @@ class Anggota extends CI_Controller
             $sheet->getStyle('I' . $numrow)->applyFromArray($style_row);
             $sheet->getStyle('J' . $numrow)->applyFromArray($style_row);
             $sheet->getStyle('K' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('L' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('M' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('N' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('O' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('P' . $numrow)->applyFromArray($style_row);
             // $sheet->getStyle('I' . $numrow)->applyFromArray($style_row);
 
             // $no++; // Tambah 1 setiap kali looping
@@ -169,16 +189,21 @@ class Anggota extends CI_Controller
         }
 
         $sheet->getColumnDimension('A')->setAutoSize(true); // Set width kolom A
-        $sheet->getColumnDimension('B')->setWidth(7); // Set width kolom B
+        $sheet->getColumnDimension('B')->setWidth(5); // Set width kolom B
         $sheet->getColumnDimension('C')->setWidth(12); // Set width kolom B
-        $sheet->getColumnDimension('D')->setWidth(7); // Set width kolom D
+        $sheet->getColumnDimension('D')->setWidth(5); // Set width kolom D
         $sheet->getColumnDimension('E')->setWidth(12); // Set width kolom E
-        $sheet->getColumnDimension('F')->setWidth(7); // Set width kolom E
+        $sheet->getColumnDimension('F')->setWidth(5); // Set width kolom E
         $sheet->getColumnDimension('G')->setWidth(12); // Set width kolom E
-        $sheet->getColumnDimension('H')->setWidth(12); // Set width kolom E
+        $sheet->getColumnDimension('H')->setWidth(5); // Set width kolom E
         $sheet->getColumnDimension('I')->setWidth(12); // Set width kolom E
-        $sheet->getColumnDimension('J')->setWidth(12); // Set width kolom E
+        $sheet->getColumnDimension('J')->setWidth(5); // Set width kolom E
         $sheet->getColumnDimension('K')->setWidth(12); // Set width kolom E
+        $sheet->getColumnDimension('L')->setWidth(12); // Set width kolom E
+        $sheet->getColumnDimension('M')->setWidth(12); // Set width kolom E
+        $sheet->getColumnDimension('N')->setWidth(12); // Set width kolom E
+        $sheet->getColumnDimension('O')->setWidth(12); // Set width kolom E
+        $sheet->getColumnDimension('P')->setWidth(12); // Set width kolom E
         // $sheet->getColumnDimension('I')->setAutoSize(true); // Set width kolom E
 
         // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
