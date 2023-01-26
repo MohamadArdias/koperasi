@@ -69,7 +69,9 @@ $this->load->view('templates/sidebar');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($keuangan as $lap) : ?>
+                    <?php foreach ($keuangan as $lap) : 
+                        $relNow = round(($lap['TOTREL']+$lap['TOTWJB'])*0.00371);
+                        ?>
                         <tr>
                             <td><?= $lap['TAHUN'] . '-' . $lap['BULAN'] ?></td>
                             <td><?= $lap['URUT_ANG'] . '/' . $lap['NAMA_ANG']; ?></td>
@@ -79,8 +81,8 @@ $this->load->view('templates/sidebar');
                             <td class="text-right"><?= number_format($lap['TWAJIB'] - $lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'], 0, ',', '.')  ?></td>
                             <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $relNow ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL']+$relNow ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

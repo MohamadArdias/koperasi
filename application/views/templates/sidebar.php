@@ -65,8 +65,8 @@
 
           <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pay/cetak">
-                  <i class="bi bi-cash-coin"></i>
-                  <span>Ceta Pembayaran</span>
+                  <i class="bi bi-printer"></i>
+                  <span>Cetak Pembayaran</span>
               </a>
           </li>
 

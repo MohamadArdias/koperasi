@@ -70,7 +70,7 @@ $this->load->view('templates/sidebar');
                     <div class="input-group">
                         <i class="bi-briefcase-fill input-group-text"></i>
                         <select id="STATUS" name="STATUS" class="form-select" aria-label="Default select example">
-                            <?php $bht = $this->db->query("SELECT * FROM instan WHERE instan.KODE_INS = 95 OR instan.KODE_INS = 96 OR instan.KODE_INS = 97 OR	instan.KODE_INS = 98 OR	instan.KODE_INS = 99 ")->result_array(); ?>
+                            <?php $bht = $this->db->query("SELECT * FROM instan WHERE instan.KODE_INS = 53 OR instan.KODE_INS = 96 OR instan.KODE_INS = 97 OR	instan.KODE_INS = 98 OR	instan.KODE_INS = 99 ")->result_array(); ?>
                             <?php foreach ($bht as $key) : ?>
                                 <option value="<?= $key['KODE_INS']; ?>"><?= $key['KODE_INS']; ?>/<?= $key['NAMA_INS']; ?></option>
                             <?php endforeach ?>

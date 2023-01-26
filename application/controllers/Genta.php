@@ -468,9 +468,11 @@ class Genta extends CI_Controller
             if ($bln == 12) {
                 $totwjb = $key['TWAJIB'] + 100000;
                 $totpok = $key['TPOKOK'];
+                $trela = $key['TOTREL']+$key['RELA'];
             } else {
                 $totwjb = $key['TOTWJB'];
                 $totpok = $key['TOTPOK'];
+                $trela = $key['TOTREL'];
             }
 
             if ($key['TPOKOK'] == 0) {
@@ -479,14 +481,17 @@ class Genta extends CI_Controller
                 $pokok = 0;
             }
 
-            if ($key['KODE_INS'] != 95) {
+            // $rela = (TOTWJB+TOTREL)*0.00371;
+            $rela = round(($key['TOTREL']+$key['TOTWJB'])*0.00371);
+
+            if ($key['KODE_INS'] != 53) {
                 $pinsimp = array(
                     'TAHUN' => $thn,
                     'BULAN' => $bln,
                     'KODE_ANG' => $key['KODE_ANG'],
                     'TOTWJB' => $totwjb,
                     'TOTPOK' => 50000,
-                    'TOTREL' => $key['TOTREL'],
+                    'TOTREL' => $trela,
                 );
 
                 // pl
@@ -498,6 +503,7 @@ class Genta extends CI_Controller
                     'TPOKOK' => 50000,
                     'TWAJIB' => $key['TWAJIB'] + 100000,
                     'POKOK' => $pokok,
+                    'RELA' => $rela,
                 );
             } else {
                 $pinsimp = array(
@@ -518,6 +524,7 @@ class Genta extends CI_Controller
                     'TPOKOK' => $key['TPOKOK'],
                     'TWAJIB' => $key['TWAJIB'],
                     'POKOK' => $key['POKOK'],
+                    'RELA' => $key['RELA'],
                 );
             }
 
