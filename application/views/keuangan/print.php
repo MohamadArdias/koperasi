@@ -1,6 +1,27 @@
 <?php
 
+function tanggal_indo2($tanggal)
+{
+    $bulan = array(
+        1 =>   'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+    $split = explode('-', $tanggal);
+    // return $split[0] . ' ' . $bulan[ (int)$split[1] ];
+    return $bulan[(int)$split[1]] . ' ' . $split[0];
+}
 
+// echo tanggal_indo2($TAHUN.'-'.$BULAN); // 20 Maret 2016
 
 setlocale(LC_ALL, 'id-ID', 'id_ID');
 date_default_timezone_set("Asia/Jakarta");
@@ -29,9 +50,9 @@ Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
 ============================================<br>
 No. Anggota : ' . $print['URUT_ANG'] . '(' . $print['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $print['KODE_INS'] . '(' . $print['NAMA_INS'] . ') <br>
-============================================<br>
+============================================<br><br>
 JUMLAH TAGIHAN        : ' . number_format($print['JML_TGHN'], 0, ',', '.') . ' <br>
-JUMLAH BAYAR          : ' . number_format($print['JML_BAYAR'], 0, ',', '.') . ' <br>';
+JUMLAH BAYAR          : ' . number_format($print['JML_BAYAR'], 0, ',', '.');
 
 $ttl = $print['JML_TGHN']-$print['JML_BAYAR'];
 $data .= '
@@ -40,8 +61,9 @@ SISA                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
 ============================================<br>';
 
 $data .= '
-Banyuwangi, 25 ' . $date . '<br>
-KPRI Bangkit Bersama, <br>
+Banyuwangi, '.date("d").' '. tanggal_indo2 (date("Y-m")) . '<br>
+KPRI Bangkit Bersama, <br><br><br><br>
+'.$print['CREATED_BY'].'
 </pre>';
 
 $pdf->WriteHTML($data);

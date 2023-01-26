@@ -57,9 +57,9 @@ $this->load->view('templates/sidebar');
                                 <td><?= $key['KODE_INS'] . '/ ' . $key['NAMA_INS']; ?></td>
                                 <td><?= $key['JML_TGHN']; ?></td>
                                 <td><?= $key['JML_BAYAR']; ?></td>
-                                <td><?= $key['VIA_BAYAR']; ?></td>
+                                <td><?= $key['CREATED_BY'].'-'.$key['VIA_BAYAR']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url(); ?>index.php/keuangan/print/<?= $key['URUT_ANG']; ?>?time=<?= $key['CREATED']; ?>" class="btn btn-secondary">Print</a>
+                                    <a href="<?= base_url(); ?>index.php/keuangan/print/<?= $key['URUT_ANG']; ?>?time=<?= $key['CREATED']; ?>" class="btn btn-secondary" target="blank">Print</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

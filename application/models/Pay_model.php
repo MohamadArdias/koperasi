@@ -17,7 +17,8 @@ class Pay_model extends CI_Model
             pembayaran_detail.TGL_BAYAR, 
             pembayaran_detail.JML_BAYAR, 
             pembayaran_detail.VIA_BAYAR, 
-            pembayaran_detail.CREATED
+            pembayaran_detail.CREATED, 
+	        pembayaran_detail.CREATED_BY
         FROM
             instan
             INNER JOIN
@@ -48,7 +49,8 @@ class Pay_model extends CI_Model
             pembayaran_detail.TGL_BAYAR, 
             pembayaran_detail.JML_BAYAR, 
             pembayaran_detail.VIA_BAYAR, 
-            pembayaran_detail.CREATED
+            pembayaran_detail.CREATED, 
+	        pembayaran_detail.CREATED_BY
         FROM
             instan
             INNER JOIN
@@ -176,6 +178,7 @@ class Pay_model extends CI_Model
             'JML_BAYAR' => $jml_bayar,
             'VIA_BAYAR' => 'BAYAR LANGSUNG',
             'STATUS' => $status,
+            'CREATED_BY' => $this->input->post('first_name'),
             'SISA' => $sisa
             // 'TUNGGAKAN' => $tunggakan,
         ];

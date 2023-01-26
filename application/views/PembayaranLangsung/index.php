@@ -8,7 +8,7 @@ $this->load->view('templates/sidebar');
     <div class="row mt-3">
         <div class="col-md-6">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Pembayaran <strong><?= $this->session->flashdata('bayarB'); ?>
+                Pembayaran <strong><?= $this->session->flashdata('bayarB'); ?>, <a href="<?= base_url(); ?>index.php/pay/cetak">Cetak</a>
             </div>
         </div>
     </div>
@@ -18,11 +18,15 @@ $this->load->view('templates/sidebar');
     <div class="row mt-3">
         <div class="col-md-6">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Kode anggota <strong><?= $this->session->flashdata('bayarG'); ?></strong> 
+                Kode anggota <strong><?= $this->session->flashdata('bayarG'); ?></strong>
             </div>
         </div>
     </div>
-<?php endif; ?>
+<?php endif;
+$user = $this->session->userdata('identity');
+$sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
+?>
+
 
 <div class="row">
     <div class="col-lg-12">
@@ -35,6 +39,7 @@ $this->load->view('templates/sidebar');
                             <div class="col-sm-7">
                                 <div class="input-group input-group-sm">
                                     <input type="text" name="KODE" class="form-control" id="KODE" onkeyup="autofill()" autofocus>
+                                    <input type="hidden" name="first_name" class="form-control" id="first_name" value="<?= $sesUser['first_name'] ?>" />
                                 </div>
                                 <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
                             </div>
@@ -111,7 +116,7 @@ $this->load->view('templates/sidebar');
                         </table>
                     </div>
                 </div>
-            </div>         
+            </div>
         </div>
     </div>
 </div>
