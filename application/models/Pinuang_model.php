@@ -253,7 +253,36 @@ class Pinuang_model extends  CI_Model
         // $thn = date('Y');
 
         $query = $this->db->query("SELECT
-            *
+            instan.KODE_INS, 
+            instan.NAMA_INS,
+            anggota.NAMA_ANG, 
+            pinuang.NOFAK, 
+            pinuang.JWKT_ANG, 
+            pinuang.TAHUN, 
+            pinuang.BULAN, 
+            pl.KEU1, 
+            pl.POKU1, 
+            pl.BNGU1, 
+            pl.KEU2, 
+            pl.POKU2, 
+            pl.BNGU2, 
+            pl.JWK1, 
+            pl.JWK2, 
+            pl.KEU3, 
+            pl.JWK3, 
+            pl.POKU3, 
+            pl.BNGU3, 
+            pl.KEU4, 
+            pl.JWK4, 
+            pl.POKU4, 
+            pl.BNGU4, 
+            pl.POKU6, 
+            pl.KEU7, 
+            pl.JWK7, 
+            pl.POKU7, 
+            pl.BNGU7, 
+	        pl.KODE_ANG, 
+	        pinuang.JMLP_ANG
         FROM
             pl
             INNER JOIN
@@ -263,20 +292,20 @@ class Pinuang_model extends  CI_Model
             INNER JOIN
             pinuang
             ON 
-                pl.KODE_ANG = pinuang.KODE_ANG
+                pl.KODE_ANG = pinuang.KODE_ANG AND
+                pl.TAHUN = pinuang.TAHUN AND
+                pl.BULAN = pinuang.BULAN
             INNER JOIN
             instan
             ON 
                 anggota.KODE_INS = instan.KODE_INS
         WHERE
-            pl.TAHUN = $THN AND
-            pl.BULAN = $BLN AND
             pinuang.TAHUN = $THN AND
-            pinuang.BULAN = $BLN AND
-            anggota.KODE_INS != 99 AND
-            anggota.KODE_INS != 98 AND
-            anggota.KODE_INS != 97 AND
-            anggota.KODE_INS != 96");
+            pinuang.BULAN = '$BLN' AND
+            anggota.KODE_INS <> 99 AND
+            anggota.KODE_INS <> 98 AND
+            anggota.KODE_INS <> 97 AND
+            anggota.KODE_INS <> 99");
         return $query->result_array();
     }
 }

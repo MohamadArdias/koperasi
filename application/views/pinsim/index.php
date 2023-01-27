@@ -81,8 +81,8 @@ $this->load->view('templates/sidebar');
                             <td class="text-right"><?= number_format($lap['TWAJIB'] - $lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'], 0, ',', '.')  ?></td>
                             <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $relNow ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL']+$relNow ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['RELA'] ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL']+$lap['RELA'] ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
