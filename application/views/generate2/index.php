@@ -55,9 +55,15 @@ $this->load->view('templates/sidebar');
             <div class="col-md-4">
                 <form action="<?= base_url(); ?>index.php/genta/simpan">
                     <div class="input-group">
-                        <select id="GEN_SIMP" name="GEN_SIMP" class="form-select" aria-label="Default select example">
-                            <option hidden>--Pilih--</option>
+                        <select id="GEN_SIMP" onchange="pins()" name="GEN_SIMP" class="form-select" aria-label="Default select example">
+                            <option hidden>Date</option>
                             <?php
+                            if ($this->input->get('TAHUN') == '') {
+                                $TAH = date('Y');
+                            } else {
+                                $TAH = $this->input->get('TAHUN');
+                            }
+                            
                             $query = $this->db->query("SELECT DISTINCT
                                 pl.TAHUN, 
                                 pl.BULAN
@@ -123,7 +129,7 @@ $this->load->view('templates/sidebar');
 
 <script>
     function pins() {
-        var option = document.getElementById("pinsimp").value;
+        var option = document.getElementById("GEN_SIMP").value;
         console.log(option);
         window.location.assign("?TAHUN=" + option.substr(0, 4) + "&&BULAN=" + option.substr(-2));
     }
