@@ -74,7 +74,6 @@ class Pinuang_model extends  CI_Model
             "TGLT_ANG" => $date,
             "JWKT_ANG" => $this->input->post('JWKT_ANG', true),
             "PRO_ANG" => $this->input->post('PRO_ANG', true),
-            "STATUS_PIN" => 'WAIT',
         ];
 
         $this->db->insert('pinuang', $this->data);

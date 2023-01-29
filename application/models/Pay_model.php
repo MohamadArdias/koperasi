@@ -68,7 +68,8 @@ class Pay_model extends CI_Model
 
     public function getKodeAnggota($a)
     {
-        $date = date("Y-m");
+        // $date = date("Y-m");
+        $date = date('Y-m', strtotime('-1 month'));
         $query = $this->db->query("SELECT
         *
         FROM
@@ -79,11 +80,9 @@ class Pay_model extends CI_Model
                 anggota.URUT_ANG = pembayaran.KODE_ANG
         WHERE
             pembayaran.KODE_ANG = $a AND
-            pembayaran.TGL_TGHN LIKE '%$date%'
-        ORDER BY
-            pembayaran.TAHUN DESC, 
-            pembayaran.BULAN DESC
-        LIMIT 1");
+            -- pembayaran.TGL_TGHN LIKE '%$date%'
+            pembayaran.TGL_TGHN IN (SELECT MAX(TGL_TGHN) FROM pembayaran)
+            ");
 
         return $query->row_array();
         // $this->db->select('*');

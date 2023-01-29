@@ -37,14 +37,28 @@ $this->load->view('templates/sidebar');
     <div class="card-body">
         <div class="overflow-auto">
             <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
-                <option hidden>Date</option>
-                <?php 
+                <?php
+                $TAHUN = $this->input->get('TAHUN');
+                $BULAN = $this->input->get('BULAN');
+
+                if ($TAHUN == '' and $BULAN == '') {
+                    $THN = date('Y');
+                    $BLN = date('m');
+                } else {
+                    $THN = $TAHUN;
+                    $BLN = $BULAN;
+                }
+
+                ?>
+
+                <option hidden><?= $THN . '-' . $BLN; ?></option>
+                <?php
                 if ($this->input->get('TAHUN') == '') {
                     $TAH = date('Y');
                 } else {
                     $TAH = $this->input->get('TAHUN');
                 }
-                
+
                 $query = $this->db->query("SELECT DISTINCT pl.TAHUN, pl.BULAN FROM pl INNER JOIN pinsimp ON pl.TAHUN = pinsimp.TAHUN AND pl.BULAN = pinsimp.BULAN AND pl.KODE_ANG = pinsimp.KODE_ANG ORDER BY pl.TAHUN DESC, pl.BULAN DESC")->result_array();
                 foreach ($query as $key) {
                 ?>
@@ -69,9 +83,9 @@ $this->load->view('templates/sidebar');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($keuangan as $lap) : 
-                        $relNow = round(($lap['TOTREL']+$lap['TOTWJB'])*0.00371);
-                        ?>
+                    <?php foreach ($keuangan as $lap) :
+                        $relNow = round(($lap['TOTREL'] + $lap['TOTWJB']) * 0.00371);
+                    ?>
                         <tr>
                             <td><?= $lap['TAHUN'] . '-' . $lap['BULAN'] ?></td>
                             <td><?= $lap['URUT_ANG'] . '/' . $lap['NAMA_ANG']; ?></td>
@@ -82,7 +96,7 @@ $this->load->view('templates/sidebar');
                             <td class="text-right"><?= number_format($lap['TWAJIB'], 0, ',', '.')  ?></td>
                             <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
                             <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['RELA'] ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL']+$lap['RELA'] ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] + $lap['RELA'] ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

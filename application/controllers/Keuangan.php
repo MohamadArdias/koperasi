@@ -26,7 +26,7 @@ class Keuangan extends CI_Controller
         $TAHUN = $this->input->get('TAHUN');
         $BULAN = $this->input->get('BULAN');
 
-        if ($TAHUN == '' AND $BULAN == '') {
+        if ($TAHUN == '' and $BULAN == '') {
             $THN = date('Y');
             $BLN = date('m');
         } else {
@@ -43,6 +43,29 @@ class Keuangan extends CI_Controller
 
     public function export()
     {
+        function tanggal_indo2($tanggal)
+        {
+            $bulan = array(
+                1 =>   'Januari',
+                'Februari',
+                'Maret',
+                'April',
+                'Mei',
+                'Juni',
+                'Juli',
+                'Agustus',
+                'September',
+                'Oktober',
+                'November',
+                'Desember'
+            );
+            $split = explode('-', $tanggal);
+            // return $split[0] . ' ' . $bulan[ (int)$split[1] ];
+            return $bulan[(int)$split[1]] . ' ' . $split[0];
+        }
+
+        // echo tanggal_indo2($TAHUN.'-'.$BULAN); // 20 Maret 2016
+
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
@@ -153,10 +176,17 @@ class Keuangan extends CI_Controller
         $no = 1; // Untuk penomoran tabel, di awal set dengan 1
         $numrow = 11; // Set baris pertama untuk isi tabel adalah baris ke 4
         foreach ($keuangan as $data) { // Lakukan looping pada variabel siswa
+            $tghn = $data['POKU3'] + $data['BNGU3'] +
+                    $data['POKU1'] + $data['BNGU1'] +
+                    $data['POKU4'] + $data['BNGU4'] +
+                    $data['POKU7'] + $data['BNGU7'] +
+                    $data['POKU2'] + $data['WAJIB'] +
+                    $data['POKOK'];
+
             $sheet->setCellValue('A' . $numrow, $no);
             $sheet->setCellValue('B' . $numrow, $data['NAMA_ANG']);
             $sheet->setCellValue('C' . $numrow, $data['REKENING']);
-            $sheet->setCellValue('D' . $numrow, $data['JML_TGHN']);
+            $sheet->setCellValue('D' . $numrow, $tghn);
             $sheet->setCellValue('E' . $numrow, 'KPRI "BANGKIT BERSAMA"');
             $sheet->setCellValue('F' . $numrow, $data['NAMA_INS']);
 
@@ -186,7 +216,7 @@ class Keuangan extends CI_Controller
         $sheet->setTitle("Data Potongan");
         // Proses file excel
         header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="myfile.xls"');
+        header('Content-Disposition: attachment;filename="Bangkit ' . tanggal_indo2($THN.'-'.$BLN) . '.xls"');
         header('Cache-Control: max-age=0');
 
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
@@ -198,7 +228,7 @@ class Keuangan extends CI_Controller
         $TAHUN = $this->input->get('TAHUN');
         $BULAN = $this->input->get('BULAN');
 
-        if ($TAHUN == '' AND $BULAN == '') {
+        if ($TAHUN == '' and $BULAN == '') {
             $THN = date('Y');
             $BLN = date('m');
         } else {
@@ -221,9 +251,8 @@ class Keuangan extends CI_Controller
         $this->data['instansi'] = $this->keuangan->getInstansi($KODE_INS);
         $this->data['pengurus'] = $this->keuangan->getPengurus();
         $this->data['jumlah'] = $this->keuangan->jumlahAnggota($KODE_INS, $TAHUN, $BULAN);
-        
-        $this->load->view('keuangan/printins', $this->data);
 
+        $this->load->view('keuangan/printins', $this->data);
     }
 
     public function printinsang($KODE_INS)
@@ -234,7 +263,7 @@ class Keuangan extends CI_Controller
         $this->data['printang'] = $this->keuangan->printInsAng($KODE_INS, $TAHUN, $BULAN);
         $this->data['Pengurus'] = $this->Pengurus->getAllPengurus();
         $this->data['jumlah'] = $this->keuangan->jumlahAnggota($KODE_INS, $TAHUN, $BULAN);
-        
+
         $this->load->view('keuangan/coba', $this->data);
     }
 
@@ -243,7 +272,7 @@ class Keuangan extends CI_Controller
         $TAHUN = $this->input->get('TAHUN');
         $BULAN = $this->input->get('BULAN');
 
-        if ($TAHUN == '' AND $BULAN == '') {
+        if ($TAHUN == '' and $BULAN == '') {
             $THN = date('Y');
             $BLN = date('m');
         } else {
@@ -283,14 +312,14 @@ class Keuangan extends CI_Controller
     public function print($URUT_ANG)
     {
         $this->data['print'] = $this->Pay->getPrint($URUT_ANG);
-        
+
         $this->load->view('keuangan/print', $this->data);
     }
 
     public function cetakPinj($URUT_ANG)
     {
         $this->data['print'] = $this->Us->getPrint($URUT_ANG);
-        
-        $this->load->view('keuangan/printPinj', $this->data);        
+
+        $this->load->view('keuangan/printPinj', $this->data);
     }
 }

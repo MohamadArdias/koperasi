@@ -50,13 +50,13 @@ class Pay extends CI_Controller
 
         if ($query != null) {
             $data = array(
-                'nama' => $query['NAMA_ANG'],
-                // 'tagihan' => $query['JML_TGHN'],
-                'tagihan' => $query['JML_TGHN']-$detail->jumlah,
-                // 'bayar' => $query['JML_BAYAR'],
                 'TAHUN' => $tahun,
                 'BULAN' => $bulan,
+                'nama' => $query['NAMA_ANG'],
+                'tagihan' => $query['JML_TGHN']-$query['BAYAR_BANK']-$detail->jumlah,
                 'detail' => $detail->jumlah,
+                // 'tagihan' => $query['JML_TGHN'],
+                // 'bayar' => $query['JML_BAYAR'],
                 //  'tunggakan' => $query['POKU6'],
             );
             echo json_encode($data);

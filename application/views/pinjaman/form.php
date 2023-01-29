@@ -173,7 +173,7 @@
                                         <label for="alamat" class="col-sm-4 text-end control-label col-form-label">Bunga</label>
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-sm">
-                                                <input type="text" class="form-control" id="PRO_ANG" name="PRO_ANG" value="<?= $bg; ?>" readonly>
+                                                <input type="text" class="form-control" id="PRO_ANG" name="PRO_ANG" value="<?= $bg; ?>">
                                                 <!-- <?= $bg; ?> -->
                                             </div>
                                             <small class="form-text text-danger"><?= form_error('PRO_ANG'); ?></small>

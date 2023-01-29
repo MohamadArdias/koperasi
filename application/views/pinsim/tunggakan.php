@@ -37,7 +37,21 @@ $this->load->view('templates/sidebar');
     <div class="card-body">
         <div class="overflow-auto">
             <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
-                <option hidden>Date</option>
+                <?php
+                $TAHUN = $this->input->get('TAHUN');
+                $BULAN = $this->input->get('BULAN');
+
+                if ($TAHUN == '' and $BULAN == '') {
+                    $THN = date('Y');
+                    $BLN = date('m');
+                } else {
+                    $THN = $TAHUN;
+                    $BLN = $BULAN;
+                }
+
+                ?>
+
+                <option hidden><?= $THN . '-' . $BLN; ?></option>
                 <?php $query = $this->db->query("SELECT DISTINCT TAHUN, BULAN FROM pl ORDER BY pl.TAHUN DESC, pl.BULAN DESC")->result_array();
                 foreach ($query as $key) {
                 ?>

@@ -58,7 +58,21 @@ $this->load->view('templates/sidebar');
     <div class="card-body">
         <div class="overflow-auto">
             <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
-                <option hidden>Date</option>
+                <?php
+                $TAHUN = $this->input->get('TAHUN');
+                $BULAN = $this->input->get('BULAN');
+
+                if ($TAHUN == '' and $BULAN == '') {
+                    $THN = date('Y');
+                    $BLN = date('m');
+                } else {
+                    $THN = $TAHUN;
+                    $BLN = $BULAN;
+                }
+
+                ?>
+
+                <option hidden><?= $THN . '-' . $BLN; ?></option>
                 <?php $query = $this->db->query("SELECT DISTINCT
                     pl.TAHUN, 
                     pl.BULAN
@@ -89,6 +103,7 @@ $this->load->view('templates/sidebar');
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Jenis Pinjaman</th>
                         <th class="text-center">Jumlah Pinjaman</th>
+                        <th class="text-center">Jangka</th>
                         <th class="text-center">Ke</th>
                         <th class="text-center">Sisa Pinjaman</th>
                         <th class="text-center">Status</th>
@@ -134,6 +149,7 @@ $this->load->view('templates/sidebar');
                             <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
                             <td><?= $jenis; ?></td>
                             <td class="text-right"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>
+                            <td class="text-right"><?= $key['JWKT_ANG'] ?></td>
                             <td><?= $ke ?></td>
                             <td class="text-right"><?= number_format($sisa, 0, ',', '.'); ?></td>
                             <td><?= $status; ?></td>

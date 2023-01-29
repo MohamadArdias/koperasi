@@ -95,7 +95,7 @@ $this->load->view('templates/sidebar');
                 <thead class="table-primary">
                     <tr>
                         <th class="text-center">No</th>
-                        <th class="text-center">Tanggal Tagihan</th>
+                        <th class="text-center">Tanggal</th>
                         <th class="text-center">Anggota</th>
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Potongan</th>
@@ -103,14 +103,23 @@ $this->load->view('templates/sidebar');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1;
-                    foreach ($keuangan as $lap) : ?>
+                    <?php
+                    $i = 1;
+                    foreach ($keuangan as $lap) :
+                        $tghn = $lap['POKU3'] + $lap['BNGU3']+
+                                $lap['POKU1'] + $lap['BNGU1']+
+                                $lap['POKU4'] + $lap['BNGU4']+
+                                $lap['POKU7'] + $lap['BNGU7']+
+                                $lap['POKU2'] + $lap['WAJIB']+
+                                $lap['POKOK'];
+                    ?>
+
                         <tr>
                             <td><?= $i++; ?></td>
-                            <td><?= $lap['TGL_TGHN']; ?></td>
+                            <td><?= $lap['TAHUN'].'-'. $lap['BULAN']; ?></td>
                             <td><?= $lap['KODE_ANG'] . '/' . $lap['NAMA_ANG']; ?></td>
                             <td><?= $lap['NAMA_INS']; ?></td>
-                            <td class="text-right"><?= number_format($lap['JML_TGHN'], 0, ',', '.'); ?></td>
+                            <td class="text-right"><?= number_format($tghn, 0, ',', '.'); ?></td>
                             <td><?= 'KPRI "BANGKIT BERSAMA"'; ?></td>
                         </tr>
                     <?php endforeach ?>

@@ -25,6 +25,7 @@ class Import extends CI_Controller
                 $spreadsheet = $reader->load($inputFileName);
                 $sheet = $spreadsheet->getSheet(0);
                 $count_Rows = 0;
+                $this->db->query("DELETE FROM temp");
                 foreach ($sheet->getRowIterator() as $row) {
                     // $tanggal = $spreadsheet->getActiveSheet()->getcell('A' . $row->getRowIndex());
                     $tanggal = $spreadsheet->getActiveSheet()->getcell('A' . $row->getRowIndex())->getFormattedValue();
@@ -91,7 +92,7 @@ class Import extends CI_Controller
 
             $inBayar = array(
                 'TGL_BAYAR' => $key['TANGGAL'],
-                'JML_BAYAR' => $key['NOMINAL'],
+                'BAYAR_BANK' => $key['NOMINAL'],
                 'VIA_BAYAR' => 'BANK JATIM',
                 'STATUS' => 'TERBAYAR',
             );

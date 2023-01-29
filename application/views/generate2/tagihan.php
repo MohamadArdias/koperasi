@@ -48,8 +48,22 @@ $this->load->view('templates/sidebar');
             <div class="col-md-4">
                 <form action="<?= base_url(); ?>index.php/genta/pembayaran">
                     <div class="input-group">
-                    <select onchange="pins()" id="GEN_SIMP" name="GEN_SIMP" class="form-select" aria-label="Default select example">
-                            <option hidden>Date</option>
+                        <select onchange="pins()" id="GEN_SIMP" name="GEN_SIMP" class="form-select" aria-label="Default select example">
+                            <?php
+                            $TAHUN = $this->input->get('TAHUN');
+                            $BULAN = $this->input->get('BULAN');
+
+                            if ($TAHUN == '' and $BULAN == '') {
+                                $THN = date('Y');
+                                $BLN = date('m');
+                            } else {
+                                $THN = $TAHUN;
+                                $BLN = $BULAN;
+                            }
+
+                            ?>
+
+                            <option hidden><?= $THN . '-' . $BLN; ?></option>
                             <?php
                             // $query = $this->db->query("SELECT DISTINCT
                             //     pl.TAHUN, 

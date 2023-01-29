@@ -41,7 +41,7 @@ $this->load->view('templates/sidebar');
 
 <div class="card">
     <div class="card-body">
-    <?php if ($this->session->flashdata('pinjamGen')) : ?>
+        <?php if ($this->session->flashdata('pinjamGen')) : ?>
             <div class="row mt-3">
                 <div class="col-md-6">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -56,7 +56,21 @@ $this->load->view('templates/sidebar');
                 <form action="<?= base_url(); ?>index.php/genta/pinjaman">
                     <div class="input-group">
                         <select id="GEN_SIMP" name="GEN_SIMP" onchange="pins()" class="form-select" aria-label="Default select example">
-                            <option hidden>Date</option>
+                            <?php
+                            $TAHUN = $this->input->get('TAHUN');
+                            $BULAN = $this->input->get('BULAN');
+
+                            if ($TAHUN == '' and $BULAN == '') {
+                                $THN = date('Y');
+                                $BLN = date('m');
+                            } else {
+                                $THN = $TAHUN;
+                                $BLN = $BULAN;
+                            }
+
+                            ?>
+
+                            <option hidden><?= $THN . '-' . $BLN; ?></option>
                             <?php
                             $query = $this->db->query("SELECT DISTINCT
                             pl.TAHUN, 
@@ -110,7 +124,7 @@ $this->load->view('templates/sidebar');
                         <th>PERIODE</th>
                         <th>POKOK</th>
                         <th>BUNGA (RP)</th>
-                        <th>TOTAL</th>                    
+                        <th>TOTAL</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -139,25 +153,25 @@ $this->load->view('templates/sidebar');
                             $bunga = $key['BNGU7'];
                         } elseif (strpos($key['NOFAK'], 'S') !== false) {
                             $jenis = 'Uang Untuk Barang';
-                            $keu = $key['KEU4']; 
-                            $pokok = $key['POKU4']; 
-                            $bunga = $key['BNGU4']; 
-                        }   
-                        $total = $pokok+$bunga;                                                                   
+                            $keu = $key['KEU4'];
+                            $pokok = $key['POKU4'];
+                            $bunga = $key['BNGU4'];
+                        }
+                        $total = $pokok + $bunga;
                     ?>
                         <tr>
                             <td><?= $key['TAHUN']; ?></td>
                             <td><?= $key['BULAN']; ?></td>
                             <td><?= $key['NOFAK']; ?></td>
-                            <td><?= $key['KODE_ANG'].'/ '.$key['NAMA_ANG']; ?></td>
-                            <td><?= $key['KODE_INS'].'/ '.$key['NAMA_INS']; ?></td>
+                            <td><?= $key['KODE_ANG'] . '/ ' . $key['NAMA_ANG']; ?></td>
+                            <td><?= $key['KODE_INS'] . '/ ' . $key['NAMA_INS']; ?></td>
                             <td><?= $jenis; ?></td>
                             <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>
                             <td><?= $key['JWKT_ANG']; ?></td>
                             <td><?= $keu; ?></td>
                             <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($pokok, 0, ',', '.'); ?></td>
                             <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($bunga, 0, ',', '.'); ?></td>
-                            <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($total, 0, ',', '.'); ?></td>                           
+                            <td style="text-align: right; padding-right: 25px; padding-left: 25px;"><?= number_format($total, 0, ',', '.'); ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

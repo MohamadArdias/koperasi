@@ -190,13 +190,13 @@ class Anggota_model extends  CI_Model
 
         $this->db->insert('anggota', $this->data);
 
-        $this->pembayaran = [
-            "KODE_ANG" => $this->input->post('URUT_ANG', true),
-            "TAHUN" => date("Y"),
-            "BULAN" => date("m"),
-        ];
+        // $this->pembayaran = [
+        //     "KODE_ANG" => $this->input->post('URUT_ANG', true),
+        //     "TAHUN" => date("Y"),
+        //     "BULAN" => date("m"),
+        // ];
 
-        $this->db->insert('pembayaran', $this->Pembayaran);
+        // $this->db->insert('pembayaran', $this->Pembayaran);
     }
 
     public function hapusDataAnggota($URUT_ANG)

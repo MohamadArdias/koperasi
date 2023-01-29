@@ -16,11 +16,6 @@ class Import_model extends CI_Model
 
     public function getTemp()
     {
-        // $this->db->select('*');
-        // $this->db->from('temp');
-        // $this->db->join('anggota', 'anggota.REKENING = temp.NO_REKENING');;
-        // $this->db->like('temp.DATE', date('Y-m'));
-        // return $this->db->get()->result_array();
         $date = date("Y-m");
 
         $query = $this->db->query("SELECT
@@ -34,7 +29,26 @@ class Import_model extends CI_Model
             ON 
                 anggota.REKENING = temp.NO_REKENING
         WHERE
-            temp.DATE LIKE '%$date%'");
+            temp.DATE IN (SELECT MAX(DATE) FROM temp)");
+
+        // $query = $this->db->query("SELECT
+        //     temp.TANGGAL, 
+        //     anggota.URUT_ANG, 
+        //     temp.NOMINAL, 
+        //     pembayaran.JML_BAYAR
+        // FROM
+        //     anggota
+        //     INNER JOIN
+        //     temp
+        //     ON 
+        //         anggota.REKENING = temp.NO_REKENING
+        //     INNER JOIN
+        //     pembayaran
+        //     ON 
+        //         anggota.URUT_ANG = pembayaran.KODE_ANG
+        // WHERE
+        //     pembayaran.TGL_TGHN IN ((SELECT MAX(TGL_TGHN) FROM pembayaran )) AND
+        //     temp.DATE IN (SELECT MAX(DATE) FROM temp)");
         
         return $query->result_array();
     }

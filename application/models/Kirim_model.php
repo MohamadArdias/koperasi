@@ -53,22 +53,20 @@ class Kirim_model extends CI_model
         $query = $this->db->query("SELECT
             *
         FROM
-            pembayaran
-            INNER JOIN
             anggota
+            INNER JOIN
+            pl
             ON 
-                pembayaran.KODE_ANG = anggota.URUT_ANG
+                anggota.URUT_ANG = pl.KODE_ANG
             INNER JOIN
             instan
             ON 
                 anggota.KODE_INS = instan.KODE_INS
         WHERE
-            anggota.REKENING > 1 AND
-            pembayaran.TAHUN = $THN AND
-            pembayaran.BULAN = '$BLN'
+            pl.TAHUN = $THN AND
+            pl.BULAN = $BLN
         ORDER BY
-            instan.KODE_INS ASC, 
-            anggota.URUT_ANG ASC");
+        	instan.KODE_INS ASC");
         return $query->result_array();        
     }    
 
