@@ -97,13 +97,13 @@ $this->load->view('templates/sidebar');
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
-                        <th style="padding-left: 20px; padding-right: 20px;" class="text-center">Bulan</th>
+                        <th style="padding-left: 20px; padding-right: 20px;" class="text-center">Tanggal</th>
                         <th style="padding-left: 20px; padding-right: 20px;" class="text-center">Faktur</th>
                         <th style="padding-left: 60px; padding-right: 60px;" class="text-center">Anggota</th>
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Jenis Pinjaman</th>
-                        <th class="text-center">Jumlah Pinjaman</th>
                         <th class="text-center">Jangka</th>
+                        <th class="text-center">Jumlah Pinjaman</th>
                         <th class="text-center">Ke</th>
                         <th class="text-center">Sisa Pinjaman</th>
                         <th class="text-center">Status</th>
@@ -143,13 +143,13 @@ $this->load->view('templates/sidebar');
                         }
                     ?>
                         <tr>
-                            <td><?= $key['TAHUN'] . '-' . $key['BULAN'] ?></td>
+                            <td><?= $key['TGLP_ANG'] ?></td>
                             <td><a href="<?= base_url(); ?>index.php/pelunasan?NOFAK=<?= $key['NOFAK']; ?>&&KODE=<?= $key['URUT_ANG'] ?>"><?= $key['NOFAK']; ?></a></td>
                             <td><?= $key['URUT_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                             <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
                             <td><?= $jenis; ?></td>
-                            <td class="text-right"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>
                             <td class="text-right"><?= $key['JWKT_ANG'] ?></td>
+                            <td class="text-right"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>
                             <td><?= $ke ?></td>
                             <td class="text-right"><?= number_format($sisa, 0, ',', '.'); ?></td>
                             <td><?= $status; ?></td>
