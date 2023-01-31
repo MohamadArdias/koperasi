@@ -102,9 +102,12 @@ $this->load->view('templates/sidebar');
                         <th style="padding-left: 60px; padding-right: 60px;" class="text-center">Anggota</th>
                         <th class="text-center">Instansi</th>
                         <th class="text-center">Jenis Pinjaman</th>
-                        <th class="text-center">Jangka</th>
                         <th class="text-center">Jumlah Pinjaman</th>
-                        <th class="text-center">Ke</th>
+                        <th class="text-center">Jangka</th>
+                        <th class="text-center">Bunga(%)</th>
+                        <th class="text-center">Periode</th>
+                        <th class="text-center">Pokok</th>
+                        <th class="text-center">Bunga(Rp)</th>
                         <th class="text-center">Sisa Pinjaman</th>
                         <th class="text-center">Status</th>
                     </tr>
@@ -115,28 +118,23 @@ $this->load->view('templates/sidebar');
 
                         // jenis pinjaman
                         if (strpos($key['NOFAK'], 'U') !== false) {
-                            $jenis = 'Uang';
-                            $sisa = $key['SIPOKU1'];
-                            $ke = $key['KEU1'];
+                            $jenis = 'Uang';                        
+                            $angka = 1;
                         } elseif (strpos($key['NOFAK'], 'N') !== false) {
-                            $jenis = 'Non Konsumsi';
-                            $sisa = $key['SIPOKU3'];
-                            $ke = $key['KEU3'];
+                            $jenis = 'Non Konsumsi';                        
+                            $angka = 3;
                         } elseif (strpos($key['NOFAK'], 'O') !== false) {
-                            $jenis = 'Konsumsi';
-                            $sisa = $key['SIPOKU2'];
-                            $ke = $key['KEU2'];
+                            $jenis = 'Konsumsi';                        
+                            $angka = 2;
                         } elseif (strpos($key['NOFAK'], 'Z') !== false) {
-                            $jenis = 'Pinjaman Khusus';
-                            $sisa = $key['SIPOKU7'];
-                            $ke = $key['KEU7'];
+                            $jenis = 'Pinjaman Khusus';                        
+                            $angka = 7;
                         } elseif (strpos($key['NOFAK'], 'S') !== false) {
-                            $jenis = 'UUB';
-                            $sisa = $key['SIPOKU4']; //belum teridentifikasi
-                            $ke = $key['KEU4'];
+                            $jenis = 'UUB';                        
+                            $angka = 4;
                         }
 
-                        if ($sisa == 0) {
+                        if ($key['SIPOKU'.$angka] == 0) {
                             $status = 'LUNAS';
                         } else {
                             $status = 'BELUM LUNAS';
@@ -148,10 +146,13 @@ $this->load->view('templates/sidebar');
                             <td><?= $key['URUT_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                             <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
                             <td><?= $jenis; ?></td>
-                            <td class="text-right"><?= $key['JWKT_ANG'] ?></td>
                             <td class="text-right"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>
-                            <td><?= $ke ?></td>
-                            <td class="text-right"><?= number_format($sisa, 0, ',', '.'); ?></td>
+                            <td class="text-right"><?= $key['JWKT_ANG'] ?></td>
+                            <td><?= $key['PRO_ANG'] ?></td>
+                            <td><?= $key['KEU'.$angka] ?></td>
+                            <td><?= $key['POKU'.$angka] ?></td>
+                            <td><?= $key['BNGU'.$angka] ?></td>
+                            <td class="text-right"><?= number_format($key['SIPOKU'.$angka], 0, ',', '.'); ?></td>
                             <td><?= $status; ?></td>
                         </tr>
                     <?php
