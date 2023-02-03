@@ -116,7 +116,7 @@ $data = '<!DOCTYPE html>
                 <div>                                                          
                     <div>
                         <div>
-                        <table cellpadding="5">
+                        <table cellpadding="1">
                             <tr>
                             <th style="font-size: 12px;" width="592" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
                             </tr>
@@ -130,16 +130,16 @@ $data = '<!DOCTYPE html>
 
 
 
-$pdf->SetFont('', '', 8);
+$pdf->SetFont('', '', 9);
 $data .=
     '
-                            <table cellpadding="5">
+                            <table cellpadding="1">
                                 <tr>
                                     <td style="font-size: 10px;">DAFTAR TAGIHAN BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '</td>
                                     <td style="font-size: 10px;" align="right">UNTUK ' . $instansi['KODE_INS'] . '/' . $instansi['NAMA_INS'] . '</td>
                                 </tr>
                             </table>
-                            <table cellspacing="0" cellpadding="3">
+                            <table cellspacing="0" cellpadding="1">
                                 <thead>
                                     <tr>
                                         <th width="15" align="center" style="font-size:7px; border: 1px solid black; ">No </th>
@@ -216,7 +216,7 @@ foreach ($keuangan as $lap) {
                                         <td width="55" align="right" style="border-right: 1px solid black; ">' . number_format($t, 0, ',', '.') . '</td>
                                         <td width="50" align="right" style="border-right: 1px solid black; ">' . number_format($potongan, 0, ',', '.') . '</td>
                                     </tr>';
-    if ((($i - 1) % 30) == 0) {
+    if ((($i - 1) % 33) == 0) {
         $data .= '
                                         <tr>
                                             <td style="border-top: 1px solid black; " width="15" ></td>
@@ -238,7 +238,7 @@ foreach ($keuangan as $lap) {
             $data .= '
                                         <br pagebreak="true"/>';
             $data .= '
-                                        <table cellpadding="5">
+                                        <table cellpadding="1">
                                             <tr>
                                             <th style="font-size: 12px;" width="592" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
                                             </tr>
@@ -249,13 +249,13 @@ foreach ($keuangan as $lap) {
                                             <th style="font-size: 12px;" width="592" align="center">Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
                                             </tr>
                                         </table>
-                                        <table cellpadding="5">
+                                        <table cellpadding="1">
                                             <tr>
-                                                <td><b>DAFTAR TAGIHAN BULAN ' . tanggal_indo2($TAHUN . '-' . $BULAN) . '</b></td>
-                                                <td align="right"><b>UNTUK ' . $instansi['KODE_INS'] . '/' . $instansi['NAMA_INS'] . '</b></td>
+                                                <td style="font-size: 10px;">DAFTAR TAGIHAN BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '</td>
+                                                <td style="font-size: 10px;" align="right">UNTUK ' . $instansi['KODE_INS'] . '/' . $instansi['NAMA_INS'] . '</td>
                                             </tr>
                                         </table>
-                                        <table cellspacing="0" cellpadding="3">
+                                        <table cellspacing="0" cellpadding="1">
                                             <thead>
                                                 <tr>
                                                     <th width="15" align="center" style="font-size:7px; border: 1px solid black; ">No </th>
@@ -274,7 +274,7 @@ foreach ($keuangan as $lap) {
                                             </thead>
                                         </table>';
         }
-        $data .= '<table cellspacing="0" cellpadding="3">';
+        $data .= '<table cellspacing="0" cellpadding="1">';
     }
 }
 $data .=    '           
@@ -300,14 +300,14 @@ $data .=    '
                                 <div>
                                     <table>
                                         <tr>
-                                            <td align="left" width="150">
+                                            <td align="left" width="170">
                                                 Jumlah Uang Sebesar RP. <br>
                                                 Telah saya terima <br> 
                                                 bendahara KP-RI Bangkit Bersama <br><br><br><br><br>
                                                 ' . $pengurus['BENDAH1'] . ' 
                                             </td>       
                                             <td width="60"></td> 
-                                            <td width="150"><pre>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
+                                            <td width="170"><pre>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
     '<br>Terbayar       Rp. 0<br>==============================<br>Sisa           Rp. 0 </pre></td>
                                             <td width="50"></td>
                                             <td align="left" width="140">
