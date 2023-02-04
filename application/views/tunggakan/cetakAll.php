@@ -135,6 +135,7 @@ $data .=
     '
                             <table cellpadding="1">
                                 <tr>
+                                    <td width="45" align="center" style="font-size:9px; "></td>
                                     <td style="font-size: 10px;">DAFTAR TUNGGAKAN BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '</td>
                                 </tr>
                             </table>
@@ -143,7 +144,7 @@ $data .=
                                     <tr>
                                         <th width="45" align="center" style="font-size:9px; "></th>
                                         <th width="20" align="center" style="font-size:9px; border: 1px solid black; ">No </th>
-                                        <th width="160" align="center" style="font-size:9px; border: 1px solid black; " >ANGGOTA</th>
+                                        <th width="180" align="center" style="font-size:9px; border: 1px solid black; " >ANGGOTA</th>
                                         <th width="160" align="center" style="font-size:9px; border: 1px solid black; " >INSTANSI</th>
                                         <th width="70" align="center" style="font-size:9px; border: 1px solid black; " >TUNGGAKAN</th>
                                     </tr>
@@ -154,7 +155,7 @@ $i = 1;
 
 $totalt = 0;
 
-foreach ($jumlah as $lap) {
+foreach ($tunggakan as $lap) {
 
     if ($lap['POKU6'] != 0) {
         $t = $lap['POKU6']; //POKU6 = TUNGGAKAN
@@ -168,8 +169,8 @@ foreach ($jumlah as $lap) {
     $data .= '  <tr>
                                         <td width="45" align="center" style="font-size:9px; "></td>
                                         <td width="20" align="right" style=" border-right: 1px solid black; border-left: 1px solid black; ">' . $i++ . '</td>
-                                        <td width="45" align="center" style="border-right: 1px solid black; ">' . $lap['URUT_ANG'].''.$lap['NAMA_ANG']. '</td>
-                                        <td width="160" style="border-right: 1px solid black; ">' . $lap['KODE_INS'].''.$lap['NAMA_INS']. '</td>
+                                        <td width="180" style="border-right: 1px solid black; ">' . $lap['URUT_ANG'] . '-' . $lap['NAMA_ANG'] . '</td>
+                                        <td width="160" style="border-right: 1px solid black; ">' . $lap['KODE_INS'] . '-' . $lap['NAMA_INS'] . '</td>
                                         <td width="70" align="right" style="border-right: 1px solid black; ">' . number_format($t, 0, ',', '.') . '</td>
                                     </tr>';
     if ((($i - 1) % 33) == 0) {
@@ -177,7 +178,7 @@ foreach ($jumlah as $lap) {
                                         <tr>
                                             <td width="45" align="center" style="font-size:9px; "></td>
                                             <td style="border-top: 1px solid black; " width="20" ></td>
-                                            <td style="border-top: 1px solid black; " width="45" ></td>
+                                            <td style="border-top: 1px solid black; " width="180" ></td>
                                             <td style="border-top: 1px solid black; " width="160" ></td>
                                             <td style="border-top: 1px solid black; " width="70" ></td>
                                         </tr>
@@ -200,6 +201,7 @@ foreach ($jumlah as $lap) {
                                         </table>
                                         <table cellpadding="1">
                                             <tr>
+                                                <td width="45" align="center" style="font-size:9px; "></td>
                                                 <td style="font-size: 10px;">DAFTAR TUNGGAKAN BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '</td>
                                             </tr>
                                         </table>
@@ -208,7 +210,7 @@ foreach ($jumlah as $lap) {
                                             <tr>
                                                 <th width="45" align="center" style="font-size:9px; "></th>
                                                 <th width="20" align="center" style="font-size:9px; border: 1px solid black; ">No </th>
-                                                <th width="160" align="center" style="font-size:9px; border: 1px solid black; " >ANGGOTA</th>
+                                                <th width="180" align="center" style="font-size:9px; border: 1px solid black; " >ANGGOTA</th>
                                                 <th width="160" align="center" style="font-size:9px; border: 1px solid black; " >INSTANSI</th>
                                                 <th width="70" align="center" style="font-size:9px; border: 1px solid black; " >TUNGGAKAN</th>
                                             </tr>
@@ -222,7 +224,7 @@ $data .=    '
                                 <tbody>
                                 <tr>
                                     <td width="45"></td>
-                                    <td style="border: 1px solid black; " width="273">GRAND TOTAL</td>
+                                    <td style="border: 1px solid black; " width="362">GRAND TOTAL</td>
                                     <td style="border: 1px solid black; " width="70" align="right">' . number_format($totalt, 0, ',', '.') . '</td>
                                 </tr>
                                 </tbody>                                                                   
@@ -235,13 +237,13 @@ $data .=    '
                                             <td align="left" width="170">
                                                 Jumlah Uang Sebesar RP. <br>
                                                 Telah saya terima <br> 
-                                                bendahara KP-RI Bangkit Bersama <br><br><br><br><br>
+                                                bendahara KPRI Bangkit Bersama <br><br><br><br><br>
                                                 ' . $pengurus['BENDAH1'] . ' 
                                             </td>       
-                                            <td width="60"></td> 
-                                            <td width="180"><pre>Jumlah Tunggakan Rp. ' . number_format($totalt, 0, ',', '.') .
-    '<br>Terbayar         Rp. 0<br>================================<br>Sisa             Rp. 0 </pre></td>
-                                            <td width="50"></td>
+                                            <td width="35"></td> 
+                                            <td width="200"><pre>Jumlah Tunggakan Rp. ' . number_format($totalt, 0, ',', '.') .
+    '<br>Terbayar         Rp. <br>====================================<br>Sisa             Rp.  </pre></td>
+                                            <td width="35"></td>
                                             <td align="left" width="140">
                                                 Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . $BULAN) . ' <br>
                                                 Pengurus KPRI Bangkit Bersama <br> 

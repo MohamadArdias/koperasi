@@ -91,17 +91,12 @@ class Tunggakan extends CI_Controller
 
     public function cetakAll()
     {
-        $DATE = $this->input->get('GETEX');
+        $TAHUN = $this->input->get('TAHUN');
+        $BULAN = $this->input->get('BULAN');
 
-        if ($DATE == '') {
-            $THN = date('Y');
-            $BLN = date('m');
-        } else {
-            $THN = substr($DATE, 0, 4);
-            $BLN = substr($DATE, -2);
-        }
-
-        $this->data['jumlah'] = $this->Tunggakan->cetakAll($THN, $BLN);
+        $this->data['tunggakan'] = $this->Tunggakan->cetakAll($TAHUN, $BULAN);
+        $this->data['pengurus'] = $this->keuangan->getPengurus();
+        $this->data['jumlah'] = $this->Tunggakan->jumlahAll($TAHUN, $BULAN);
 
         $this->load->view('tunggakan/cetakAll', $this->data);
     }

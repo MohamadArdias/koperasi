@@ -38,27 +38,26 @@ $this->load->view('templates/sidebar');
         <div class="card-body">
             <div class="input-group">
                 <div class="col-md-4">
-                    <form action="<?= base_url(); ?>index.php/tanggungan/cetakAl2">
-                        <div class="input-group">
+                    <div class="input-group">
+
+                        <?php
+                        $TAHUN = $this->input->get('TAHUN');
+                        $BULAN = $this->input->get('BULAN');
+
+                        if ($TAHUN == '' and $BULAN == '') {
+                            $THN = date('Y');
+                            $BLN = date('m');
+                        } else {
+                            $THN = $TAHUN;
+                            $BLN = $BULAN;
+                        }
+
+                        ?>
+                        <select id="GETEX" name="GETEX" onchange="getEx()" class="form-select" aria-label="Default select example">
+                            <option hidden><?= $THN . '-' . $BLN; ?></option>
 
                             <?php
-                            $TAHUN = $this->input->get('TAHUN');
-                            $BULAN = $this->input->get('BULAN');
-
-                            if ($TAHUN == '' and $BULAN == '') {
-                                $THN = date('Y');
-                                $BLN = date('m');
-                            } else {
-                                $THN = $TAHUN;
-                                $BLN = $BULAN;
-                            }
-
-                            ?>
-                            <select id="GETEX" name="GETEX" onchange="getEx()" class="form-select" aria-label="Default select example">
-                                <option hidden><?= $THN . '-' . $BLN; ?></option>
-
-                                <?php
-                                $query = $this->db->query("SELECT DISTINCT
+                            $query = $this->db->query("SELECT DISTINCT
                                 pl.TAHUN, 
                                 pl.BULAN
                             FROM
@@ -76,16 +75,16 @@ $this->load->view('templates/sidebar');
                                 pl.TAHUN DESC, 
                                 pl.BULAN DESC")->result_array();
 
-                                foreach ($query as $key) {
-                                ?>
-                                    <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                            <button type="submit" name="generate" class="btn btn-primary">Cetak Semua</button>
-                        </div>
-                    </form>
+                            foreach ($query as $key) {
+                            ?>
+                                <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <!-- <button type="submit" name="generate" class="btn btn-primary">Cetak Semua</button> -->
+                        <a href="<?= base_url(); ?>index.php/tunggakan/cetakAll?TAHUN=<?= $THN ?>&&BULAN=<?= $BLN ?>" class="btn btn-primary" target="blank">Cetak Semua</a>
+                    </div>
                 </div>
             </div>
             <div class="overflow-auto">

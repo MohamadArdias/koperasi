@@ -42,11 +42,11 @@
                           <i class="bi bi-circle-fill"></i><span>Pinjaman</span>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/pinsim/tunggakan">
                           <i class="bi bi-circle-fill"></i><span>Tunggakan</span>
                       </a>
-                  </li>
+                  </li> -->
               </ul>
           </li>
 

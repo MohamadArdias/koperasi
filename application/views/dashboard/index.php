@@ -96,7 +96,7 @@ $this->load->view('templates/sidebar');
                     <i class="bi bi-cash"></i>
                   </div>
                   <div class="ps-3">
-                    <h6><a href="<?= base_url(); ?>index.php/pinsim/tunggakan" style="color:black">Rp. <?= number_format($tunggakan->jumlah, 0, ',', '.') ?></a></h6>
+                    <h6><a href="<?= base_url(); ?>index.php/tunggakan/anggota" style="color:black">Rp. <?= number_format($tunggakan->jumlah, 0, ',', '.') ?></a></h6>
                   </div>
                 </div>
               </div>
