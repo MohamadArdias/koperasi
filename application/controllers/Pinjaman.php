@@ -141,4 +141,42 @@ class Pinjaman extends CI_Controller
             echo json_encode($data);
         }
     }
+
+    public function autofill2()
+    {
+        $a = $_GET['URUT_ANG'];
+        $b = $_GET['KODE'];
+
+        $query = $this->Anggota->getTanggungan($a, $b);
+        $query2 = $this->Anggota->getNama($a);
+
+        if ($query != null) {
+            
+            $data = array(
+                'nama' => $query['NAMA_ANG'],
+                'sisa' => $query['SIPOKU8'],
+                'bunga' => $query['BNGU8'],
+                'ke_bunga' => $query['KE_BNGU8'],
+            );
+
+            echo json_encode($data);
+        } else {
+            $data = array(
+                'nama' => $query2['NAMA'],
+                'sisa' => 0,
+                'bunga' => 0,
+                'ke_bunga' => 0,
+            );
+            echo json_encode($data);
+        }
+    }
+
+    public function kantor()
+    {
+        $this->data['title'] = 'Pinjaman Kantor';
+
+        $this->data['urutan'] = $this->Pinuang->getUrut();
+
+        $this->load->view('pinjaman/kantor', $this->data);
+    }
 }

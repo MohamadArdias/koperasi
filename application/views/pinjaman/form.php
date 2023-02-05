@@ -152,7 +152,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mb-2">
-                                        <label for="alamat" class="col-sm-4 text-end control-label col-form-label">Jumlah</label>
+                                        <label for="alamat" class="col-sm-4 text-end control-label col-form-label">Jumlah Pinjam</label>
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-sm">
                                                 <input type="number" class="form-control" id="JMLP_ANG" name="JMLP_ANG" min="1">

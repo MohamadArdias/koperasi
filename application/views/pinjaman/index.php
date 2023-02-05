@@ -118,7 +118,7 @@ $this->load->view('templates/sidebar');
                     </div>
                 </div>
             </div>
-            <div class="col-md-3"></div>
+            <!-- <div class="col-md-3"></div> -->
             <div class="col-xxl-4 col-md-6">
                 <div class="card info-card sales-card">
                     <div class="card-body">
@@ -129,6 +129,22 @@ $this->load->view('templates/sidebar');
                             <div class="ps-3">
                                 <a href="<?= base_url(); ?>index.php/pinjaman/form/5" class="nav-link">
                                     <h6>Pinjaman Khusus</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-4 col-md-6">
+                <div class="card info-card sales-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-wallet-fill"></i>
+                            </div>
+                            <div class="ps-3">
+                                <a href="<?= base_url(); ?>index.php/pinjaman/kantor" class="nav-link">
+                                    <h6>Pinjaman Kantor</h6>
                                 </a>
                             </div>
                         </div>
