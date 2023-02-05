@@ -90,35 +90,9 @@ class Pinuang_model extends  CI_Model
             pinuang.KODE_ANG = '$a'");
     }
 
-    public function getAllPinjaman($THN, $BLN)
+    public function pinjKantor($THN, $BLN)
     {
-            $query = $this->db->query("SELECT
-            *
-        FROM
-            pinuang
-            INNER JOIN
-            pl
-            ON 
-                pinuang.KODE_ANG = pl.KODE_ANG
-            INNER JOIN
-            anggota
-            ON 
-                anggota.URUT_ANG = pl.KODE_ANG
-        WHERE
-            pinuang.TAHUN = $THN AND
-            pl.TAHUN = $THN AND
-            pinuang.BULAN = $BLN AND
-            pl.BULAN = $BLN AND
-            anggota.KODE_INS <> 96 AND
-            anggota.KODE_INS <> 97 AND
-            anggota.KODE_INS <> 98 AND
-            anggota.KODE_INS <> 99");
-        return $query->result_array();
-    }
-
-    public function getUang($THN, $BLN)
-    {
-            $query = $this->db->query("SELECT
+        $query = $this->db->query("SELECT
             *
         FROM
             pinuang
@@ -143,9 +117,9 @@ class Pinuang_model extends  CI_Model
         return $query->result_array();
     }
 
-    public function getNon($THN, $BLN)
+    public function getAllPinjaman($THN, $BLN)
     {
-            $query = $this->db->query("SELECT
+        $query = $this->db->query("SELECT
             *
         FROM
             pinuang
@@ -165,91 +139,144 @@ class Pinuang_model extends  CI_Model
             anggota.KODE_INS <> 96 AND
             anggota.KODE_INS <> 97 AND
             anggota.KODE_INS <> 98 AND
-            anggota.KODE_INS <> 99 AND
-            pinuang.NOFAK LIKE '%N%'");
-            return $query->result_array();
+            anggota.KODE_INS <> 99");
+        return $query->result_array();
     }
 
-    public function getKons($THN, $BLN)
-    {
-            $query = $this->db->query("SELECT
-            *
-        FROM
-            pinuang
-            INNER JOIN
-            pl
-            ON 
-                pinuang.KODE_ANG = pl.KODE_ANG
-            INNER JOIN
-            anggota
-            ON 
-                anggota.URUT_ANG = pl.KODE_ANG
-        WHERE
-            pinuang.TAHUN = $THN AND
-            pl.TAHUN = $THN AND
-            pinuang.BULAN = $BLN AND
-            pl.BULAN = $BLN AND
-            anggota.KODE_INS <> 96 AND
-            anggota.KODE_INS <> 97 AND
-            anggota.KODE_INS <> 98 AND
-            anggota.KODE_INS <> 99 AND
-            pinuang.NOFAK LIKE '%O%'");
-            return $query->result_array();
-    }
+    // public function getUang($THN, $BLN)
+    // {
+    //         $query = $this->db->query("SELECT
+    //         *
+    //     FROM
+    //         pinuang
+    //         INNER JOIN
+    //         pl
+    //         ON 
+    //             pinuang.KODE_ANG = pl.KODE_ANG
+    //         INNER JOIN
+    //         anggota
+    //         ON 
+    //             anggota.URUT_ANG = pl.KODE_ANG
+    //     WHERE
+    //         pinuang.TAHUN = $THN AND
+    //         pl.TAHUN = $THN AND
+    //         pinuang.BULAN = $BLN AND
+    //         pl.BULAN = $BLN AND
+    //         anggota.KODE_INS <> 96 AND
+    //         anggota.KODE_INS <> 97 AND
+    //         anggota.KODE_INS <> 98 AND
+    //         anggota.KODE_INS <> 99 AND
+    //         pinuang.NOFAK LIKE '%U%'");
+    //     return $query->result_array();
+    // }
 
-    public function getKhusus($THN, $BLN)
-    {
-            $query = $this->db->query("SELECT
-            *
-        FROM
-            pinuang
-            INNER JOIN
-            pl
-            ON 
-                pinuang.KODE_ANG = pl.KODE_ANG
-            INNER JOIN
-            anggota
-            ON 
-                anggota.URUT_ANG = pl.KODE_ANG
-        WHERE
-            pinuang.TAHUN = $THN AND
-            pl.TAHUN = $THN AND
-            pinuang.BULAN = $BLN AND
-            pl.BULAN = $BLN AND
-            anggota.KODE_INS <> 96 AND
-            anggota.KODE_INS <> 97 AND
-            anggota.KODE_INS <> 98 AND
-            anggota.KODE_INS <> 99 AND
-            pinuang.NOFAK LIKE '%Z%'");
-            return $query->result_array();
-    }
+    // public function getNon($THN, $BLN)
+    // {
+    //         $query = $this->db->query("SELECT
+    //         *
+    //     FROM
+    //         pinuang
+    //         INNER JOIN
+    //         pl
+    //         ON 
+    //             pinuang.KODE_ANG = pl.KODE_ANG
+    //         INNER JOIN
+    //         anggota
+    //         ON 
+    //             anggota.URUT_ANG = pl.KODE_ANG
+    //     WHERE
+    //         pinuang.TAHUN = $THN AND
+    //         pl.TAHUN = $THN AND
+    //         pinuang.BULAN = $BLN AND
+    //         pl.BULAN = $BLN AND
+    //         anggota.KODE_INS <> 96 AND
+    //         anggota.KODE_INS <> 97 AND
+    //         anggota.KODE_INS <> 98 AND
+    //         anggota.KODE_INS <> 99 AND
+    //         pinuang.NOFAK LIKE '%N%'");
+    //         return $query->result_array();
+    // }
 
-    public function getUub($THN, $BLN)
-    {
-            $query = $this->db->query("SELECT
-            *
-        FROM
-            pinuang
-            INNER JOIN
-            pl
-            ON 
-                pinuang.KODE_ANG = pl.KODE_ANG
-            INNER JOIN
-            anggota
-            ON 
-                anggota.URUT_ANG = pl.KODE_ANG
-        WHERE
-            pinuang.TAHUN = $THN AND
-            pl.TAHUN = $THN AND
-            pinuang.BULAN = $BLN AND
-            pl.BULAN = $BLN AND
-            anggota.KODE_INS <> 96 AND
-            anggota.KODE_INS <> 97 AND
-            anggota.KODE_INS <> 98 AND
-            anggota.KODE_INS <> 99 AND
-            pinuang.NOFAK LIKE '%S%'");
-            return $query->result_array();
-    }
+    // public function getKons($THN, $BLN)
+    // {
+    //         $query = $this->db->query("SELECT
+    //         *
+    //     FROM
+    //         pinuang
+    //         INNER JOIN
+    //         pl
+    //         ON 
+    //             pinuang.KODE_ANG = pl.KODE_ANG
+    //         INNER JOIN
+    //         anggota
+    //         ON 
+    //             anggota.URUT_ANG = pl.KODE_ANG
+    //     WHERE
+    //         pinuang.TAHUN = $THN AND
+    //         pl.TAHUN = $THN AND
+    //         pinuang.BULAN = $BLN AND
+    //         pl.BULAN = $BLN AND
+    //         anggota.KODE_INS <> 96 AND
+    //         anggota.KODE_INS <> 97 AND
+    //         anggota.KODE_INS <> 98 AND
+    //         anggota.KODE_INS <> 99 AND
+    //         pinuang.NOFAK LIKE '%O%'");
+    //         return $query->result_array();
+    // }
+
+    // public function getKhusus($THN, $BLN)
+    // {
+    //         $query = $this->db->query("SELECT
+    //         *
+    //     FROM
+    //         pinuang
+    //         INNER JOIN
+    //         pl
+    //         ON 
+    //             pinuang.KODE_ANG = pl.KODE_ANG
+    //         INNER JOIN
+    //         anggota
+    //         ON 
+    //             anggota.URUT_ANG = pl.KODE_ANG
+    //     WHERE
+    //         pinuang.TAHUN = $THN AND
+    //         pl.TAHUN = $THN AND
+    //         pinuang.BULAN = $BLN AND
+    //         pl.BULAN = $BLN AND
+    //         anggota.KODE_INS <> 96 AND
+    //         anggota.KODE_INS <> 97 AND
+    //         anggota.KODE_INS <> 98 AND
+    //         anggota.KODE_INS <> 99 AND
+    //         pinuang.NOFAK LIKE '%Z%'");
+    //         return $query->result_array();
+    // }
+
+    // public function getUub($THN, $BLN)
+    // {
+    //         $query = $this->db->query("SELECT
+    //         *
+    //     FROM
+    //         pinuang
+    //         INNER JOIN
+    //         pl
+    //         ON 
+    //             pinuang.KODE_ANG = pl.KODE_ANG
+    //         INNER JOIN
+    //         anggota
+    //         ON 
+    //             anggota.URUT_ANG = pl.KODE_ANG
+    //     WHERE
+    //         pinuang.TAHUN = $THN AND
+    //         pl.TAHUN = $THN AND
+    //         pinuang.BULAN = $BLN AND
+    //         pl.BULAN = $BLN AND
+    //         anggota.KODE_INS <> 96 AND
+    //         anggota.KODE_INS <> 97 AND
+    //         anggota.KODE_INS <> 98 AND
+    //         anggota.KODE_INS <> 99 AND
+    //         pinuang.NOFAK LIKE '%S%'");
+    //         return $query->result_array();
+    // }
 
     public function getPinjaman($THN, $BLN)
     {

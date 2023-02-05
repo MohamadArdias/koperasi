@@ -25,7 +25,7 @@ class Genta extends CI_Controller
             $THN = substr($DATE, 0, 4);
             $BLN = substr($DATE, -2);
         }
-        
+
         if ($BLN > 8) {
             if ($BLN == 12) {
                 $thn = $THN + 1;
@@ -120,8 +120,7 @@ class Genta extends CI_Controller
             $this->db->insert('pl', $pl);
         }
         $this->session->set_flashdata('simpanGen', 'Berhasil');
-        redirect('generate2?TAHUN='.$thn.'&&BULAN='.$bln);
-
+        redirect('generate2?TAHUN=' . $thn . '&&BULAN=' . $bln);
     }
 
     public function pinjaman()
@@ -135,7 +134,7 @@ class Genta extends CI_Controller
             $THN = substr($DATE, 0, 4);
             $BLN = substr($DATE, -2);
         }
-        
+
         if ($BLN > 8) {
             if ($BLN == 12) {
                 $thn = $THN + 1;
@@ -167,7 +166,7 @@ class Genta extends CI_Controller
                 $angka = 4;
             }
 
-            if ($key['KEU'.$angka] == $key['JWKT_ANG']) {
+            if ($key['KEU' . $angka] == $key['JWKT_ANG']) {
                 $STATUS = 'LUNAS';
             } else {
                 $STATUS = 'BELUM LUNAS';
@@ -186,7 +185,7 @@ class Genta extends CI_Controller
             } else {
                 $JMLP_ANG = $key['JMLP_ANG'];
                 $PRO_ANG = $key['PRO_ANG'];
-                $KEU1 = $key['KEU'.$angka] + 1;
+                $KEU1 = $key['KEU' . $angka] + 1;
                 $JWKT_ANG = $key['JWKT_ANG'];
 
 
@@ -228,11 +227,94 @@ class Genta extends CI_Controller
             $this->db->insert('pinuang', $pinuang_uang);
 
             $pl_uang = array(
-                'KEU'.$angka => $KEU1,
-                'JWK'.$angka => $JWKT_ANG,
-                'POKU'.$angka => round($POKU1),
-                'SIPOKU'.$angka => round($SIPOKU1),
-                'BNGU'.$angka => $BNGU1,
+                'KEU' . $angka => $KEU1,
+                'JWK' . $angka => $JWKT_ANG,
+                'POKU' . $angka => round($POKU1),
+                'SIPOKU' . $angka => round($SIPOKU1),
+                'BNGU' . $angka => $BNGU1,
+            );
+            // update pl 
+            $where_uang = array(
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
+                'KODE_ANG' => $key['KODE_ANG'],
+            );
+            $this->db->update('pl', $pl_uang, $where_uang);
+        }
+
+        $kantor = $this->Pinuang->pinjKantor($THN, $BLN);
+
+        foreach ($kantor as $key) {
+            if ($key['POKU8'] == $key['SIPOKU8']) {
+                $STATUS = 'LUNAS';
+            } else {
+                $STATUS = 'BELUM LUNAS';
+            }
+
+            if ($STATUS == 'LUNAS') {
+                $JMLP_ANG = 0;
+                $PRO_ANG = 0;
+                $KE_ANG = 0;
+                $JWKT_ANG = 0;
+                $KEU1 = 0;
+                $POKU1 = 0;
+                $SIPOKU1 = 0;
+                $KE_BNGU1 = 0;
+                $BNGU1 = 0;
+                // $CICILAN = 0;
+            } else {
+                $JMLP_ANG = $key['JMLP_ANG'];
+                $PRO_ANG = $key['PRO_ANG'];
+                $KEU1 = $key['KEU8'] + 1;
+                $JWKT_ANG = $key['JWKT_ANG'];
+
+
+                if ($bln == 12) {
+                    $KE_ANG = $KEU1;
+                } else {
+                    $KE_ANG = $key['KE_ANG'];
+                }
+
+                $POKU1 = 0;
+                $SIPOKU1 = $key['SIPOKU8']-$key['POKU8'];
+                $BNGU1 = $JMLP_ANG * ($PRO_ANG / 100);
+
+                if ($key['POKU8'] == 0) {
+                    $KE_BNGU1 = $key['KE_BNGU8']+1;                    
+                }else {
+                    $KE_BNGU1 = 1;
+                }
+                // $CICILAN = $JMLP_ANG - $SIPOKU1;
+            }
+
+            $pinuang_uang = array(
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
+                'NOFAK' => $key['NOFAK'],
+                'KODE_ANG' => $key['KODE_ANG'],
+                'TGLP_ANG' => $key['TGLP_ANG'],
+                'TGLT_ANG' => $key['TGLT_ANG'],
+                'JMLP_ANG' => $JMLP_ANG,
+                'PRO_ANG' => $PRO_ANG,
+                'KE_ANG' => $KE_ANG,
+                'JWKT_ANG' =>  $JWKT_ANG,
+            );
+            // delete pinunag
+            $this->db->where('KODE_ANG', $key['KODE_ANG']);
+            $this->db->where('TAHUN', $thn);
+            $this->db->where('BULAN', $bln);
+            $this->db->where('NOFAK', $key['NOFAK']);
+            $this->db->delete('pinuang');
+            // insert pinuang 
+            $this->db->insert('pinuang', $pinuang_uang);
+
+            $pl_uang = array(
+                'KEU8' => $KEU1,
+                'JWK8' => $JWKT_ANG,
+                'POKU8' => round($POKU1),
+                'SIPOKU8' => round($SIPOKU1),
+                'BNGU8' => $BNGU1,
+                'KE_BNGU6' => $KE_BNGU1,
             );
             // update pl 
             $where_uang = array(
@@ -244,8 +326,7 @@ class Genta extends CI_Controller
         }
 
         $this->session->set_flashdata('pinjamGen', 'Berhasil');
-        redirect('generate2/pinjaman?TAHUN='.$thn.'&&BULAN='.$bln);
-
+        redirect('generate2/pinjaman?TAHUN=' . $thn . '&&BULAN=' . $bln);
     }
 
     public function pembayaran()
@@ -259,7 +340,7 @@ class Genta extends CI_Controller
             $THN = substr($DATE, 0, 4);
             $BLN = substr($DATE, -2);
         }
-        
+
         if ($BLN > 8) {
             if ($BLN == 12) {
                 $thn = $THN + 1;
@@ -326,6 +407,6 @@ class Genta extends CI_Controller
         }
 
         $this->session->set_flashdata('pembayaranGen', 'Berhasil');
-        redirect('generate2/tagihan?TAHUN='.$thn.'&&BULAN='.$bln);
+        redirect('generate2/tagihan?TAHUN=' . $thn . '&&BULAN=' . $bln);
     }
 }
