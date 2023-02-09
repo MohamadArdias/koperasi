@@ -156,7 +156,7 @@ class Anggota extends CI_Controller
             $sheet->setCellValue('M' . $numrow, $tagihan);
             $sheet->setCellValue('N' . $numrow, $tung);
             $sheet->setCellValue('O' . $numrow, $tagihan+$tung);
-            $sheet->setCellValue('P' . $numrow, $data['JML_BAYAR']);
+            $sheet->setCellValue('P' . $numrow, $data['JML_BAYAR']+$data['BAYAR_BANK']);
 
             // $thn = $data['TAHUN'];
             // $bln = $data['BULAN'];

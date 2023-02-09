@@ -27,6 +27,7 @@ class Keuangan_model extends  CI_Model
         $query = $this->db->query("SELECT
             pl.*,
             pembayaran.JML_BAYAR,
+            pembayaran.BAYAR_BANK,
             pembayaran.VIA_BAYAR,
             pembayaran.JML_TGHN
         FROM
@@ -48,8 +49,8 @@ class Keuangan_model extends  CI_Model
         WHERE
             pl.KODE_ANG = $URUT_ANG 
         ORDER BY
-            pl.TAHUN ASC, 
-            pl.BULAN ASC");
+            pl.TAHUN DESC, 
+            pl.BULAN DESC");
 
         return $query->result_array();
     }

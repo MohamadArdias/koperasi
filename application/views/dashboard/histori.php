@@ -44,7 +44,7 @@ $this->load->view('templates/sidebar');
       </div>
     </div>
     <div class="row mt-3 overflow-auto">
-      <table class="table table-borderless " id="customers">
+      <table class="table table-borderless datatable" id="customers">
         <thead>
           <tr>
             <th style="padding-left: 30px; padding-right: 30px;">Bulan</th>
@@ -63,7 +63,6 @@ $this->load->view('templates/sidebar');
             <th>Tunggakan</th>
             <th>Total</th>
             <th>Terbayar</th>
-            <th>Via Bayar</th>
           </tr>
         </thead>
         <tbody>
@@ -92,8 +91,7 @@ $this->load->view('templates/sidebar');
               <td><?= number_format($tghn, 0, ',', '.') ?></td>
               <td><?= number_format($ang['POKU6'], 0, ',', '.') ?></td>
               <td><?= number_format($tghn+$ang['POKU6'], 0, ',', '.') ?></td>
-              <td><?= number_format($ang['JML_BAYAR'], 0, ',', '.') ?></td>
-              <td><?= $ang['VIA_BAYAR']; ?></td>
+              <td><?= number_format($ang['JML_BAYAR']+$ang['BAYAR_BANK'], 0, ',', '.') ?></td>
             </tr>
           <?php endforeach ?>
         </tbody>
