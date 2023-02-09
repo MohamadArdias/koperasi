@@ -22,6 +22,8 @@ class Pinjaman extends CI_Controller
     public function form($kode)
     {
         $a = $this->input->post('URUT_ANG', true);
+        $bung = $this->input->post('PRO_ANG');
+        
 
         if ($kode == 1) {
             $this->data['title'] = 'Pinjaman Uang';
@@ -40,7 +42,7 @@ class Pinjaman extends CI_Controller
             $kd = 'Z';
         }
 
-        
+
 
         $this->data['urutan'] = $this->Pinuang->getUrut();
         $this->data['kode'] = $kode;
@@ -57,7 +59,7 @@ class Pinjaman extends CI_Controller
         $this->form_validation->set_rules('JWKT_ANG', 'Jangka Waktu', 'required');
         $this->form_validation->set_rules('TGLP_ANG', 'Tanggal Pinjam', 'required');
 
-        $bung = $this->input->post('PRO_ANG');
+
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('pinjaman/form', $this->data);
@@ -66,7 +68,15 @@ class Pinjaman extends CI_Controller
 
             if ($aku != 0) {
                 $this->Pinuang->deleteTransaksi($a, $kd);
-                $this->db->update('pl', ['KEU'.$kode => 0], $a);
+
+                $tgl = $this->input->post('TGLP_ANG');
+                $where_pl = [            
+                    "TAHUN" => substr($tgl, 0, 4),
+                    "BULAN" => substr($tgl, 5, 2),
+                    "KODE_ANG" => $this->input->post('URUT_ANG', true),
+                ];
+
+                $this->db->update('pl', ['KEU' . $kode => 0], $where_pl);
                 $this->Pinuang->tambahTransaksi();
                 $this->Us->tambahTransaksi();
                 // $this->db->update('pl', $pl_uang, $where_uang);
@@ -151,7 +161,7 @@ class Pinjaman extends CI_Controller
         $query2 = $this->Anggota->getNama($a);
 
         if ($query != null) {
-            
+
             $data = array(
                 'nama' => $query['NAMA_ANG'],
                 'sisa' => $query['SIPOKU8'],
@@ -199,15 +209,17 @@ class Pinjaman extends CI_Controller
             $jmlp_ang = $this->input->post('JMLP_ANG', true);
 
             if ($aku != 0) {
+                $tgl = $this->input->post('TGLP_ANG');
+
                 $pl = [
                     "KEU8" => 0,
                     "KE_BNGU8" => 0,
                     "SIPOKU8" => $jmlp_ang,
                 ];
                 $where_pl = [
-                    "TAHUN" => date("Y"),
-                    "BULAN" => date("m"),
-                    "KODE_ANG" => $a,
+                    "TAHUN" => substr($tgl, 0, 4),
+                    "BULAN" => substr($tgl, 5, 2),
+                    "KODE_ANG" => $this->input->post('URUT_ANG', true),
                 ];
                 $this->db->update('pl', $pl, $where_pl);
 
@@ -224,4 +236,5 @@ class Pinjaman extends CI_Controller
             }
         }
     }
+
 }
