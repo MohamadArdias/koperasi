@@ -44,7 +44,7 @@ class Pay extends CI_Controller
         $tahun = $query['TAHUN'];
         $bulan = $query['BULAN'];
 
-        $detail = $this->db->query("SELECT SUM(JML_BAYAR) AS jumlah FROM pembayaran_detail WHERE TAHUN = $tahun and BULAN = '$bulan'")->row();
+        $detail = $this->db->query("SELECT SUM(JML_BAYAR) AS jumlah FROM pembayaran_detail WHERE TAHUN = $tahun and BULAN = '$bulan' and KODE_ANG = '$a'")->row();
         //   echo $detail->jumlah;
         // $tagihan = $query['JML_TGHN'] - $detail;
 

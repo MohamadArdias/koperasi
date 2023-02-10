@@ -2,6 +2,19 @@
 
 class Pembayaran_model extends  CI_Model
 {
+    public function cek($thn, $bln, $kode)
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pinuang
+    WHERE
+        pinuang.TAHUN = $thn AND
+        pinuang.BULAN = '$bln' AND
+        pinuang.KODE_ANG = '$kode'");
+        return $query->num_rows();
+    }
+
     public function getPembayaran()
     {
         $this->db->select('*');

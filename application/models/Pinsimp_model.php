@@ -2,6 +2,25 @@
 
 class Pinsimp_model extends  CI_Model
 {
+    public function cek($thn, $bln, $kode)
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pinsimp
+        INNER JOIN
+        pl
+        ON 
+            pinsimp.KODE_ANG = pl.KODE_ANG AND
+            pinsimp.BULAN = pl.BULAN AND
+            pinsimp.TAHUN = pl.TAHUN
+    WHERE
+        pinsimp.TAHUN = $thn AND
+        pinsimp.BULAN = '$bln' AND
+        pinsimp.KODE_ANG = '$kode'");
+        return $query->num_rows();
+    }
+
     public function getAllSimp($THN, $BLN)
     {
         // $bln = date('m', strtotime('-1 month'));
