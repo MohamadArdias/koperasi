@@ -61,7 +61,7 @@ class Keuangan extends CI_Controller
             );
             $split = explode('-', $tanggal);
             // return $split[0] . ' ' . $bulan[ (int)$split[1] ];
-            return $bulan[(int)$split[1]] . ' ' . $split[0];
+            return $bulan[(int)$split[1]];
         }
 
         // echo tanggal_indo2($TAHUN.'-'.$BULAN); // 20 Maret 2016
@@ -125,6 +125,9 @@ class Keuangan extends CI_Controller
                 'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
             ]
         ];
+        $THN = $this->input->post('TAHUN');
+        $BLN = $this->input->post('BULAN');
+
         setlocale(LC_ALL, 'id-ID', 'id_ID');
         date_default_timezone_set("Asia/Jakarta");
 
@@ -134,10 +137,10 @@ class Keuangan extends CI_Controller
         $sheet->setCellValue('C4', 'KOPERASI BANGKIT BERSAMA KANTOR PEMKAB BWI');
         $sheet->mergeCells('A4:B4'); // Set Merge Cell pada kolom A1 sampai E1
         $sheet->setCellValue('A5', 'BULAN');
-        $sheet->setCellValue('C5', strftime('%B', strtotime('+1 month')));
+        $sheet->setCellValue('C5', tanggal_indo2($THN.'-'.$BLN));
         $sheet->mergeCells('A5:B5'); // Set Merge Cell pada kolom A1 sampai E1
         $sheet->setCellValue('A6', 'TAHUN');
-        $sheet->setCellValue('C6', date('Y'));
+        $sheet->setCellValue('C6', $THN);
         $sheet->mergeCells('A6:B6'); // Set Merge Cell pada kolom A1 sampai E1
         $sheet->setCellValue('A7', 'NO REK KOPERASI');
         $sheet->mergeCells('A7:B7'); // Set Merge Cell pada kolom A1 sampai E1
@@ -158,7 +161,7 @@ class Keuangan extends CI_Controller
         $sheet->setCellValue('C10', "NO REKENING"); // Set kolom C10 dengan tulisan "NAMA"
         $sheet->setCellValue('D10', "NOMINAL POTONGAN"); // Set kolom D10 dengan tulisan "JENIS KELAMIN"
         $sheet->setCellValue('E10', "NAMA KOPERASI"); // Set kolom E10 dengan tulisan "ALAMAT"
-        $sheet->setCellValue('F10', "NAMA KOPERASI"); // Set kolom E10 dengan tulisan "ALAMAT"
+        $sheet->setCellValue('F10', "NAMA INSTANSI"); // Set kolom E10 dengan tulisan "ALAMAT"
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
         $sheet->getStyle('A10')->applyFromArray($style_col);
@@ -169,19 +172,17 @@ class Keuangan extends CI_Controller
         $sheet->getStyle('F10')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-        $THN = $this->input->post('TAHUN');
-        $BLN = $this->input->post('BULAN');
 
         $keuangan = $this->Kirim->getAllKirim($THN, $BLN);
         $no = 1; // Untuk penomoran tabel, di awal set dengan 1
         $numrow = 11; // Set baris pertama untuk isi tabel adalah baris ke 4
         foreach ($keuangan as $data) { // Lakukan looping pada variabel siswa
             $tghn = $data['POKU3'] + $data['BNGU3'] +
-                    $data['POKU1'] + $data['BNGU1'] +
-                    $data['POKU4'] + $data['BNGU4'] +
-                    $data['POKU7'] + $data['BNGU7'] +
-                    $data['POKU2'] + $data['WAJIB'] +
-                    $data['POKOK'];
+                $data['POKU1'] + $data['BNGU1'] +
+                $data['POKU4'] + $data['BNGU4'] +
+                $data['POKU7'] + $data['BNGU7'] +
+                $data['POKU2'] + $data['WAJIB'] +
+                $data['POKOK'];
 
             $sheet->setCellValue('A' . $numrow, $no);
             $sheet->setCellValue('B' . $numrow, $data['NAMA_ANG']);
@@ -216,7 +217,7 @@ class Keuangan extends CI_Controller
         $sheet->setTitle("Data Potongan");
         // Proses file excel
         header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="Bangkit ' . tanggal_indo2($THN.'-'.$BLN) . '.xls"');
+        header('Content-Disposition: attachment;filename="Bangkit ' . tanggal_indo2($THN . '-' . $BLN) . '.xls"');
         header('Cache-Control: max-age=0');
 
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');

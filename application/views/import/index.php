@@ -87,7 +87,14 @@ $this->load->view('templates/sidebar');
                                 </div>
                                 <!-- <button type="submit" class="btn btn-warning">Potong</button> -->
                             </form>
-                        </div>
+                        </div>                        
+                        <div class="col-md-2 text-end">
+                            <form action="<?= base_url(); ?>index.php/import/cetak" method="post">
+                                <div class="input-group">                
+                                    <button type="submit" name="generate" class="btn btn-success">Cetak</button>
+                                </div>
+                            </form>
+                        </div>                        
                     </div>
                 </div>
             </div>

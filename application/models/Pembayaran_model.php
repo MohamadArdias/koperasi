@@ -2,6 +2,29 @@
 
 class Pembayaran_model extends  CI_Model
 {
+    public function cetakSukses()
+    {
+        $query = $this->db->query("SELECT
+        temp.NO_REKENING, 
+        anggota.NAMA_ANG, 
+        instan.NAMA_INS, 
+        temp.NOMINAL
+    FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        INNER JOIN
+        temp
+        ON 
+            anggota.REKENING = temp.NO_REKENING
+    ORDER BY
+	    instan.KODE_INS ASC");
+        
+        return $query->result_array();
+    }
+
     public function cek($thn, $bln, $kode)
     {
         $query = $this->db->query("SELECT
