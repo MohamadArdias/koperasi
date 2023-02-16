@@ -35,11 +35,20 @@ $this->load->view('templates/sidebar');
 
 <div class="card">
     <div class="card-body">
+        <?php if ($this->session->flashdata('nofak')) : ?>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Nomor Faktur <strong><?= $this->session->flashdata('nofak'); ?></strong>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
         <?php if ($this->session->flashdata('flashP')) : ?>
             <div class="row mt-3">
                 <div class="col-md-6">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        Data Anggota <strong>Berhasil</strong> <?= $this->session->flashdata('flashP'); ?>
+                        Pinjaman Anggota <strong>Berhasil</strong> <?= $this->session->flashdata('flashP'); ?>
                     </div>
                 </div>
             </div>
@@ -166,7 +175,7 @@ $this->load->view('templates/sidebar');
                             <th class="text-center">Bunga</th>
                             <th class="text-center">Jangka</th>
                             <th class="text-center">Teler</th>
-                            <!-- <th class="text-center">Aksi</th> -->
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -176,13 +185,24 @@ $this->load->view('templates/sidebar');
                                 <td><?= $key['TANGGAL']; ?></td>
                                 <td><?= $key['URUT_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                                 <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
-                                <td align="right" ><?= number_format($key['JUMLAH'], 0, ',', '.'); ?></td>
-                                <td align="right" ><?= $key['PRO']; ?></td>
-                                <td align="right" ><?= $key['JANGKA']; ?></td>
-                                <td ><?= $key['IDNAMA']; ?></td>
+                                <td align="right"><?= number_format($key['JUMLAH'], 0, ',', '.'); ?></td>
+                                <td align="right"><?= $key['PRO']; ?></td>
+                                <td align="right"><?= $key['JANGKA']; ?></td>
+                                <td><?= $key['IDNAMA']; ?></td>
                                 <!-- <td class="text-center">
                                     <a href="<?= base_url(); ?>index.php/keuangan/cetakPinj/<?= $key['URUT_ANG']; ?>?NOFAK=<?= $key['NOFAK']; ?>&&TGL=<?= $key['TANGGAL']; ?>" class="btn btn-secondary" target="blank">Print</a>
                                 </td> -->
+                                <td>
+                                    <?php
+                                    $log = $this->db->query("SELECT MAX(TGL_TGHN) AS tanggal FROM pembayaran")->row();
+                                    if ($key['TANGGAL'] > $log->tanggal) {
+                                    ?>
+                                        <a href="<?= base_url(); ?>index.php/Pinjaman/edit/<?= $key['NOFAK']; ?>" class="btn btn-warning">Edit</a>
+                                        <!-- <a href="<?= base_url(); ?>index.php/Pinjaman/off/<?= $key['NOFAK']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">Hapus</a> -->
+                                    <?php
+                                    }
+                                    ?>
+                                </td>
                             </tr>
                         <?php
                         } ?>

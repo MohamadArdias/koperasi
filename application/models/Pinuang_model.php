@@ -71,6 +71,26 @@ class Pinuang_model extends  CI_Model
         return $urutan;
     }
 
+    public function editTransaksi()
+    {
+        $a = $this->input->post('TGLP_ANG');
+        $b = $this->input->post('JWKT_ANG');
+
+        $date = date('Y-m-d', strtotime('+' . $b . ' month', strtotime($a)));
+        $where = [
+            "NOFAK" => $this->input->post('NOFAK', true),
+        ];
+
+        $data = [
+            "JMLP_ANG" => $this->input->post('JMLP_ANG', true),//
+            "TGLT_ANG" => $date,
+            "JWKT_ANG" => $this->input->post('JWKT_ANG', true),//
+            "PRO_ANG" => $this->input->post('PRO_ANG', true),//
+        ];
+
+        $this->db->update('pinuang', $data, $where);
+    }
+
     public function tambahTransaksi()
     {
         $a = $this->input->post('TGLP_ANG');
@@ -78,8 +98,8 @@ class Pinuang_model extends  CI_Model
 
         $date = date('Y-m-d', strtotime('+' . $b . ' month', strtotime($a)));
         $this->data = [
-            "TAHUN" => date('Y'),
-            "BULAN" => date('m'),
+            "TAHUN" => substr($a, 0, 4),
+            "BULAN" => substr($a, 5, 2),
             "NOFAK" => $this->input->post('NOFAK', true),
             "KODE_ANG" => $this->input->post('URUT_ANG', true),
             "JMLP_ANG" => $this->input->post('JMLP_ANG', true),

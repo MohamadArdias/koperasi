@@ -2,6 +2,13 @@
 
 class Anggota_model extends  CI_Model
 {
+    public function cekFaktur()
+    {
+        $nofak = $this->input->post('NOFAK');
+                
+        $query = $this->db->query("SELECT * FROM pinuang where pinuang.NOFAK = '$nofak'");
+        return $query->num_rows();
+    }
     // public function getAllAnggota()
     // {
     //     return $this->db->get('anggota')->result_array();
@@ -278,6 +285,22 @@ class Anggota_model extends  CI_Model
             pembayaran
             ON 
                 anggota.URUT_ANG = pembayaran.KODE_ANG
+        WHERE
+            anggota.URUT_ANG = $URUT_ANG");
+        return $query->num_rows();
+    }
+
+    public function cekAnggotaKan()
+    {
+        $URUT_ANG = $this->input->post('KODE', true);
+        $query = $this->db->query("SELECT
+            *
+        FROM
+            anggota
+            INNER JOIN
+            pl
+            ON 
+                anggota.URUT_ANG = pl.KODE_ANG
         WHERE
             anggota.URUT_ANG = $URUT_ANG");
         return $query->num_rows();

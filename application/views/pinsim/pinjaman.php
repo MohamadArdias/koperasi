@@ -118,23 +118,26 @@ $this->load->view('templates/sidebar');
 
                         // jenis pinjaman
                         if (strpos($key['NOFAK'], 'U') !== false) {
-                            $jenis = 'Uang';                        
+                            $jenis = 'Uang';
                             $angka = 1;
                         } elseif (strpos($key['NOFAK'], 'N') !== false) {
-                            $jenis = 'Non Konsumsi';                        
+                            $jenis = 'Non Konsumsi';
                             $angka = 3;
                         } elseif (strpos($key['NOFAK'], 'O') !== false) {
-                            $jenis = 'Konsumsi';                        
+                            $jenis = 'Konsumsi';
                             $angka = 2;
                         } elseif (strpos($key['NOFAK'], 'Z') !== false) {
-                            $jenis = 'Pinjaman Khusus';                        
+                            $jenis = 'Pinjaman Khusus';
                             $angka = 7;
                         } elseif (strpos($key['NOFAK'], 'S') !== false) {
-                            $jenis = 'UUB';                        
+                            $jenis = 'UUB';
                             $angka = 4;
+                        } elseif (strpos($key['NOFAK'], 'R') !== false) {
+                            $jenis = 'KANTOR';
+                            $angka = 8;
                         }
 
-                        if ($key['SIPOKU'.$angka] == 0) {
+                        if ($key['SIPOKU' . $angka] == 0) {
                             $status = 'LUNAS';
                         } else {
                             $status = 'BELUM LUNAS';
@@ -149,10 +152,10 @@ $this->load->view('templates/sidebar');
                             <td class="text-right"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>
                             <td class="text-right"><?= $key['JWKT_ANG'] ?></td>
                             <td><?= $key['PRO_ANG'] ?></td>
-                            <td><?= $key['KEU'.$angka] ?></td>
-                            <td><?= $key['POKU'.$angka] ?></td>
-                            <td><?= $key['BNGU'.$angka] ?></td>
-                            <td class="text-right"><?= number_format($key['SIPOKU'.$angka], 0, ',', '.'); ?></td>
+                            <td><?= $key['KEU' . $angka] ?></td>
+                            <td><?= $key['POKU' . $angka] ?></td>
+                            <td><?= $key['BNGU' . $angka] ?></td>
+                            <td class="text-right"><?= number_format($key['SIPOKU' . $angka], 0, ',', '.'); ?></td>
                             <td><?= $status; ?></td>
                         </tr>
                     <?php

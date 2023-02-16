@@ -2,23 +2,109 @@
 
 class Pay_model extends CI_Model
 {
+    public function getIns($KODE_INS, $TAHUN, $BULAN)
+    {
+        $query = $this->db->query("SELECT
+        *
+        FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+        WHERE
+        pl.TAHUN = $TAHUN AND
+        pl.BULAN = $BULAN AND
+        instan.KODE_INS = '$KODE_INS' AND
+        pl.SIPOKU8 >= 1");
+        return $query->result_array();
+    }
+
+    public function getInsKantor($THN, $BLN)
+    {
+        $query = $this->db->query("SELECT DISTINCT
+            instan.KODE_INS, 
+            instan.NAMA_INS, 
+            pl.TAHUN, 
+            pl.BULAN
+        FROM
+            anggota
+            INNER JOIN
+            instan
+            ON 
+                anggota.KODE_INS = instan.KODE_INS
+            INNER JOIN
+            pl
+            ON 
+                pl.KODE_ANG = anggota.URUT_ANG
+        WHERE
+            instan.KODE_INS <> 99 AND
+            instan.KODE_INS <> 98 AND
+            instan.KODE_INS <> 97 AND
+            instan.KODE_INS <> 96 AND
+            pl.TAHUN = $THN AND
+            pl.BULAN = '$BLN' AND
+            pl.SIPOKU8 >= 1
+        ORDER BY
+        instan.KODE_INS ASC");
+
+        return $query->result_array();
+    }
+
+    public function getPrintKantor($URUT_ANG)
+    {
+        $time = $this->input->get('time');
+
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        kantor_detail
+        ON 
+            anggota.URUT_ANG = kantor_detail.KODE_ANG
+    WHERE
+        anggota.URUT_ANG = '$URUT_ANG' AND
+        kantor_detail.CREATED = '$time'");
+
+        return $query->row_array();
+    }
+
+    public function getKantor($a)
+    {        
+        $tahun = date("Y");
+        $bulan = date("m");
+
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        anggota
+        INNER JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+    WHERE
+        anggota.URUT_ANG = '$a' AND
+        pl.TAHUN = $tahun AND
+        pl.BULAN = $bulan");
+
+        return $query->row_array();
+    }
+
     public function getPrint($URUT_ANG)
     {
         $time = $this->input->get('time');
 
         $query = $this->db->query("SELECT
-            pembayaran_detail.TAHUN, 
-            pembayaran_detail.BULAN, 
-            anggota.URUT_ANG, 
-            anggota.NAMA_ANG, 
-            instan.KODE_INS, 
-            instan.NAMA_INS, 
-            pembayaran_detail.JML_TGHN, 
-            pembayaran_detail.TGL_BAYAR, 
-            pembayaran_detail.JML_BAYAR, 
-            pembayaran_detail.VIA_BAYAR, 
-            pembayaran_detail.CREATED, 
-	        pembayaran_detail.CREATED_BY
+            *
         FROM
             instan
             INNER JOIN
@@ -33,7 +119,7 @@ class Pay_model extends CI_Model
             anggota.URUT_ANG = $URUT_ANG AND
             pembayaran_detail.CREATED = '$time'");
 
-            return $query->row_array();
+        return $query->row_array();
     }
 
     public function getCetak()
@@ -66,6 +152,25 @@ class Pay_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getCetakKantor()
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        kantor_detail
+        ON 
+            anggota.URUT_ANG = kantor_detail.KODE_ANG
+    ORDER BY
+        kantor_detail.CREATED DESC");
+        return $query->result_array();
+    }
+
     public function getKodeAnggota($a)
     {
         // $date = date("Y-m");
@@ -81,25 +186,9 @@ class Pay_model extends CI_Model
         WHERE
             pembayaran.KODE_ANG = $a AND
             -- pembayaran.TGL_TGHN LIKE '%$date%'
-            pembayaran.TGL_TGHN IN (SELECT MAX(TGL_TGHN) FROM pembayaran)
-            ");
+            pembayaran.TGL_TGHN IN (SELECT MAX(TGL_TGHN) FROM pembayaran)");
 
         return $query->row_array();
-        // $this->db->select('*');
-        // $this->db->from('anggota');
-        // $this->db->join('pembayaran', 'pembayaran.KODE_ANG = anggota.URUT_ANG');
-        // //  $this->db->join('pl', 'pl.KODE_ANG = pembayaran.KODE_ANG');
-        // $this->db->like('TGL_TGHN', date('Y-m'));
-        // //  $this->db->like('TGL_TGHN', date('Y-m', strtotime('-1 month')));
-        // //  $this->db->where('pembayaran.TAHUN', date('Y'));
-        // //  $this->db->where('pembayaran.BULAN', date('m'));
-        // $this->db->where('pembayaran.KODE_ANG', $a);
-
-        // $this->db->order_by('TAHUN', 'desc');
-        // $this->db->order_by('BULAN', 'desc');
-        // $this->db->limit('1');
-
-        // return $this->db->get()->row_array();
     }
 
     public function pelunasan($NOFAK, $KODE)
@@ -196,5 +285,47 @@ class Pay_model extends CI_Model
         //     'KODE_ANG' => $this->input->post('KODE', true),
         // );
         // $this->db->update('pl', $pl, $where);
+    }
+
+    public function bayarKantor()
+    {
+        $TAHUN = $this->input->post('TAHUN', true);
+        $BULAN = $this->input->post('BULAN', true);
+        $jml_bayar = $this->input->post('JML_BAYAR', true);
+        $ttl_bunga = $this->input->post('TTL_BUNGA', true);
+        $BUNGA = $this->input->post('BUNGA');
+        // $jml_tghn = $this->input->post('TAGIHAN', true);
+        $DETAIL = $this->input->post('DETAIL');
+        // $poku = ($jml_bayar+$DETAIL)-$BUNGA;
+
+        $pl = [
+            'POKU8' => ($jml_bayar+$DETAIL)-$BUNGA
+        ];
+        
+        $where = array(
+            'TAHUN' => $TAHUN,
+            'BULAN' => $BULAN,
+            'KODE_ANG' => $this->input->post('KODE', true),
+        );
+        $this->db->update('pl', $pl, $where);
+
+
+
+        $detail_kantor = [
+            'TAHUN' => $this->input->post('TAHUN'),
+            'BULAN' => $this->input->post('BULAN'),
+            'KODE_ANG' => $this->input->post('KODE'),
+            'JML_TGHN' => $this->input->post('TAGIHAN'),
+            'TGL_BAYAR' => date('Y-m-d'),
+            'JML_BAYAR' => $jml_bayar,
+            'VIA_BAYAR' => 'BAYAR LANGSUNG',
+            // 'STATUS' => $status,
+            'CREATED_BY' => $this->input->post('first_name'),
+            // 'SISA' => $sisa
+            // 'TUNGGAKAN' => $tunggakan,
+        ];
+
+
+        $this->db->insert('kantor_detail', $detail_kantor);
     }
 }

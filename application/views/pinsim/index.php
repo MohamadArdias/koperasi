@@ -77,9 +77,9 @@ $this->load->view('templates/sidebar');
                         <th class="text-center">Wajib Awal Tahun</th>
                         <th class="text-center">Wajib <?= $TAH; ?></th>
                         <th class="text-center">Total Wajib</th>
-                        <!-- <th class="text-center">Rela Awal Tahun</th>
-                        <th class="text-center">Rela <?= $TAH; ?></th>
-                        <th class="text-center">Total Rela</th> -->
+                        <th class="text-center">Rela Awal</th>
+                        <th class="text-center">Rela</th>
+                        <th class="text-center">Total Rela</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,9 +94,9 @@ $this->load->view('templates/sidebar');
                             <td style="padding-left: 20px; padding-right: 20px;" class="text-right"><?= number_format($lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'] - $lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'], 0, ',', '.')  ?></td>
-                            <!-- <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['RELA'] ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] + $lap['RELA'] ?></td> -->
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['KET'] ?></td>
+                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] + $lap['KET'] ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

@@ -23,7 +23,7 @@ class Pinjaman extends CI_Controller
     {
         $a = $this->input->post('URUT_ANG', true);
         $bung = $this->input->post('PRO_ANG');
-        
+
 
         if ($kode == 1) {
             $this->data['title'] = 'Pinjaman Uang';
@@ -42,11 +42,10 @@ class Pinjaman extends CI_Controller
             $kd = 'Z';
         }
 
-
-
         $this->data['urutan'] = $this->Pinuang->getUrut();
         $this->data['kode'] = $kode;
 
+        $min = $this->input->post('TANGGUNGAN');
 
         $this->form_validation->set_rules('id', 'Id', 'required');
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
@@ -54,35 +53,38 @@ class Pinjaman extends CI_Controller
         $this->form_validation->set_rules('URUT_ANG', 'Kode Anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'Nama Anggota', 'required');
         $this->form_validation->set_rules('TANGGUNGAN', 'Tanggungan', 'required');
-        $this->form_validation->set_rules('JMLP_ANG', 'Jumlah Pinjaman', 'required');
+        $this->form_validation->set_rules('JMLP_ANG', 'Jumlah Pinjaman', 'required|greater_than[' . $min . ']');
         $this->form_validation->set_rules('PRO_ANG', 'Bunga', 'required');
         $this->form_validation->set_rules('JWKT_ANG', 'Jangka Waktu', 'required');
         $this->form_validation->set_rules('TGLP_ANG', 'Tanggal Pinjam', 'required');
-
-
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('pinjaman/form', $this->data);
         } else {
             $aku = $this->Anggota->cekAnggota();
-
             if ($aku != 0) {
-                $this->Pinuang->deleteTransaksi($a, $kd);
+                $ku = $this->Anggota->cekFaktur();
+                if ($ku == 0) {
+                    $this->Pinuang->deleteTransaksi($a, $kd);
 
-                $tgl = $this->input->post('TGLP_ANG');
-                $where_pl = [            
-                    "TAHUN" => substr($tgl, 0, 4),
-                    "BULAN" => substr($tgl, 5, 2),
-                    "KODE_ANG" => $this->input->post('URUT_ANG', true),
-                ];
+                    $tgl = $this->input->post('TGLP_ANG');
+                    $where_pl = [
+                        "TAHUN" => substr($tgl, 0, 4),
+                        "BULAN" => substr($tgl, 5, 2),
+                        "KODE_ANG" => $this->input->post('URUT_ANG', true),
+                    ];
 
-                $this->db->update('pl', ['KEU' . $kode => 0], $where_pl);
-                $this->Pinuang->tambahTransaksi();
-                $this->Us->tambahTransaksi();
-                // $this->db->update('pl', $pl_uang, $where_uang);
-                // $this->Keuangan->editPlTransaksi($a, $kode);
-                $this->session->set_flashdata('flashP', 'ditambahkan');
-                redirect('pinjaman');
+                    $this->db->update('pl', ['KEU' . $kode => 0], $where_pl);
+                    $this->Pinuang->tambahTransaksi();
+                    $this->Us->tambahTransaksi();
+                    // $this->db->update('pl', $pl_uang, $where_uang);
+                    // $this->Keuangan->editPlTransaksi($a, $kode);
+                    $this->session->set_flashdata('flashP', 'ditambahkan');
+                    redirect('pinjaman');
+                } else {
+                    $this->session->set_flashdata('nofak', 'sudah digunakan');
+                    redirect('pinjaman');
+                }
             } else {
                 $this->session->set_flashdata('pinggl', 'salah');
                 redirect('pinjaman');
@@ -186,6 +188,8 @@ class Pinjaman extends CI_Controller
         $this->data['title'] = 'Pinjaman Kantor';
 
         $a = $this->input->post('URUT_ANG', true);
+        $min = $this->input->post('TANGGUNGAN');
+
         $this->data['urutan'] = $this->Pinuang->getUrut();
 
         $this->form_validation->set_rules('id', 'Id', 'required');
@@ -193,7 +197,7 @@ class Pinjaman extends CI_Controller
         $this->form_validation->set_rules('NOFAK', 'Faktur', 'required');
         $this->form_validation->set_rules('URUT_ANG', 'Kode Anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'Nama Anggota', 'required');
-        $this->form_validation->set_rules('TANGGUNGAN', 'Tanggungan', 'required');
+        $this->form_validation->set_rules('JMLP_ANG', 'Jumlah Pinjaman', 'required|greater_than[' . $min . ']');
         $this->form_validation->set_rules('JMLP_ANG', 'Jumlah Pinjaman', 'required');
         $this->form_validation->set_rules('PRO_ANG', 'Bunga', 'required');
         $this->form_validation->set_rules('JWKT_ANG', 'Jangka Waktu', 'required');
@@ -209,27 +213,33 @@ class Pinjaman extends CI_Controller
             $jmlp_ang = $this->input->post('JMLP_ANG', true);
 
             if ($aku != 0) {
-                $tgl = $this->input->post('TGLP_ANG');
+                $ku = $this->Anggota->cekFaktur();
+                if ($ku == 0) {
+                    $tgl = $this->input->post('TGLP_ANG');
 
-                $pl = [
-                    "KEU8" => 0,
-                    "KE_BNGU8" => 0,
-                    "SIPOKU8" => $jmlp_ang,
-                ];
-                $where_pl = [
-                    "TAHUN" => substr($tgl, 0, 4),
-                    "BULAN" => substr($tgl, 5, 2),
-                    "KODE_ANG" => $this->input->post('URUT_ANG', true),
-                ];
-                $this->db->update('pl', $pl, $where_pl);
+                    $pl = [
+                        "KEU8" => 0,
+                        "KE_BNGU8" => 0,
+                        "SIPOKU8" => $jmlp_ang,
+                    ];
+                    $where_pl = [
+                        "TAHUN" => substr($tgl, 0, 4),
+                        "BULAN" => substr($tgl, 5, 2),
+                        "KODE_ANG" => $this->input->post('URUT_ANG', true),
+                    ];
+                    $this->db->update('pl', $pl, $where_pl);
 
-                $this->Pinuang->deleteTransaksi($a, $kd);
-                $this->Pinuang->tambahTransaksi();
-                $this->Us->tambahTransaksi();
-                // $this->db->update('pl', $pl_uang, $where_uang);
-                // $this->Keuangan->editPlTransaksi($a, $kode);
-                $this->session->set_flashdata('flashP', 'ditambahkan');
-                redirect('pinjaman');
+                    $this->Pinuang->deleteTransaksi($a, $kd);
+                    $this->Pinuang->tambahTransaksi();
+                    $this->Us->tambahTransaksi();
+                    // $this->db->update('pl', $pl_uang, $where_uang);
+                    // $this->Keuangan->editPlTransaksi($a, $kode);
+                    $this->session->set_flashdata('flashP', 'ditambahkan');
+                    redirect('pinjaman');
+                } else {
+                    $this->session->set_flashdata('nofak', 'sudah digunakan');
+                    redirect('pinjaman');
+                }
             } else {
                 $this->session->set_flashdata('pinggl', 'salah');
                 redirect('pinjaman');
@@ -237,4 +247,29 @@ class Pinjaman extends CI_Controller
         }
     }
 
+    public function edit($NOFAK)
+    {
+        $this->data['title'] = 'Edit Pinjaman ' . $NOFAK;
+        $this->data['edit'] = $this->Us->editPinjaman($NOFAK);
+
+        $this->form_validation->set_rules('id', 'Id', 'required');
+        $this->form_validation->set_rules('first_name', 'First Name', 'required');
+        $this->form_validation->set_rules('NOFAK', 'Faktur', 'required');
+        $this->form_validation->set_rules('URUT_ANG', 'Kode Anggota', 'required');
+        $this->form_validation->set_rules('NAMA_ANG', 'Nama Anggota', 'required');
+        $this->form_validation->set_rules('JMLP_ANG', 'Jumlah Pinjaman', 'required');
+        $this->form_validation->set_rules('PRO_ANG', 'Bunga', 'required');
+        $this->form_validation->set_rules('JWKT_ANG', 'Jangka Waktu', 'required');
+        $this->form_validation->set_rules('TGLP_ANG', 'Tanggal Pinjam', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('pinjaman/formEdit', $this->data);
+        } else {
+            $this->Pinuang->editTransaksi();
+            $this->Us->editTransaksi();
+            $this->session->set_flashdata('flashP', 'diubah');
+            redirect('pinjaman');
+        }
+    }
 }

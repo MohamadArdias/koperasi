@@ -2,6 +2,32 @@
 
 class Keuangan_model extends  CI_Model
 {
+    public function jumlahAnggotaKantor($KODE_INS, $TAHUN, $BULAN)
+    {
+        // $thn = date("Y");
+        // $bln = date("m");
+
+        $query = $this->db->query("SELECT
+        *
+        FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+        WHERE
+        pl.TAHUN = $TAHUN AND
+        pl.BULAN = $BULAN AND
+        pl.SIPOKU8 >= 1 AND
+        anggota.KODE_INS = '$KODE_INS'");
+
+        return $query->num_rows();
+    }
+
     public function histo($URUT_ANG)
     {
         $query = $this->db->query("SELECT

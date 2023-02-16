@@ -73,6 +73,7 @@ class Genta extends CI_Controller
                     'TOTWJB' => $totwjb,
                     'TOTPOK' => 50000,
                     'TOTREL' => $key['TOTREL'],
+                    'KET' => $key['KET'],
                 );
 
                 // pl
@@ -93,6 +94,7 @@ class Genta extends CI_Controller
                     'TOTWJB' => $key['TWAJIB'],
                     'TOTPOK' => $key['TOTPOK'],
                     'TOTREL' => $key['TOTREL'],
+                    'KET' => $key['KET'],
                 );
 
                 // pl

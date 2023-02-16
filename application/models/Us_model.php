@@ -2,6 +2,25 @@
 
 class Us_model extends  CI_Model
 {
+    public function editPinjaman($NOFAK)
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        us
+        INNER JOIN
+        pinuang
+        ON 
+            us.NOFAK = pinuang.NOFAK
+        INNER JOIN
+        anggota
+        ON 
+            pinuang.KODE_ANG = anggota.URUT_ANG
+    WHERE
+        us.NOFAK = '$NOFAK'");
+        return $query->row_array();
+    }
+
     public function getPrint($URUT_ANG)
     {
         $NOFAK = $this->input->get('NOFAK');
@@ -38,6 +57,25 @@ class Us_model extends  CI_Model
         return $this->db->query("SELECT MAX(TANGGAL) AS tanggal FROM us")->row();
     }
     
+    public function editTransaksi()
+    {
+        $where = [
+            "NOFAK" => $this->input->post('NOFAK', true),
+        ];
+        $data = [
+            "IDUSER" => $this->input->post('id', true),
+            "IDNAMA" => $this->input->post('first_name', true),
+            "TANGGAL" => $this->input->post('TGLP_ANG', true),
+            "JUMLAH" => $this->input->post('JMLP_ANG', true),
+            "PRO" => $this->input->post('PRO_ANG', true),
+            "jangka" => $this->input->post('JWKT_ANG', true),
+            "DATE" => date('Y-m-d'),
+            "TIME" => date("H:i:s"),
+        ];
+
+        $this->db->update('us', $data, $where);
+    }
+
     public function tambahTransaksi()
     {
         // $a = $this->input->post('TGLP_ANG');

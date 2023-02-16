@@ -93,15 +93,7 @@
 
     ?>
 
-    <?php if ($this->session->flashdata('flashP')) : ?>
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Data Anggota <strong>Berhasil</strong> <?= $this->session->flashdata('flashP'); ?>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
+    
     <div class="row">
         <div class="col-lg-12">
             <div class="row">
@@ -118,7 +110,7 @@
                                         <input type="hidden" name="KODE" class="form-control" id="KODE" value="<?= $kd ?>" />
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-sm">
-                                                <input type="text" name="NOFAK" class="form-control" id="NOFAK" value="<?= $faktur ?>" readonly />
+                                                <input type="text" name="NOFAK" class="form-control" id="NOFAK" value="<?= $faktur ?>" />
                                                 <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
                                             </div>
                                             <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>

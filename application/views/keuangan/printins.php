@@ -142,18 +142,18 @@ $data .=
                             <table cellspacing="0" cellpadding="1">
                                 <thead>
                                     <tr>
-                                        <th width="15" align="center" style="font-size:7px; border: 1px solid black; ">No </th>
-                                        <th width="140" align="center" style="font-size:7px; border: 1px solid black; " >ANGGOTA</th>
-                                        <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >SIM</th>
+                                        <th width="15" align="center" style="font-size:8px; border: 1px solid black; ">No </th>
+                                        <th width="140" align="center" style="font-size:8px; border: 1px solid black; " >ANGGOTA</th>
+                                        <th width="45" align="center" style="font-size:8px; border: 1px solid black; " >SIM</th>
                                         <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >KONSUMSI</th>
                                         <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >NON KONSUMSI</th>
                                         <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. KHUSUS</th>
-                                        <th width="50" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. SP</th>
-                                        <th width="17" align="center" style="font-size:7px; border: 1px solid black; " >KE</th>
-                                        <th width="40" align="center" style="font-size:7px; border: 1px solid black; " >SIM. POKOK</th>
-                                        <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >SIM. WAJIB</th>
-                                        <th width="55" align="center" style="font-size:7px; border: 1px solid black; " >TUNGGAKAN</th>
-                                        <th width="50" align="center" style="font-size:7px; border: 1px solid black; " >TOTAL</th>
+                                        <th width="50" align="center" style="font-size:8px; border: 1px solid black; " >PINJ. SP</th>
+                                        <th width="17" align="center" style="font-size:8px; border: 1px solid black; " >KE</th>
+                                        <th width="40" align="center" style="font-size:8px; border: 1px solid black; " >SIM. POKOK</th>
+                                        <th width="45" align="center" style="font-size:8px; border: 1px solid black; " >SIM. WAJIB</th>
+                                        <th width="55" align="center" style="font-size:8px; border: 1px solid black; " >TUNGGAKAN</th>
+                                        <th width="50" align="center" style="font-size:8px; border: 1px solid black; " >TOTAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>';
@@ -219,18 +219,7 @@ foreach ($keuangan as $lap) {
     if ((($i - 1) % 33) == 0) {
         $data .= '
                                         <tr>
-                                            <td style="border-top: 1px solid black; " width="15" ></td>
-                                            <td style="border-top: 1px solid black; " width="110"></td>
-                                            <td style="border-top: 1px solid black; " width="50" ></td>
-                                            <td style="border-top: 1px solid black; " width="50" ></td>
-                                            <td style="border-top: 1px solid black; " width="50" ></td>
-                                            <td style="border-top: 1px solid black; " width="50" ></td>
-                                            <td style="border-top: 1px solid black; " width="50" ></td>
-                                            <td style="border-top: 1px solid black; " width="17" ></td>
-                                            <td style="border-top: 1px solid black; " width="50" ></td>
-                                            <td style="border-top: 1px solid black; " width="50" ></td>
-                                            <td style="border-top: 1px solid black; " width="55" ></td>
-                                            <td style="border-top: 1px solid black; " width="45" ></td>
+                                            <td style="border-top: 1px solid black; " width="592" ></td>
                                         </tr>
                                         </table>';
         if ($i < $jumlah) {
@@ -258,18 +247,18 @@ foreach ($keuangan as $lap) {
                                         <table cellspacing="0" cellpadding="1">
                                             <thead>
                                                 <tr>
-                                                    <th width="15" align="center" style="font-size:7px; border: 1px solid black; ">No </th>
-                                                    <th width="140" align="center" style="font-size:7px; border: 1px solid black; " >ANGGOTA</th>
-                                                    <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >SIM</th>
+                                                    <th width="15" align="center" style="font-size:8px; border: 1px solid black; ">No </th>
+                                                    <th width="140" align="center" style="font-size:8px; border: 1px solid black; " >ANGGOTA</th>
+                                                    <th width="45" align="center" style="font-size:8px; border: 1px solid black; " >SIM</th>
                                                     <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >KONSUMSI</th>
                                                     <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >NON KONSUMSI</th>
                                                     <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. KHUSUS</th>
-                                                    <th width="50" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. SP</th>
-                                                    <th width="17" align="center" style="font-size:7px; border: 1px solid black; " >KE</th>
-                                                    <th width="40" align="center" style="font-size:7px; border: 1px solid black; " >SIM. POKOK</th>
-                                                    <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >SIM. WAJIB</th>
-                                                    <th width="55" align="center" style="font-size:7px; border: 1px solid black; " >TUNGGAKAN</th>
-                                                    <th width="50" align="center" style="font-size:7px; border: 1px solid black; " >TOTAL</th>
+                                                    <th width="50" align="center" style="font-size:8px; border: 1px solid black; " >PINJ. SP</th>
+                                                    <th width="17" align="center" style="font-size:8px; border: 1px solid black; " >KE</th>
+                                                    <th width="40" align="center" style="font-size:8px; border: 1px solid black; " >SIM. POKOK</th>
+                                                    <th width="45" align="center" style="font-size:8px; border: 1px solid black; " >SIM. WAJIB</th>
+                                                    <th width="55" align="center" style="font-size:8px; border: 1px solid black; " >TUNGGAKAN</th>
+                                                    <th width="50" align="center" style="font-size:8px; border: 1px solid black; " >TOTAL</th>
                                                 </tr>
                                             </thead>
                                         </table>';
