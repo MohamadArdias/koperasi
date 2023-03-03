@@ -94,15 +94,15 @@ $pdf->SetFont('', '', 8);
 
 $uang = $printang['POKU1'] + $printang['BNGU1'];
 $kons = $printang['POKU2'] + $printang['BNGU2'];
-$non = $printang['POKU3'] + $printang['BNGU3'];
+$uub = $printang['POKU3'] + $printang['BNGU3'];
 $khus = $printang['POKU7'] + $printang['BNGU7'];
-$uub = $printang['POKU4'] + $printang['BNGU4'];
+$non = $printang['POKU4'] + $printang['BNGU4'];
 $tung = $printang['POKU6']; //POKU6 = TUNGGAKAN
 
 $data = '
 <pre>
             KPRI BANGKIT BERSAMA <br>
-Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
+Ruko Borobudur No.8 (0333) 424315 BANYUWANGI<br>
                    --o0o-- <br>
 ============================================<br>
 TAGIHAN UNTUK BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '<br>
@@ -128,12 +128,12 @@ PINJAMAN KONSUMSI       : ' . number_format($kons, 0, ',', '.') . '     ke' . $p
 
 if ($printang['POKU3'] != 0) {
     $data .= '
-PINJAMAN NON KONSUMSI   : ' . number_format($non, 0, ',', '.') . '     ke' . $printang['KEU3'] . '<br>';
+PINJAMAN UUB            : ' . number_format($uub, 0, ',', '.') . '     ke' . $printang['KEU3'] . '<br>';
 }
 
 if ($printang['POKU4'] != 0) {
     $data .= '
-UUB                     : ' . number_format($uub, 0, ',', '.') . '     ke' . $printang['KEU4'] . '<br>';
+PINJAMAN NON KONSUMSI   : ' . number_format($non, 0, ',', '.') . '     ke' . $printang['KEU4'] . '<br>';
 }
 
 if ($printang['POKU7'] != 0) {

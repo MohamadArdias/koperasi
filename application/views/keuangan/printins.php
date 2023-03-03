@@ -118,7 +118,7 @@ $data = '<!DOCTYPE html>
                         <div>
                         <table cellpadding="1">
                             <tr>
-                            <th style="font-size: 12px;" width="592" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
+                            <th style="font-size: 10px;" width="592" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
                             </tr>
                             <tr>
                             <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
@@ -130,7 +130,7 @@ $data = '<!DOCTYPE html>
 
 
 
-$pdf->SetFont('', '', 9);
+$pdf->SetFont('', '', 8);
 $data .=
     '
                             <table cellpadding="1">
@@ -144,9 +144,9 @@ $data .=
                                     <tr>
                                         <th width="15" align="center" style="font-size:8px; border: 1px solid black; ">No </th>
                                         <th width="140" align="center" style="font-size:8px; border: 1px solid black; " >ANGGOTA</th>
-                                        <th width="45" align="center" style="font-size:8px; border: 1px solid black; " >SIM</th>
+                                        <th width="45" align="center" style="font-size:8px; border: 1px solid black; " >NON KONSUMSI</th>
                                         <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >KONSUMSI</th>
-                                        <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >NON KONSUMSI</th>
+                                        <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >UUB</th>
                                         <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. KHUSUS</th>
                                         <th width="50" align="center" style="font-size:8px; border: 1px solid black; " >PINJ. SP</th>
                                         <th width="17" align="center" style="font-size:8px; border: 1px solid black; " >KE</th>
@@ -249,9 +249,9 @@ foreach ($keuangan as $lap) {
                                                 <tr>
                                                     <th width="15" align="center" style="font-size:8px; border: 1px solid black; ">No </th>
                                                     <th width="140" align="center" style="font-size:8px; border: 1px solid black; " >ANGGOTA</th>
-                                                    <th width="45" align="center" style="font-size:8px; border: 1px solid black; " >SIM</th>
+                                                    <th width="45" align="center" style="font-size:8px; border: 1px solid black; " >NON KONSUMSI</th>
                                                     <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >KONSUMSI</th>
-                                                    <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >NON KONSUMSI</th>
+                                                    <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >UUB</th>
                                                     <th width="45" align="center" style="font-size:7px; border: 1px solid black; " >PINJ. KHUSUS</th>
                                                     <th width="50" align="center" style="font-size:8px; border: 1px solid black; " >PINJ. SP</th>
                                                     <th width="17" align="center" style="font-size:8px; border: 1px solid black; " >KE</th>

@@ -30,11 +30,11 @@ class Pembayaran_model extends  CI_Model
         $query = $this->db->query("SELECT
         *
     FROM
-        pinuang
+        pembayaran
     WHERE
-        pinuang.TAHUN = $thn AND
-        pinuang.BULAN = '$bln' AND
-        pinuang.KODE_ANG = '$kode'");
+        pembayaran.TAHUN = $thn AND
+        pembayaran.BULAN = '$bln' AND
+        pembayaran.KODE_ANG = '$kode'");
         return $query->num_rows();
     }
 

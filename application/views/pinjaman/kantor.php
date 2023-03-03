@@ -105,7 +105,7 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                                     <input type="hidden" name="KODE" class="form-control" id="KODE" value="<?= $kd ?>" />
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
-                                            <input type="text" name="NOFAK" class="form-control" id="NOFAK" value="<?= $faktur ?>" readonly />
+                                            <input type="text" name="NOFAK" class="form-control" id="NOFAK" value="<?= $faktur ?>" />
                                             <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
                                         </div>
                                         <small class="form-text text-danger"><?= form_error('NOFAK'); ?></small>
@@ -280,7 +280,8 @@ $this->load->view('templates/footer');
             var TANGGUNGAN = $("#TANGGUNGAN").val();
             var JMLP_ANG = $("#JMLP_ANG").val();
 
-            var TERIMA = parseInt(JMLP_ANG) - parseInt(TANGGUNGAN);
+            var TERIMA = JMLP_ANG - TANGGUNGAN;
+            // var TERIMA = parseInt(JMLP_ANG) - parseInt(TANGGUNGAN);
 
             var number_string = TERIMA.toString(),
                 sisa = number_string.length % 3,

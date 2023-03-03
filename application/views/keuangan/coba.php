@@ -138,8 +138,8 @@ $i = 1;
 foreach  ($printang as $key ) {
 $uang = $key['POKU1'] + $key['BNGU1'];
 $kons = $key['POKU2'] + $key['BNGU2'];
-$non = $key['POKU3'] + $key['BNGU3'];
-$uub = $key['POKU4'] + $key['BNGU4'];
+$uub = $key['POKU3'] + $key['BNGU3'];
+$non = $key['POKU4'] + $key['BNGU4'];
 $khus = $key['POKU7'] + $key['BNGU7'];
 $tung = $key['POKU6']; //POKU6 = TUNGGAKAN
 $i++;
@@ -147,7 +147,7 @@ $i++;
 $data .= '
 <pre>
             KPRI BANGKIT BERSAMA <br>
-Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
+Ruko Borobudur No.8 (0333) 424315 BANYUWANGI<br>
                    --o0o-- <br>
 ============================================<br>
 TAGIHAN UNTUK BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '<br>
@@ -173,12 +173,12 @@ PINJAMAN KONSUMSI     : ' . number_format($kons, 0, ',', '.') . '     ke ' . $ke
 
 if ($key['POKU3'] != 0) {
     $data .= '
-PINJAMAN NON KONSUMSI : ' . number_format($non, 0, ',', '.') . '     ke ' . $key['KEU3'] . '<br>';
+PINJAMAN UUB          : ' . number_format($uub, 0, ',', '.') . '     ke ' . $key['KEU3'] . '<br>';
 }
 
 if ($key['POKU4'] != 0) {
     $data .= '
-PINJAMAN UUB          : ' . number_format($uub, 0, ',', '.') . '     ke ' . $key['KEU4'] . '<br>';
+PINJAMAN NON KONSUMSI : ' . number_format($non, 0, ',', '.') . '     ke ' . $key['KEU4'] . '<br>';
 }
 
 if ($key['POKU7'] != 0) {

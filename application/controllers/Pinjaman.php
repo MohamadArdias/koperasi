@@ -29,13 +29,13 @@ class Pinjaman extends CI_Controller
             $this->data['title'] = 'Pinjaman Uang';
             $kd = 'U';
         } elseif ($kode == 2) {
-            $this->data['title'] = 'Pinjaman UUB';
+            $this->data['title'] = 'Pinjaman Non-Konsumsi';
             $kd = 'S';
         } elseif ($kode == 3) {
             $this->data['title'] = 'Pinjaman Konsumsi';
             $kd = 'O';
         } elseif ($kode == 4) {
-            $this->data['title'] = 'Pinjaman Non-Konsumsi';
+            $this->data['title'] = 'Pinjaman UUB';
             $kd = 'N';
         } else {
             $this->data['title'] = 'Pinjaman Khusus';
