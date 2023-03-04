@@ -121,7 +121,7 @@ $this->load->view('templates/sidebar');
                             $jenis = 'Uang';
                             $angka = 1;
                         } elseif (strpos($key['NOFAK'], 'N') !== false) {
-                            $jenis = 'Non Konsumsi';
+                            $jenis = 'UUB';
                             $angka = 3;
                         } elseif (strpos($key['NOFAK'], 'O') !== false) {
                             $jenis = 'Konsumsi';
@@ -130,7 +130,7 @@ $this->load->view('templates/sidebar');
                             $jenis = 'Pinjaman Khusus';
                             $angka = 7;
                         } elseif (strpos($key['NOFAK'], 'S') !== false) {
-                            $jenis = 'UUB';
+                            $jenis = 'Non Konsumsi';
                             $angka = 4;
                         } elseif (strpos($key['NOFAK'], 'R') !== false) {
                             $jenis = 'KANTOR';
