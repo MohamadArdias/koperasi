@@ -91,6 +91,10 @@ class Pay_model extends CI_Model
         pl
         ON 
             anggota.URUT_ANG = pl.KODE_ANG
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
     WHERE
         anggota.URUT_ANG = '$a' AND
         pl.TAHUN = $tahun AND

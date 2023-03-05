@@ -66,6 +66,7 @@ class Kantor extends CI_Controller
                 'TAHUN' => $tahun,
                 'BULAN' => $bulan,
                 'nama' => $query['NAMA_ANG'],
+                'instansi' => $query['NAMA_INS'],
                 'BUNGA' => $query['KE_BNGU8']*$query['BNGU8'],
                 'TTL_BUNGA' => $total_bayar,
                 'tagihan' => $query['SIPOKU8']+($query['KE_BNGU8']*$query['BNGU8'])-$detail->jumlah,
