@@ -135,6 +135,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mb-2">
+                                        <label for="kdins" class="col-sm-4 text-end control-label col-form-label">Instansi</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" name="NAMA_INS" class="form-control" id="NAMA_INS">
+                                            </div>
+                                            <small class="form-text text-danger"><?= form_error('NAMA_INS'); ?></small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-2">
                                         <label for="kdins" class="col-sm-4 text-end control-label col-form-label">Tanggungan</label>
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-sm">
@@ -270,6 +279,7 @@
                         obj = JSON.parse(json);
                     $("#NAMA_ANG").val(obj.nama);
 
+                    var instansi = obj.instansi;
                     var jang = obj.jangka;
                     var per = obj.periode;
                     var sis = obj.sisa;
@@ -278,6 +288,7 @@
                     var a = Math.ceil((jang - per) / 5);
                     var Tanggungan = Number(a * bung) + Number(sis);
                     $("#TANGGUNGAN").val(Tanggungan);
+                    $("#NAMA_INS").val(instansi);
                 }).fail(function() {
                 alert();
             });

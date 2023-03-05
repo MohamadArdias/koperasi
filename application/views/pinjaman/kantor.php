@@ -130,6 +130,15 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                                     </div>
                                 </div>
                                 <div class="form-group row mb-2">
+                                    <label for="kdins" class="col-sm-4 text-end control-label col-form-label">Instansi</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" name="NAMA_INS" class="form-control" id="NAMA_INS">
+                                        </div>
+                                        <small class="form-text text-danger"><?= form_error('NAMA_INS'); ?></small>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-2">
                                     <label for="kdins" class="col-sm-4 text-end control-label col-form-label">Tanggungan</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
@@ -264,6 +273,7 @@ $this->load->view('templates/footer');
                 var json = data,
                     obj = JSON.parse(json);
                 $("#NAMA_ANG").val(obj.nama);
+                $("#NAMA_INS").val(obj.instansi);
                
                 var sis = obj.sisa;
                 var bung = obj.bunga;

@@ -235,7 +235,16 @@ class Anggota_model extends  CI_Model
 
     public function getNama($a)
     {
-        $query = $this->db->query("SELECT NAMA_ANG AS NAMA FROM anggota WHERE URUT_ANG='$a'");
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        anggota
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
+    WHERE
+        URUT_ANG = '$a'");
         return $query->row_array();
     }
 
@@ -244,18 +253,22 @@ class Anggota_model extends  CI_Model
         $tahun = date("Y");
         $bulan = date("m");
 
-        $sql = $this->db->query("SELECT 
+        $sql = $this->db->query("SELECT
         *
-        FROM 
-        anggota 
-        LEFT JOIN 
-        pinuang 
-        ON 
-        anggota.URUT_ANG = pinuang.KODE_ANG  
+    FROM
+        anggota
         LEFT JOIN
-	    pl
-	    ON 
-		anggota.URUT_ANG = pl.KODE_ANG
+        pinuang
+        ON 
+            anggota.URUT_ANG = pinuang.KODE_ANG
+        LEFT JOIN
+        pl
+        ON 
+            anggota.URUT_ANG = pl.KODE_ANG
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
         WHERE 
         anggota.URUT_ANG = '$a' AND 
         pl.TAHUN = $tahun AND

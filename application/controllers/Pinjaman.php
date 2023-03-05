@@ -139,6 +139,7 @@ class Pinjaman extends CI_Controller
                 'periode' => $periode,
                 'sisa' => $sisa,
                 'bunga' => $bunga,
+                'instansi' => $query['NAMA_INS'],
             );
 
             echo json_encode($data);
@@ -148,7 +149,8 @@ class Pinjaman extends CI_Controller
                 'jangka' => 0,
                 'periode' => 0,
                 'sisa' => 0,
-                'bunga' => 0,
+                'bunga' => 0,                
+                'instansi' => $query2['NAMA_INS'],
             );
             echo json_encode($data);
         }
@@ -169,15 +171,17 @@ class Pinjaman extends CI_Controller
                 'sisa' => $query['SIPOKU8'],
                 'bunga' => $query['BNGU8'],
                 'ke_bunga' => $query['KE_BNGU8'],
+                'instansi' => $query['NAMA_INS'],
             );
 
             echo json_encode($data);
         } else {
             $data = array(
-                'nama' => $query2['NAMA'],
+                'nama' => $query2['NAMA_ANG'],
                 'sisa' => 0,
                 'bunga' => 0,
                 'ke_bunga' => 0,
+                'instansi' => $query2['NAMA_INS'],
             );
             echo json_encode($data);
         }

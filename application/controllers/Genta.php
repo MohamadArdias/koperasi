@@ -470,7 +470,7 @@ class Genta extends CI_Controller
                 'KODE_ANG' => $key['KODE_ANG']
             ];
 
-            if ($cek_pinsim != 1) {
+            if ($cek_pinsim < 1) {
                 $this->db->insert('pembayaran', $bayar);
             } else {
                 $this->db->update('pembayaran', $bayar, $where);
