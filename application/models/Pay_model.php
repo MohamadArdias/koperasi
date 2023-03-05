@@ -79,7 +79,7 @@ class Pay_model extends CI_Model
     }
 
     public function getKantor($a)
-    {        
+    {
         $tahun = date("Y");
         $bulan = date("m");
 
@@ -174,19 +174,28 @@ class Pay_model extends CI_Model
     public function getKodeAnggota($a)
     {
         // $date = date("Y-m");
-        $date = date('Y-m', strtotime('-1 month'));
+        // $date = date('Y-m', strtotime('-1 month'));
+        $tahun = date("Y");
+        $bulan = date("m");
+        
         $query = $this->db->query("SELECT
         *
-        FROM
-            anggota
-            INNER JOIN
-            pembayaran
-            ON 
-                anggota.URUT_ANG = pembayaran.KODE_ANG
+    FROM
+        anggota
+        INNER JOIN
+        pembayaran
+        ON 
+            anggota.URUT_ANG = pembayaran.KODE_ANG
+        INNER JOIN
+        instan
+        ON 
+            anggota.KODE_INS = instan.KODE_INS
         WHERE
             pembayaran.KODE_ANG = $a AND
-            -- pembayaran.TGL_TGHN LIKE '%$date%'
-            pembayaran.TGL_TGHN IN (SELECT MAX(TGL_TGHN) FROM pembayaran)");
+            pembayaran.TAHUN = $tahun AND
+	        pembayaran.BULAN = '$bulan'
+            -- pembayaran.TGL_TGHN IN (SELECT MAX(TGL_TGHN) FROM pembayaran)
+            ");
 
         return $query->row_array();
     }
@@ -299,9 +308,9 @@ class Pay_model extends CI_Model
         // $poku = ($jml_bayar+$DETAIL)-$BUNGA;
 
         $pl = [
-            'POKU8' => ($jml_bayar+$DETAIL)-$BUNGA
+            'POKU8' => ($jml_bayar + $DETAIL) - $BUNGA
         ];
-        
+
         $where = array(
             'TAHUN' => $TAHUN,
             'BULAN' => $BULAN,

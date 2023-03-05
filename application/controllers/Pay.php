@@ -53,6 +53,7 @@ class Pay extends CI_Controller
                 'TAHUN' => $tahun,
                 'BULAN' => $bulan,
                 'nama' => $query['NAMA_ANG'],
+                'instansi' => $query['NAMA_INS'],
                 'tagihan' => $query['JML_TGHN']-$query['BAYAR_BANK']-$detail->jumlah,
                 'detail' => $detail->jumlah,
                 // 'tagihan' => $query['JML_TGHN'],
