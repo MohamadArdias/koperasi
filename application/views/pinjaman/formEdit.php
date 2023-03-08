@@ -72,9 +72,9 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                                     <label for="nama" class="col-sm-4 text-end control-label col-form-label">Kode Anggota</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
-                                            <input type="text" name="URUT_ANG" class="form-control" id="URUT_ANG" value="<?= $edit['URUT_ANG'] ?>" readonly>
+                                            <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" value="<?= $edit['KODE_ANG'] ?>" readonly>
                                         </div>
-                                        <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+                                        <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-2">

@@ -15,7 +15,7 @@ $this->load->view('templates/sidebar');
                               <div class="input-group input-group-sm">
                                     <?php echo form_input($first_name); ?>
                               </div>
-                              <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+                              <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
                         </div>
                   </div>
 

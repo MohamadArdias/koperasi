@@ -35,7 +35,7 @@ class Pinsimp_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         INNER JOIN
         pinsimp
         ON 
@@ -65,7 +65,7 @@ class Pinsimp_model extends  CI_Model
         INNER JOIN
         anggota
         ON 
-            pl.KODE_ANG = anggota.URUT_ANG
+            pl.KODE_ANG = anggota.KODE_ANG
         INNER JOIN
         instan
         ON 
@@ -100,7 +100,7 @@ class Pinsimp_model extends  CI_Model
         $this->db->select('*');
         $this->db->from('pinsimp');
         $this->db->join('pl', 'pl.KODE_ANG = pinsimp.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinsimp.KODE_ANG');
+        $this->db->join('anggota', 'anggota.KODE_ANG = pinsimp.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         // $this->db->where('pinsimp.TAHUN', date('Y', strtotime('-1 month')));
         // $this->db->where('pinsimp.BULAN', date('m', strtotime('-1 month')));
@@ -124,7 +124,7 @@ class Pinsimp_model extends  CI_Model
         $this->data = [            
             "TAHUN" => date('Y'),
             "BULAN" => date('m'),
-            "KODE_ANG" => $this->input->post('URUT_ANG', true),            
+            "KODE_ANG" => $this->input->post('KODE_ANG', true),            
             "TOTWJB" => 0,
             "TOTPOK" => 0,
             "TOTREL" => 0,

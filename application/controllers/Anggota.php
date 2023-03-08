@@ -14,7 +14,7 @@ class Anggota extends CI_Controller
         $this->load->library('form_validation');
     }
 
-    public function histori($URUT_ANG)
+    public function histori($KODE_ANG)
     {
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
@@ -78,10 +78,10 @@ class Anggota extends CI_Controller
         setlocale(LC_ALL, 'id-ID', 'id_ID');
         date_default_timezone_set("Asia/Jakarta");
 
-        $aku = $this->db->query("SELECT * FROM anggota INNER JOIN instan ON anggota.KODE_INS = instan.KODE_INS WHERE anggota.URUT_ANG = $URUT_ANG")->row_array();
+        $aku = $this->db->query("SELECT * FROM anggota INNER JOIN instan ON anggota.KODE_INS = instan.KODE_INS WHERE anggota.KODE_ANG = $KODE_ANG")->row_array();
 
         $sheet->setCellValue('A1', "NAMA");
-        $sheet->setCellValue('B1', ': ' . $aku['URUT_ANG'] . '/' . $aku['NAMA_ANG']);
+        $sheet->setCellValue('B1', ': ' . $aku['KODE_ANG'] . '/' . $aku['NAMA_ANG']);
         $sheet->setCellValue('A2', "INSTANSI");
         $sheet->setCellValue('B2', ': ' . $aku['KODE_INS'] . '/' . $aku['NAMA_INS']);
 
@@ -126,7 +126,7 @@ class Anggota extends CI_Controller
         // $sheet->getStyle('I4')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-        $histori = $this->Keuangan->histo($URUT_ANG);
+        $histori = $this->Keuangan->histo($KODE_ANG);
         // $no = 1; // Untuk penomoran tabel, di awal set dengan 1
         $numrow = 5; // Set baris pertama untuk isi tabel adalah baris ke 4
         foreach ($histori as $data) { // Lakukan looping pada variabel siswa
@@ -160,7 +160,7 @@ class Anggota extends CI_Controller
 
             // $thn = $data['TAHUN'];
             // $bln = $data['BULAN'];
-            // $kd = $data['URUT_ANG'];
+            // $kd = $data['KODE_ANG'];
 
             // $didi = $this->db->query("SELECT pembayaran.JML_BAYAR AS hal FROM pembayaran WHERE TGL_TGHN LIKE '%$thn-$bln%' AND pembayaran.KODE_ANG = $kd")->row_array();
                 
@@ -221,14 +221,14 @@ class Anggota extends CI_Controller
         $writer->save('php://output');
     }
 
-    public function histori2($URUT_ANG)
+    public function histori2($KODE_ANG)
     {
-        $query = $this->db->query("SELECT * FROM anggota WHERE URUT_ANG = $URUT_ANG")->row_array();
-        $this->data['get'] = $this->db->query("SELECT * FROM anggota WHERE URUT_ANG = $URUT_ANG")->row_array();
+        $query = $this->db->query("SELECT * FROM anggota WHERE KODE_ANG = $KODE_ANG")->row_array();
+        $this->data['get'] = $this->db->query("SELECT * FROM anggota WHERE KODE_ANG = $KODE_ANG")->row_array();
 
         $this->data['title'] = 'Histori '.$query['NAMA_ANG'];
-		// $this->data['anggota'] = $this->Dashboard->getHistori($URUT_ANG);
-        $this->data['anggota'] = $this->Keuangan->histo($URUT_ANG);
+		// $this->data['anggota'] = $this->Dashboard->getHistori($KODE_ANG);
+        $this->data['anggota'] = $this->Keuangan->histo($KODE_ANG);
 		$this->load->view('dashboard/histori', $this->data);
     }
 
@@ -253,10 +253,10 @@ class Anggota extends CI_Controller
         $this->load->view('anggota/keluar', $this->data);
     }
 
-    public function berhenti($URUT_ANG)
+    public function berhenti($KODE_ANG)
     {
         $this->data['title'] = 'Detail Data Anggota';
-        $this->data['berhenti'] = $this->Anggota->getAnggotaById($URUT_ANG);
+        $this->data['berhenti'] = $this->Anggota->getAnggotaById($KODE_ANG);
 
         $this->form_validation->set_rules('STATUS', 'Status', 'required');
 
@@ -269,10 +269,10 @@ class Anggota extends CI_Controller
         }
     }
 
-    public function detail($URUT_ANG)
+    public function detail($KODE_ANG)
     {
         $this->data['title'] = 'Detail Data Anggota';
-        $this->data['anggota'] = $this->Anggota->getAnggotaById($URUT_ANG);
+        $this->data['anggota'] = $this->Anggota->getAnggotaById($KODE_ANG);
         $this->load->view('anggota/detail', $this->data);
     }
 
@@ -282,7 +282,7 @@ class Anggota extends CI_Controller
         $this->data['instansi'] = $this->Instansi->getAllInstansi();
 
         // $this->form_validation->set_rules('KODE_ANG', 'kode anggota', 'required');
-        $this->form_validation->set_rules('URUT_ANG', 'nomor urut anggota', 'required');
+        $this->form_validation->set_rules('KODE_ANG', 'nomor urut anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'nama anggota', 'required');
         $this->form_validation->set_rules('KODE_INS', 'instansi', 'required');
         // $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');
@@ -295,10 +295,10 @@ class Anggota extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('anggota/tambah', $this->data);
         } else {
-            $id   = $_POST['URUT_ANG'];
+            $id   = $_POST['KODE_ANG'];
 
             $query = $this->db->get_where('anggota', array( //making selection
-                'URUT_ANG' => $id
+                'KODE_ANG' => $id
             ));
             $count = $query->num_rows(); //counting result from query
 
@@ -315,20 +315,20 @@ class Anggota extends CI_Controller
         }
     }
 
-    public function hapus($URUT_ANG)
+    public function hapus($KODE_ANG)
     {
-        $this->Anggota->hapusDataAnggota($URUT_ANG);
+        $this->Anggota->hapusDataAnggota($KODE_ANG);
         $this->session->set_flashdata('flash', 'dihapus');
         redirect('Anggota');
     }
 
-    public function edit($URUT_ANG)
+    public function edit($KODE_ANG)
     {
         $this->data['title'] = 'Edit Data Anggota';
-        $this->data['anggota'] = $this->Anggota->getAnggotaById($URUT_ANG);
+        $this->data['anggota'] = $this->Anggota->getAnggotaById($KODE_ANG);
         $this->data['instansi'] = $this->Instansi->getAllInstansi();
 
-        $this->form_validation->set_rules('URUT_ANG', 'nomor urut anggota', 'required');
+        $this->form_validation->set_rules('KODE_ANG', 'nomor urut anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'nama anggota', 'required');
         $this->form_validation->set_rules('KODE_INS', 'kode instansi', 'required');
         // $this->form_validation->set_rules('NAMA_INS', 'nama instansi', 'required');

@@ -101,7 +101,7 @@ class Import extends CI_Controller
                 'STATUS' => 'TERBAYAR',
             );
 
-            $this->db->where('KODE_ANG', $key['URUT_ANG']);
+            $this->db->where('KODE_ANG', $key['KODE_ANG']);
             $this->db->where('TAHUN', $THN);
             $this->db->where('BULAN', $BLN);
             // $this->db->like('pembayaran.TGL_TGHN', date('Y-m'));
@@ -114,7 +114,7 @@ class Import extends CI_Controller
             // $where = array(
             //     'TAHUN' => date('Y'),
             //     'BULAN' => date('m'),
-            //     'KODE_ANG' => $key['URUT_ANG'],
+            //     'KODE_ANG' => $key['KODE_ANG'],
             // );
             // $this->db->update('pl', $pl, $where);
         }

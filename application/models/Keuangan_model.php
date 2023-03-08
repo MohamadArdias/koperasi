@@ -18,7 +18,7 @@ class Keuangan_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN = $TAHUN AND
         pl.BULAN = $BULAN AND
@@ -28,7 +28,7 @@ class Keuangan_model extends  CI_Model
         return $query->num_rows();
     }
 
-    public function histo($URUT_ANG)
+    public function histo($KODE_ANG)
     {
         $query = $this->db->query("SELECT
             pl.*,
@@ -45,7 +45,7 @@ class Keuangan_model extends  CI_Model
             INNER JOIN
             pl
             ON 
-                anggota.URUT_ANG = pl.KODE_ANG
+                anggota.KODE_ANG = pl.KODE_ANG
             LEFT JOIN
             pembayaran
             ON 
@@ -53,7 +53,7 @@ class Keuangan_model extends  CI_Model
                 pl.TAHUN = pembayaran.TAHUN AND
                 pl.BULAN = pembayaran.BULAN
         WHERE
-            pl.KODE_ANG = $URUT_ANG 
+            pl.KODE_ANG = $KODE_ANG 
         ORDER BY
             pl.TAHUN DESC, 
             pl.BULAN DESC");
@@ -77,7 +77,7 @@ class Keuangan_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN = $TAHUN AND
         pl.BULAN = $BULAN AND
@@ -94,7 +94,7 @@ class Keuangan_model extends  CI_Model
         $query = $this->db->query("SELECT
         anggota.NAMA_ANG, 
         instan.NAMA_INS, 
-        anggota.URUT_ANG, 
+        anggota.KODE_ANG, 
         pl.POKOK, 
         pl.POKU6, 
         pl.WAJIB, 
@@ -123,7 +123,7 @@ class Keuangan_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
     WHERE
         pl.TAHUN = $TAHUN AND
         pl.BULAN = $BULAN AND
@@ -135,7 +135,7 @@ class Keuangan_model extends  CI_Model
     {
         $this->db->select('*');
         $this->db->from('pl');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
+        $this->db->join('anggota', 'anggota.KODE_ANG = pl.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         $this->db->where('instan.KODE_INS !=', 99);
         $this->db->where('instan.KODE_INS !=', 98);
@@ -163,7 +163,7 @@ class Keuangan_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN = $THN AND
         pl.BULAN = $BLN
@@ -185,7 +185,7 @@ class Keuangan_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN = $TAHUN AND
         instan.KODE_INS = '$KODE_INS' AND
@@ -202,7 +202,7 @@ class Keuangan_model extends  CI_Model
         $query = $this->db->query("SELECT
         anggota.NAMA_ANG, 
         instan.NAMA_INS, 
-        anggota.URUT_ANG, 
+        anggota.KODE_ANG, 
         pl.POKOK, 
         pl.POKU6, 
         pl.WAJIB, 
@@ -231,18 +231,18 @@ class Keuangan_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN = $TAHUN AND
         pl.BULAN = $BULAN AND
-        anggota.URUT_ANG = '$KODE_ANG'");
+        anggota.KODE_ANG = '$KODE_ANG'");
         return $query->row_array();
 
         // $this->db->select('*');
         // $this->db->from('pl');
-        // $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG', 'right');
+        // $this->db->join('anggota', 'anggota.KODE_ANG = pl.KODE_ANG', 'right');
         // $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
-        // $this->db->where('anggota.URUT_ANG', $KODE_ANG);
+        // $this->db->where('anggota.KODE_ANG', $KODE_ANG);
         // $this->db->where('TAHUN', date('Y'));
         // $this->db->where('BULAN', date('m'));
         // return  $this->db->get()->row_array();
@@ -262,7 +262,7 @@ class Keuangan_model extends  CI_Model
             INNER JOIN
             pl
             ON 
-                anggota.URUT_ANG = pl.KODE_ANG
+                anggota.KODE_ANG = pl.KODE_ANG
         WHERE
             pl.TAHUN = $THN AND
             pl.BULAN = $BLN AND
@@ -278,7 +278,7 @@ class Keuangan_model extends  CI_Model
         $this->data = [
             "TAHUN" => date('Y'),
             "BULAN" => date('m'),
-            "KODE_ANG" => $this->input->post('URUT_ANG', true),
+            "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "POKOK" => 0,
             "WAJIB" => 0,
             "TPOKOK" => 0,

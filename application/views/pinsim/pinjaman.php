@@ -145,8 +145,8 @@ $this->load->view('templates/sidebar');
                     ?>
                         <tr>
                             <td><?= $key['TGLP_ANG'] ?></td>
-                            <td><a href="<?= base_url(); ?>index.php/pelunasan?NOFAK=<?= $key['NOFAK']; ?>&&KODE=<?= $key['URUT_ANG'] ?>"><?= $key['NOFAK']; ?></a></td>
-                            <td><?= $key['URUT_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
+                            <td><a href="<?= base_url(); ?>index.php/pelunasan?NOFAK=<?= $key['NOFAK']; ?>&&KODE=<?= $key['KODE_ANG'] ?>"><?= $key['NOFAK']; ?></a></td>
+                            <td><?= $key['KODE_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                             <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
                             <td><?= $jenis; ?></td>
                             <td class="text-right"><?= number_format($key['JMLP_ANG'], 0, ',', '.'); ?></td>

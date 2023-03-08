@@ -21,7 +21,7 @@ class Pinjaman extends CI_Controller
 
     public function form($kode)
     {
-        $a = $this->input->post('URUT_ANG', true);
+        $a = $this->input->post('KODE_ANG', true);
         $bung = $this->input->post('PRO_ANG');
 
 
@@ -50,7 +50,7 @@ class Pinjaman extends CI_Controller
         $this->form_validation->set_rules('id', 'Id', 'required');
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
         $this->form_validation->set_rules('NOFAK', 'Faktur', 'required');
-        $this->form_validation->set_rules('URUT_ANG', 'Kode Anggota', 'required');
+        $this->form_validation->set_rules('KODE_ANG', 'Kode Anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'Nama Anggota', 'required');
         $this->form_validation->set_rules('TANGGUNGAN', 'Tanggungan', 'required');
         $this->form_validation->set_rules('JMLP_ANG', 'Jumlah Pinjaman', 'required|greater_than[' . $min . ']');
@@ -71,7 +71,7 @@ class Pinjaman extends CI_Controller
                     $where_pl = [
                         "TAHUN" => substr($tgl, 0, 4),
                         "BULAN" => substr($tgl, 5, 2),
-                        "KODE_ANG" => $this->input->post('URUT_ANG', true),
+                        "KODE_ANG" => $this->input->post('KODE_ANG', true),
                     ];
 
                     $this->db->update('pl', ['KEU' . $kode => 0], $where_pl);
@@ -100,7 +100,7 @@ class Pinjaman extends CI_Controller
 
     public function autofill()
     {
-        $a = $_GET['URUT_ANG'];
+        $a = $_GET['KODE_ANG'];
         $b = $_GET['KODE'];
 
         $query = $this->Anggota->getTanggungan($a, $b);
@@ -158,7 +158,7 @@ class Pinjaman extends CI_Controller
 
     public function autofill2()
     {
-        $a = $_GET['URUT_ANG'];
+        $a = $_GET['KODE_ANG'];
         $b = $_GET['KODE'];
 
         $query = $this->Anggota->getTanggungan($a, $b);
@@ -191,7 +191,7 @@ class Pinjaman extends CI_Controller
     {
         $this->data['title'] = 'Pinjaman Kantor';
 
-        $a = $this->input->post('URUT_ANG', true);
+        $a = $this->input->post('KODE_ANG', true);
         $min = $this->input->post('TANGGUNGAN');
 
         $this->data['urutan'] = $this->Pinuang->getUrut();
@@ -199,7 +199,7 @@ class Pinjaman extends CI_Controller
         $this->form_validation->set_rules('id', 'Id', 'required');
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
         $this->form_validation->set_rules('NOFAK', 'Faktur', 'required');
-        $this->form_validation->set_rules('URUT_ANG', 'Kode Anggota', 'required');
+        $this->form_validation->set_rules('KODE_ANG', 'Kode Anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'Nama Anggota', 'required');
         $this->form_validation->set_rules('JMLP_ANG', 'Jumlah Pinjaman', 'required|greater_than[' . $min . ']');
         $this->form_validation->set_rules('JMLP_ANG', 'Jumlah Pinjaman', 'required');
@@ -229,7 +229,7 @@ class Pinjaman extends CI_Controller
                     $where_pl = [
                         "TAHUN" => substr($tgl, 0, 4),
                         "BULAN" => substr($tgl, 5, 2),
-                        "KODE_ANG" => $this->input->post('URUT_ANG', true),
+                        "KODE_ANG" => $this->input->post('KODE_ANG', true),
                     ];
                     $this->db->update('pl', $pl, $where_pl);
 
@@ -259,7 +259,7 @@ class Pinjaman extends CI_Controller
         $this->form_validation->set_rules('id', 'Id', 'required');
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
         $this->form_validation->set_rules('NOFAK', 'Faktur', 'required');
-        $this->form_validation->set_rules('URUT_ANG', 'Kode Anggota', 'required');
+        $this->form_validation->set_rules('KODE_ANG', 'Kode Anggota', 'required');
         $this->form_validation->set_rules('NAMA_ANG', 'Nama Anggota', 'required');
         $this->form_validation->set_rules('JMLP_ANG', 'Jumlah Pinjaman', 'required');
         $this->form_validation->set_rules('PRO_ANG', 'Bunga', 'required');

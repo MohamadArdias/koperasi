@@ -15,13 +15,13 @@ class Us_model extends  CI_Model
         INNER JOIN
         anggota
         ON 
-            pinuang.KODE_ANG = anggota.URUT_ANG
+            pinuang.KODE_ANG = anggota.KODE_ANG
     WHERE
         us.NOFAK = '$NOFAK'");
         return $query->row_array();
     }
 
-    public function getPrint($URUT_ANG)
+    public function getPrint($KODE_ANG)
     {
         $NOFAK = $this->input->get('NOFAK');
         $TGL = $this->input->get('TGL');
@@ -29,7 +29,7 @@ class Us_model extends  CI_Model
         $query = $this->db->query("SELECT
             instan.KODE_INS, 
             instan.NAMA_INS, 
-            anggota.URUT_ANG, 
+            anggota.KODE_ANG, 
             anggota.NAMA_ANG, 
             us.TANGGAL, 
             us.JUMLAH, 
@@ -40,13 +40,13 @@ class Us_model extends  CI_Model
             INNER JOIN
             us
             ON 
-                anggota.URUT_ANG = us.KODE_ANG
+                anggota.KODE_ANG = us.KODE_ANG
             INNER JOIN
             instan
             ON 
                 instan.KODE_INS = anggota.KODE_INS
         WHERE
-            us.KODE_ANG = $URUT_ANG AND
+            us.KODE_ANG = $KODE_ANG AND
             us.NOFAK = '$NOFAK' AND
             us.TANGGAL = '$TGL'");
         
@@ -81,7 +81,7 @@ class Us_model extends  CI_Model
         // $a = $this->input->post('TGLP_ANG');
         // $b = $this->input->post('JWKT_ANG');
 
-        $kode = $this->input->post('URUT_ANG', true);
+        $kode = $this->input->post('KODE_ANG', true);
         $nama = $this->input->post('NAMA_ANG', true);
 
         // $date = date('Y-m-d', strtotime('+' . $b . ' month', strtotime($a)));
@@ -90,7 +90,7 @@ class Us_model extends  CI_Model
             "IDNAMA" => $this->input->post('first_name', true),
             "NOFAK" => $this->input->post('NOFAK', true),
             "TANGGAL" => $this->input->post('TGLP_ANG', true),
-            "KODE_ANG" => $this->input->post('URUT_ANG', true),
+            "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "JUMLAH" => $this->input->post('JMLP_ANG', true),
             "PRO" => $this->input->post('PRO_ANG', true),
             "jangka" => $this->input->post('JWKT_ANG', true),
@@ -112,7 +112,7 @@ class Us_model extends  CI_Model
         // $this->db->from('us');
         // $this->db->where('KODE_INS', '06');
         // return $this->db->get()->result_array();
-        $this->db->query("CREATE INDEX idx_anggota ON anggota (URUT_ANG, REKENING, KODE_INS);
+        $this->db->query("CREATE INDEX idx_anggota ON anggota (KODE_ANG, REKENING, KODE_INS);
         CREATE INDEX idx_instan ON instan (KODE_INS, NAMA_INS);
         CREATE INDEX idx_pembayaran ON pembayaran (KODE_ANG, TGL_TGHN, JML_TGHN, JML_BAYAR);
         CREATE INDEX idx_pinsimp ON pinsimp (KODE_ANG, TAHUN, BULAN, TOTWJB, TOTPOK, TOTREL);
@@ -141,7 +141,7 @@ class Us_model extends  CI_Model
     //     INNER JOIN
     //     us
     //     ON 
-    //         us.KODE_ANG = anggota.URUT_ANG
+    //         us.KODE_ANG = anggota.KODE_ANG
     // ORDER BY
     //     us.TANGGAL DESC");
         $query = $this->db->query("SELECT
@@ -155,7 +155,7 @@ class Us_model extends  CI_Model
             INNER JOIN
             us
             ON 
-                us.KODE_ANG = anggota.URUT_ANG
+                us.KODE_ANG = anggota.KODE_ANG
         ORDER BY
             us.TANGGAL DESC");
         return $query->result_array();

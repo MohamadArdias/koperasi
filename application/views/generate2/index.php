@@ -128,7 +128,7 @@ $this->load->view('templates/sidebar');
                         <tr>
                             <td><?= $key['TAHUN']; ?></td>
                             <td><?= $key['BULAN']; ?></td>
-                            <td><?= $key['URUT_ANG'] . '/ ' . $key['NAMA_ANG']; ?></td>
+                            <td><?= $key['KODE_ANG'] . '/ ' . $key['NAMA_ANG']; ?></td>
                             <td><?= $key['KODE_INS'] . '/ ' . $key['NAMA_INS']; ?></td>
                             <td><?= $key['WAJIB']; ?></td>
                             <td><?= $key['POKOK']; ?></td>

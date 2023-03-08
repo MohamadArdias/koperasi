@@ -137,7 +137,7 @@ function terbilang($nilai)
 $i = 1;
 foreach ($printang as $key) {
 
-    $a = $key['URUT_ANG'];
+    $a = $key['KODE_ANG'];
     $tahun = $key['TAHUN'];
     $bulan = $key['BULAN'];
     $query = $this->db->query("SELECT SUM(JML_BAYAR) AS bayar FROM kantor_detail WHERE KODE_ANG = '$a' AND TAHUN = $tahun AND BULAN = '$bulan'")->row();
@@ -164,7 +164,7 @@ Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
                    --o0o-- <br>
 ============================================<br>
 PINJAMAN KANTOR BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '<br>
-No. Anggota : ' . $key['URUT_ANG'] . '(' . $key['NAMA_ANG'] . ') <br>
+No. Anggota : ' . $key['KODE_ANG'] . '(' . $key['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $key['KODE_INS'] . '(' . $key['NAMA_INS'] . ') <br>
 ============================================<br>
 SISA POKOK            : ' . number_format($sp, 0, ',', '.') . ' <br>

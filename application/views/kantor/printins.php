@@ -162,7 +162,7 @@ $totalbb = 0;
 
 foreach ($keuangan as $lap) {
 
-    $a = $lap['URUT_ANG'];
+    $a = $lap['KODE_ANG'];
     $tahun = $lap['TAHUN'];
     $bulan = $lap['BULAN'];
     $query = $this->db->query("SELECT SUM(JML_BAYAR) AS bayar FROM kantor_detail WHERE KODE_ANG = '$a' AND TAHUN = $tahun AND BULAN = '$bulan'")->row();
@@ -188,7 +188,7 @@ foreach ($keuangan as $lap) {
 
     $data .= '  <tr>
                                         <td width="20" align="right" style=" border-right: 1px solid black; border-left: 1px solid black; ">' . $i++ . '</td>
-                                        <td width="160" style="border-right: 1px solid black; ">' . $lap['URUT_ANG'] .'-'.$lap['NAMA_ANG']. '</td>
+                                        <td width="160" style="border-right: 1px solid black; ">' . $lap['KODE_ANG'] .'-'.$lap['NAMA_ANG']. '</td>
                                         <td width="30" align="center" style="border-right: 1px solid black; ">' . $lap['KEU8'] . '</td>
                                         <td width="70" align="right" style="border-right: 1px solid black; ">' . number_format($sp, 0, ',', '.') . '</td>
                                         <td width="70" align="right" style="border-right: 1px solid black; ">' . number_format($tb, 0, ',', '.') . '</td>

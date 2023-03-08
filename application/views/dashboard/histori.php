@@ -35,7 +35,7 @@ $this->load->view('templates/sidebar');
   <div class="card-body">
     <div class="row mt-3">
       <div class="col-md-12">
-        <form action="<?= base_url(); ?>index.php/anggota/histori/<?= $get['URUT_ANG']; ?>" method="post">
+        <form action="<?= base_url(); ?>index.php/anggota/histori/<?= $get['KODE_ANG']; ?>" method="post">
           <div class="input-group">
             <button class="btn btn-primary">Cetak Excel</button>
             <!-- <a href="<?= base_url(); ?>index.php/anggota/tambah" class="btn btn-primary">Tambah Anggota</a> -->

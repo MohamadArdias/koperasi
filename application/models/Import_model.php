@@ -21,7 +21,7 @@ class Import_model extends CI_Model
         $query = $this->db->query("SELECT
             temp.TANGGAL, 
             temp.NOMINAL, 
-            anggota.URUT_ANG
+            anggota.KODE_ANG
         FROM
             anggota
             INNER JOIN
@@ -33,7 +33,7 @@ class Import_model extends CI_Model
 
         // $query = $this->db->query("SELECT
         //     temp.TANGGAL, 
-        //     anggota.URUT_ANG, 
+        //     anggota.KODE_ANG, 
         //     temp.NOMINAL, 
         //     pembayaran.JML_BAYAR
         // FROM
@@ -45,7 +45,7 @@ class Import_model extends CI_Model
         //     INNER JOIN
         //     pembayaran
         //     ON 
-        //         anggota.URUT_ANG = pembayaran.KODE_ANG
+        //         anggota.KODE_ANG = pembayaran.KODE_ANG
         // WHERE
         //     pembayaran.TGL_TGHN IN ((SELECT MAX(TGL_TGHN) FROM pembayaran )) AND
         //     temp.DATE IN (SELECT MAX(DATE) FROM temp)");

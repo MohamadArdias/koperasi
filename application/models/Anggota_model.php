@@ -21,24 +21,24 @@ class Anggota_model extends  CI_Model
             "TGLK_ANG" => $this->input->post('TGLK_ANG', true),
         ];
 
-        $this->db->where('URUT_ANG', $this->input->post('URUT_ANG'));
+        $this->db->where('KODE_ANG', $this->input->post('KODE_ANG'));
         $this->db->update('anggota', $this->data);
     }
 
-    public function berhenti($URUT_ANG)
+    public function berhenti($KODE_ANG)
     {
         return $this->db->get('anggota');
     }
 
     public function getAllAnggota($a)
     {
-        return $this->db->query("SELECT anggota.NAMA_ANG AS aga FROM anggota WHERE URUT_ANG = '$a'")->row_array();
+        return $this->db->query("SELECT anggota.NAMA_ANG AS aga FROM anggota WHERE KODE_ANG = '$a'")->row_array();
         // return  $this->db->get($query)->row_array();
 
         // $this->db->select('anggota.NAMA_ANG');
         // $this->db->from('anggota');
         // // $this->db->where('KODE_INS !=', '99');
-        // $this->db->where('URUT_ANG', $a);
+        // $this->db->where('KODE_ANG', $a);
         // return  $this->db->get()->row_array();
     }
 
@@ -72,7 +72,7 @@ class Anggota_model extends  CI_Model
     // {
     //     $keyword = $this->input->post('keyword', true);
     //     $this->db->like('NAMA_ANG', $keyword);
-    //     $this->db->or_like('URUT_ANG', $keyword);
+    //     $this->db->or_like('KODE_ANG', $keyword);
     //     $this->db->or_like('KODE_INS', $keyword);
     //     $this->db->or_like('NAMA_INS', $keyword);
     //     return $this->db->get('anggota')->result_array();
@@ -86,14 +86,14 @@ class Anggota_model extends  CI_Model
         return $this->db->get('anggota')->result();
     }
 
-    public function getAnggotaById($URUT_ANG)
+    public function getAnggotaById($KODE_ANG)
     {
-        // return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
+        // return $this->db->get_where('anggota', ['KODE_ANG' => $KODE_ANG])->row_array();
 
         $this->db->select('*');
         $this->db->from('anggota');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
-        $this->db->where('URUT_ANG', $URUT_ANG);
+        $this->db->where('KODE_ANG', $KODE_ANG);
         return $this->db->get()->row_array();
     }
 
@@ -131,7 +131,7 @@ class Anggota_model extends  CI_Model
     // public function getAnggota($limit, $start, $keyword = null)
     // {
     //     if ($keyword) {
-    //         $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+    //         $this->db->select("anggota.KODE_ANG AS KODE_ANG");
     //         $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
     //         $this->db->select("anggota.KODE_INS AS KODE_INS");
     //         $this->db->select("instan.NAMA_INS AS NAMA_INS");
@@ -139,10 +139,10 @@ class Anggota_model extends  CI_Model
     //         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
     //         $this->db->where('anggota.KODE_INS !=', '99');
     //         $this->db->like('anggota.NAMA_ANG', $keyword);
-    //         $this->db->or_like('anggota.URUT_ANG', $keyword);
+    //         $this->db->or_like('anggota.KODE_ANG', $keyword);
     //         $this->db->or_like('instan.NAMA_INS', $keyword);
     //     } else {
-    //         $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+    //         $this->db->select("anggota.KODE_ANG AS KODE_ANG");
     //         $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
     //         $this->db->select("anggota.KODE_INS AS KODE_INS");
     //         $this->db->select("instan.NAMA_INS AS NAMA_INS");
@@ -156,7 +156,7 @@ class Anggota_model extends  CI_Model
     // public function getAnggota2($keyword = null)
     // {
     //     if ($keyword) {
-    //         $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+    //         $this->db->select("anggota.KODE_ANG AS KODE_ANG");
     //         $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
     //         $this->db->select("anggota.KODE_INS AS KODE_INS");
     //         $this->db->select("instan.NAMA_INS AS NAMA_INS");
@@ -164,10 +164,10 @@ class Anggota_model extends  CI_Model
     //         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
     //         $this->db->where('anggota.KODE_INS !=', '99');
     //         $this->db->like('anggota.NAMA_ANG', $keyword);
-    //         $this->db->or_like('anggota.URUT_ANG', $keyword);
+    //         $this->db->or_like('anggota.KODE_ANG', $keyword);
     //         $this->db->or_like('instan.NAMA_INS', $keyword);
     //     } else {
-    //         $this->db->select("anggota.URUT_ANG AS URUT_ANG");
+    //         $this->db->select("anggota.KODE_ANG AS KODE_ANG");
     //         $this->db->select("anggota.NAMA_ANG AS NAMA_ANG");
     //         $this->db->select("anggota.KODE_INS AS KODE_INS");
     //         $this->db->select("instan.NAMA_INS AS NAMA_INS");
@@ -183,7 +183,7 @@ class Anggota_model extends  CI_Model
     public function tambahDataAnggota()
     {
         $this->data = [            
-            "URUT_ANG" => $this->input->post('URUT_ANG', true),
+            "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
             "REKENING" => $this->input->post('REKENING', true),
             "KODE_INS" => $this->input->post('KODE_INS', true),            
@@ -198,7 +198,7 @@ class Anggota_model extends  CI_Model
         $this->db->insert('anggota', $this->data);
 
         // $this->pembayaran = [
-        //     "KODE_ANG" => $this->input->post('URUT_ANG', true),
+        //     "KODE_ANG" => $this->input->post('KODE_ANG', true),
         //     "TAHUN" => date("Y"),
         //     "BULAN" => date("m"),
         // ];
@@ -206,20 +206,20 @@ class Anggota_model extends  CI_Model
         // $this->db->insert('pembayaran', $this->Pembayaran);
     }
 
-    public function hapusDataAnggota($URUT_ANG)
+    public function hapusDataAnggota($KODE_ANG)
     {
-        $this->db->delete('anggota', ['URUT_ANG' => $URUT_ANG]);
+        $this->db->delete('anggota', ['KODE_ANG' => $KODE_ANG]);
     }
 
-    public function getAnggotaByUrut($URUT_ANG)
+    public function getAnggotaByUrut($KODE_ANG)
     {
-        return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->row_array();
+        return $this->db->get_where('anggota', ['KODE_ANG' => $KODE_ANG])->row_array();
     }
 
     public function editDataAnggota()
     {
         $this->data = [
-            "URUT_ANG" => $this->input->post('URUT_ANG', true),
+            "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "NAMA_ANG" => $this->input->post('NAMA_ANG', true),
             "REKENING" => $this->input->post('REKENING', true),
             "KODE_INS" => $this->input->post('KODE_INS', true),
@@ -229,7 +229,7 @@ class Anggota_model extends  CI_Model
             "NIK" => $this->input->post('NIK', true),
         ];
 
-        $this->db->where('URUT_ANG', $this->input->post('URUT_ANG'));
+        $this->db->where('KODE_ANG', $this->input->post('KODE_ANG'));
         $this->db->update('anggota', $this->data);
     }
 
@@ -244,7 +244,7 @@ class Anggota_model extends  CI_Model
         ON 
             anggota.KODE_INS = instan.KODE_INS
     WHERE
-        URUT_ANG = '$a'");
+        KODE_ANG = '$a'");
         return $query->row_array();
     }
 
@@ -260,17 +260,17 @@ class Anggota_model extends  CI_Model
         LEFT JOIN
         pinuang
         ON 
-            anggota.URUT_ANG = pinuang.KODE_ANG
+            anggota.KODE_ANG = pinuang.KODE_ANG
         LEFT JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         INNER JOIN
         instan
         ON 
             anggota.KODE_INS = instan.KODE_INS
         WHERE 
-        anggota.URUT_ANG = '$a' AND 
+        anggota.KODE_ANG = '$a' AND 
         pl.TAHUN = $tahun AND
         pl.BULAN = $bulan AND
         pinuang.TAHUN = $tahun AND
@@ -283,13 +283,13 @@ class Anggota_model extends  CI_Model
 
     public function cekAnggota()
     {
-        $URUT_ANG = $this->input->post('URUT_ANG', true);
-        return $this->db->get_where('anggota', ['URUT_ANG' => $URUT_ANG])->num_rows();
+        $KODE_ANG = $this->input->post('KODE_ANG', true);
+        return $this->db->get_where('anggota', ['KODE_ANG' => $KODE_ANG])->num_rows();
     }
 
     public function cekAnggotaPin()
     {
-        $URUT_ANG = $this->input->post('KODE', true);
+        $KODE_ANG = $this->input->post('KODE', true);
         $query = $this->db->query("SELECT
             *
         FROM
@@ -297,15 +297,15 @@ class Anggota_model extends  CI_Model
             INNER JOIN
             pembayaran
             ON 
-                anggota.URUT_ANG = pembayaran.KODE_ANG
+                anggota.KODE_ANG = pembayaran.KODE_ANG
         WHERE
-            anggota.URUT_ANG = $URUT_ANG");
+            anggota.KODE_ANG = $KODE_ANG");
         return $query->num_rows();
     }
 
     public function cekAnggotaKan()
     {
-        $URUT_ANG = $this->input->post('KODE', true);
+        $KODE_ANG = $this->input->post('KODE', true);
         $query = $this->db->query("SELECT
             *
         FROM
@@ -313,9 +313,9 @@ class Anggota_model extends  CI_Model
             INNER JOIN
             pl
             ON 
-                anggota.URUT_ANG = pl.KODE_ANG
+                anggota.KODE_ANG = pl.KODE_ANG
         WHERE
-            anggota.URUT_ANG = $URUT_ANG");
+            anggota.KODE_ANG = $KODE_ANG");
         return $query->num_rows();
     }
 }

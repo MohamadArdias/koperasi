@@ -40,10 +40,10 @@ class Dashboard extends CI_Controller
 
         $this->load->view('dashboard/index', $this->data);
     }
-	public function histori($URUT_ANG)
+	public function histori($KODE_ANG)
 	{
 		$this->data['title'] = 'Histori Pembayaran';
-		$this->data['anggota'] = $this->Dashboard->getHistori($URUT_ANG);
+		$this->data['anggota'] = $this->Dashboard->getHistori($KODE_ANG);
 		$this->load->view('dashboard/histori', $this->data);
 	}
 }

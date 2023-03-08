@@ -48,7 +48,7 @@ $data = '
 Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
                    --o0o-- <br>
 ============================================<br>
-No. Anggota : ' . $print['URUT_ANG'] . '(' . $print['NAMA_ANG'] . ') <br>
+No. Anggota : ' . $print['KODE_ANG'] . '(' . $print['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $print['KODE_INS'] . '(' . $print['NAMA_INS'] . ') <br>
 ============================================<br><br>
 JUMLAH TAGIHAN        : ' . number_format($print['JML_TGHN'], 0, ',', '.') . ' <br>

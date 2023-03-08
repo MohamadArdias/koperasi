@@ -88,7 +88,7 @@ $this->load->view('templates/sidebar');
                     ?>
                         <tr>
                             <td><?= $lap['TAHUN'] . '-' . $lap['BULAN'] ?></td>
-                            <td><?= $lap['URUT_ANG'] . '/' . $lap['NAMA_ANG']; ?></td>
+                            <td><?= $lap['KODE_ANG'] . '/' . $lap['NAMA_ANG']; ?></td>
                             <td><?= $lap['KODE_INS'] . '/' . $lap['NAMA_INS']; ?></td>
                             <td><?= $lap['TOTPOK'] ?></td>
                             <td style="padding-left: 20px; padding-right: 20px;" class="text-right"><?= number_format($lap['TOTWJB'], 0, ',', '.')  ?></td>

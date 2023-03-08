@@ -42,14 +42,14 @@ class Pembayaran_model extends  CI_Model
     {
         $this->db->select('*');
         $this->db->from('pembayaran');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pembayaran.KODE_ANG');
+        $this->db->join('anggota', 'anggota.KODE_ANG = pembayaran.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         $this->db->where('instan.KODE_INS !=', '99');
         $this->db->where('instan.KODE_INS !=', '98');
         $this->db->where('instan.KODE_INS !=', '97');
         $this->db->where('instan.KODE_INS !=', '96');
         $this->db->like('TGL_TGHN', date('Y-m'));
-        // $this->db->order_by('pembayaran.TGL_TGHN DESC, instan.KODE_INS ASC, anggota.URUT_ANG ASC');
+        // $this->db->order_by('pembayaran.TGL_TGHN DESC, instan.KODE_INS ASC, anggota.KODE_ANG ASC');
         return $this->db->get()->result_array();
     }
 
@@ -73,7 +73,7 @@ class Pembayaran_model extends  CI_Model
         //     INNER JOIN
         //     anggota
         //     ON 
-        //         pembayaran.KODE_ANG = anggota.URUT_ANG
+        //         pembayaran.KODE_ANG = anggota.KODE_ANG
         //     INNER JOIN
         //     instan
         //     ON 
@@ -92,7 +92,7 @@ class Pembayaran_model extends  CI_Model
             INNER JOIN
             anggota
             ON 
-                pembayaran.KODE_ANG = anggota.URUT_ANG
+                pembayaran.KODE_ANG = anggota.KODE_ANG
             INNER JOIN
             instan
             ON 

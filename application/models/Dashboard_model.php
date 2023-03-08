@@ -9,7 +9,7 @@ class Dashboard_model extends CI_Model
         // $this->db->select('*');
         $this->db->select_sum('POKU6', 'jumlah');
         $this->db->from('pl');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
+        $this->db->join('anggota', 'anggota.KODE_ANG = pl.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         $this->db->where('pl.TAHUN', $thn);
         $this->db->where('pl.BULAN', $bln);
@@ -26,7 +26,7 @@ class Dashboard_model extends CI_Model
         $bln = date('m');
         $this->db->select('*');
         $this->db->from('pl');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG');
+        $this->db->join('anggota', 'anggota.KODE_ANG = pl.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         $this->db->where('pl.TAHUN', $thn);
         $this->db->where('pl.BULAN', $bln);
@@ -38,7 +38,7 @@ class Dashboard_model extends CI_Model
         $this->db->order_by('anggota.KODE_INS', 'ASC');
         return $this->db->get()->result_array();
     }
-	public function getHistori($URUT_ANG)
+	public function getHistori($KODE_ANG)
 	{
 		$query = $this->db->query("SELECT
 	*
@@ -53,13 +53,13 @@ FROM
 	INNER JOIN
 	anggota
 	ON 
-		pl.KODE_ANG = anggota.URUT_ANG
+		pl.KODE_ANG = anggota.KODE_ANG
 	INNER JOIN
 	instan
 	ON 
 		anggota.KODE_INS = instan.KODE_INS
 WHERE
-	pl.KODE_ANG = $URUT_ANG");
+	pl.KODE_ANG = $KODE_ANG");
 	
 	return $query->result_array();	
 	}

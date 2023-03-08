@@ -16,14 +16,14 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Single Select Box</label>
-                    <select id="URUT_ANG" name="URUT_ANG" class="form-control" onkeyup="autofill()">
+                    <select id="KODE_ANG" name="KODE_ANG" class="form-control" onkeyup="autofill()">
                         <option value=""></option>
                         <?php
                         $query = $this->db->query("SELECT * FROM anggota WHERE anggota.KODE_INS <> 99 AND	anggota.KODE_INS <> 98 AND	anggota.KODE_INS <> 97 AND	anggota.KODE_INS <> 96")->result_array();
 
                         foreach ($query as $key) {
                         ?>
-                            <option value="Jakarta"><?= $key['URUT_ANG'] . '/ ' . $key['NAMA_ANG'] ?></option>
+                            <option value="Jakarta"><?= $key['KODE_ANG'] . '/ ' . $key['NAMA_ANG'] ?></option>
                         <?php
                         }
                         ?>
@@ -41,7 +41,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#URUT_ANG").select2({
+            $("#KODE_ANG").select2({
                 theme: 'bootstrap4',
                 placeholder: "Please Select"
             });

@@ -15,7 +15,7 @@ class Pay_model extends CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN = $TAHUN AND
         pl.BULAN = $BULAN AND
@@ -40,7 +40,7 @@ class Pay_model extends CI_Model
             INNER JOIN
             pl
             ON 
-                pl.KODE_ANG = anggota.URUT_ANG
+                pl.KODE_ANG = anggota.KODE_ANG
         WHERE
             instan.KODE_INS <> 99 AND
             instan.KODE_INS <> 98 AND
@@ -55,7 +55,7 @@ class Pay_model extends CI_Model
         return $query->result_array();
     }
 
-    public function getPrintKantor($URUT_ANG)
+    public function getPrintKantor($KODE_ANG)
     {
         $time = $this->input->get('time');
 
@@ -70,9 +70,9 @@ class Pay_model extends CI_Model
         INNER JOIN
         kantor_detail
         ON 
-            anggota.URUT_ANG = kantor_detail.KODE_ANG
+            anggota.KODE_ANG = kantor_detail.KODE_ANG
     WHERE
-        anggota.URUT_ANG = '$URUT_ANG' AND
+        anggota.KODE_ANG = '$KODE_ANG' AND
         kantor_detail.CREATED = '$time'");
 
         return $query->row_array();
@@ -90,20 +90,20 @@ class Pay_model extends CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         INNER JOIN
         instan
         ON 
             anggota.KODE_INS = instan.KODE_INS
     WHERE
-        anggota.URUT_ANG = '$a' AND
+        anggota.KODE_ANG = '$a' AND
         pl.TAHUN = $tahun AND
         pl.BULAN = $bulan");
 
         return $query->row_array();
     }
 
-    public function getPrint($URUT_ANG)
+    public function getPrint($KODE_ANG)
     {
         $time = $this->input->get('time');
 
@@ -118,9 +118,9 @@ class Pay_model extends CI_Model
             INNER JOIN
             pembayaran_detail
             ON 
-                anggota.URUT_ANG = pembayaran_detail.KODE_ANG
+                anggota.KODE_ANG = pembayaran_detail.KODE_ANG
         WHERE
-            anggota.URUT_ANG = $URUT_ANG AND
+            anggota.KODE_ANG = $KODE_ANG AND
             pembayaran_detail.CREATED = '$time'");
 
         return $query->row_array();
@@ -131,7 +131,7 @@ class Pay_model extends CI_Model
         $query = $this->db->query("SELECT
             pembayaran_detail.TAHUN, 
             pembayaran_detail.BULAN, 
-            anggota.URUT_ANG, 
+            anggota.KODE_ANG, 
             anggota.NAMA_ANG, 
             instan.KODE_INS, 
             instan.NAMA_INS, 
@@ -150,7 +150,7 @@ class Pay_model extends CI_Model
             INNER JOIN
             pembayaran_detail
             ON 
-                anggota.URUT_ANG = pembayaran_detail.KODE_ANG
+                anggota.KODE_ANG = pembayaran_detail.KODE_ANG
         ORDER BY
             pembayaran_detail.CREATED DESC");
         return $query->result_array();
@@ -169,7 +169,7 @@ class Pay_model extends CI_Model
         INNER JOIN
         kantor_detail
         ON 
-            anggota.URUT_ANG = kantor_detail.KODE_ANG
+            anggota.KODE_ANG = kantor_detail.KODE_ANG
     ORDER BY
         kantor_detail.CREATED DESC");
         return $query->result_array();
@@ -189,7 +189,7 @@ class Pay_model extends CI_Model
         INNER JOIN
         pembayaran
         ON 
-            anggota.URUT_ANG = pembayaran.KODE_ANG
+            anggota.KODE_ANG = pembayaran.KODE_ANG
         INNER JOIN
         instan
         ON 
@@ -219,7 +219,7 @@ class Pay_model extends CI_Model
             INNER JOIN
             anggota
             ON
-                pl.KODE_ANG = anggota.URUT_ANG
+                pl.KODE_ANG = anggota.KODE_ANG
             INNER JOIN
             pembayaran
             ON

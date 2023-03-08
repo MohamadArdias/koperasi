@@ -76,9 +76,9 @@ $this->load->view('templates/sidebar');
                                 <label class="col-sm-3 text-end control-label col-form-label">Kode Anggota</label>
                                 <div class="col-sm-7">
                                     <div class="input-group input-group-sm">
-                                        <input type="text" name="KODE" class="form-control" id="KODE" value="<?= $lunas['URUT_ANG']; ?>" readonly>
+                                        <input type="text" name="KODE" class="form-control" id="KODE" value="<?= $lunas['KODE_ANG']; ?>" readonly>
                                     </div>
-                                    <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+                                    <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
                                 </div>
                             </div>
                             <div class="form-group row mb-2">

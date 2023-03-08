@@ -20,9 +20,9 @@ $this->load->view('templates/sidebar');
                 <div class="col-sm-9">
                     <div class="input-group input-group-sm">
                         <i class="bi-person-fill input-group-text"></i>
-                        <input type="text" name="URUT_ANG" class="form-control" id="URUT_ANG" placeholder="-" />
+                        <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" placeholder="-" />
                     </div>
-                    <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+                    <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
                 </div>
             </div>
 

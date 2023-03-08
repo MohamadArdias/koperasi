@@ -10,7 +10,7 @@ $this->load->view('templates/sidebar');
             <div class="col-sm-9">
                 <div class="input-group">
                     <i class="bi-person-fill input-group-text"></i>
-                    <input type="text" name="URUT_ANG" class="form-control" id="URUT_ANG" value="<?= $anggota['URUT_ANG']; ?>" readonly>
+                    <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" value="<?= $anggota['KODE_ANG']; ?>" readonly>
                 </div>
             </div>
         </div>

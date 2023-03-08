@@ -7,8 +7,8 @@ $this->load->view('templates/sidebar');
     <form action="" method="POST">
         <div class="card-body row mt-4">
             <div>
-                <input type="hidden" name="URUT_ANG" class="form-control" id="URUT_ANG" value="<?= $anggota['URUT_ANG']; ?>" />
-                <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+                <input type="hidden" name="KODE_ANG" class="form-control" id="KODE_ANG" value="<?= $anggota['KODE_ANG']; ?>" />
+                <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
             </div>
 
             <div class="form-group row mb-2">

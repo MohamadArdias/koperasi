@@ -183,14 +183,14 @@ $this->load->view('templates/sidebar');
                         ?>
                             <tr>
                                 <td><?= $key['TANGGAL']; ?></td>
-                                <td><?= $key['URUT_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
+                                <td><?= $key['KODE_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                                 <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
                                 <td align="right"><?= number_format($key['JUMLAH'], 0, ',', '.'); ?></td>
                                 <td align="right"><?= $key['PRO']; ?></td>
                                 <td align="right"><?= $key['JANGKA']; ?></td>
                                 <td><?= $key['IDNAMA']; ?></td>
                                 <!-- <td class="text-center">
-                                    <a href="<?= base_url(); ?>index.php/keuangan/cetakPinj/<?= $key['URUT_ANG']; ?>?NOFAK=<?= $key['NOFAK']; ?>&&TGL=<?= $key['TANGGAL']; ?>" class="btn btn-secondary" target="blank">Print</a>
+                                    <a href="<?= base_url(); ?>index.php/keuangan/cetakPinj/<?= $key['KODE_ANG']; ?>?NOFAK=<?= $key['NOFAK']; ?>&&TGL=<?= $key['TANGGAL']; ?>" class="btn btn-secondary" target="blank">Print</a>
                                 </td> -->
                                 <td>
                                     <?php

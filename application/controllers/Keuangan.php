@@ -310,16 +310,16 @@ class Keuangan extends CI_Controller
         }
     }
 
-    public function print($URUT_ANG)
+    public function print($KODE_ANG)
     {
-        $this->data['print'] = $this->Pay->getPrint($URUT_ANG);
+        $this->data['print'] = $this->Pay->getPrint($KODE_ANG);
 
         $this->load->view('keuangan/print', $this->data);
     }
 
-    public function cetakPinj($URUT_ANG)
+    public function cetakPinj($KODE_ANG)
     {
-        $this->data['print'] = $this->Us->getPrint($URUT_ANG);
+        $this->data['print'] = $this->Us->getPrint($KODE_ANG);
 
         $this->load->view('keuangan/printPinj', $this->data);
     }

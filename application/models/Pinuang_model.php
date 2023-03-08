@@ -28,7 +28,7 @@ class Pinuang_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            pl.KODE_ANG = anggota.URUT_ANG
+            pl.KODE_ANG = anggota.KODE_ANG
     WHERE
         instan.KODE_INS != 99 AND
         instan.KODE_INS != 98 AND
@@ -101,7 +101,7 @@ class Pinuang_model extends  CI_Model
             "TAHUN" => substr($a, 0, 4),
             "BULAN" => substr($a, 5, 2),
             "NOFAK" => $this->input->post('NOFAK', true),
-            "KODE_ANG" => $this->input->post('URUT_ANG', true),
+            "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "JMLP_ANG" => $this->input->post('JMLP_ANG', true),
             "TGLP_ANG" => $this->input->post('TGLP_ANG', true),
             "TGLT_ANG" => $date,
@@ -136,7 +136,7 @@ class Pinuang_model extends  CI_Model
             INNER JOIN
             anggota
             ON 
-                anggota.URUT_ANG = pl.KODE_ANG
+                anggota.KODE_ANG = pl.KODE_ANG
         WHERE
             pinuang.TAHUN = $THN AND
             pl.TAHUN = $THN AND
@@ -163,7 +163,7 @@ class Pinuang_model extends  CI_Model
             INNER JOIN
             anggota
             ON 
-                anggota.URUT_ANG = pl.KODE_ANG
+                anggota.KODE_ANG = pl.KODE_ANG
         WHERE
             pinuang.TAHUN = $THN AND
             pl.TAHUN = $THN AND
@@ -189,7 +189,7 @@ class Pinuang_model extends  CI_Model
     //         INNER JOIN
     //         anggota
     //         ON 
-    //             anggota.URUT_ANG = pl.KODE_ANG
+    //             anggota.KODE_ANG = pl.KODE_ANG
     //     WHERE
     //         pinuang.TAHUN = $THN AND
     //         pl.TAHUN = $THN AND
@@ -216,7 +216,7 @@ class Pinuang_model extends  CI_Model
     //         INNER JOIN
     //         anggota
     //         ON 
-    //             anggota.URUT_ANG = pl.KODE_ANG
+    //             anggota.KODE_ANG = pl.KODE_ANG
     //     WHERE
     //         pinuang.TAHUN = $THN AND
     //         pl.TAHUN = $THN AND
@@ -243,7 +243,7 @@ class Pinuang_model extends  CI_Model
     //         INNER JOIN
     //         anggota
     //         ON 
-    //             anggota.URUT_ANG = pl.KODE_ANG
+    //             anggota.KODE_ANG = pl.KODE_ANG
     //     WHERE
     //         pinuang.TAHUN = $THN AND
     //         pl.TAHUN = $THN AND
@@ -270,7 +270,7 @@ class Pinuang_model extends  CI_Model
     //         INNER JOIN
     //         anggota
     //         ON 
-    //             anggota.URUT_ANG = pl.KODE_ANG
+    //             anggota.KODE_ANG = pl.KODE_ANG
     //     WHERE
     //         pinuang.TAHUN = $THN AND
     //         pl.TAHUN = $THN AND
@@ -297,7 +297,7 @@ class Pinuang_model extends  CI_Model
     //         INNER JOIN
     //         anggota
     //         ON 
-    //             anggota.URUT_ANG = pl.KODE_ANG
+    //             anggota.KODE_ANG = pl.KODE_ANG
     //     WHERE
     //         pinuang.TAHUN = $THN AND
     //         pl.TAHUN = $THN AND
@@ -316,7 +316,7 @@ class Pinuang_model extends  CI_Model
         $this->db->select('*');
         $this->db->from('pinuang');
         $this->db->join('pl', 'pl.KODE_ANG = pinuang.KODE_ANG');
-        $this->db->join('anggota', 'anggota.URUT_ANG = pinuang.KODE_ANG');
+        $this->db->join('anggota', 'anggota.KODE_ANG = pinuang.KODE_ANG');
         $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
         // $this->db->where('pinuang.TAHUN', date('Y'));
         // $this->db->where('pinuang.BULAN', date('m'));
@@ -374,7 +374,7 @@ class Pinuang_model extends  CI_Model
             INNER JOIN
             anggota
             ON 
-                pl.KODE_ANG = anggota.URUT_ANG
+                pl.KODE_ANG = anggota.KODE_ANG
             INNER JOIN
             pinuang
             ON 

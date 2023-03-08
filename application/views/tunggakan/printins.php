@@ -171,7 +171,7 @@ foreach ($keuangan as $lap) {
                                         <td width="45" align="center" style="font-size:9px; "></td>
                                         <td width="20" align="right" style=" border-right: 1px solid black; border-left: 1px solid black; ">' . $i++ . '</td>
                                         <td width="45" align="center" style="border-right: 1px solid black; ">' . $lap['TAHUN'] . '-' . $lap['BULAN'] . '</td>
-                                        <td width="45" align="center" style="border-right: 1px solid black; ">' . $lap['URUT_ANG'] . '</td>
+                                        <td width="45" align="center" style="border-right: 1px solid black; ">' . $lap['KODE_ANG'] . '</td>
                                         <td width="160" style="border-right: 1px solid black; ">' . $lap['NAMA_ANG'] . '</td>
                                         <td width="70" align="right" style="border-right: 1px solid black; ">' . number_format($t, 0, ',', '.') . '</td>
                                     </tr>';

@@ -76,7 +76,7 @@ $this->load->view('templates/sidebar');
                     foreach ($tunggakan as $ang) : ?>
                         <tr>
                             <td><?= $i++ ?></td>
-                            <td><?= $ang['URUT_ANG'] . '/' . $ang['NAMA_ANG']; ?></td>
+                            <td><?= $ang['KODE_ANG'] . '/' . $ang['NAMA_ANG']; ?></td>
                             <td><?= $ang['KODE_INS'] . '/' . $ang['NAMA_INS']; ?></td>
                             <td style="text-align: right"><?= number_format($ang['POKU6'], 0, ',', '.') ?></td>
                             <td><span class="badge bg-danger">Belum Lunas</span></td>

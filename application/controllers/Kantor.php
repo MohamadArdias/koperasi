@@ -86,9 +86,9 @@ class Kantor extends CI_Controller
         $this->load->view('kantor/cetak', $this->data);
     }
 
-    public function print($URUT_ANG)
+    public function print($KODE_ANG)
     {
-        $this->data['print'] = $this->Pay->getPrintKantor($URUT_ANG);
+        $this->data['print'] = $this->Pay->getPrintKantor($KODE_ANG);
 
         $this->load->view('kantor/print', $this->data);
     }

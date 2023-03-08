@@ -36,7 +36,7 @@ $this->load->view('templates/sidebar');
                                 <div class="input-group input-group-sm">
                                     <input type="text" name="KODE" class="form-control" id="KODE" onkeyup="autofill()" autofocus>
                                 </div>
-                                <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+                                <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
                             </div>
                         </div>
                         <div class="form-group row mb-2">
@@ -102,7 +102,7 @@ $this->load->view('templates/sidebar');
                                 foreach ($query as $key) {
                                 ?>
                                     <tr>
-                                        <td><?= $key['URUT_ANG']; ?></td>
+                                        <td><?= $key['KODE_ANG']; ?></td>
                                         <td><?= $key['NAMA_ANG']; ?></td>
                                     </tr>
                                 <?php

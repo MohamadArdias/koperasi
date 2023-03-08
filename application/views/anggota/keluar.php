@@ -60,11 +60,11 @@ $this->load->view('templates/sidebar');
                     ?>
                         <tr>
                             <td><?= $i; $i++;?></td>
-                            <td><a href="<?= base_url(); ?>index.php/Anggota/histori2/<?= $ang['URUT_ANG']; ?>"><?= $ang['URUT_ANG'] . '/' . $ang['NAMA_ANG']; ?></a></td>
+                            <td><a href="<?= base_url(); ?>index.php/Anggota/histori2/<?= $ang['KODE_ANG']; ?>"><?= $ang['KODE_ANG'] . '/' . $ang['NAMA_ANG']; ?></a></td>
                             <td><?= $a; ?></td>
                             <td><?= $ang['KODE_INS']; ?>/ <?= $ang['NAMA_INS']; ?></td>
                             <td><?= $ang['TGLK_ANG']; ?></td>
-                            <td><a href="<?= base_url(); ?>index.php/Anggota/detail/<?= $ang['URUT_ANG']; ?>" class="btn btn-warning">Detail</a></td>
+                            <td><a href="<?= base_url(); ?>index.php/Anggota/detail/<?= $ang['KODE_ANG']; ?>" class="btn btn-warning">Detail</a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

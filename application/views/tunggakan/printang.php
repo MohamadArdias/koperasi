@@ -138,7 +138,7 @@ Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
                    --o0o-- <br>
 ============================================<br>
 TAGIHAN UNTUK BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '<br>
-No. Anggota : ' . $printang['URUT_ANG'] . '(' . $printang['NAMA_ANG'] . ') <br>
+No. Anggota : ' . $printang['KODE_ANG'] . '(' . $printang['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $printang['KODE_INS'] . '(' . $printang['NAMA_INS'] . ') <br>
 ============================================<br>
 TUNGGAKAN               : ' . number_format($tung, 0, ',', '.') . ' <br>';  

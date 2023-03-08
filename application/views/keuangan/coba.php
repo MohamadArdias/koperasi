@@ -151,7 +151,7 @@ Ruko Borobudur No.8 (0333) 424315 BANYUWANGI<br>
                    --o0o-- <br>
 ============================================<br>
 TAGIHAN UNTUK BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '<br>
-No. Anggota : ' . $key['URUT_ANG'] . '(' . $key['NAMA_ANG'] . ') <br>
+No. Anggota : ' . $key['KODE_ANG'] . '(' . $key['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $key['KODE_INS'] . '(' . $key['NAMA_INS'] . ') <br>
 ============================================<br>
 SIMPANAN WAJIB        : ' . number_format($key['WAJIB'], 0, ',', '.') . ' <br>';

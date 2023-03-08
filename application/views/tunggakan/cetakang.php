@@ -105,11 +105,11 @@ $this->load->view('templates/sidebar');
                         ?>
                             <tr>
                                 <td><?= $i++; ?></td>
-                                <td><?= $ins['URUT_ANG'] . '/' . $ins['NAMA_ANG']; ?></td>
+                                <td><?= $ins['KODE_ANG'] . '/' . $ins['NAMA_ANG']; ?></td>
                                 <td><?= $ins['KODE_INS'] . '/ ' . $ins['NAMA_INS']; ?></td>
                                 <td class="text-right"><?= number_format($ins['POKU6'], 0, ',', '.') ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url(); ?>index.php/tunggakan/printang/<?= $ins['URUT_ANG']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-secondary" target="blank">Print</a>
+                                    <a href="<?= base_url(); ?>index.php/tunggakan/printang/<?= $ins['KODE_ANG']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-secondary" target="blank">Print</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

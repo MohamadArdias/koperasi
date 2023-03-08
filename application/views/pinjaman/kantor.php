@@ -115,9 +115,9 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                                     <label for="nama" class="col-sm-4 text-end control-label col-form-label">Kode Anggota</label>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-sm">
-                                            <input type="text" name="URUT_ANG" class="form-control" id="URUT_ANG" onkeyup="autofill2()" autofocus>
+                                            <input type="text" name="KODE_ANG" class="form-control" id="KODE_ANG" onkeyup="autofill2()" autofocus>
                                         </div>
-                                        <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+                                        <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-2">
@@ -221,7 +221,7 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                             foreach ($query as $key) {
                             ?>
                                 <tr>
-                                    <td><?= $key['URUT_ANG']; ?></td>
+                                    <td><?= $key['KODE_ANG']; ?></td>
                                     <td><?= $key['NAMA_ANG']; ?></td>
                                 </tr>
                             <?php
@@ -260,12 +260,12 @@ $this->load->view('templates/footer');
     })
 
     function autofill2() {
-        var URUT_ANG = $('#URUT_ANG').val();
+        var KODE_ANG = $('#KODE_ANG').val();
         var KODE = $('#KODE').val();
         $.ajax({
             url: '<?= base_url(); ?>index.php/Pinjaman/autofill2',
             data: {
-                'URUT_ANG': URUT_ANG,
+                'KODE_ANG': KODE_ANG,
                 'KODE': KODE
             },
         }).success(

@@ -19,7 +19,7 @@ class Kirim_model extends CI_model
         INNER JOIN
         anggota
         ON 
-            pembayaran.KODE_ANG = anggota.URUT_ANG
+            pembayaran.KODE_ANG = anggota.KODE_ANG
         INNER JOIN
         instan
         ON 
@@ -37,7 +37,7 @@ class Kirim_model extends CI_model
         // INNER JOIN
         // anggota
         // ON 
-        //     pembayaran.KODE_ANG = anggota.URUT_ANG
+        //     pembayaran.KODE_ANG = anggota.KODE_ANG
         // INNER JOIN
         // instan
         // ON 
@@ -47,7 +47,7 @@ class Kirim_model extends CI_model
         // anggota.REKENING > 1
         // ORDER BY
 	    // instan.KODE_INS ASC, 
-	    // anggota.URUT_ANG ASC");
+	    // anggota.KODE_ANG ASC");
         // return $query->result_array();
 
         $query = $this->db->query("SELECT
@@ -57,7 +57,7 @@ class Kirim_model extends CI_model
             INNER JOIN
             pl
             ON 
-                anggota.URUT_ANG = pl.KODE_ANG
+                anggota.KODE_ANG = pl.KODE_ANG
             INNER JOIN
             instan
             ON 

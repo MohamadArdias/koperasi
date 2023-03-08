@@ -41,7 +41,7 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                                     <input type="text" name="KODE" class="form-control" id="KODE" onkeyup="autofill()" autofocus>
                                     <input type="hidden" name="first_name" class="form-control" id="first_name" value="<?= $sesUser['first_name'] ?>" />
                                 </div>
-                                <small class="form-text text-danger"><?= form_error('URUT_ANG'); ?></small>
+                                <small class="form-text text-danger"><?= form_error('KODE_ANG'); ?></small>
                             </div>
                         </div>
                         <div class="form-group row mb-2">
@@ -113,7 +113,7 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                             foreach ($query as $key) {
                             ?>
                                 <tr>
-                                    <td><?= $key['URUT_ANG']; ?></td>
+                                    <td><?= $key['KODE_ANG']; ?></td>
                                     <td><?= $key['NAMA_ANG']; ?></td>
                                 </tr>
                             <?php

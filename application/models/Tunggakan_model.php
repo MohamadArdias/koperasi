@@ -18,7 +18,7 @@ class Tunggakan_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN = $TAHUN AND
         pl.BULAN = $BULAN AND
@@ -44,7 +44,7 @@ class Tunggakan_model extends  CI_Model
             INNER JOIN
             pl
             ON 
-                pl.KODE_ANG = anggota.URUT_ANG
+                pl.KODE_ANG = anggota.KODE_ANG
         WHERE
             instan.KODE_INS <> 99 AND
             instan.KODE_INS <> 98 AND
@@ -62,7 +62,7 @@ class Tunggakan_model extends  CI_Model
     public function getIns($KODE_INS, $TAHUN, $BULAN)
     {
         $query = $this->db->query("SELECT
-        anggota.URUT_ANG, 
+        anggota.KODE_ANG, 
         anggota.NAMA_ANG, 
         instan.KODE_INS, 
         instan.NAMA_INS, 
@@ -78,7 +78,7 @@ class Tunggakan_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN = $TAHUN AND
         pl.BULAN = $BULAN AND
@@ -90,7 +90,7 @@ class Tunggakan_model extends  CI_Model
     public function getAllKeuangan($THN, $BLN)
     {
         $query = $this->db->query("SELECT 
-            anggota.URUT_ANG,
+            anggota.KODE_ANG,
             anggota.NAMA_ANG,
             instan.KODE_INS, 
             instan.NAMA_INS, 
@@ -106,7 +106,7 @@ class Tunggakan_model extends  CI_Model
             INNER JOIN
             pl
             ON 
-                pl.KODE_ANG = anggota.URUT_ANG
+                pl.KODE_ANG = anggota.KODE_ANG
         WHERE
             instan.KODE_INS <> 99 AND
             instan.KODE_INS <> 98 AND
@@ -137,18 +137,18 @@ class Tunggakan_model extends  CI_Model
         INNER JOIN
         pl
         ON 
-            anggota.URUT_ANG = pl.KODE_ANG
+            anggota.KODE_ANG = pl.KODE_ANG
         WHERE
         pl.TAHUN = $TAHUN AND
         pl.BULAN = $BULAN AND
-        anggota.URUT_ANG = '$KODE_ANG'");
+        anggota.KODE_ANG = '$KODE_ANG'");
         return $query->row_array();
 
         // $this->db->select('*');
         // $this->db->from('pl');
-        // $this->db->join('anggota', 'anggota.URUT_ANG = pl.KODE_ANG', 'right');
+        // $this->db->join('anggota', 'anggota.KODE_ANG = pl.KODE_ANG', 'right');
         // $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS', 'right');
-        // $this->db->where('anggota.URUT_ANG', $KODE_ANG);
+        // $this->db->where('anggota.KODE_ANG', $KODE_ANG);
         // $this->db->where('TAHUN', date('Y'));
         // $this->db->where('BULAN', date('m'));
         // return  $this->db->get()->row_array();
@@ -167,7 +167,7 @@ class Tunggakan_model extends  CI_Model
                 INNER JOIN
                 pl
                 ON 
-                    pl.KODE_ANG = anggota.URUT_ANG
+                    pl.KODE_ANG = anggota.KODE_ANG
             WHERE
                 instan.KODE_INS <> 99 AND
                 instan.KODE_INS <> 98 AND
@@ -195,7 +195,7 @@ class Tunggakan_model extends  CI_Model
                 INNER JOIN
                 pl
                 ON 
-                    pl.KODE_ANG = anggota.URUT_ANG
+                    pl.KODE_ANG = anggota.KODE_ANG
             WHERE
                 instan.KODE_INS <> 99 AND
                 instan.KODE_INS <> 98 AND
