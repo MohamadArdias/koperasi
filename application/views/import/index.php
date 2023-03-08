@@ -59,21 +59,29 @@ $this->load->view('templates/sidebar');
                                     <select id="GET_POTONG" name="GET_POTONG" class="form-select" aria-label="Default select example">
                                         <!-- <option hidden>--Pilih--</option> -->
                                         <?php
+                                        // $query = $this->db->query("SELECT DISTINCT
+                                        //     pl.TAHUN, 
+                                        //     pl.BULAN
+                                        // FROM
+                                        //     pl
+                                        //     INNER JOIN
+                                        //     pinuang
+                                        //     ON 
+                                        //         pl.KODE_ANG = pinuang.KODE_ANG
+                                        // WHERE
+                                        //     pl.TAHUN = pinuang.TAHUN AND
+                                        //     pl.BULAN = pinuang.BULAN
+                                        // ORDER BY
+                                        //     pl.TAHUN DESC, 
+                                        //     pl.BULAN DESC")->result_array();
                                         $query = $this->db->query("SELECT DISTINCT
-                                            pl.TAHUN, 
-                                            pl.BULAN
+                                            pembayaran.TAHUN, 
+                                            pembayaran.BULAN
                                         FROM
-                                            pl
-                                            INNER JOIN
-                                            pinuang
-                                            ON 
-                                                pl.KODE_ANG = pinuang.KODE_ANG
-                                        WHERE
-                                            pl.TAHUN = pinuang.TAHUN AND
-                                            pl.BULAN = pinuang.BULAN
+                                            pembayaran
                                         ORDER BY
-                                            pl.TAHUN DESC, 
-                                            pl.BULAN DESC")->result_array();
+                                            pembayaran.TAHUN DESC, 
+                                            pembayaran.BULAN DESC")->result_array();
 
                                         foreach ($query as $key) {
                                         ?>

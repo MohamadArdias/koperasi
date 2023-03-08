@@ -118,6 +118,7 @@ class Import extends CI_Controller
             // );
             // $this->db->update('pl', $pl, $where);
         }
+        $this->session->set_flashdata('succes', 'Data Berhasil di Potong');
         redirect('Import');
     }
 

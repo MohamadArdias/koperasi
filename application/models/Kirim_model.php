@@ -64,7 +64,12 @@ class Kirim_model extends CI_model
                 anggota.KODE_INS = instan.KODE_INS
         WHERE
             pl.TAHUN = $THN AND
-            pl.BULAN = $BLN
+            pl.BULAN = $BLN AND
+	        anggota.REKENING > 1 AND
+            instan.KODE_INS != 99 AND
+            instan.KODE_INS != 98 AND
+            instan.KODE_INS != 97 AND
+            instan.KODE_INS != 96
         ORDER BY
         	instan.KODE_INS ASC");
         return $query->result_array();        

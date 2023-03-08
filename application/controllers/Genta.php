@@ -119,7 +119,7 @@ class Genta extends CI_Controller
 
             $cek_pinsim = $this->Pinsimp->cek($thn, $bln, $kode);
 
-            if ($cek_pinsim != 1) {
+            if ($cek_pinsim < 1) {
                 $this->db->insert('pinsimp', $pinsimp);
                 $this->db->insert('pl', $pl);
             } else {
@@ -247,7 +247,7 @@ class Genta extends CI_Controller
                 'NOFAK' => $key['NOFAK']
             ];
 
-            if ($cek_pinsim != 1) {
+            if ($cek_pinsim < 1) {
                 $this->db->insert('pinuang', $pinuang_uang);
             } else {
                 $this->db->update('pinuang', $pinuang_uang, $where);
@@ -356,7 +356,7 @@ class Genta extends CI_Controller
                 'NOFAK' => $key['NOFAK']
             ];
 
-            if ($cek_pinsim != 1) {
+            if ($cek_pinsim < 1) {
                 $this->db->insert('pinuang', $pinuang_uang);
             } else {
                 $this->db->update('pinuang', $pinuang_uang, $where);
