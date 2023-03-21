@@ -23,6 +23,7 @@ class Pengurus_model extends CI_Model
             "WAKIL" => $this->input->post('WAKIL', true),
             "BENDAH1" => $this->input->post('BENDAH1', true),
             "BENDAH2" => $this->input->post('BENDAH2', true),
+            "REKENING" => $this->input->post('REKENING', true),
         ];
         // $this->db->where('ID', 1);
         $this->db->update('pengurus', $this->data);

@@ -68,7 +68,7 @@
               </ul>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#kantor" aria-controls="forms-nav">
                   <i class="bi bi-gear-wide-connected"></i><span>Kantor</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
@@ -84,7 +84,7 @@
                       </a>
                   </li>
               </ul>
-          </li>
+          </li> -->
 
           <!-- <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/tagihan">

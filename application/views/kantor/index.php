@@ -66,9 +66,9 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                             <div class="col-sm-3">
                                 <input type="text" name="BULAN" class="form-control" id="BULAN" readonly>
                             </div>
-                        </div>                        
+                        </div>
                         <div class="form-group row mb-2">
-                            <label for="In" class="col-sm-4 text-end control-label col-form-label">Tanggal Pembayaran</label>
+                            <label for="In" class="col-sm-4 text-end control-label col-form-label">Tanggal</label>
                             <div class="col-sm-7">
                                 <div class="input-group input-group-sm">
                                     <input type="text" class="form-control" id="TGL_BAYAR" name="TGL_BAYAR">
@@ -77,28 +77,27 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                             </div>
                         </div>
                         <div class="form-group row mb-2">
-                            <label for="In" class="col-sm-4 text-end control-label col-form-label">Total Bunga</label>
-                            <div class="col-sm-7">
+                            <label class="col-sm-4 text-end control-label col-form-label">Bunga</label>
+                            <div class="col-sm-3 input-group input-group-sm" >
+                                <input type="text" name="BUNGA" class="form-control" id="BUNGA" readonly>
+                            </div>
+                            <div class="col-sm-4">
                                 <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" id="TTL_BUNGA" name="TTL_BUNGA" readonly>
-                                    <input type="hidden" class="form-control" id="BUNGA" name="BUNGA" readonly>
+                                    <i class="input-group-text">Rp.</i>
+                                    <input type="number" name="BUNGA" class="form-control" id="BUNGA" min="1" >
                                 </div>
-                                <small class="form-text text-danger"><?= form_error('TTL_BUNGA') ?></small>
                             </div>
                         </div>
                         <div class="form-group row mb-2">
-                            <label class="col-sm-4 text-end control-label col-form-label">Sisa Tagihan</label>
-                            <div class="col-sm-7">
-                                <input type="text" name="TAGIHAN" class="form-control" id="TAGIHAN" readonly>
+                            <label class="col-sm-4 text-end control-label col-form-label">Pokok</label>
+                            <div class="col-sm-3 input-group input-group-sm" >
+                                <input type="text" name="POKOK" class="form-control" id="POKOK" readonly>
                             </div>
-                        </div>
-                        <div class="form-group row mb-2">
-                            <label class="col-sm-4 text-end control-label col-form-label">Jumlah Uang Yang dibayar</label>
-                            <div class="col-sm-7">
+                            <div class="col-sm-4">
                                 <div class="input-group input-group-sm">
-                                    <input type="number" class="form-control" id="JML_BAYAR" name="JML_BAYAR" min="1">
+                                    <i class="input-group-text">Rp.</i>
+                                    <input type="number" name="POKOK" class="form-control" id="POKOK" min="1" >
                                 </div>
-                                <small class="form-text text-danger"><?= form_error('JML_BAYAR') ?></small>
                             </div>
                         </div>
                         <div class="col-sm-7 text-end mt-3 ">

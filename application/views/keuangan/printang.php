@@ -84,13 +84,13 @@ $pdf = new \TCPDF();
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
 // $pdf->SetTopMargin(5);
-// $pdf->SetFooterMargin(3);
-// $pdf->SetLeftMargin(3);
-// $pdf->SetRightMargin(3);
+// $pdf->SetFooterMargin(1);
+$pdf->SetLeftMargin(3);
+$pdf->SetRightMargin(3);
 // $pdf->AddPage('L', 'mm', 'A4');
 $pageLayout = array(95, 140);
 $pdf->AddPage('P', $pageLayout);
-$pdf->SetFont('', '', 8);
+$pdf->SetFont('', 'B', 9);
 
 $uang = $printang['POKU1'] + $printang['BNGU1'];
 $kons = $printang['POKU2'] + $printang['BNGU2'];
@@ -102,13 +102,13 @@ $tung = $printang['POKU6']; //POKU6 = TUNGGAKAN
 $data = '
 <pre>
             KPRI BANGKIT BERSAMA <br>
-Ruko Borobudur No.8 (0333) 424315 BANYUWANGI<br>
+ Ruko Borobudur No.8 (0333) 424315 BANYUWANGI<br>
                    --o0o-- <br>
-============================================<br>
+==============================================<br>
 TAGIHAN UNTUK BULAN ' . tanggal_indo2($tahun . '-' . $bulan) . '<br>
 No. Anggota : ' . $printang['KODE_ANG'] . '(' . $printang['NAMA_ANG'] . ') <br>
 INSTANSI    : ' . $printang['KODE_INS'] . '(' . $printang['NAMA_INS'] . ') <br>
-============================================<br>
+==============================================<br>
 SIMPANAN WAJIB          : ' . number_format($printang['WAJIB'], 0, ',', '.') . ' <br>';
 
 if ($printang['POKOK'] != 0) {
@@ -189,9 +189,9 @@ function terbilang($nilai)
 
 
 $data .= '
-____________________________________________<br>
+______________________________________________<br>
 JUMLAH                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
-============================================<br>
+==============================================<br>
 ' . terbilang($ttl) . ' rupiah<br><br><br>';
 
 $data .= '

@@ -168,7 +168,7 @@ $this->load->view('templates/sidebar');
                 <table class="table table-borderless datatable" id="customers">
                     <thead class="table-primary">
                         <tr>
-                            <th style="padding-left: 20px; padding-right: 20px;" class="text-center">Tanggal</th>
+                            <th style="padding-left: 20px; padding-right: 20px;" class="text-center">Faktur</th>
                             <th class="text-center">Anggota</th>
                             <th class="text-center">Instansi</th>
                             <th class="text-center">Jumlah</th>
@@ -182,7 +182,7 @@ $this->load->view('templates/sidebar');
                         <?php foreach ($us as $key) {
                         ?>
                             <tr>
-                                <td><?= $key['TANGGAL']; ?></td>
+                                <td><?= $key['NOFAK']; ?></td>
                                 <td><?= $key['KODE_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                                 <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
                                 <td align="right"><?= number_format($key['JUMLAH'], 0, ',', '.'); ?></td>

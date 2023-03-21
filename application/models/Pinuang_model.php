@@ -125,28 +125,57 @@ class Pinuang_model extends  CI_Model
 
     public function pinjKantor($THN, $BLN)
     {
+        // $query = $this->db->query("SELECT
+        //     *
+        // FROM
+        //     pinuang
+        //     INNER JOIN
+        //     pl
+        //     ON 
+        //         pinuang.KODE_ANG = pl.KODE_ANG
+        //     INNER JOIN
+        //     anggota
+        //     ON 
+        //         anggota.KODE_ANG = pl.KODE_ANG
+        // WHERE
+        //     pinuang.TAHUN = $THN AND
+        //     pl.TAHUN = $THN AND
+        //     pinuang.BULAN = $BLN AND
+        //     pl.BULAN = $BLN AND
+        //     anggota.KODE_INS <> 96 AND
+        //     anggota.KODE_INS <> 97 AND
+        //     anggota.KODE_INS <> 98 AND
+        //     anggota.KODE_INS <> 99 AND
+        //     pinuang.NOFAK LIKE '%R%'");
         $query = $this->db->query("SELECT
-            *
+            *,
+	        anggota.KODE_ANG
         FROM
             pinuang
             INNER JOIN
             pl
             ON 
-                pinuang.KODE_ANG = pl.KODE_ANG
+                pinuang.KODE_ANG = pl.KODE_ANG AND
+                pinuang.TAHUN = pl.TAHUN AND
+                pinuang.BULAN = pl.BULAN
             INNER JOIN
             anggota
             ON 
                 anggota.KODE_ANG = pl.KODE_ANG
+            LEFT JOIN
+            kantor_detail
+            ON 
+                pl.KODE_ANG = kantor_detail.KODE_ANG AND
+                pl.TAHUN = kantor_detail.TAHUN AND
+                pl.BULAN = kantor_detail.BULAN
         WHERE
-            pinuang.TAHUN = $THN AND
-            pl.TAHUN = $THN AND
-            pinuang.BULAN = $BLN AND
-            pl.BULAN = $BLN AND
             anggota.KODE_INS <> 96 AND
             anggota.KODE_INS <> 97 AND
             anggota.KODE_INS <> 98 AND
             anggota.KODE_INS <> 99 AND
-            pinuang.NOFAK LIKE '%U%'");
+            pinuang.NOFAK LIKE '%R%' AND
+            pl.TAHUN = $THN AND
+            pl.BULAN = '$BLN'");
         return $query->result_array();
     }
 
@@ -172,7 +201,8 @@ class Pinuang_model extends  CI_Model
             anggota.KODE_INS <> 96 AND
             anggota.KODE_INS <> 97 AND
             anggota.KODE_INS <> 98 AND
-            anggota.KODE_INS <> 99");
+            anggota.KODE_INS <> 99 AND
+	        pinuang.NOFAK NOT LIKE '%R%'");
         return $query->result_array();
     }
 

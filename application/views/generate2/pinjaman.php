@@ -156,6 +156,11 @@ $this->load->view('templates/sidebar');
                             $keu = $key['KEU4'];
                             $pokok = $key['POKU4'];
                             $bunga = $key['BNGU4'];
+                        } elseif (strpos($key['NOFAK'], 'R') !== false) {
+                            $jenis = 'Kantor';
+                            $keu = $key['KEU8'];
+                            $pokok = $key['POKU8'];
+                            $bunga = $key['BNGU8'];
                         }
                         $total = $pokok + $bunga;
                     ?>

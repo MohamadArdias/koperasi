@@ -41,14 +41,14 @@ $this->load->view('templates/sidebar');
     } elseif ($nof == 'N') {
         $sipoku = $lunas['SIPOKU3'];
         $bunga = $lunas['BNGU3'];
-        $nama = "Non Konsumsi";
-        $ke = $lunas['JWKT_ANG'] - $lunas['KEU3'];
-        $bayar = $sipoku + ($bunga * $ke);
+        $nama = "UUB";
+        $bayar = $sipoku + $bunga;
     } elseif ($nof == 'S') {
         $sipoku = $lunas['SIPOKU4'];
         $bunga = $lunas['BNGU4'];
-        $nama = "UUB";
-        $bayar = $sipoku + $bunga;
+        $nama = "Non Konsumsi";
+        $ke = $lunas['JWKT_ANG'] - $lunas['KEU4'];
+        $bayar = $sipoku + ($bunga * $ke);
     } else {
         $sipoku = $lunas['SIPOKU7'];
         $bunga = $lunas['BNGU7'];
@@ -88,6 +88,12 @@ $this->load->view('templates/sidebar');
                                 </div>
                             </div>
                             <div class="form-group row mb-2">
+                                <label class="col-sm-3 text-end control-label col-form-label">Instansi</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" value="<?= $lunas['NAMA_INS']; ?>" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-2">
                                 <label for="In" class="col-sm-3 text-end control-label col-form-label">Tanggal Pelunasan</label>
                                 <div class="col-sm-7">
                                     <div class="input-group input-group-sm">
@@ -109,21 +115,21 @@ $this->load->view('templates/sidebar');
                                 </div>
                                 <label class="col-sm-1 text-end control-label col-form-label">Bunga</label>
                                 <div class="col-sm-3">
-                                    <input type="text" name="BUNGA" class="form-control" id="BUNGA" value="<?= number_format($bunga, 0, ',', '.') ?>" readonly>
+                                    <input type="text" name="BUNGA" class="form-control" id="BUNGA" value="<?= number_format($bunga, 0, ',', '.') ?>">
                                 </div>
                             </div>
                             <div class="form-group row mb-2">
                                 <label class="col-sm-3 text-end control-label col-form-label">Jumlah Pelunasan</label>
                                 <div class="col-sm-7">
-                                    <input type="text" name="PELUNASAN2" class="form-control" id="PELUNASAN2" value="<?= number_format($bayar, 0, ',', '.') ?>" readonly>
-                                    <input type="hidden" name="PELUNASAN" class="form-control" id="PELUNASAN" value="<?= $bayar ?>" readonly>
+                                    <!-- <input type="text" name="PELUNASAN2" class="form-control" id="PELUNASAN2" value="<?= number_format($bayar, 0, ',', '.') ?>" > -->
+                                    <input type="text" name="PELUNASAN" class="form-control" id="PELUNASAN" value="<?= $bayar ?>">
                                 </div>
                             </div>
                             <div class="form-group row mb-2">
                                 <label class="col-sm-3 text-end control-label col-form-label">Jumlah Uang Diterima</label>
                                 <div class="col-sm-7">
                                     <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" id="JML_BAYAR" name="JML_BAYAR">
+                                        <input type="number" class="form-control" id="JML_BAYAR" name="JML_BAYAR" min="<?= $bayar; ?>">
                                     </div>
                                     <small class="form-text text-danger"><?= form_error('JML_BAYAR') ?></small>
                                 </div>
@@ -146,6 +152,27 @@ $this->load->view('templates/footer');
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+    // $(document).ready(function() {
+    //     $("#JMLP_ANG, #TANGGUNGAN").keyup(function() {
+    //         var TANGGUNGAN = $("#TANGGUNGAN").val();
+    //         var JMLP_ANG = $("#JMLP_ANG").val();
+
+    //         var TERIMA = parseInt(JMLP_ANG) - parseInt(TANGGUNGAN);
+
+    //         var number_string = TERIMA.toString(),
+    //             sisa = number_string.length % 3,
+    //             rupiah = number_string.substr(0, sisa),
+    //             ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+    //         if (ribuan) {
+    //             separator = sisa ? '.' : '';
+    //             rupiah += separator + ribuan.join('.');
+    //         }
+
+    //         $("#PELUNASAN").val(rupiah);
+    //     });
+    // });
+
     function goBack() {
         window.history.back();
     }

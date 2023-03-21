@@ -49,6 +49,16 @@ $this->load->view('templates/sidebar');
                         <small class="form-text text-danger"><?= form_error('BENDAH2'); ?></small>
                     </div>
                 </div>
+                <div class="form-group row mb-2">
+                    <label for="nama" class="col-sm-2 text-end control-label col-form-label">Rekening</label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <i class="bi-person-fill input-group-text"></i>
+                            <input type="text" name="REKENING" class="form-control" id="REKENING" value="<?= $pengurus['REKENING']; ?>" />
+                        </div>
+                        <small class="form-text text-danger"><?= form_error('REKENING'); ?></small>
+                    </div>
+                </div>
                 <div class="col-sm-4 text-end mt-3 ">
                     <input type="button" class="btn btn-warning" value="Kembali" onclick="goBack()">
                     <button type="submit" name="edit" class="btn btn-primary">simpan</button>

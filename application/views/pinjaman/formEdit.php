@@ -157,3 +157,9 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
 <?php
 $this->load->view('templates/footer');
 ?>
+
+<script type="text/javascript">
+    function goBack() {
+        window.history.back();
+    }
+</script>

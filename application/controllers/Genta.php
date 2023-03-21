@@ -125,7 +125,7 @@ class Genta extends CI_Controller
             } else {
                 $this->db->update('pinsimp', $pinsimp, $where);
                 $this->db->update('pl', $pl, $where);
-            }            
+            }
 
             // $this->db->where('KODE_ANG', $key['KODE_ANG']);
             // $this->db->where('TAHUN', $thn);
@@ -251,7 +251,7 @@ class Genta extends CI_Controller
                 $this->db->insert('pinuang', $pinuang_uang);
             } else {
                 $this->db->update('pinuang', $pinuang_uang, $where);
-            }   
+            }
 
             // // delete pinunag
             // $this->db->where('KODE_ANG', $key['KODE_ANG']);
@@ -281,7 +281,7 @@ class Genta extends CI_Controller
         $kantor = $this->Pinuang->pinjKantor($THN, $BLN);
 
         foreach ($kantor as $key) {
-            if ($key['POKU8'] == $key['SIPOKU8']) {
+            if (($key['POKU8'] == $key['SIPOKU8']) and ($key['SIBNGU8'] == 0)) {
                 $STATUS = 'LUNAS';
             } else {
                 $STATUS = 'BELUM LUNAS';
@@ -312,26 +312,15 @@ class Genta extends CI_Controller
                 }
 
                 $POKU1 = 0;
-                $SIPOKU1 = $key['SIPOKU8']-$key['POKU8'];
+                $SIPOKU1 = $key['SIPOKU8'] - $key['POKU8'];
 
-                if ($key['POKU8'] == 0) {
-                    $KE_BNGU1 = $key['KE_BNGU8']+1;                    
-                }else {
-                    $KE_BNGU1 = 1;
+                if ($KEU1 > 48) {
+                    $BNGU1 = 0;
+                    $SIBNGU = $key['SIBNGU8'];
+                } else {
+                    $BNGU1 = $key['SIPOKU8'] * ($PRO_ANG / 100);
+                    $SIBNGU = $key['SIBNGU8'] + $BNGU1;
                 }
-
-                $byr_bunga = $key['KE_BNGU8']*$key['BNGU8'];
-                $byr_pokok = $key['JML_BAYAR']+$key['BAYAR_BANK'];
-
-                if ($byr_pokok<$byr_bunga) {
-                    $BNGU1 = $key['BNGU8'];
-                }else {
-                    $BNGU1 = $key['SIPOKU8'] * ($PRO_ANG / 100);                    
-                }
-
-
-
-                // $CICILAN = $JMLP_ANG - $SIPOKU1;
             }
 
             $pinuang_uang = array(
@@ -360,18 +349,7 @@ class Genta extends CI_Controller
                 $this->db->insert('pinuang', $pinuang_uang);
             } else {
                 $this->db->update('pinuang', $pinuang_uang, $where);
-            }   
-
-
-
-            // // delete pinunag
-            // $this->db->where('KODE_ANG', $key['KODE_ANG']);
-            // $this->db->where('TAHUN', $thn);
-            // $this->db->where('BULAN', $bln);
-            // $this->db->where('NOFAK', $key['NOFAK']);
-            // $this->db->delete('pinuang');
-            // // insert pinuang 
-            // $this->db->insert('pinuang', $pinuang_uang);
+            }
 
             $pl_uang = array(
                 'KEU8' => $KEU1,
@@ -379,7 +357,7 @@ class Genta extends CI_Controller
                 'POKU8' => round($POKU1),
                 'SIPOKU8' => round($SIPOKU1),
                 'BNGU8' => $BNGU1,
-                'KE_BNGU8' => $KE_BNGU1,
+                'SIBNGU8' => $SIBNGU,
             );
             // update pl 
             $where_uang = array(
@@ -474,7 +452,7 @@ class Genta extends CI_Controller
                 $this->db->insert('pembayaran', $bayar);
             } else {
                 $this->db->update('pembayaran', $bayar, $where);
-            }   
+            }
 
             // $this->db->where('KODE_ANG', $key['KODE_ANG']);
             // $this->db->where('TAHUN', $thn);

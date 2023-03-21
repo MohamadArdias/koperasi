@@ -55,6 +55,11 @@ $this->load->view('templates/sidebar');
                     <td>: <?= $pengurus['BENDAH2']; ?></td>
                 </tr>
                 <tr>
+                    <th>Rekening</th>
+                    <td width="20"></td>
+                    <td>: <?= $pengurus['REKENING']; ?></td>
+                </tr>
+                <tr>
                     <td><a href="<?= base_url(); ?>index.php/pengurus/edit/<?= $pengurus['ID']; ?>" class="btn btn-warning">Edit</a></td>
                 </tr>
         </table>

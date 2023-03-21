@@ -157,7 +157,8 @@ class Us_model extends  CI_Model
             ON 
                 us.KODE_ANG = anggota.KODE_ANG
         ORDER BY
-            us.TANGGAL DESC");
+            us.TANGGAL DESC, 
+            us.NOFAK ASC");
         return $query->result_array();
     }
 }

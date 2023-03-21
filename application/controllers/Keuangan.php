@@ -128,6 +128,8 @@ class Keuangan extends CI_Controller
         $THN = $this->input->post('TAHUN');
         $BLN = $this->input->post('BULAN');
 
+        $rek = $this->Pengurus->getAllPengurus();
+
         setlocale(LC_ALL, 'id-ID', 'id_ID');
         date_default_timezone_set("Asia/Jakarta");
 
@@ -143,6 +145,7 @@ class Keuangan extends CI_Controller
         $sheet->setCellValue('C6', $THN);
         $sheet->mergeCells('A6:B6'); // Set Merge Cell pada kolom A1 sampai E1
         $sheet->setCellValue('A7', 'NO REK KOPERASI');
+        $sheet->setCellValue('C7', $rek['REKENING']);
         $sheet->mergeCells('A7:B7'); // Set Merge Cell pada kolom A1 sampai E1
         // $sheet->getStyle('A1')->getFont()->setBold(true); // Set bold kolom A1
         $sheet->getStyle('A1')->applyFromArray($style_head);
