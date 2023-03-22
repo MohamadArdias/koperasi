@@ -304,15 +304,18 @@ class Pay_model extends CI_Model
     {
         $TAHUN = $this->input->post('TAHUN', true);
         $BULAN = $this->input->post('BULAN', true);
-        $jml_bayar = $this->input->post('JML_BAYAR', true);
-        $ttl_bunga = $this->input->post('TTL_BUNGA', true);
-        $BUNGA = $this->input->post('BUNGA');
-        // $jml_tghn = $this->input->post('TAGIHAN', true);
-        $DETAIL = $this->input->post('DETAIL');
+        $TGL_BAYAR = $this->input->post('TGL_BAYAR', true);
+        $JUM_POKOK = $this->input->post('JUM_POKOK', true);
+        $JUM_BUNGA = $this->input->post('JUM_BUNGA', true);
+        $POKOK = $this->input->post('POKOK', true);
+        $BUNGA = $this->input->post('BUNGA', true);
+        $DETAIL_POKU = $this->input->post('DETAIL_POKU');
+        $DETAIL_BNGU = $this->input->post('DETAIL_BNGU');
         // $poku = ($jml_bayar+$DETAIL)-$BUNGA;
 
         $pl = [
-            'POKU8' => ($jml_bayar + $DETAIL) - $BUNGA
+            'POKU8' => ($POKOK + $DETAIL_POKU),
+            'BNGU8' => ($BUNGA + $DETAIL_BNGU),
         ];
 
         $where = array(
@@ -328,14 +331,12 @@ class Pay_model extends CI_Model
             'TAHUN' => $this->input->post('TAHUN'),
             'BULAN' => $this->input->post('BULAN'),
             'KODE_ANG' => $this->input->post('KODE'),
-            'JML_TGHN' => $this->input->post('TAGIHAN'),
-            'TGL_BAYAR' => date('Y-m-d'),
-            'JML_BAYAR' => $jml_bayar,
-            'VIA_BAYAR' => 'BAYAR LANGSUNG',
-            // 'STATUS' => $status,
+            'TGL_BAYAR' => $TGL_BAYAR,
+            'POKU' => $POKOK,
+            'SIPOKU' => $JUM_POKOK,
+            'BNGU' => $BUNGA,
+            'SIBNGU' => $JUM_BUNGA,
             'CREATED_BY' => $this->input->post('first_name'),
-            // 'SISA' => $sisa
-            // 'TUNGGAKAN' => $tunggakan,
         ];
 
 

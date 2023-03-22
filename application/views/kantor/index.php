@@ -48,14 +48,15 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                             <label class="col-sm-4 text-end control-label col-form-label">Nama</label>
                             <div class="col-sm-7">
                                 <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG">
-                                <input type="hidden" name="DETAIL" class="form-control" id="DETAIL">
+                                <!-- <input type="hidden" name="DETAIL" class="form-control" id="DETAIL"> -->
                             </div>
                         </div>
                         <div class="form-group row mb-2">
                             <label class="col-sm-4 text-end control-label col-form-label">Instansi</label>
                             <div class="col-sm-7">
                                 <input type="text" name="KODE_INS" class="form-control" id="KODE_INS">
-                                <input type="hidden" name="DETAIL" class="form-control" id="DETAIL">
+                                <input type="hidden" name="DETAIL_POKU" class="form-control" id="DETAIL_POKU">
+                                <input type="hidden" name="DETAIL_BNGU" class="form-control" id="DETAIL_BNGU">
                             </div>
                         </div>
                         <div class="form-group row mb-2">
@@ -79,7 +80,8 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                         <div class="form-group row mb-2">
                             <label class="col-sm-4 text-end control-label col-form-label">Bunga</label>
                             <div class="col-sm-3 input-group input-group-sm" >
-                                <input type="text" name="BUNGA" class="form-control" id="BUNGA" readonly>
+                                <input type="text" name="TTL_BUNGA" class="form-control" id="TTL_BUNGA" readonly>
+                                <input type="hidden" name="JUM_BUNGA" class="form-control" id="JUM_BUNGA" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <div class="input-group input-group-sm">
@@ -91,7 +93,8 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                         <div class="form-group row mb-2">
                             <label class="col-sm-4 text-end control-label col-form-label">Pokok</label>
                             <div class="col-sm-3 input-group input-group-sm" >
-                                <input type="text" name="POKOK" class="form-control" id="POKOK" readonly>
+                                <input type="text" name="TTL_POKOK" class="form-control" id="TTL_POKOK" readonly>
+                                <input type="hidden" name="JUM_POKOK" class="form-control" id="JUM_POKOK" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <div class="input-group input-group-sm">
@@ -178,24 +181,38 @@ $this->load->view('templates/footer');
                     obj = JSON.parse(json);
                 $("#KODE_INS").val(obj.instansi);
                 $("#NAMA_ANG").val(obj.nama);
-                $("#TAGIHAN").val(obj.tagihan);
+                // $("#TAGIHAN").val(obj.tagihan);
                 $("#TAHUN").val(obj.TAHUN);
                 $("#BULAN").val(obj.BULAN);
-                $("#DETAIL").val(obj.detail);
-                $("#TTL_BUNGA").val(obj.TTL_BUNGA);
-                $("#BUNGA").val(obj.BUNGA);
+                $("#DETAIL_POKU").val(obj.detail_poku);
+                $("#DETAIL_BNGU").val(obj.detail_bngu);
+                // $("#TTL_BUNGA").val(obj.TTL_BUNGA);
+                $("#JUM_BUNGA").val(obj.bunga);
+                $("#JUM_POKOK").val(obj.pokok);
 
-                // var number_string = obj.TTL_BUNGA.toString(),
-                //     sisa = number_string.length % 3,
-                //     rupiah = number_string.substr(0, sisa),
-                //     ribuan = number_string.substr(sisa).match(/\d{3}/g);
+                var number_string = obj.bunga.toString(),
+                    sisa = number_string.length % 3,
+                    rupiah = number_string.substr(0, sisa),
+                    ribuan = number_string.substr(sisa).match(/\d{3}/g);
 
-                // if (ribuan) {
-                //     separator = sisa ? '.' : '';
-                //     rupiah += separator + ribuan.join('.');
-                // }
+                if (ribuan) {
+                    separator = sisa ? '.' : '';
+                    rupiah += separator + ribuan.join('.');
+                }
 
-                // $("#TTL_BUNGA").val(rupiah);
+                $("#TTL_BUNGA").val(rupiah);
+
+                var number_string = obj.pokok.toString(),
+                    sisa = number_string.length % 3,
+                    rupiah = number_string.substr(0, sisa),
+                    ribuan = number_string.substr(sisa).match(/\d{3}/g);
+
+                if (ribuan) {
+                    separator = sisa ? '.' : '';
+                    rupiah += separator + ribuan.join('.');
+                }
+
+                $("#TTL_POKOK").val(rupiah);
             }
         );
     }

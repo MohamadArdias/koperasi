@@ -22,8 +22,6 @@ class Kantor extends CI_Controller
 
         $this->form_validation->set_rules('KODE', 'Kode anggota', 'required');
         $this->form_validation->set_rules('TGL_BAYAR', 'Tanggal Bayar', 'required');
-        $this->form_validation->set_rules('TAGIHAN', 'Tagihan', 'required');
-        $this->form_validation->set_rules('JML_BAYAR', 'Bayar', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('kantor/index', $this->data);
         } else {
@@ -50,16 +48,16 @@ class Kantor extends CI_Controller
         $tahun = $query['TAHUN'];
         $bulan = $query['BULAN'];
 
-        $detail = $this->db->query("SELECT SUM(JML_BAYAR) AS jumlah FROM kantor_detail WHERE TAHUN = $tahun and BULAN = '$bulan' and KODE_ANG = '$a'")->row();
-        //   echo $detail->jumlah;
-        // $tagihan = $query['JML_TGHN'] - $detail;
-        $bayar = ($query['KE_BNGU8']*$query['BNGU8'])-$detail->jumlah;
+        $detail = $this->db->query("SELECT SUM(POKU) AS POKU, SUM(BNGU) AS BNGU FROM kantor_detail WHERE TAHUN = $tahun and BULAN = '$bulan' and KODE_ANG = '$a'")->row();
+        // //   echo $detail->jumlah;
+        // // $tagihan = $query['JML_TGHN'] - $detail;
+        // $bayar = ($query['KE_BNGU8']*$query['BNGU8'])-$detail->jumlah;
 
-        if ($bayar < 0) {
-            $total_bayar = 0;
-        } else {
-            $total_bayar = $bayar;
-        }
+        // if ($bayar < 0) {
+        //     $total_bayar = 0;
+        // } else {
+        //     $total_bayar = $bayar;
+        // }
 
         if ($query != null) {
             $data = array(                
@@ -67,12 +65,15 @@ class Kantor extends CI_Controller
                 'BULAN' => $bulan,
                 'nama' => $query['NAMA_ANG'],
                 'instansi' => $query['NAMA_INS'],
-                'BUNGA' => $query['KE_BNGU8']*$query['BNGU8'],
-                'TTL_BUNGA' => $total_bayar,
-                'tagihan' => $query['SIPOKU8']+($query['KE_BNGU8']*$query['BNGU8'])-$detail->jumlah,
+                // 'BUNGA' => $query['KE_BNGU8']*$query['BNGU8'],
+                'bunga' => $query['SIBNGU8']-$query['BNGU8'],
+                'pokok' => $query['SIPOKU8']-$query['POKU8'],
+                // 'TTL_BUNGA' => $total_bayar,
+                // 'tagihan' => $query['SIPOKU8']+($query['KE_BNGU8']*$query['BNGU8'])-$detail->jumlah,
                 // 'tagihan' => 6666,
                 // 'tagihan' => $detail->jumlah,
-                'detail' => $detail->jumlah,
+                'detail_poku' => $detail->POKU,
+                'detail_bngu' => $detail->BNGU,
             );
             echo json_encode($data);
         }

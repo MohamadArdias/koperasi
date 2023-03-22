@@ -315,7 +315,8 @@ class Anggota_model extends  CI_Model
             ON 
                 anggota.KODE_ANG = pl.KODE_ANG
         WHERE
-            anggota.KODE_ANG = $KODE_ANG");
+            anggota.KODE_ANG = $KODE_ANG AND
+	        pl.SIPOKU8 >= 1");
         return $query->num_rows();
     }
 }

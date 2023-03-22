@@ -281,7 +281,7 @@ class Genta extends CI_Controller
         $kantor = $this->Pinuang->pinjKantor($THN, $BLN);
 
         foreach ($kantor as $key) {
-            if (($key['POKU8'] == $key['SIPOKU8']) and ($key['SIBNGU8'] == 0)) {
+            if (($key['POKU8'] == $key['SIPOKU8']) and ($key['BNGU8'] == $key['SIBNGU8'])) {
                 $STATUS = 'LUNAS';
             } else {
                 $STATUS = 'BELUM LUNAS';
@@ -293,10 +293,8 @@ class Genta extends CI_Controller
                 $KE_ANG = 0;
                 $JWKT_ANG = 0;
                 $KEU1 = 0;
-                $POKU1 = 0;
                 $SIPOKU1 = 0;
-                $KE_BNGU1 = 0;
-                $BNGU1 = 0;
+                $SIBNGU = 0;
                 // $CICILAN = 0;
             } else {
                 $JMLP_ANG = $key['JMLP_ANG'];
@@ -311,15 +309,12 @@ class Genta extends CI_Controller
                     $KE_ANG = $key['KE_ANG'];
                 }
 
-                $POKU1 = 0;
                 $SIPOKU1 = $key['SIPOKU8'] - $key['POKU8'];
 
                 if ($KEU1 > 48) {
-                    $BNGU1 = 0;
                     $SIBNGU = $key['SIBNGU8'];
                 } else {
-                    $BNGU1 = $key['SIPOKU8'] * ($PRO_ANG / 100);
-                    $SIBNGU = $key['SIBNGU8'] + $BNGU1;
+                    $SIBNGU = $key['SIBNGU8'] + ($SIPOKU1 * ($PRO_ANG / 100))-$key['BNGU8'];
                 }
             }
 
@@ -354,9 +349,9 @@ class Genta extends CI_Controller
             $pl_uang = array(
                 'KEU8' => $KEU1,
                 'JWK8' => $JWKT_ANG,
-                'POKU8' => round($POKU1),
+                'POKU8' => 0,
                 'SIPOKU8' => round($SIPOKU1),
-                'BNGU8' => $BNGU1,
+                'BNGU8' => 0,
                 'SIBNGU8' => $SIBNGU,
             );
             // update pl 
