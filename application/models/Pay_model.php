@@ -2,6 +2,103 @@
 
 class Pay_model extends CI_Model
 {
+    public function histo($KODE_ANG)
+    {
+        $query = $this->db->query("SELECT
+        pl.TAHUN, 
+        pl.BULAN, 
+        anggota.KODE_ANG, 
+        anggota.NAMA_ANG, 
+        instan.KODE_INS, 
+        instan.NAMA_INS, 
+        pl.KEU8, 
+        pl.JWK8, 
+        pl.POKU8, 
+        pl.SIPOKU8, 
+        pl.BNGU8, 
+        pl.SIBNGU8
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.KODE_ANG = pl.KODE_ANG
+    WHERE
+        pl.KODE_ANG = '$KODE_ANG'
+    ORDER BY
+        pl.TAHUN DESC, 
+        pl.BULAN DESC");
+
+        return $query->result_array();
+    }
+
+    public function histo2($KODE_ANG)
+    {
+        $query = $this->db->query("SELECT
+        pl.TAHUN, 
+        pl.BULAN, 
+        anggota.KODE_ANG, 
+        anggota.NAMA_ANG, 
+        instan.KODE_INS, 
+        instan.NAMA_INS, 
+        pl.KEU8, 
+        pl.JWK8, 
+        pl.POKU8, 
+        pl.SIPOKU8, 
+        pl.BNGU8, 
+        pl.SIBNGU8
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.KODE_ANG = pl.KODE_ANG
+    WHERE
+        pl.KODE_ANG = '$KODE_ANG'
+    ORDER BY
+        pl.TAHUN ASC, 
+        pl.BULAN ASC");
+
+        return $query->result_array();
+    }
+
+    public function getPinjaman($THN, $BLN)
+    {
+        $query = $this->db->query("SELECT
+        *,
+        instan.KODE_INS, 
+        instan.NAMA_INS
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.KODE_ANG = pl.KODE_ANG
+        INNER JOIN
+        pinuang
+        ON 
+            anggota.KODE_ANG = pinuang.KODE_ANG AND
+            pl.TAHUN = pinuang.TAHUN AND
+            pl.BULAN = pinuang.BULAN
+    WHERE
+        pl.TAHUN = $THN AND
+        pl.BULAN = '$BLN' AND
+        pinuang.NOFAK LIKE '%R%'");
+        return $query->result_array();
+    }
+
     public function getIns($KODE_INS, $TAHUN, $BULAN)
     {
         $query = $this->db->query("SELECT
@@ -60,7 +157,9 @@ class Pay_model extends CI_Model
         $time = $this->input->get('time');
 
         $query = $this->db->query("SELECT
-        *
+        *,
+        instan.KODE_INS, 
+        instan.NAMA_INS
     FROM
         instan
         INNER JOIN
@@ -159,7 +258,9 @@ class Pay_model extends CI_Model
     public function getCetakKantor()
     {
         $query = $this->db->query("SELECT
-        *
+        *,
+        instan.KODE_INS, 
+        instan.NAMA_INS
     FROM
         instan
         INNER JOIN

@@ -45,19 +45,20 @@ $pdf->SetFont('', '', 8);
 $data = '
 <pre>
             KPRI BANGKIT BERSAMA <br>
-Borobudur No. 1A (0333) 424315 BANYUWANGI <br>
+Ruko Borobudur No.8 (0333) 424315 BANYUWANGI<br>
+            Jawa Timur-Indonesia
                    --o0o-- <br>
 ============================================<br>
-No. Anggota : ' . $print['KODE_ANG'] . '(' . $print['NAMA_ANG'] . ') <br>
-INSTANSI    : ' . $print['KODE_INS'] . '(' . $print['NAMA_INS'] . ') <br>
+No. Anggota : ' . $print['KODE_ANG'] . '-' . $print['NAMA_ANG'] . ' <br>
+INSTANSI    : ' . $print['KODE_INS'] . '-' . $print['NAMA_INS'] . ' <br>
 ============================================<br><br>
-JUMLAH TAGIHAN        : ' . number_format($print['JML_TGHN'], 0, ',', '.') . ' <br>
-JUMLAH BAYAR          : ' . number_format($print['JML_BAYAR'], 0, ',', '.');
+BAYAR POKOK        : ' . number_format($print['POKU'], 0, ',', '.') . ' <br>
+BAYAR BUNGA        : ' . number_format($print['BNGU'], 0, ',', '.');
 
-$ttl = $print['JML_TGHN']-$print['JML_BAYAR'];
+$ttl = $print['POKU']+$print['BNGU'];
 $data .= '
 ____________________________________________<br>
-SISA                  : ' . number_format($ttl, 0, ',', '.') . ' <br>
+UANG DITERIMA      : ' . number_format($ttl, 0, ',', '.') . ' <br>
 ============================================<br>';
 
 $data .= '

@@ -43,8 +43,8 @@ $this->load->view('templates/sidebar');
                             <th class="text-center">Tanggal Bayar</th>
                             <th class="text-center">Anggota</th>
                             <th class="text-center">Instansi</th>
-                            <th class="text-center">Tagihan</th>
-                            <th class="text-center">Bayar</th>
+                            <th class="text-center">Bayar Pokok</th>
+                            <th class="text-center">Bayar Bunga</th>
                             <th class="text-center">VIA Bayar</th>
                             <th class="text-center">Aksi</th>
                         </tr>
@@ -55,9 +55,9 @@ $this->load->view('templates/sidebar');
                                 <td><?= $key['TGL_BAYAR']; ?></td>
                                 <td><?= $key['KODE_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                                 <td><?= $key['KODE_INS'] . '/ ' . $key['NAMA_INS']; ?></td>
-                                <td><?= $key['JML_TGHN']; ?></td>
-                                <td><?= $key['JML_BAYAR']; ?></td>
-                                <td><?= $key['CREATED_BY'].'-'.$key['VIA_BAYAR']; ?></td>
+                                <td><?= number_format($key['POKU'], 0, ',', '.'); ?></td>
+                                <td><?= number_format($key['BNGU'], 0, ',', '.'); ?></td>
+                                <td><?= $key['CREATED_BY'].'-Bayar Langung'?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url(); ?>index.php/kantor/print/<?= $key['KODE_ANG']; ?>?time=<?= $key['CREATED']; ?>" class="btn btn-secondary" target="blank">Print</a>
                                 </td>

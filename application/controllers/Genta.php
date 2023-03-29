@@ -312,9 +312,9 @@ class Genta extends CI_Controller
                 $SIPOKU1 = $key['SIPOKU8'] - $key['POKU8'];
 
                 if ($KEU1 > 48) {
-                    $SIBNGU = $key['SIBNGU8'];
+                    $SIBNGU = $key['SIBNGU8']-$key['BNGU8'];
                 } else {
-                    $SIBNGU = $key['SIBNGU8'] + ($SIPOKU1 * ($PRO_ANG / 100))-$key['BNGU8'];
+                    $SIBNGU = $key['SIBNGU8']-$key['BNGU8'] + ($SIPOKU1 * ($PRO_ANG / 100));
                 }
             }
 

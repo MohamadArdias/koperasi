@@ -61,6 +61,39 @@ class Keuangan_model extends  CI_Model
         return $query->result_array();
     }
 
+    public function histo2($KODE_ANG)
+    {
+        $query = $this->db->query("SELECT
+            pl.*,
+            pembayaran.JML_BAYAR,
+            pembayaran.BAYAR_BANK,
+            pembayaran.VIA_BAYAR,
+            pembayaran.JML_TGHN
+        FROM
+            instan
+            INNER JOIN
+            anggota
+            ON 
+                instan.KODE_INS = anggota.KODE_INS
+            INNER JOIN
+            pl
+            ON 
+                anggota.KODE_ANG = pl.KODE_ANG
+            LEFT JOIN
+            pembayaran
+            ON 
+                pl.KODE_ANG = pembayaran.KODE_ANG AND
+                pl.TAHUN = pembayaran.TAHUN AND
+                pl.BULAN = pembayaran.BULAN
+        WHERE
+            pl.KODE_ANG = $KODE_ANG 
+        ORDER BY
+            pl.TAHUN ASC, 
+            pl.BULAN ASC");
+
+        return $query->result_array();
+    }
+
     public function jumlahAnggota($KODE_INS, $TAHUN, $BULAN)
     {
         // $thn = date("Y");

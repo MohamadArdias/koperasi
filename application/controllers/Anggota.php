@@ -126,7 +126,7 @@ class Anggota extends CI_Controller
         // $sheet->getStyle('I4')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-        $histori = $this->Keuangan->histo($KODE_ANG);
+        $histori = $this->Keuangan->histo2($KODE_ANG);
         // $no = 1; // Untuk penomoran tabel, di awal set dengan 1
         $numrow = 5; // Set baris pertama untuk isi tabel adalah baris ke 4
         foreach ($histori as $data) { // Lakukan looping pada variabel siswa

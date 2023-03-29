@@ -68,23 +68,28 @@
               </ul>
           </li>
 
-          <!-- <li class="nav-item">
+          <li class="nav-item">
               <a class="nav-link collapsed" data-toggle="collapse" data-target="#kantor" aria-controls="forms-nav">
                   <i class="bi bi-gear-wide-connected"></i><span>Kantor</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="kantor" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/kantor/pinjaman">
+                          <i class="bi bi-circle-fill"></i><span>Daftar Pinjaman</span>
+                      </a>
+                  </li>
                   <li>
                       <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/kantor">
                           <i class="bi bi-circle-fill"></i><span>Pembayaran</span>
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/kantor/instansi">
-                          <i class="bi bi-circle-fill"></i><span>Instansi</span>
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/kantor/cetak">
+                          <i class="bi bi-circle-fill"></i><span>Cetak Pembayaran</span>
                       </a>
                   </li>
               </ul>
-          </li> -->
+          </li>
 
           <!-- <li class="nav-item">
               <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/tagihan">
