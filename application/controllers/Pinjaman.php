@@ -145,7 +145,7 @@ class Pinjaman extends CI_Controller
             echo json_encode($data);
         } else {
             $data = array(
-                'nama' => $query2['NAMA'],
+                'nama' => $query2['NAMA_ANG'],
                 'jangka' => 0,
                 'periode' => 0,
                 'sisa' => 0,
@@ -223,8 +223,8 @@ class Pinjaman extends CI_Controller
 
                     $pl = [
                         "KEU8" => 0,
-                        "KE_BNGU8" => 0,
                         "SIPOKU8" => $jmlp_ang,
+                        // "KE_BNGU8" => 0,
                     ];
                     $where_pl = [
                         "TAHUN" => substr($tgl, 0, 4),
