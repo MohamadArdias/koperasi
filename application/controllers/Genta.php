@@ -397,7 +397,7 @@ class Genta extends CI_Controller
         foreach ($tunggakan as $key) {
 
             if ($key['JML_BAYAR'] < $key['JML_TGHN']) {
-                $tunggakan = $key['JML_TGHN'] - $key['JML_BAYAR'];
+                $tunggakan = $key['JML_TGHN'] - $key['JML_BAYAR'] - $key['BAYAR_BANK'];
             } else {
                 $tunggakan = 0;
             }
