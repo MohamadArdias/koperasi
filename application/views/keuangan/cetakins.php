@@ -99,7 +99,7 @@ $this->load->view('templates/sidebar');
                                 <td><?= $ins['BULAN']; ?></td>
                                 <td><?= $ins['KODE_INS'] . '/ ' . $ins['NAMA_INS']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-success" target="blank">Print Instansi</a>
+                                    <a href=""  class="btn btn-success" target="blank">Print Instansi</a>
                                     <a href="<?= base_url(); ?>index.php/keuangan/printinsang/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-primary" target="blank">Print Aggota</a>
                                 </td>
                             </tr>
@@ -116,6 +116,19 @@ $this->load->view('templates/sidebar');
         var option = document.getElementById("GETEX").value;
         console.log(option);
         window.location.assign("?TAHUN=" + option.substr(0, 4) + "&&BULAN=" + option.substr(-2));
+    }
+
+    function getLocation() {
+        var yakin = confirm("Ingin Mencetak Berdasarkan Abjad?");
+
+        if (yakin) {
+            window.location.href = "<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>&&NAMA=NAMA_ANG";
+        } else {
+            window.location.href = "<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>&&NAMA=KODE_ANG";
+        }
+        // Get the current location  
+        var location_var = window.location.href;
+        alert(location_var);
     }
 </script>
 

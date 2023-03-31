@@ -250,8 +250,9 @@ class Keuangan extends CI_Controller
     {
         $TAHUN = $this->input->get('TAHUN');
         $BULAN = $this->input->get('BULAN');
+        $NAMA = $this->input->get('NAMA');
 
-        $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS, $TAHUN, $BULAN);
+        $this->data['keuangan'] = $this->keuangan->getAnggotaWhereKodeins($KODE_INS, $TAHUN, $BULAN, $NAMA);
         $this->data['instansi'] = $this->keuangan->getInstansi($KODE_INS);
         $this->data['pengurus'] = $this->keuangan->getPengurus();
         $this->data['jumlah'] = $this->keuangan->jumlahAnggota($KODE_INS, $TAHUN, $BULAN);
