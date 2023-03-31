@@ -65,7 +65,7 @@ class Genta extends CI_Controller
             // $rela = (TOTWJB+TOTREL)*0.00371;
             // $rela = round(($key['TOTREL']+$key['TOTWJB'])*0.00371);
 
-            if ($key['KODE_INS'] != 53) {
+            if ($key['KODE_INS'] != 53 OR $key['KODE_INS'] != 53) {
                 $pinsimp = array(
                     'TAHUN' => $thn,
                     'BULAN' => $bln,

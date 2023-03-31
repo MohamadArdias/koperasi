@@ -87,7 +87,7 @@ $this->load->view('templates/sidebar');
                                 <i class="bi bi-wallet2"></i>
                             </div>
                             <div class="ps-3">
-                                <a href="<?= base_url(); ?>index.php/pinjaman/form/2" class="nav-link">
+                                <a href="<?= base_url(); ?>index.php/pinjaman/form/4" class="nav-link">
                                     <h6>Non Konsumsi</h6>
                                 </a>
                             </div>
@@ -103,7 +103,7 @@ $this->load->view('templates/sidebar');
                                 <i class="bi bi-cart-check"></i>
                             </div>
                             <div class="ps-3">
-                                <a href="<?= base_url(); ?>index.php/pinjaman/form/3" class="nav-link">
+                                <a href="<?= base_url(); ?>index.php/pinjaman/form/2" class="nav-link">
                                     <h6>Konsumsi</h6>
                                 </a>
                             </div>
@@ -119,7 +119,7 @@ $this->load->view('templates/sidebar');
                                 <i class="bi bi-cart-dash"></i>
                             </div>
                             <div class="ps-3">
-                                <a href="<?= base_url(); ?>index.php/pinjaman/form/4" class="nav-link">
+                                <a href="<?= base_url(); ?>index.php/pinjaman/form/3" class="nav-link">
                                     <h6>Pinjaman UUB</h6>
                                 </a>
                             </div>
@@ -136,7 +136,7 @@ $this->load->view('templates/sidebar');
                                 <i class="bi bi-wallet-fill"></i>
                             </div>
                             <div class="ps-3">
-                                <a href="<?= base_url(); ?>index.php/pinjaman/form/5" class="nav-link">
+                                <a href="<?= base_url(); ?>index.php/pinjaman/form/7" class="nav-link">
                                     <h6>Pinjaman Khusus</h6>
                                 </a>
                             </div>
@@ -168,6 +168,7 @@ $this->load->view('templates/sidebar');
                 <table class="table table-borderless datatable" id="customers">
                     <thead class="table-primary">
                         <tr>
+                            <th style="padding-left: 25px; padding-right: 25px;" class="text-center">Tanggal</th>
                             <th style="padding-left: 20px; padding-right: 20px;" class="text-center">Faktur</th>
                             <th class="text-center">Anggota</th>
                             <th class="text-center">Instansi</th>
@@ -182,6 +183,7 @@ $this->load->view('templates/sidebar');
                         <?php foreach ($us as $key) {
                         ?>
                             <tr>
+                                <td><?= $key['TANGGAL']; ?></td>
                                 <td><?= $key['NOFAK']; ?></td>
                                 <td><?= $key['KODE_ANG'] . '/' . $key['NAMA_ANG']; ?></td>
                                 <td><?= $key['KODE_INS'] . '/' . $key['NAMA_INS']; ?></td>
@@ -195,7 +197,7 @@ $this->load->view('templates/sidebar');
                                 <td>
                                     <?php
                                     $log = $this->db->query("SELECT MAX(TGL_TGHN) AS tanggal FROM pembayaran")->row();
-                                    if ($key['TANGGAL'] > $log->tanggal) {
+                                    if ($key['DATE'] > $log->tanggal) {
                                     ?>
                                         <a href="<?= base_url(); ?>index.php/Pinjaman/edit/<?= $key['NOFAK']; ?>" class="btn btn-warning">Edit</a>
                                         <!-- <a href="<?= base_url(); ?>index.php/Pinjaman/off/<?= $key['NOFAK']; ?>" class="btn btn-danger" onclick="return confirm('Yakin?');">Hapus</a> -->

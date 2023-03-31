@@ -40,16 +40,16 @@
     if ($kode == 1) {
         $kd = 'U';
         $bg = 1.5;
-    } elseif ($kode == 2) {
+    } elseif ($kode == 4) {
         $kd = 'S';
         $bg = 2;
-    } elseif ($kode == 3) {
+    } elseif ($kode == 2) {
         $kd = 'O';
         $bg = 0;
-    } elseif ($kode == 4) {
+    } elseif ($kode == 3) {
         $kd = 'N';
         $bg = 2;
-    } else {
+    } elseif ($kode == 7) {
         $kd = 'Z';
         $bg = 3;
     }

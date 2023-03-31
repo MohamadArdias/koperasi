@@ -28,16 +28,16 @@ class Pinjaman extends CI_Controller
         if ($kode == 1) {
             $this->data['title'] = 'Pinjaman Uang';
             $kd = 'U';
-        } elseif ($kode == 2) {
+        } elseif ($kode == 4) {
             $this->data['title'] = 'Pinjaman Non-Konsumsi';
             $kd = 'S';
-        } elseif ($kode == 3) {
+        } elseif ($kode == 2) {
             $this->data['title'] = 'Pinjaman Konsumsi';
             $kd = 'O';
-        } elseif ($kode == 4) {
+        } elseif ($kode == 3) {
             $this->data['title'] = 'Pinjaman UUB';
             $kd = 'N';
-        } else {
+        } elseif ($kode == 7) {
             $this->data['title'] = 'Pinjaman Khusus';
             $kd = 'Z';
         }
@@ -61,6 +61,7 @@ class Pinjaman extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('pinjaman/form', $this->data);
         } else {
+            // echo $kode;
             $aku = $this->Anggota->cekAnggota();
             if ($aku != 0) {
                 $ku = $this->Anggota->cekFaktur();
