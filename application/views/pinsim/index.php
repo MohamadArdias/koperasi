@@ -36,23 +36,25 @@ $this->load->view('templates/sidebar');
 <div class="card">
     <div class="card-body">
         <div class="overflow-auto">
-            <form action="<?= base_url(); ?>index.php/pinsim/cetakPinsim">
+            <form action="<?= base_url(); ?>index.php/pinjaman/cetakPinjaman" method="post">
                 <div class="input-group">
+                    <?php
+                    $TAHUN = $this->input->get('TAHUN');
+                    $BULAN = $this->input->get('BULAN');
+
+                    if ($TAHUN == '' and $BULAN == '') {
+                        $THN = date('Y');
+                        $BLN = date('m');
+                    } else {
+                        $THN = $TAHUN;
+                        $BLN = $BULAN;
+                    }
+
+                    ?>
+                    <input type="hidden" name="TAHUN" class="form-control" id="TAHUN" value="<?= $THN ?>" />
+                    <input type="hidden" name="BULAN" class="form-control" id="BULAN" value="<?= $BLN ?>" />
+
                     <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
-                        <?php
-                        $TAHUN = $this->input->get('TAHUN');
-                        $BULAN = $this->input->get('BULAN');
-
-                        if ($TAHUN == '' and $BULAN == '') {
-                            $THN = date('Y');
-                            $BLN = date('m');
-                        } else {
-                            $THN = $TAHUN;
-                            $BLN = $BULAN;
-                        }
-
-                        ?>
-
                         <option hidden><?= $THN . '-' . $BLN; ?></option>
                         <?php
                         if ($this->input->get('TAHUN') == '') {
@@ -69,7 +71,7 @@ $this->load->view('templates/sidebar');
                         }
                         ?>
                     </select>
-                    <button type="submit" name="generate" class="btn btn-primary">Generate</button>
+                    <button type="submit" name="generate" class="btn btn-primary">Cetak</button>
                 </div>
             </form>
 

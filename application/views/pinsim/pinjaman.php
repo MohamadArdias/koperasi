@@ -57,43 +57,50 @@ $this->load->view('templates/sidebar');
 
     <div class="card-body">
         <div class="overflow-auto">
-            <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
-                <?php
-                $TAHUN = $this->input->get('TAHUN');
-                $BULAN = $this->input->get('BULAN');
+            <form action="<?= base_url(); ?>index.php/pinjaman/cetakPinjaman" method="post">
+                <div class="input-group">
+                    <?php
+                    $TAHUN = $this->input->get('TAHUN');
+                    $BULAN = $this->input->get('BULAN');
 
-                if ($TAHUN == '' and $BULAN == '') {
-                    $THN = date('Y');
-                    $BLN = date('m');
-                } else {
-                    $THN = $TAHUN;
-                    $BLN = $BULAN;
-                }
+                    if ($TAHUN == '' and $BULAN == '') {
+                        $THN = date('Y');
+                        $BLN = date('m');
+                    } else {
+                        $THN = $TAHUN;
+                        $BLN = $BULAN;
+                    }
+                    ?>
+                    <input type="hidden" name="TAHUN" class="form-control" id="TAHUN" value="<?= $THN ?>" />
+                    <input type="hidden" name="BULAN" class="form-control" id="BULAN" value="<?= $BLN ?>" />
 
-                ?>
 
-                <option hidden><?= $THN . '-' . $BLN; ?></option>
-                <?php $query = $this->db->query("SELECT DISTINCT
-                    pl.TAHUN, 
-                    pl.BULAN
-                FROM
-                    pl
-                    INNER JOIN
-                    pinuang
-                    ON 
-                        pl.TAHUN = pinuang.TAHUN AND
-                        pl.BULAN = pinuang.BULAN AND
-                        pl.KODE_ANG = pinuang.KODE_ANG
-                ORDER BY
-                    pl.TAHUN DESC, 
-                    pl.BULAN DESC")->result_array();
-                foreach ($query as $key) {
-                ?>
-                    <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                    <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
+                        <option hidden><?= $THN . '-' . $BLN; ?></option>
+                        <?php $query = $this->db->query("SELECT DISTINCT
+                            pl.TAHUN, 
+                            pl.BULAN
+                        FROM
+                            pl
+                            INNER JOIN
+                            pinuang
+                            ON 
+                                pl.TAHUN = pinuang.TAHUN AND
+                                pl.BULAN = pinuang.BULAN AND
+                                pl.KODE_ANG = pinuang.KODE_ANG
+                        ORDER BY
+                            pl.TAHUN DESC, 
+                            pl.BULAN DESC")->result_array();
+                        foreach ($query as $key) {
+                        ?>
+                            <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                    <button type="submit" name="generate" class="btn btn-primary">Cetak</button>
+                </div>
+            </form>
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
