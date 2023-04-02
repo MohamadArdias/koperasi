@@ -99,7 +99,7 @@ $this->load->view('templates/sidebar');
                                 <td><?= $ins['BULAN']; ?></td>
                                 <td><?= $ins['KODE_INS'] . '/ ' . $ins['NAMA_INS']; ?></td>
                                 <td class="text-center">
-                                    <a href=""  class="btn btn-success" target="blank">Print Instansi</a>
+                                    <a class="btn btn-success" style="color:white;" onclick="getLocation('<?= $ins['KODE_INS']; ?>')">Print Instansi</a>
                                     <a href="<?= base_url(); ?>index.php/keuangan/printinsang/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-primary" target="blank">Print Aggota</a>
                                 </td>
                             </tr>
@@ -118,17 +118,16 @@ $this->load->view('templates/sidebar');
         window.location.assign("?TAHUN=" + option.substr(0, 4) + "&&BULAN=" + option.substr(-2));
     }
 
-    function getLocation() {
-        var yakin = confirm("Ingin Mencetak Berdasarkan Abjad?");
+    function getLocation(value) {
+        var link1 = "<?= base_url(); ?>index.php/keuangan/printins/"+value+"?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>&&NAMA=NAMA_ANG";
+        var link2 = "<?= base_url(); ?>index.php/keuangan/printins/"+value+"?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>&&NAMA=KODE_ANG";
+        var choice = confirm("Cetak Berdasarkan Nama?");
 
-        if (yakin) {
-            window.location.href = "<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>&&NAMA=NAMA_ANG";
+        if (choice == true) {
+            window.open(link1, "_blank");
         } else {
-            window.location.href = "<?= base_url(); ?>index.php/keuangan/printins/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>&&NAMA=KODE_ANG";
+            window.open(link2, "_blank");
         }
-        // Get the current location  
-        var location_var = window.location.href;
-        alert(location_var);
     }
 </script>
 

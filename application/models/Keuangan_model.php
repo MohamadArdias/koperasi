@@ -208,8 +208,7 @@ class Keuangan_model extends  CI_Model
     public function getAnggotaWhereKodeins($KODE_INS, $TAHUN, $BULAN, $NAMA)
     {
         $query = $this->db->query("SELECT
-        anggota.KODE_ANG, 
-        anggota.NAMA_ANG
+        *
     FROM
         anggota
         INNER JOIN

@@ -393,28 +393,28 @@ class Genta extends CI_Controller
         }
 
         $pembayaran = $this->Keuangan->inPembayaran($thn, $bln);
-        $tunggakan = $this->Pembayaran->getTunggakan($THN, $BLN);
-        foreach ($tunggakan as $key) {
+        // $tunggakan = $this->Pembayaran->getTunggakan($THN, $BLN);
+        // foreach ($tunggakan as $key) {
 
-            if ($key['JML_BAYAR'] < $key['JML_TGHN']) {
-                $tunggakan = $key['JML_TGHN'] - $key['JML_BAYAR'] - $key['BAYAR_BANK'];
-            } else {
-                $tunggakan = 0;
-            }
+        //     if ($key['JML_BAYAR'] < $key['JML_TGHN']) {
+        //         $tunggakan = $key['JML_TGHN'] - $key['JML_BAYAR'] - $key['BAYAR_BANK'];
+        //     } else {
+        //         $tunggakan = 0;
+        //     }
 
-            $tung = array(
-                'POKU6' => $tunggakan,
-            );
+        //     $tung = array(
+        //         'POKU6' => $tunggakan,
+        //     );
 
-            // update pl 
-            $where_tung = array(
-                'TAHUN' => $thn,
-                'BULAN' => $bln,
-                'KODE_ANG' => $key['KODE_ANG'],
-            );
+        //     // update pl 
+        //     $where_tung = array(
+        //         'TAHUN' => $thn,
+        //         'BULAN' => $bln,
+        //         'KODE_ANG' => $key['KODE_ANG'],
+        //     );
 
-            $this->db->update('pl', $tung, $where_tung);
-        }
+        //     $this->db->update('pl', $tung, $where_tung);
+        // }
 
         foreach ($pembayaran as $key) {
 

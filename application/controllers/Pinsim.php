@@ -30,6 +30,21 @@ class Pinsim extends CI_Controller
         $this->load->view('pinsim/index', $this->data);
     }
 
+    public function cetakPinsim()
+    {
+        $DATE = $this->input->get('GEN_SIMP');
+
+        if ($DATE == '') {
+            $THN = date('Y');
+            $BLN = date('m');
+        } else {
+            $THN = substr($DATE, 0, 4);
+            $BLN = substr($DATE, -2);
+        }
+
+        echo $BLN;
+    }
+
     // public function cetak($KODE_ANG)
     // {
     //     $this->data['title'] = 'Cetak Anggota';

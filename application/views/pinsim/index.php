@@ -36,37 +36,43 @@ $this->load->view('templates/sidebar');
 <div class="card">
     <div class="card-body">
         <div class="overflow-auto">
-            <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
-                <?php
-                $TAHUN = $this->input->get('TAHUN');
-                $BULAN = $this->input->get('BULAN');
+            <form action="<?= base_url(); ?>index.php/pinsim/cetakPinsim">
+                <div class="input-group">
+                    <select id="pinsimp" onchange="pins()" class="form-select col-md-2" aria-label="Default select example">
+                        <?php
+                        $TAHUN = $this->input->get('TAHUN');
+                        $BULAN = $this->input->get('BULAN');
 
-                if ($TAHUN == '' and $BULAN == '') {
-                    $THN = date('Y');
-                    $BLN = date('m');
-                } else {
-                    $THN = $TAHUN;
-                    $BLN = $BULAN;
-                }
+                        if ($TAHUN == '' and $BULAN == '') {
+                            $THN = date('Y');
+                            $BLN = date('m');
+                        } else {
+                            $THN = $TAHUN;
+                            $BLN = $BULAN;
+                        }
 
-                ?>
+                        ?>
 
-                <option hidden><?= $THN . '-' . $BLN; ?></option>
-                <?php
-                if ($this->input->get('TAHUN') == '') {
-                    $TAH = date('Y');
-                } else {
-                    $TAH = $this->input->get('TAHUN');
-                }
+                        <option hidden><?= $THN . '-' . $BLN; ?></option>
+                        <?php
+                        if ($this->input->get('TAHUN') == '') {
+                            $TAH = date('Y');
+                        } else {
+                            $TAH = $this->input->get('TAHUN');
+                        }
 
-                $query = $this->db->query("SELECT DISTINCT pl.TAHUN, pl.BULAN FROM pl INNER JOIN pinsimp ON pl.TAHUN = pinsimp.TAHUN AND pl.BULAN = pinsimp.BULAN AND pl.KODE_ANG = pinsimp.KODE_ANG ORDER BY pl.TAHUN DESC, pl.BULAN DESC")->result_array();
-                foreach ($query as $key) {
-                ?>
-                    <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                        $query = $this->db->query("SELECT DISTINCT pl.TAHUN, pl.BULAN FROM pl INNER JOIN pinsimp ON pl.TAHUN = pinsimp.TAHUN AND pl.BULAN = pinsimp.BULAN AND pl.KODE_ANG = pinsimp.KODE_ANG ORDER BY pl.TAHUN DESC, pl.BULAN DESC")->result_array();
+                        foreach ($query as $key) {
+                        ?>
+                            <option value="<?= $key['TAHUN'] . '-' . $key['BULAN']; ?>"><?= $key['TAHUN'] . '-' . $key['BULAN']; ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                    <button type="submit" name="generate" class="btn btn-primary">Generate</button>
+                </div>
+            </form>
+
             <table class="table table-borderless datatable" id="customers">
                 <thead class="table-primary">
                     <tr>
