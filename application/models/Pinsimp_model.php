@@ -48,7 +48,8 @@ class Pinsimp_model extends  CI_Model
         anggota.KODE_INS != 99 AND
         anggota.KODE_INS != 98 AND
         anggota.KODE_INS != 97 AND
-        anggota.KODE_INS != 96");
+        anggota.KODE_INS != 96 AND
+	    anggota.KODE_ANG NOT LIKE '%A%'");
 
         return $que->result_array();
     }

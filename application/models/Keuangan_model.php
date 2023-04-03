@@ -2,6 +2,18 @@
 
 class Keuangan_model extends  CI_Model
 {
+    public function getKodeSetoran()
+    {
+        $query = $this->db->query("SELECT
+            anggota.KODE_ANG
+        FROM
+            anggota
+        WHERE
+            anggota.KODE_ANG LIKE '%a%'");
+        
+        return $query->result_array();
+    }
+
     public function jumlahAnggotaKantor($KODE_INS, $TAHUN, $BULAN)
     {
         // $thn = date("Y");

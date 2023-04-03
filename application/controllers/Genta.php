@@ -65,7 +65,7 @@ class Genta extends CI_Controller
             // $rela = (TOTWJB+TOTREL)*0.00371;
             // $rela = round(($key['TOTREL']+$key['TOTWJB'])*0.00371);
 
-            if ($key['KODE_INS'] != 53 OR $key['KODE_INS'] != 53) {
+            if ($key['KODE_INS'] != 53) {
                 $pinsimp = array(
                     'TAHUN' => $thn,
                     'BULAN' => $bln,
@@ -170,6 +170,19 @@ class Genta extends CI_Controller
 
         // echo $thn.'+'.$bln;
         // echo "halo2";
+        $getKodeSetoran = $this->Keuangan->getKodeSetoran();
+
+        foreach ($getKodeSetoran as $key ) {
+            $creat_pl = [
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
+                'KODE_ANG' => $key['KODE_ANG']
+            ];
+
+            $this->db->insert('pl', $creat_pl);
+        }
+
+
         $pinjaman = $this->Pinuang->getAllPinjaman($THN, $BLN);
 
         foreach ($pinjaman as $key) {
@@ -393,28 +406,28 @@ class Genta extends CI_Controller
         }
 
         $pembayaran = $this->Keuangan->inPembayaran($thn, $bln);
-        // $tunggakan = $this->Pembayaran->getTunggakan($THN, $BLN);
-        // foreach ($tunggakan as $key) {
+        $tunggakan = $this->Pembayaran->getTunggakan($THN, $BLN);
+        foreach ($tunggakan as $key) {
 
-        //     if ($key['JML_BAYAR'] < $key['JML_TGHN']) {
-        //         $tunggakan = $key['JML_TGHN'] - $key['JML_BAYAR'] - $key['BAYAR_BANK'];
-        //     } else {
-        //         $tunggakan = 0;
-        //     }
+            if ($key['JML_BAYAR'] < $key['JML_TGHN']) {
+                $tunggakan = $key['JML_TGHN'] - $key['JML_BAYAR'] - $key['BAYAR_BANK'];
+            } else {
+                $tunggakan = 0;
+            }
 
-        //     $tung = array(
-        //         'POKU6' => $tunggakan,
-        //     );
+            $tung = array(
+                'POKU6' => $tunggakan,
+            );
 
-        //     // update pl 
-        //     $where_tung = array(
-        //         'TAHUN' => $thn,
-        //         'BULAN' => $bln,
-        //         'KODE_ANG' => $key['KODE_ANG'],
-        //     );
+            // update pl 
+            $where_tung = array(
+                'TAHUN' => $thn,
+                'BULAN' => $bln,
+                'KODE_ANG' => $key['KODE_ANG'],
+            );
 
-        //     $this->db->update('pl', $tung, $where_tung);
-        // }
+            $this->db->update('pl', $tung, $where_tung);
+        }
 
         foreach ($pembayaran as $key) {
 
