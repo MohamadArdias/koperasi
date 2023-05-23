@@ -2,6 +2,63 @@
 
 class Tunggakan_model extends  CI_Model
 {
+    public function tambah()
+    {
+        $TUNGGAKAN = $this->input->post('TUNGGAKAN', true);
+        $TAMBAH = $this->input->post('TAMBAH', true);
+
+        $inTambah = [
+            'POKU6' => $TUNGGAKAN + $TAMBAH,
+        ];
+
+        $this->db->where('KODE_ANG', $this->input->post('KODE'));
+        $this->db->where('TAHUN', $this->input->post('TAHUN'));
+        $this->db->where('BULAN', $this->input->post('BULAN'));
+        $this->db->update('pl', $inTambah);
+    }
+
+    public function cekAnggotaPin()
+    {
+        $a = $this->input->post('KODE', true);
+        $tahun = $this->input->post('TAHUN', true);
+        $bulan = $this->input->post('BULAN', true);
+
+        $query = $this->db->query("SELECT
+        *
+        FROM
+            pl
+            INNER JOIN
+            anggota
+            ON 
+                pl.KODE_ANG = anggota.KODE_ANG
+        WHERE
+        pl.TAHUN = $tahun AND
+        pl.BULAN = $bulan AND
+        pl.KODE_ANG LIKE '%a%' AND
+        pl.KODE_ANG = '$a' AND
+        pl.POKU6 >= 1");
+        return $query->num_rows();
+    }
+
+    public function getKodeAnggota($a, $tahun, $bulan)
+    {
+        $query = $this->db->query("SELECT
+        *
+        FROM
+            pl
+            INNER JOIN
+            anggota
+            ON 
+                pl.KODE_ANG = anggota.KODE_ANG
+        WHERE
+        pl.TAHUN = $tahun AND
+        pl.BULAN = $bulan AND
+        pl.KODE_ANG LIKE '%a%' AND
+        pl.KODE_ANG = '$a' AND
+        pl.POKU6 >= 1");
+
+        return $query->row_array();
+    }
     public function jumlahAnggota($KODE_INS, $TAHUN, $BULAN)
     {
         // $thn = date("Y");
@@ -27,7 +84,7 @@ class Tunggakan_model extends  CI_Model
 
         return $query->num_rows();
     }
-    
+
     public function getInsTung($THN, $BLN)
     {
         $query = $this->db->query("SELECT DISTINCT
@@ -58,7 +115,7 @@ class Tunggakan_model extends  CI_Model
 
         return $query->result_array();
     }
-    
+
     public function getIns($KODE_INS, $TAHUN, $BULAN)
     {
         $query = $this->db->query("SELECT

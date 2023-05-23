@@ -86,6 +86,15 @@ $this->load->view('templates/sidebar');
                         <a href="<?= base_url(); ?>index.php/tunggakan/cetakAll?TAHUN=<?= $THN ?>&&BULAN=<?= $BLN ?>" class="btn btn-primary" target="blank">Cetak Semua</a>
                     </div>
                 </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-2">
+                    <a href="<?= base_url(); ?>index.php/tunggakan/tambah?TAHUN=<?= $THN ?>&&BULAN=<?= $BLN ?>" class="btn btn-success"><i class="bi bi-plus-square"></i> Tambah</a>
+                    <!-- <form action="<?= base_url(); ?>index.php/tunggakan/tambah?TAHUN=<?= $THN ?>&&BULAN=<?= $BLN ?>" method="post">
+                        <div class="input-group">
+                            <button type="submit" name="generate" class="btn btn-success"><i class="bi bi-plus-square"></i> Tambah</button>
+                        </div>
+                    </form> -->
+                </div>
             </div>
             <div class="overflow-auto">
                 <table class="table table-borderless datatable" id="customers">
