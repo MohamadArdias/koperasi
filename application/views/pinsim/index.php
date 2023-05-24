@@ -36,7 +36,7 @@ $this->load->view('templates/sidebar');
 <div class="card">
     <div class="card-body">
         <div class="overflow-auto">
-            <form action="<?= base_url(); ?>index.php/pinjaman/cetakPinjaman" method="post">
+            <form action="<?= base_url(); ?>index.php/pinsim/cetakPinsim" method="post">
                 <div class="input-group">
                     <?php
                     $TAHUN = $this->input->get('TAHUN');
