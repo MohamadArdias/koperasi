@@ -322,9 +322,13 @@ class Keuangan_model extends  CI_Model
 
     public function keuanganAnggota()
     {
+        $DATE = $this->input->post('TGLM_ANG');
+        $THN = substr($DATE, 0, 4);
+        $BLN = substr($DATE, -5, 2);
+
         $this->data = [
-            "TAHUN" => date('Y'),
-            "BULAN" => date('m'),
+            "TAHUN" => $THN,
+            "BULAN" => $BLN,
             "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "POKOK" => 0,
             "WAJIB" => 0,

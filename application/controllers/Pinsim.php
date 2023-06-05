@@ -141,6 +141,9 @@ class Pinsim extends CI_Controller
         $sheet->setCellValue('D6', "WAJIB AWAL TAHUN"); // Set kolom D6 dengan tulisan "JENIS KELAMIN"
         $sheet->setCellValue('E6', "WAJIB ".$THN); // Set kolom E6 dengan tulisan "ALAMAT"
         $sheet->setCellValue('F6', "TOTAL WAJIB"); // Set kolom E6 dengan tulisan "ALAMAT"
+        $sheet->setCellValue('G6', "AWAL RELA"); // Set kolom E6 dengan tulisan "ALAMAT"
+        $sheet->setCellValue('H6', "RELA"); // Set kolom E6 dengan tulisan "ALAMAT"
+        $sheet->setCellValue('I6', "TOTAL RELA"); // Set kolom E6 dengan tulisan "ALAMAT"
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
         $sheet->getStyle('A6')->applyFromArray($style_col);
@@ -149,6 +152,9 @@ class Pinsim extends CI_Controller
         $sheet->getStyle('D6')->applyFromArray($style_col);
         $sheet->getStyle('E6')->applyFromArray($style_col);
         $sheet->getStyle('F6')->applyFromArray($style_col);
+        $sheet->getStyle('G6')->applyFromArray($style_col);
+        $sheet->getStyle('H6')->applyFromArray($style_col);
+        $sheet->getStyle('I6')->applyFromArray($style_col);
 
         // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
 
@@ -162,6 +168,9 @@ class Pinsim extends CI_Controller
             $sheet->setCellValue('D' . $numrow, $data['TOTWJB']);
             $sheet->setCellValue('E' . $numrow, $data['TWAJIB'] - $data['TOTWJB']);
             $sheet->setCellValue('F' . $numrow, $data['TWAJIB']);
+            $sheet->setCellValue('G' . $numrow, $data['TOTREL']);
+            $sheet->setCellValue('H' . $numrow, $data['KET']);
+            $sheet->setCellValue('I' . $numrow, $data['TOTREL']+$data['KET']);
 
             // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
             $sheet->getStyle('A' . $numrow)->applyFromArray($style_row_mid);
@@ -170,6 +179,9 @@ class Pinsim extends CI_Controller
             $sheet->getStyle('D' . $numrow)->applyFromArray($style_row);
             $sheet->getStyle('E' . $numrow)->applyFromArray($style_row);
             $sheet->getStyle('F' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('G' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('H' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('I' . $numrow)->applyFromArray($style_row);
 
             $no++; // Tambah 1 setiap kali looping
             $numrow++; // Tambah 1 setiap kali looping
@@ -181,6 +193,9 @@ class Pinsim extends CI_Controller
         $sheet->getColumnDimension('D')->setWidth(25); // Set width kolom D
         $sheet->getColumnDimension('E')->setWidth(17); // Set width kolom E
         $sheet->getColumnDimension('F')->setWidth(20); // Set width kolom E
+        $sheet->getColumnDimension('G')->setWidth(20); // Set width kolom E
+        $sheet->getColumnDimension('H')->setWidth(20); // Set width kolom E
+        $sheet->getColumnDimension('I')->setWidth(20); // Set width kolom E
 
         // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
         $sheet->getDefaultRowDimension()->setRowHeight(-1);

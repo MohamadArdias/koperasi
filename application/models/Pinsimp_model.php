@@ -2,6 +2,33 @@
 
 class Pinsimp_model extends  CI_Model
 {
+    public function getSukarela()
+    {
+        $tahun = date("Y");
+        $bulan = date("m");
+
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        pinsimp
+        ON 
+            anggota.KODE_ANG = pinsimp.KODE_ANG
+    WHERE
+        pinsimp.TAHUN = $tahun AND
+        pinsimp.BULAN = '$bulan'
+        ORDER BY
+        instan.KODE_INS ASC, 
+	    anggota.KODE_ANG ASC")->result_array();
+
+        return $query;
+    }
+
     public function cek($thn, $bln, $kode)
     {
         $query = $this->db->query("SELECT
@@ -53,7 +80,7 @@ class Pinsimp_model extends  CI_Model
 
         return $que->result_array();
     }
-    
+
     public function simp($THN, $BLN)
     {
         // $bln = date('m');
@@ -122,10 +149,14 @@ class Pinsimp_model extends  CI_Model
 
     public function pinsimpAnggota()
     {
-        $this->data = [            
-            "TAHUN" => date('Y'),
-            "BULAN" => date('m'),
-            "KODE_ANG" => $this->input->post('KODE_ANG', true),            
+        $DATE = $this->input->post('TGLM_ANG');
+        $THN = substr($DATE, 0, 4);
+        $BLN = substr($DATE, -5, 2);
+
+        $this->data = [
+            "TAHUN" => $THN,
+            "BULAN" => $BLN,
+            "KODE_ANG" => $this->input->post('KODE_ANG', true),
             "TOTWJB" => 0,
             "TOTPOK" => 0,
             "TOTREL" => 0,

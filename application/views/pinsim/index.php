@@ -88,6 +88,7 @@ $this->load->view('templates/sidebar');
                         <th class="text-center">Rela Awal</th>
                         <th class="text-center">Rela</th>
                         <th class="text-center">Total Rela</th>
+                        <th class="text-center">Jumlah</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,9 +103,10 @@ $this->load->view('templates/sidebar');
                             <td style="padding-left: 20px; padding-right: 20px;" class="text-right"><?= number_format($lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'] - $lap['TOTWJB'], 0, ',', '.')  ?></td>
                             <td class="text-right"><?= number_format($lap['TWAJIB'], 0, ',', '.')  ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['KET'] ?></td>
-                            <td style="padding-left: 20px; padding-right: 20px;"><?= $lap['TOTREL'] + $lap['KET'] ?></td>
+                            <td class="text-right" style="padding-left: 20px; padding-right: 20px;"><?= number_format($lap['TOTREL'], 0, ',', '.') ?></td>
+                            <td class="text-right" style="padding-left: 20px; padding-right: 20px;"><?= number_format($lap['KET'], 0, ',', '.') ?></td>
+                            <td class="text-right" style="padding-left: 20px; padding-right: 20px;"><?= number_format($lap['TOTREL'] + $lap['KET'], 0, ',', '.') ?></td>
+                            <td class="text-right" style="padding-left: 20px; padding-right: 20px;"><?= number_format($lap['TOTREL'] + $lap['KET'] + $lap['TWAJIB'], 0, ',', '.')?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

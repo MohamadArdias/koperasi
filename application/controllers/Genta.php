@@ -49,11 +49,13 @@ class Genta extends CI_Controller
             if ($bln == 12) {
                 $totwjb = $key['TWAJIB'] + 100000;
                 $totpok = $key['TPOKOK'];
-                // $trela = $key['TOTREL']+$key['RELA'];
+                $trela = $key['TOTREL']+$key['KET'];
+                $ket = 0;
             } else {
                 $totwjb = $key['TOTWJB'];
                 $totpok = $key['TOTPOK'];
-                // $trela = $key['TOTREL'];
+                $trela = $key['TOTREL'];
+                $ket = $key['KET'];
             }
 
             if ($key['TPOKOK'] == 0) {
@@ -72,8 +74,8 @@ class Genta extends CI_Controller
                     'KODE_ANG' => $key['KODE_ANG'],
                     'TOTWJB' => $totwjb,
                     'TOTPOK' => 50000,
-                    'TOTREL' => $key['TOTREL'],
-                    'KET' => $key['KET'],
+                    'TOTREL' => $trela,
+                    'KET' => $ket,
                 );
 
                 // pl
@@ -93,8 +95,8 @@ class Genta extends CI_Controller
                     'KODE_ANG' => $key['KODE_ANG'],
                     'TOTWJB' => $key['TWAJIB'],
                     'TOTPOK' => $key['TOTPOK'],
-                    'TOTREL' => $key['TOTREL'],
-                    'KET' => $key['KET'],
+                    'TOTREL' => $trela,
+                    'KET' => $ket,
                 );
 
                 // pl

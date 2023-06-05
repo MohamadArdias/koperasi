@@ -90,7 +90,7 @@ $this->load->view('templates/sidebar');
                             <div class="form-group row mb-2">
                                 <label class="col-sm-3 text-end control-label col-form-label">Instansi</label>
                                 <div class="col-sm-7">
-                                    <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" value="<?= $lunas['NAMA_INS']; ?>" readonly>
+                                    <input type="text" name="NAMA_ANG" class="form-control" id="NAMA_ANG" value="<?= $lunas['NAMA_INS_ang']; ?>" readonly>
                                 </div>
                             </div>
                             <div class="form-group row mb-2">

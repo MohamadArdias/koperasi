@@ -77,7 +77,7 @@ $this->load->view('templates/sidebar');
             $tghn = $uang+$kons+$non+$khus+$uub+$ang['WAJIB']?>
             <tr>
               <td><?= $ang['TAHUN'] . '-' . $ang['BULAN']; ?></td>
-              <td><?= number_format($ang['WAJIB'], 0, ',', '.') ?></td>
+              <td><?= number_format($ang['TWAJIB'], 0, ',', '.') ?></td>
               <td><?= $ang['KEU1']; ?></td>
               <td><?= number_format($uang, 0, ',', '.') ?></td>
               <td><?= $ang['KEU3']; ?></td>
