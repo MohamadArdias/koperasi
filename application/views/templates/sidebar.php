@@ -70,6 +70,11 @@
                           <i class="bi bi-circle-fill"></i><span>Anggota</span>
                       </a>
                   </li>
+                  <li class="nav-item">
+                      <a class="nav-link collapsed" href="<?= base_url(); ?>index.php/EditTunggakan">
+                          <i class="bi bi-circle-fill"></i><span>Edit Tunggakan</span>
+                      </a>
+                  </li>
               </ul>
           </li>
 

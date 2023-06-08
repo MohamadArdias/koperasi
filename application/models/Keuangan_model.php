@@ -2,6 +2,33 @@
 
 class Keuangan_model extends  CI_Model
 {
+    public function getTunggakan($tahun, $bulan)
+    {
+        // $tahun = date("Y");
+        // $bulan = date("m");
+
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.KODE_ANG = pl.KODE_ANG
+    WHERE
+        pl.TAHUN = $tahun AND
+        pl.BULAN = '$bulan'
+        ORDER BY
+        instan.KODE_INS ASC, 
+	    anggota.KODE_ANG ASC")->result_array();
+
+        return $query;
+    }
+
     public function getKodeSetoran()
     {
         $query = $this->db->query("SELECT
