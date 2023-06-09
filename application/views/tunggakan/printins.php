@@ -237,26 +237,36 @@ $data .=    '
                         <br>                        
                                 <div>
                                     <table>
-                                        <tr>
-                                            <td align="left" width="170">
-                                                Jumlah Uang Sebesar RP. <br>
-                                                Telah saya terima <br> 
-                                                bendahara KP-RI Bangkit Bersama <br><br><br><br><br>
-                                                ' . $pengurus['BENDAH1'] . ' 
-                                            </td>       
-                                            <td width="60"></td> 
-                                            <td width="180"><pre>Jumlah Tunggakan Rp. ' . number_format($totalt, 0, ',', '.') .
-    '<br>Terbayar         Rp. 0<br>================================<br>Sisa             Rp. 0 </pre></td>
-                                            <td width="50"></td>
-                                            <td align="left" width="140">
-                                                Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . $BULAN) . ' <br>
-                                                Pengurus KPRI Bangkit Bersama <br> 
-                                                Kantor Pemkab. Banyuwangi <br> 
-                                                Ketua 1 <br><br><br><br>
-                                                ' . $pengurus['KETUA'] . '
-                                            </td>
-                                        </tr>        
-                                    </table>
+                                    <tr>
+                                        <td style="font-size: 9px;" align="left" width="170">
+                                        </td>       
+                                        <td width="40"></td> 
+                                        <td width="180"><pre><b>Jumlah Tunggakan Rp. ' . number_format($totalt, 0, ',', '.') .
+    '<br>Terbayar         Rp. 0<br>================================<br>Sisa             Rp. 0 </b></pre></td>
+                                    </tr>        
+                                    <tr>
+                                        <td style="font-size: 9px;" align="left" width="210">
+                                        </td>
+                                        <td style="font-size: 9px;" align="center" width="170">
+                                            Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . $BULAN) . ' <br>
+                                            Pengurus KPRI "Bangkit Bersama" <br> 
+                                            Kantor Pemkab. Banyuwangi 
+                                        </td>
+                                    </tr>        
+                                    <tr>
+                                        <td style="font-size: 9px;" align="left" width="150">
+                                        </td>
+                                        <td style="font-size: 9px;" align="left" width="170">
+                                            Bendahara 1 <br><br><br><br>
+                                            ' . $pengurus['BENDAH1'] . ' 
+                                        </td> 
+                                        <td width="40"></td> 
+                                        <td style="font-size: 9px;" align="left" width="140">
+                                            Ketua 1 <br><br><br><br>
+                                            ' . $pengurus['KETUA'] . '
+                                        </td>
+                                    </tr>        
+                                </table>
                                 </div>
                                  
                     </div>

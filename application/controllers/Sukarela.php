@@ -24,7 +24,7 @@ class Sukarela extends CI_Controller
 
     public function edit()
     {
-        $query = $this->Pinsimp->getSukarela();
+        $query = $this->Pinsimp->getSukarela2();
         foreach ($query as $key) {
             $a = $this->input->post('name' . $key['KODE_ANG']);
             if ($a == null) {

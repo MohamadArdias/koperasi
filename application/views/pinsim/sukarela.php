@@ -69,6 +69,14 @@ $this->load->view('templates/sidebar');
                                 <td><?= $key['TOTREL']; ?></td>
                                 <td>
                                     <input type="hidden" id="id<?= $key['KODE_ANG']; ?>" name="id<?= $key['KODE_ANG']; ?>" value="<?= $key['KODE_ANG']; ?>">
+                                    <!-- <?php 
+                                    // $ab = $key['TOTWJB']-1200000;
+                                    // if ($ab <= 0) {
+                                    //     $print = (0+$key['TOTREL'])*0.00371;
+                                    // } else {
+                                    //     $print = ($ab+$key['TOTREL'])*0.00371;
+                                    // }
+                                    ?> -->
                                     <input type="number" min="0" id="name<?= $key['KODE_ANG']; ?>" name="name<?= $key['KODE_ANG']; ?>" value="<?= $key['KET']; ?>">
                                 </td>
                             </tr>

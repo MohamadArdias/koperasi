@@ -127,9 +127,7 @@ $data = '<!DOCTYPE html>
                             <th style="font-size: 12px;" width="592" align="center">Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
                             </tr>
                         </table>    ';
-
-
-
+                        
 $pdf->SetFont('dejavusanscondensed', '', 7);
 $data .=
     '
@@ -286,29 +284,38 @@ $data .=    '
 // $pdf->SetFont('', 'B', 7);
 $data .='               <br>                        
                                 <div>
-                                    <table>
-                                        <tr>
-                                            <td style="font-size: 9px;" align="left" width="170">
-                                                Jumlah Uang Sebesar RP. <br>
-                                                Telah saya terima <br> 
-                                                bendahara KP-RI Bangkit Bersama <br><br><br><br><br>
-                                                ' . $pengurus['BENDAH1'] . ' 
-                                            </td>       
-                                            <td width="40"></td> 
-                                            <td style="font-size: 9px;" width="170"><pre><b>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
-    '<br>Terbayar       Rp. 0<br>==============================<br>Sisa           Rp. 0 </b></pre></td>
-                                            <td width="40"></td>
-                                            <td style="font-size: 9px;" align="left" width="140">
-                                                Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . $BULAN) . ' <br>
-                                                Pengurus KPRI Bangkit Bersama <br> 
-                                                Kantor Pemkab. Banyuwangi <br> 
-                                                Ketua 1 <br><br><br><br>
-                                                ' . $pengurus['KETUA'] . '
-                                            </td>
-                                        </tr>        
-                                    </table>
+                                <table>
+                                    <tr>
+                                        <td style="font-size: 9px;" align="left" width="170">
+                                        </td>       
+                                        <td width="40"></td> 
+                                        <td style="font-size: 9px;" width="170"><pre><b>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
+'<br>Terbayar       Rp. 0<br>==============================<br>Sisa           Rp. 0 </b></pre></td>
+                                    </tr>        
+                                    <tr>
+                                        <td style="font-size: 9px;" align="left" width="210">
+                                        </td>
+                                        <td style="font-size: 9px;" align="center" width="170">
+                                            Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . $BULAN) . ' <br>
+                                            Pengurus KPRI "Bangkit Bersama" <br> 
+                                            Kantor Pemkab. Banyuwangi 
+                                        </td>
+                                    </tr>        
+                                    <tr>
+                                        <td style="font-size: 9px;" align="left" width="150">
+                                        </td>
+                                        <td style="font-size: 9px;" align="left" width="170">
+                                            Bendahara 1 <br><br><br><br>
+                                            ' . $pengurus['BENDAH1'] . ' 
+                                        </td> 
+                                        <td width="40"></td> 
+                                        <td style="font-size: 9px;" align="left" width="140">
+                                            Ketua 1 <br><br><br><br>
+                                            ' . $pengurus['KETUA'] . '
+                                        </td>
+                                    </tr>        
+                                </table>
                                 </div>
-                                 
                     </div>
                 </div>            
         </body>

@@ -29,6 +29,37 @@ class Pinsimp_model extends  CI_Model
         return $query;
     }
 
+    public function getSukarela2()
+    {
+        $tahun = date("Y");
+        $bulan = date("m");
+
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        pinsimp
+        ON 
+            anggota.KODE_ANG = pinsimp.KODE_ANG
+    WHERE
+        pinsimp.TAHUN = $tahun AND
+        pinsimp.BULAN = '$bulan' AND
+        anggota.KODE_INS != 99 AND
+        anggota.KODE_INS != 98 AND
+        anggota.KODE_INS != 97 AND
+        anggota.KODE_INS != 96
+        ORDER BY
+        instan.KODE_INS ASC, 
+	    anggota.KODE_ANG ASC")->result_array();
+
+        return $query;
+    }
+
     public function cek($thn, $bln, $kode)
     {
         $query = $this->db->query("SELECT

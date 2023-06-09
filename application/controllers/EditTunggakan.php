@@ -35,8 +35,8 @@ class EditTunggakan extends CI_Controller
 
     public function edit()
     {
-        $TAHUN = $this->input->get('TAHUN');
-        $BULAN = $this->input->get('BULAN');
+        $TAHUN = $this->input->post('TAHUN');
+        $BULAN = $this->input->post('BULAN');
 
         if ($TAHUN == '' and $BULAN == '') {
             $THN = date('Y');
@@ -45,6 +45,8 @@ class EditTunggakan extends CI_Controller
             $THN = $TAHUN;
             $BLN = $BULAN;
         }
+
+        // echo $BLN;
         $query = $this->Keuangan->getTunggakan($THN, $BLN);
         foreach ($query as $key) {
 
@@ -56,22 +58,19 @@ class EditTunggakan extends CI_Controller
                 $ket = $a;
             }
 
-            echo $ket;
-            echo "<br>";
+            $pl = array(
+                'POKU6' => $ket, //KET = kolom untuk pl sekarang
+            );
 
-            // $pl = array(
-            //     'POKU6' => $ket, //KET = kolom untuk pl sekarang
-            // );
+            $where = array(
+                'KODE_ANG' => $this->input->post('id' . $key['KODE_ANG']),
+                'TAHUN' => $THN,
+                'BULAN' => $BLN,
+            );
 
-            // $where = array(
-            //     'KODE_ANG' => $this->input->post('id' . $key['KODE_ANG']),
-            //     'TAHUN' => $THN,
-            //     'BULAN' => $BLN,
-            // );
-
-            // $this->db->update('pl', $pl, $where);
+            $this->db->update('pl', $pl, $where);
         }
-        // $this->session->set_flashdata('flash', 'diubah');
-        // redirect('EditTunggakan');
+        $this->session->set_flashdata('flash', 'diubah');
+        redirect('EditTunggakan');
     }
 }

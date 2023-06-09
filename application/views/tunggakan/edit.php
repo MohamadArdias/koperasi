@@ -93,6 +93,8 @@ $this->load->view('templates/sidebar');
                             <th class="text-center">Instansi</th>
                             <th class="text-center">Tunggakan</th>
                             <th class="text-center">Rubah Tunggakan</th>
+                            <input type="hidden" id="TAHUN" name="TAHUN" value="<?= $THN; ?>">
+                            <input type="hidden" id="BULAN" name="BULAN" value="<?= $BLN; ?>">
                         </tr>
                     </thead>
                     <tbody>
