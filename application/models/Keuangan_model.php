@@ -41,6 +41,24 @@ class Keuangan_model extends  CI_Model
         return $query->result_array();
     }
 
+    // public function getKodeSetoran2($thn, $bln, $kode)
+    // {
+    //     $query = $this->db->query("SELECT
+    //     anggota.KODE_ANG
+    // FROM
+    //     anggota
+    //     INNER JOIN
+    //     pl
+    //     ON 
+    //         anggota.KODE_ANG = pl.KODE_ANG
+    // WHERE
+    //     anggota.KODE_ANG = '$kode' AND
+    //     pl.TAHUN = $thn AND
+    //     pl.BULAN = $bln'");
+        
+    //     return $query->num_rows();
+    // }
+
     public function jumlahAnggotaKantor($KODE_INS, $TAHUN, $BULAN)
     {
         // $thn = date("Y");

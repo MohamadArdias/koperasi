@@ -56,6 +56,7 @@ class Pay extends CI_Controller
                 'instansi' => $query['NAMA_INS'],
                 'tagihan' => $query['JML_TGHN']-$query['BAYAR_BANK']-$detail->jumlah,
                 'detail' => $detail->jumlah,
+                'sisa' => $query['SISA'],
                 // 'tagihan' => $query['JML_TGHN'],
                 // 'bayar' => $query['JML_BAYAR'],
                 //  'tunggakan' => $query['POKU6'],

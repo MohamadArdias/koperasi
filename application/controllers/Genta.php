@@ -121,7 +121,7 @@ class Genta extends CI_Controller
 
             $cek_pinsim = $this->Pinsimp->cek($thn, $bln, $kode);
 
-            if ($cek_pinsim < 1) {
+            if ($cek_pinsim == 0) {
                 $this->db->insert('pinsimp', $pinsimp);
                 $this->db->insert('pl', $pl);
             } else {
@@ -173,7 +173,7 @@ class Genta extends CI_Controller
         // echo $thn.'+'.$bln;
         // echo "halo2";
         $getKodeSetoran = $this->Keuangan->getKodeSetoran();
-
+        
         foreach ($getKodeSetoran as $key ) {
             $creat_pl = [
                 'TAHUN' => $thn,
@@ -181,9 +181,16 @@ class Genta extends CI_Controller
                 'KODE_ANG' => $key['KODE_ANG']
             ];
 
-            $this->db->insert('pl', $creat_pl);
-        }
+            $kode = $key['KODE_ANG'];
 
+            $countKodeSetoran = $this->Keuangan->getKodeSetoran2($thn, $bln, $kode);
+
+            if ($countKodeSetoran < 1) {
+                $this->db->insert('pl', $creat_pl);
+            } else {
+                $this->db->update('pl', $creat_pl, $creat_pl);
+            }
+        }
 
         $pinjaman = $this->Pinuang->getAllPinjaman($THN, $BLN);
 
@@ -201,7 +208,7 @@ class Genta extends CI_Controller
                 $angka = 4;
             }
 
-            if ($key['KEU' . $angka] == $key['JWKT_ANG']) {
+            if ($key['KEU' . $angka] == $key['JWK' . $angka]) {
                 $STATUS = 'LUNAS';
             } else {
                 $STATUS = 'BELUM LUNAS';
@@ -407,7 +414,6 @@ class Genta extends CI_Controller
             $bln = "0" . ($BLN + 1);
         }
 
-        $pembayaran = $this->Keuangan->inPembayaran($thn, $bln);
         $tunggakan = $this->Pembayaran->getTunggakan($THN, $BLN);
         foreach ($tunggakan as $key) {
 
@@ -431,14 +437,28 @@ class Genta extends CI_Controller
             $this->db->update('pl', $tung, $where_tung);
         }
 
+        // $tungKekset = $this->Pembayaran->getTunggakan($THN, $BLN);
+
+        $pembayaran = $this->Keuangan->inPembayaran($thn, $bln);
         foreach ($pembayaran as $key) {
+            $kode = $key['KODE_ANG'];
+            $query = $this->db->query("SELECT pembayaran.SISA FROM pembayaran WHERE pembayaran.TAHUN = $THN AND pembayaran.BULAN = '$BLN' AND pembayaran.KODE_ANG = '$kode'")->row_array();
+            
+            if ($query == null OR $query['SISA'] == null ) {
+                $sisa = 0;
+            } else {
+                $sisa = $query['SISA'];                
+            }
+
+            // echo $key['KODE_ANG'].'-'.$sisa;
+            // echo "<br>";
 
             $a = $key['POKU3'] + $key['BNGU3']
                 + $key['POKU4'] + $key['BNGU4']
                 + $key['POKU1'] + $key['BNGU1']
                 + $key['POKU7'] + $key['BNGU7']
                 + $key['POKU2'] + $key['WAJIB']
-                + $key['POKOK'] + $key['POKU6'];  // POKU6 adalah tunggakan
+                + $key['POKOK'] + $key['POKU6']-$sisa;  // POKU6 adalah tunggakan
 
             $bayar = array(
                 'KODE_ANG' => $key['KODE_ANG'],

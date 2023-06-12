@@ -341,6 +341,7 @@ class Pay_model extends CI_Model
         $jml_tghn = $this->input->post('TAGIHAN', true);
         $jml_bayar = $this->input->post('JML_BAYAR', true);
         $DETAIL = $this->input->post('DETAIL');
+        $sisaAwal = $this->input->post('SISA');
 
         if ($jml_bayar == $jml_tghn) {
             $status = 'TERBAYAR';
@@ -361,7 +362,7 @@ class Pay_model extends CI_Model
             'JML_BAYAR' => $jml_bayar + $DETAIL,
             'VIA_BAYAR' => 'BAYAR LANGSUNG',
             'STATUS' => $status,
-            'SISA' => $sisa
+            'SISA' => $sisa + $sisaAwal
             // 'TUNGGAKAN' => $tunggakan,
         ];
         $this->db->where('KODE_ANG', $this->input->post('KODE'));

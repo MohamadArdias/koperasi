@@ -79,6 +79,7 @@ $sesUser = $this->db->get_where('users', ['email' => $user])->row_array();
                             <label class="col-sm-4 text-end control-label col-form-label">Tagihan</label>
                             <div class="col-sm-7">
                                 <input type="text" name="TAGIHAN" class="form-control" id="TAGIHAN" readonly>
+                                <input type="hidden" name="SISA" class="form-control" id="SISA" readonly>
                             </div>
                         </div>
                         <div class="form-group row mb-2">
@@ -158,6 +159,7 @@ $this->load->view('templates/footer');
                 $("#BULAN").val(obj.BULAN);
                 $("#DETAIL").val(obj.detail);
                 $("#NAMA_INS").val(obj.instansi);
+                $("#SISA").val(obj.sisa);
                 // var tagihan = obj.tagihan;
                 // var tunggakan = obj.tunggakan;
                 // var bayar = obj.bayar;
