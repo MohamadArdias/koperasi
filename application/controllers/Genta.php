@@ -170,8 +170,8 @@ class Genta extends CI_Controller
             $bln = "0" . ($BLN + 1);
         }
 
-        // echo $thn.'+'.$bln;
-        // echo "halo2";
+        echo $thn.'+'.$bln;
+        echo "halo2";
         $getKodeSetoran = $this->Keuangan->getKodeSetoran();
         
         foreach ($getKodeSetoran as $key ) {

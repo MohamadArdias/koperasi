@@ -36,28 +36,32 @@ class Keuangan_model extends  CI_Model
         FROM
             anggota
         WHERE
+            anggota.KODE_INS != 99 AND
+            anggota.KODE_INS != 98 AND
+            anggota.KODE_INS != 97 AND
+            anggota.KODE_INS != 96 AND
             anggota.KODE_ANG LIKE '%a%'");
         
         return $query->result_array();
     }
 
-    // public function getKodeSetoran2($thn, $bln, $kode)
-    // {
-    //     $query = $this->db->query("SELECT
-    //     anggota.KODE_ANG
-    // FROM
-    //     anggota
-    //     INNER JOIN
-    //     pl
-    //     ON 
-    //         anggota.KODE_ANG = pl.KODE_ANG
-    // WHERE
-    //     anggota.KODE_ANG = '$kode' AND
-    //     pl.TAHUN = $thn AND
-    //     pl.BULAN = $bln'");
+    public function getKodeSetoran2($thn, $bln, $kode)
+    {
+        $query = $this->db->query("SELECT
+        anggota.KODE_ANG
+    FROM
+        anggota
+        INNER JOIN
+        pl
+        ON 
+            anggota.KODE_ANG = pl.KODE_ANG
+    WHERE
+        anggota.KODE_ANG = '$kode' AND
+        pl.TAHUN = $thn AND
+        pl.BULAN = '$bln'");
         
-    //     return $query->num_rows();
-    // }
+        return $query->num_rows();
+    }
 
     public function jumlahAnggotaKantor($KODE_INS, $TAHUN, $BULAN)
     {
