@@ -17,7 +17,11 @@ class Pelunasan extends CI_Controller
         $NOFAK = $this->input->get('NOFAK');
         $KODE = $this->input->get('KODE');
 
+        // di kirim ke view
         $this->data['lunas'] = $this->Pay->pelunasan($NOFAK, $KODE);
+
+        // di onsumsi langsung oleh controller
+        $lunas = $this->Pay->pelunasan($NOFAK, $KODE);
 
         $this->form_validation->set_rules('JML_BAYAR', 'Uang Diterima', 'required');
         $this->form_validation->set_rules('TGL_BAYAR', 'Tanggal Pelunasan', 'required');
@@ -50,10 +54,10 @@ class Pelunasan extends CI_Controller
 
                 // update pinuang
                 $pinuang_uang = [
-                    'JMLP_ANG' => 0,
-                    'PRO_ANG' => 0,
-                    'KE_ANG' => 0,
-                    'JWKT_ANG' =>  0,
+                    'JMLP_ANG' => $lunas['JMLP_ANG'],
+                    'PRO_ANG' => $lunas['PRO_ANG'],
+                    'KE_ANG' => $lunas['JWKT_ANG'],
+                    'JWKT_ANG' =>  $lunas['JWKT_ANG'],
                 ];
                 $pin_where = [
                     'NOFAK' => $this->input->post('NOFAK', true),
@@ -64,8 +68,8 @@ class Pelunasan extends CI_Controller
 
                 // update pl 
                 $pl_uang = array(
-                    'KEU' . $angka => 0,
-                    'JWK' . $angka => 0,
+                    'KEU' . $angka => $lunas['JWKT_ANG'],
+                    'JWK' . $angka => $lunas['JWKT_ANG'],
                     'POKU' . $angka => 0,
                     'SIPOKU' . $angka => 0,
                     'BNGU' . $angka => 0,

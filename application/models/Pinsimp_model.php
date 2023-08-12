@@ -60,18 +60,25 @@ class Pinsimp_model extends  CI_Model
         return $query;
     }
 
+    public function cekPl($thn, $bln, $kode)
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        pl
+    WHERE
+        pl.TAHUN = $thn AND
+        pl.BULAN = '$bln' AND
+        pl.KODE_ANG = '$kode'");
+        return $query->num_rows();
+    }
+
     public function cek($thn, $bln, $kode)
     {
         $query = $this->db->query("SELECT
         *
     FROM
         pinsimp
-        INNER JOIN
-        pl
-        ON 
-            pinsimp.KODE_ANG = pl.KODE_ANG AND
-            pinsimp.BULAN = pl.BULAN AND
-            pinsimp.TAHUN = pl.TAHUN
     WHERE
         pinsimp.TAHUN = $thn AND
         pinsimp.BULAN = '$bln' AND
@@ -173,6 +180,30 @@ class Pinsimp_model extends  CI_Model
         $this->db->where('instan.KODE_INS !=', 98);
         $this->db->where('instan.KODE_INS !=', 97);
         $this->db->where('instan.KODE_INS !=', 96);
+        $this->db->order_by('instan.KODE_INS', 'ASC');
+        // $this->db->where('instan.KODE_INS', "06");
+        return $this->db->get()->result_array();
+    }
+
+    public function getTabungan2($THN, $BLN)
+    {
+        $this->db->select('*');
+        $this->db->from('pinsimp');
+        $this->db->join('pl', 'pl.KODE_ANG = pinsimp.KODE_ANG');
+        $this->db->join('anggota', 'anggota.KODE_ANG = pinsimp.KODE_ANG');
+        $this->db->join('instan', 'instan.KODE_INS = anggota.KODE_INS');
+        // $this->db->where('pinsimp.TAHUN', date('Y', strtotime('-1 month')));
+        // $this->db->where('pinsimp.BULAN', date('m', strtotime('-1 month')));
+        // $this->db->where('pl.TAHUN', date('Y'));
+        // $this->db->where('pl.BULAN', date('m'));
+        $this->db->where('pinsimp.TAHUN', $THN);
+        $this->db->where('pinsimp.BULAN', $BLN);
+        $this->db->where('pl.TAHUN', $THN);
+        $this->db->where('pl.BULAN', $BLN);
+        // $this->db->where('instan.KODE_INS !=', 99);
+        // $this->db->where('instan.KODE_INS !=', 98);
+        // $this->db->where('instan.KODE_INS !=', 97);
+        // $this->db->where('instan.KODE_INS !=', 96);
         $this->db->order_by('instan.KODE_INS', 'ASC');
         // $this->db->where('instan.KODE_INS', "06");
         return $this->db->get()->result_array();

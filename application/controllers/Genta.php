@@ -68,6 +68,13 @@ class Genta extends CI_Controller
             // $rela = round(($key['TOTREL']+$key['TOTWJB'])*0.00371);
 
             if ($key['KODE_INS'] != 53) {
+                $kode2 = $key['KODE_ANG'];
+                $getWajib = $this->db->query("SELECT * FROM simp_0 WHERE KODE_ANG = '$kode2' LIMIT 1")->num_rows();
+                if ($getWajib == 1) {
+                    $wajib2 = 0;
+                }else{
+                    $wajib2 = 100000;
+                }
                 $pinsimp = array(
                     'TAHUN' => $thn,
                     'BULAN' => $bln,
@@ -83,9 +90,9 @@ class Genta extends CI_Controller
                     'TAHUN' => $thn,
                     'BULAN' => $bln,
                     'KODE_ANG' => $key['KODE_ANG'],
-                    'WAJIB' => 100000,
+                    'WAJIB' => $wajib2,
                     'TPOKOK' => 50000,
-                    'TWAJIB' => $key['TWAJIB'] + 100000,
+                    'TWAJIB' => $key['TWAJIB'] + $wajib2,
                     'POKOK' => $pokok,
                 );
             } else {
@@ -119,15 +126,24 @@ class Genta extends CI_Controller
 
             $kode = $key['KODE_ANG'];
 
+            // cek pinsim
             $cek_pinsim = $this->Pinsimp->cek($thn, $bln, $kode);
 
-            if ($cek_pinsim == 0) {
+            if ($cek_pinsim < 1) {
                 $this->db->insert('pinsimp', $pinsimp);
-                $this->db->insert('pl', $pl);
             } else {
                 $this->db->update('pinsimp', $pinsimp, $where);
+            }
+
+            // cek pl
+            $cek_pl = $this->Pinsimp->cekPl($thn, $bln, $kode);
+
+            if ($cek_pl < 1) {
+                $this->db->insert('pl', $pl);
+            }else {
                 $this->db->update('pl', $pl, $where);
             }
+
 
             // $this->db->where('KODE_ANG', $key['KODE_ANG']);
             // $this->db->where('TAHUN', $thn);
@@ -208,21 +224,48 @@ class Genta extends CI_Controller
                 $angka = 4;
             }
 
-            if ($key['KEU' . $angka] == $key['JWK' . $angka]) {
+            if ($key['KE_ANG'] == $key['JWKT_ANG'] &&
+                $key['JWKT_ANG'] == $key['JWK' . $angka] &&
+                $key['KEU' . $angka] == $key['JWK' . $angka]) {
+            // if ($key['KE_ANG'] == $key['JWKT_ANG'] AND $key['KEU' . $angka] == $key['JWK' . $angka]) {
+            // if ($key['KE_ANG'] == $key['JWKT_ANG'] OR $key['KEU' . $angka] == $key['JWK' . $angka]) {
                 $STATUS = 'LUNAS';
             } else {
                 $STATUS = 'BELUM LUNAS';
             }
 
             if ($STATUS == 'LUNAS') {
-                $JMLP_ANG = 0;
-                $PRO_ANG = 0;
-                $KE_ANG = 0;
-                $KEU1 = 0;
+                // new code untuk sementara
+                $JMLP_ANG = $key['JMLP_ANG'];
+                $PRO_ANG = $key['PRO_ANG'];
+                $KE_ANG = $key['KEU' . $angka];
+                $KEU1 = $key['KEU' . $angka];
                 $POKU1 = 0;
                 $SIPOKU1 = 0;
-                $JWKT_ANG = 0;
+                $JWKT_ANG = $key['JWK' . $angka];
                 $BNGU1 = 0;
+
+                // // belum bisa di pakai untuk sekarang
+                // $JMLP_ANG = $key['JMLP_ANG'];
+                // $PRO_ANG = $key['PRO_ANG'];
+                // $KE_ANG = $key['KE_ANG'];
+                // $KEU1 = 0;
+                // $POKU1 = 0;
+                // $SIPOKU1 = 0;
+                // $JWKT_ANG = $key['JWKT_ANG'];
+                // $BNGU1 = 0;
+
+
+
+                // CODE sebelum nya
+                // $JMLP_ANG = 0;
+                // $PRO_ANG = 0;
+                // $KE_ANG = 0;
+                // $KEU1 = 0;
+                // $POKU1 = 0;
+                // $SIPOKU1 = 0;
+                // $JWKT_ANG = 0;
+                // $BNGU1 = 0;
                 // $CICILAN = 0;
             } else {
                 $JMLP_ANG = $key['JMLP_ANG'];
@@ -230,19 +273,30 @@ class Genta extends CI_Controller
                 $KEU1 = $key['KEU' . $angka] + 1;
                 $JWKT_ANG = $key['JWKT_ANG'];
 
+                // CODE sebelumya
+                // if ($bln == 12) {
+                //     $KE_ANG = $KEU1;
+                // } else {
+                //     $KE_ANG = $key['KE_ANG'];
+                // }
 
-                if ($bln == 12) {
-                    $KE_ANG = $KEU1;
-                } else {
-                    $KE_ANG = $key['KE_ANG'];
-                }
+                // code semetara
+                $KE_ANG = $key['KEU' . $angka] + 1;
 
                 if ($JMLP_ANG == 0 || $JWKT_ANG == 0) {
                     $POKU1 = 0;
                 } else {
-                    $POKU1 = $JMLP_ANG / $JWKT_ANG; //apakah seLisih sedikit pengaruh atau tidak? jika tidak = $key['POKU'.$angka]                                
+                    // $POKU1 = $JMLP_ANG / $JWKT_ANG; //apakah seLisih sedikit pengaruh atau tidak? jika tidak = $key['POKU'.$angka]                                
+                    $POKU1 = ceil(($JMLP_ANG / $JWKT_ANG) / 50) * 50;
                 }
+
+
                 $SIPOKU1 = $JMLP_ANG - ($POKU1 * $KEU1); //$key['SIPOKU'.$angka]-$key['POKU'.$angka] //$key['SIPOKU'.$angka]-$POKU1;
+                if ($SIPOKU1 < 0) {
+                    $POKU1 = $key['SIPOKU'. $angka];
+                    $SIPOKU1 = 0;
+                }
+
                 $BNGU1 = $JMLP_ANG * ($PRO_ANG / 100);
                 $CICILAN = $JMLP_ANG - $SIPOKU1;
             }

@@ -101,6 +101,7 @@ $this->load->view('templates/sidebar');
                                 <td class="text-center">
                                     <a class="btn btn-success" style="color:white;" onclick="getLocation('<?= $ins['KODE_INS']; ?>')">Print Instansi</a>
                                     <a href="<?= base_url(); ?>index.php/keuangan/printinsang/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-primary" target="blank">Print Aggota</a>
+                                    <a href="<?= base_url(); ?>index.php/EditTunggakan/editIns/<?= $ins['KODE_INS']; ?>?TAHUN=<?= $ins['TAHUN']; ?>&&BULAN=<?= $ins['BULAN']; ?>" class="btn btn-warning" target="blank">Edit Tunggakan</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

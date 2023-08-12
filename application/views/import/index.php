@@ -39,8 +39,25 @@ $this->load->view('templates/sidebar');
                     <div class="row">
                         <div class="col">
                             <form action="<?= base_url(); ?>index.php/import" enctype="multipart/form-data" method="post">
+                                <label for="nama" class="col-sm-2 text-end control-label col-form-label">Berhasil : </label>
                                 <input type="file" name="upload_excel" required>
-                                <input type="submit" name="submit" value="submit" class="btn btn-primary">
+                                <input type="submit" name="submit" value="submit" class="btn btn-outline-success">
+                                <!-- <?php if ($this->session->flashdata('succes')) { ?>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong><?= $this->session->flashdata('succes') ?></strong>
+                                    </div>
+                                <?php } ?>
+                                <?php if ($this->session->flashdata('error')) { ?>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong><?= $this->session->flashdata('error') ?></strong>
+                                    </div>
+                                <?php } ?> -->
+                            </form>
+                            <br>
+                            <form action="<?= base_url(); ?>index.php/import/gagal" enctype="multipart/form-data" method="post">
+                                <label for="nama" class="col-sm-2 text-end control-label col-form-label">Gagal : </label>
+                                <input type="file" name="upload_excel" required>
+                                <input type="submit" name="submit_gagal" value="submit" class="btn btn-outline-danger">
                                 <?php if ($this->session->flashdata('succes')) { ?>
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         <strong><?= $this->session->flashdata('succes') ?></strong>
@@ -99,7 +116,7 @@ $this->load->view('templates/sidebar');
                         <div class="col-md-2 text-end">
                             <form action="<?= base_url(); ?>index.php/import/cetak" method="post">
                                 <div class="input-group">                
-                                    <button type="submit" name="generate" class="btn btn-success">Cetak</button>
+                                    <button type="submit" name="generate" class="btn btn-primary">Cetak</button>
                                 </div>
                             </form>
                         </div>                        

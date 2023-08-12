@@ -26,7 +26,7 @@ class Pinsim extends CI_Controller
             $BLN = $BULAN;
         }
 
-        $this->data['keuangan'] = $this->Pinsimp->getTabungan($THN, $BLN);
+        $this->data['keuangan'] = $this->Pinsimp->getTabungan2($THN, $BLN);
 
         $this->load->view('pinsim/index', $this->data);
     }

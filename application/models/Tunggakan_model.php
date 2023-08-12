@@ -266,4 +266,40 @@ class Tunggakan_model extends  CI_Model
 
         return $query->row_array();
     }
+
+    public function getEditIns($kodeIns)
+    {
+        $query = $this->db->query("SELECT
+                *
+            FROM
+                koperasi.instan
+            WHERE
+                koperasi.instan.KODE_INS = '$kodeIns'");
+        return $query->row_array();
+    }
+
+    public function getTunggakanByIns($kodeIns, $tahun, $bulan)
+    {
+        $query = $this->db->query("SELECT
+        *
+    FROM
+        instan
+        INNER JOIN
+        anggota
+        ON 
+            instan.KODE_INS = anggota.KODE_INS
+        INNER JOIN
+        pl
+        ON 
+            anggota.KODE_ANG = pl.KODE_ANG
+    WHERE
+        anggota.KODE_INS = '$kodeIns' AND
+        pl.TAHUN = $tahun AND
+        pl.BULAN = '$bulan'
+        ORDER BY
+        instan.KODE_INS ASC, 
+        anggota.KODE_ANG ASC")->result_array();
+
+        return $query;
+    }
 }

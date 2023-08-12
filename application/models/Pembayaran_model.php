@@ -2,6 +2,43 @@
 
 class Pembayaran_model extends  CI_Model
 {
+    public function cetakSuksesGagal()
+    {
+        $tahun = date("Y");
+        $bulan = date("m");
+
+        $query = $this->db->query("SELECT
+    anggota.REKENING, 
+    anggota.NAMA_ANG, 
+    IF(BAYAR_BANK IS NULL, 0, BAYAR_BANK ) AS Jumlah_berhasil, 
+    IF(temp_gagal.NOMINAL IS NULL,0,temp_gagal.NOMINAL) AS Jumlah_gagal, 
+    IF(BAYAR_BANK IS NULL, JML_TGHN, JML_TGHN - BAYAR_BANK) AS Total_tunggakan, 
+    instan.NAMA_INS
+FROM
+    anggota
+    INNER JOIN
+    pembayaran
+    ON 
+        anggota.KODE_ANG = pembayaran.KODE_ANG
+    INNER JOIN
+    instan
+    ON 
+        anggota.KODE_INS = instan.KODE_INS
+    LEFT JOIN
+    temp_gagal
+    ON 
+        anggota.REKENING = temp_gagal.NO_REKENING
+WHERE
+    pembayaran.TAHUN = $tahun AND
+    pembayaran.BULAN = '$bulan' AND
+    anggota.REKENING >= 1 AND
+    anggota.REKENING IS NOT NULL
+ORDER BY
+    anggota.KODE_INS ASC");
+
+        return $query->result_array();
+    }
+
     public function cetakSukses()
     {
         $query = $this->db->query("SELECT

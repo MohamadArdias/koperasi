@@ -193,7 +193,7 @@
                                         <label for="Golongan" class="col-sm-4 text-end control-label col-form-label">Tanggal Mulai</label>
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-sm ">
-                                                <input type="text" class="form-control" id="TGLP_ANG" name="TGLP_ANG">
+                                                <input type="text" class="form-control" id="TGLP_ANG" name="TGLP_ANG" readonly>
                                             </div>
                                             <small class="form-text text-danger"><?= form_error('TGLP_ANG'); ?></small>
                                         </div>

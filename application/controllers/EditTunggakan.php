@@ -10,6 +10,7 @@ class EditTunggakan extends CI_Controller
         $this->load->model('Anggota_model', 'Anggota');
         $this->load->model('Instansi_model', 'Instansi');
         $this->load->model('Pinsimp_model', 'Pinsimp');
+        $this->load->model('Tunggakan_model', 'Tunggakan');
         $this->load->model('Keuangan_model', 'Keuangan');
         $this->load->library('form_validation');
     }
@@ -35,18 +36,9 @@ class EditTunggakan extends CI_Controller
 
     public function edit()
     {
-        $TAHUN = $this->input->post('TAHUN');
-        $BULAN = $this->input->post('BULAN');
+        $THN = $this->input->post('TAHUN');
+        $BLN = $this->input->post('BULAN');
 
-        if ($TAHUN == '' and $BULAN == '') {
-            $THN = date('Y');
-            $BLN = date('m');
-        } else {
-            $THN = $TAHUN;
-            $BLN = $BULAN;
-        }
-
-        // echo $BLN;
         $query = $this->Keuangan->getTunggakan($THN, $BLN);
         foreach ($query as $key) {
 
@@ -70,7 +62,48 @@ class EditTunggakan extends CI_Controller
 
             $this->db->update('pl', $pl, $where);
         }
-        $this->session->set_flashdata('flash', 'diubah');
-        redirect('EditTunggakan');
+        // $this->session->set_flashdata('flash', 'diubah');
+        ?>
+        <script>
+            // Menutup jendela saat ini setelah proses edit selesai
+            window.close();
+        </script>
+        <?php
+
+    }
+
+    public function editIns($kodeIns)
+    {
+        $tahun = $this->input->get('TAHUN');
+        $bulan = $this->input->get('BULAN');
+
+        // Array nama-nama bulan dalam bahasa Indonesia
+        $nama_bulan = array(
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        );
+
+        // Membuat tanggal dalam format Indonesia
+        $tanggal_indonesia = $nama_bulan[(int)$bulan] . ' ' . $tahun;
+
+        // Output tanggal dalam format Indonesia
+        // echo "Tanggal: " . $tanggal_indonesia;
+
+
+        $data = $this->Tunggakan->getEditIns($kodeIns);
+        $this->data['title'] = 'Edit Tunggakan '.$data['NAMA_INS'].' Bulan '.$tanggal_indonesia;
+
+        $this->data['query'] = $this->Tunggakan->getTunggakanByIns($kodeIns, $tahun, $bulan);
+        $this->load->view('tunggakan/editByIns', $this->data);
     }
 }

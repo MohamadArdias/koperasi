@@ -144,11 +144,25 @@ $this->load->view('templates/sidebar');
                             $angka = 8;
                         }
 
-                        if ($key['SIPOKU' . $angka] == 0) {
+                        if ($key['JWKT_ANG'] == $key['KEU' . $angka]) {
                             $status = 'LUNAS';
                         } else {
                             $status = 'BELUM LUNAS';
                         }
+
+                        $a = $key['POKU' . $angka]*$key['KEU' . $angka];
+
+                        // baru memulai
+                        if ($a == 0 AND $key['KEU' . $angka] == 0) {
+                            $b = 0;
+                        // lunas
+                        }elseif($a == 0 AND $key['KEU' . $angka] != 0){
+                            $b = $key['JMLP_ANG'];
+                        // on process
+                        }else{
+                            $b = $key['POKU' . $angka]*$key['KEU' . $angka];
+                        }
+
                     ?>
                         <tr>
                             <td><?= $key['TGLP_ANG'] ?></td>
@@ -160,9 +174,10 @@ $this->load->view('templates/sidebar');
                             <td class="text-right"><?= $key['JWKT_ANG'] ?></td>
                             <td><?= $key['PRO_ANG'] ?></td>
                             <td><?= $key['KEU' . $angka] ?></td>
-                            <td><?= $key['POKU' . $angka] ?></td>
-                            <td><?= $key['BNGU' . $angka] ?></td>
-                            <td class="text-right"><?= number_format($key['SIPOKU' . $angka], 0, ',', '.'); ?></td>
+                            <td><?= number_format($key['POKU' . $angka], 0, ',', '.') ?></td>
+                            <td><?= number_format($key['BNGU' . $angka], 0, ',', '.') ?></td>
+                            <td class="text-right"><?= number_format($key['JMLP_ANG'] - $b, 0, ',', '.'); ?></td>
+                            <!-- <td class="text-right"><?= number_format($key['JMLP_ANG'] - ($key['POKU' . $angka]*$key['KEU' . $angka]), 0, ',', '.'); ?></td> -->
                             <td><?= $status; ?></td>
                         </tr>
                     <?php

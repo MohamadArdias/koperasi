@@ -307,6 +307,10 @@ class Pay_model extends CI_Model
 
     public function pelunasan($NOFAK, $KODE)
     {
+        $tahun = date("Y");
+        $bulan = date("m");
+        // $bulan = "07";
+
         $query = $this->db->query("SELECT
             *
         FROM
@@ -329,7 +333,8 @@ class Pay_model extends CI_Model
                 pl.BULAN = pembayaran.BULAN
         WHERE
         pinuang.NOFAK = '$NOFAK' AND
-        pembayaran.TGL_TGHN IN (SELECT MAX(TGL_TGHN) FROM pembayaran WHERE KODE_ANG = '$KODE')");
+        pl.TAHUN = $tahun AND
+        pl.BULAN = $bulan");
 
         return $query->row_array();
     }

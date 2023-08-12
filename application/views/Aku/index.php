@@ -1,12 +1,32 @@
-<?php 
-$query = $this->db->query("SELECT
-pembayaran.SISA
-FROM
-pembayaran
-WHERE
-pembayaran.TAHUN = 2023 AND
-pembayaran.BULAN = 06 AND
-pembayaran.KODE_ANG = 4040")->row_array();
+<?php
+$pdf = new \TCPDF();
+$pdf->setPrintHeader(false);
+$pdf->setPrintFooter(false);
+$pdf->SetTopMargin(1);
+$pdf->SetFooterMargin(15);
+$pdf->SetLeftMargin(3);
 
-echo $query['SISA'];
- ?>
+$pdf->AddPage();
+
+$data = '
+        <body>            
+            
+                    <table cellpadding="1">
+                        <tr>
+                            <th style="font-size: 8px;" width="565" align="right"></th>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 12px;" width="592" align="center">Ruko Borobudur No. 8 (0333) 424315 BANYUWANGI Jawa Timur - Indonesia</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </body>
+        </html>';
+
+$pdf->WriteHTML($data);
+
+$pdf->Output('example.pdf', 'I');

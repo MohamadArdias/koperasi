@@ -10,7 +10,7 @@ if ($bulan == '01') {
     $BULAN = $bulan-1;
 }
 
-function tanggal_indo2($tanggal)
+function tanggal_indo3($tanggal)
 {
     $bulan = array(
         1 =>   'Januari',
@@ -25,6 +25,27 @@ function tanggal_indo2($tanggal)
         'Oktober',
         'November',
         'Desember'
+    );
+    $split = explode('-', $tanggal);
+    // return $split[0] . ' ' . $bulan[ (int)$split[1] ];
+    return $bulan[(int)$split[1]] . ' ' . $split[0];
+}
+
+function tanggal_indo2($tanggal)
+{
+    $bulan = array(
+        1 =>   'JANUARI',
+        'FEBRUARI',
+        'MARET',
+        'APRIL',
+        'MEI',
+        'JUNI',
+        'JULI',
+        'AGUSTUS',
+        'SEPTEMBER',
+        'OKTOBER',
+        'NOVEMBER',
+        'DESEMBER'
     );
     $split = explode('-', $tanggal);
     // return $split[0] . ' ' . $bulan[ (int)$split[1] ];
@@ -89,13 +110,19 @@ $full = strftime("%A, %d %B %Y");
 
 $pdf = new \TCPDF();
 $pdf->setPrintHeader(false);
-// $pdf->setPrintFooter(false);
-$pdf->SetTopMargin(1);
+$pdf->setPrintFooter(false);
+$pdf->SetTopMargin(5);
 $pdf->SetFooterMargin(5);
 $pdf->SetLeftMargin(3);
+
+$marginBottom = 3;
+$pdf->SetAutoPageBreak(true, $marginBottom);
+// $pdf->SetBottomMargin(3);
 // $pdf->SetRightMargin(3);
 // $pdf->AddPage('L', 'mm', 'A4');
 $pageLayout = array(215, 278);
+
+// $pdf->SetTopMargin(15);
 $pdf->AddPage('P', $pageLayout);
 // $pdf->SetFont('', '', 20);
 // $pdf->Cell(210, 1, "$full", 0, 1, 'R');
@@ -112,13 +139,10 @@ $data = '<!DOCTYPE html>
             <title>Document</title>
         </head>
 
-            <body>            
-                <div>                                                          
-                    <div>
-                        <div>
+            <body>
                         <table cellpadding="1">
                             <tr>
-                            <th style="font-size: 10px;" width="565" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
+                            <th style="font-size: 8px;" width="565" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
                             </tr>
                             <tr>
                             <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
@@ -214,20 +238,63 @@ foreach ($keuangan as $lap) {
                                         <td width="45" align="right" style="border-right: 1px solid black; ">' . number_format($t, 0, ',', '.') . '</td>
                                         <td width="50" align="right" style="border-right: 1px solid black; ">' . number_format($potongan, 0, ',', '.') . '</td>
                                     </tr>';
-    if ((($i - 1) % 40) == 0) {
+    if ((($i-1) % 48) == 0) {
         $data .= '
                                         <tr>
-                                            <td style="border-top: 1px solid black; " width="577" ></td>
+                                            <td style="border-top: 1px solid black; " width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="567" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="400"></td> 
+                                            <td style="font-size: 9px;" width="500">
+                                                <pre><b>Berlanjut ke halaman berikutnya</b>
+                                                </pre>
+                                            </td>
                                         </tr>
                                         </table>';
-        if ($i < $jumlah) {
+        if ($i <= $jumlah) { 
 
+            // $data .= '
+            //                             ';
+
+            $pdf->SetTopMargin(5);
             $data .= '
-                                        <br pagebreak="true"/>';
-            $data .= '
+                                        <br pagebreak="true"/>
                                         <table cellpadding="1">
                                             <tr>
-                                            <th style="font-size: 12px;" width="592" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
+                                            <th style="font-size: 8px;" width="565" align="right">' . tanggal_indo(date("Y-m-d"), true) . '</th>
                                             </tr>
                                             <tr>
                                             <th style="font-size: 12px;" width="592" align="center">KPRI BANGKIT BERSAMA</th>
@@ -266,57 +333,111 @@ foreach ($keuangan as $lap) {
 }
 $data .=    '
                                 <tr>
-                                    <td style="border: 1px solid black; border-left: 1px solid black; " width="17" align="right"></td>
-                                    <td style="border: 1px solid black; " width="140">GRAND TOTAL</td>
-                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totalj, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="40" align="right">' . number_format($totalf, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totala, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="40" align="right">' . number_format($totale, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totalb, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="15" align="right"></td>
-                                    <td style="border: 1px solid black; " width="40" align="right">' . number_format($totalg, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totalc, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; " width="45" align="right">' . number_format($totalt, 0, ',', '.') . '</td>
-                                    <td style="border: 1px solid black; border-right: 1px solid black; " width="50" align="right">' . number_format($totald, 0, ',', '.') . '</td>
+                                    <td style="border-right: 1px solid black; border-left: 1px solid black; border-top: 1px solid black;" width="17" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="140"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="45" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="40" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="45" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="40" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="45" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="15" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="40" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="45" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black;" width="45" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-top: 1px solid black; " width="50" align="right"></td>
+                                </tr>     
+                                <tr>
+                                    <td style="border-right: 1px solid black; border-left: 1px solid black; border-bottom: 1px solid black;" width="17" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="140">GRAND TOTAL</td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="45" align="right">' . number_format($totalj, 0, ',', '.') . '</td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="40" align="right">' . number_format($totalf, 0, ',', '.') . '</td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="45" align="right">' . number_format($totala, 0, ',', '.') . '</td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="40" align="right">' . number_format($totale, 0, ',', '.') . '</td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="45" align="right">' . number_format($totalb, 0, ',', '.') . '</td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="15" align="right"></td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="40" align="right">' . number_format($totalg, 0, ',', '.') . '</td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="45" align="right">' . number_format($totalc, 0, ',', '.') . '</td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black;" width="45" align="right">' . number_format($totalt, 0, ',', '.') . '</td>
+                                    <td style="border-right: 1px solid black; border-bottom: 1px solid black; " width="50" align="right">' . number_format($totald, 0, ',', '.') . '</td>
                                 </tr>                                                                  
                             </table>
                         <br>';
 // $pdf->SetFont('', 'B', 7);
-$data .='               <br>                        
+// if (($i <= $jumlah) && ($i % 47 === 0 || $i % 46 === 0 || $i % 45 === 0) ) {
+
+if (($i-1 === $jumlah) && ($i % 48 === 46 || $i % 48 === 47 || $i % 48 === 0) ) {
+
+$data .='               <br pagebreak="true"/>                       
                                 <div>
                                 <table>
                                     <tr>
                                         <td style="font-size: 9px;" align="left" width="170">
                                         </td>       
                                         <td width="40"></td> 
-                                        <td style="font-size: 9px;" width="170"><pre><b>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
-'<br>Terbayar       Rp. 0<br>==============================<br>Sisa           Rp. 0 </b></pre></td>
+                                        <td style="font-size: 9px;" width="170"><pre><br><b>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
+'<br>Terbayar       Rp. 0<br>==============================<br>Sisa           Rp. 0 </b><br><br></pre></td>
                                     </tr>        
                                     <tr>
                                         <td style="font-size: 9px;" align="left" width="210">
                                         </td>
                                         <td style="font-size: 9px;" align="center" width="170">
-                                            Banyuwangi, 25 ' . tanggal_indo2($TAHUN . '-' . $BULAN) . ' <br>
+                                            Banyuwangi, 25 ' . tanggal_indo3($TAHUN . '-' . $BULAN) . ' <br>
                                             Pengurus KPRI "Bangkit Bersama" <br> 
                                             Kantor Pemkab. Banyuwangi 
                                         </td>
                                     </tr>        
                                     <tr>
-                                        <td style="font-size: 9px;" align="left" width="150">
+                                        <td style="font-size: 9px;" align="left" width="90">
                                         </td>
-                                        <td style="font-size: 9px;" align="left" width="170">
+                                        <td style="font-size: 9px;" align="center" width="170">
                                             Bendahara 1 <br><br><br><br>
                                             ' . $pengurus['BENDAH1'] . ' 
                                         </td> 
-                                        <td width="40"></td> 
-                                        <td style="font-size: 9px;" align="left" width="140">
+                                        <td width="80"></td> 
+                                        <td style="font-size: 9px;" align="center" width="140">
                                             Ketua 1 <br><br><br><br>
                                             ' . $pengurus['KETUA'] . '
                                         </td>
                                     </tr>        
                                 </table>
-                                </div>
-                    </div>
+                                </div>';
+} else {
+    $data .='               <br>                        
+                                <div>
+                                <table>
+                                    <tr>
+                                        <td style="font-size: 9px;" align="left" width="150">
+                                        </td>       
+                                        <td width="40"></td> 
+                                        <td style="font-size: 9px;" width="170"><pre><b>Jumlah Tagihan Rp. ' . number_format($totald, 0, ',', '.') .
+'<br>Terbayar       Rp. 0<br>==============================<br>Sisa           Rp. 0 </b><br><br></pre></td>
+                                    </tr>        
+                                    <tr>
+                                        <td style="font-size: 9px;" align="left" width="210">
+                                        </td>
+                                        <td style="font-size: 9px;" align="center" width="170">
+                                            Banyuwangi, 25 ' . tanggal_indo3($TAHUN . '-' . $BULAN) . ' <br>
+                                            Pengurus KPRI "Bangkit Bersama" <br> 
+                                            Kantor Pemkab. Banyuwangi 
+                                        </td>
+                                    </tr>        
+                                    <tr>
+                                        <td style="font-size: 9px;" align="left" width="90">
+                                        </td>
+                                        <td style="font-size: 9px;" align="center" width="170">
+                                            Bendahara 1 <br><br><br><br>
+                                            ' . $pengurus['BENDAH1'] . ' 
+                                        </td> 
+                                        <td width="70"></td> 
+                                        <td style="font-size: 9px;" align="center" width="180">
+                                            Ketua 1 <br><br><br><br>
+                                            ' . $pengurus['KETUA'] . '
+                                        </td>
+                                    </tr>        
+                                </table>
+                                </div>';
+}
+$data .='               </div>
                 </div>            
         </body>
         

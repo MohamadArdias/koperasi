@@ -60,6 +60,60 @@ class Import extends CI_Controller
         }
     }
 
+    public function gagal()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->db->query("DELETE FROM temp_gagal");
+            $upload_status = $this->uploadDoc();
+            if ($upload_status != false) {
+                $inputFileName = 'assets/uploads/imports/' . $upload_status;
+                $inputTileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+                $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputTileType);
+                $spreadsheet = $reader->load($inputFileName);
+                $sheet = $spreadsheet->getSheet(0);
+                $count_Rows = 0;
+                $this->db->query("DELETE FROM temp_gagal");
+                foreach ($sheet->getRowIterator() as $row) {
+                    // $tanggal = $spreadsheet->getActiveSheet()->getcell('A' . $row->getRowIndex());
+                    $tanggal = $spreadsheet->getActiveSheet()->getcell('A' . $row->getRowIndex())->getFormattedValue();
+                    $norek = $spreadsheet->getActiveSheet()->getcell('B' . $row->getRowIndex());
+                    $nama = $spreadsheet->getActiveSheet()->getcell('C' . $row->getRowIndex());
+                    $nominal = $spreadsheet->getActiveSheet()->getcell('D' . $row->getRowIndex());
+                    $kop = $spreadsheet->getActiveSheet()->getcell('E' . $row->getRowIndex());
+
+                    $no_rek = str_replace(' ', '', "$norek");
+
+                    $query = $this->db->query("SELECT REKENING FROM anggota WHERE REKENING = $no_rek");       
+                    $query = $query->row();
+
+                    if ($query) {
+                        $data_rek =  $query->REKENING;
+                    }
+
+                    
+
+
+                    $data = array(
+                        'TANGGAL' => date("Y-m-d", strtotime($tanggal)),
+                        'NO_REKENING' => $data_rek,
+                        'NAMA' => $nama,
+                        'NOMINAL' => $nominal,
+                        'KOP' => $kop,
+                        'DATE' => date("Y-m-d"),
+                    );
+                    //echo  date("Y-m-d", strtotime($tanggal));
+                    $this->db->insert('temp_gagal', $data);
+                    $count_Rows++;
+                }
+                $this->session->set_flashdata('succes', 'Data Berhasil di Import');
+                redirect('Import');
+            } else {
+                $this->session->set_flashdata('error', 'Data Tidak Terupload');
+                redirect('Import');
+            }
+        }
+    }
+
     function uploadDoc()
     {
         $uploadPath = 'assets/uploads/imports/';
@@ -211,58 +265,45 @@ class Import extends CI_Controller
         
         $sheet->setCellValue('A1', 'DAFTAR POTONGAN BERHASIL '.tanggal_indo2(date("Y-m")));
         $sheet->mergeCells('A1:D1'); // Set Merge Cell pada kolom A1 sampai E1
-        // $sheet->setCellValue('A4', 'NAMA');
-        // $sheet->setCellValue('C4', 'KOPERASI BANGKIT BERSAMA KANTOR PEMKAB BWI');
-        // $sheet->mergeCells('A4:B4'); // Set Merge Cell pada kolom A1 sampai E1
-        // $sheet->setCellValue('A5', 'BULAN');
-        // $sheet->setCellValue('C5', strftime('%B', strtotime('+1 month')));
-        // $sheet->mergeCells('A5:B5'); // Set Merge Cell pada kolom A1 sampai E1
-        // $sheet->setCellValue('A6', 'TAHUN');
-        // $sheet->setCellValue('C6', date('Y'));
-        // $sheet->mergeCells('A6:B6'); // Set Merge Cell pada kolom A1 sampai E1
-        // $sheet->setCellValue('A7', 'NO REK KOPERASI');
-        // $sheet->mergeCells('A7:B7'); // Set Merge Cell pada kolom A1 sampai E1
+
         $sheet->getStyle('A1')->getFont()->setBold(true); // Set bold kolom A1
         $sheet->getStyle('A1')->applyFromArray($style_head);
-        // $sheet->getStyle('A4')->applyFromArray($style_sub);
-        // $sheet->getStyle('C4')->applyFromArray($style_sub);
-        // $sheet->getStyle('A5')->applyFromArray($style_sub);
-        // $sheet->getStyle('C5')->applyFromArray($style_sub);
-        // $sheet->getStyle('A6')->applyFromArray($style_sub);
-        // $sheet->getStyle('C6')->applyFromArray($style_sub);
-        // $sheet->getStyle('A7')->applyFromArray($style_sub);
-        // $sheet->getStyle('C7')->applyFromArray($style_sub);
 
         // Buat header tabel nya pada baris ke 3
-        $sheet->setCellValue('A3', "NO REK"); // Set kolom A3 dengan tulisan "NO"
-        $sheet->setCellValue('B3', "NAMA ANGGOTA"); // Set kolom B3 dengan tulisan "NIS"
-        $sheet->setCellValue('C3', "JUMLAH"); // Set kolom C3 dengan tulisan "NAMA"
-        $sheet->setCellValue('D3', "NAMA INSTANSI"); // Set kolom D3 dengan tulisan "JENIS KELAMIN"
+        $sheet->setCellValue('A3', "NO REK"); // Set kolom A3 dengan tulisan "NO REK"
+        $sheet->setCellValue('B3', "NAMA ANGGOTA"); 
+        $sheet->setCellValue('C3', "JUMLAH BERHASIL");
+        $sheet->setCellValue('D3', "JUMLAH GAGAL");
+        $sheet->setCellValue('E3', "TOTAL TUNGGAKAN");
+        $sheet->setCellValue('F3', "NAMA INSTANSI");
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
         $sheet->getStyle('A3')->applyFromArray($style_col);
         $sheet->getStyle('B3')->applyFromArray($style_col);
         $sheet->getStyle('C3')->applyFromArray($style_col);
         $sheet->getStyle('D3')->applyFromArray($style_col);
+        $sheet->getStyle('E3')->applyFromArray($style_col);
+        $sheet->getStyle('F3')->applyFromArray($style_col);
 
-        // // Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-        // $THN = $this->input->post('TAHUN');
-        // $BLN = $this->input->post('BULAN');
-
-        $keuangan = $this->Pembayaran->cetakSukses();
+        // $keuangan = $this->Pembayaran->cetakSukses();
+        $keuangan = $this->Pembayaran->cetakSuksesGagal();
         $no = 1; // Untuk penomoran tabel, di awal set dengan 1
         $numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
         foreach ($keuangan as $data) { // Lakukan looping pada variabel siswa
-            $sheet->setCellValue('A' . $numrow, $data['NO_REKENING']);
+            $sheet->setCellValue('A' . $numrow, $data['REKENING']);
             $sheet->setCellValue('B' . $numrow, $data['NAMA_ANG']);
-            $sheet->setCellValue('C' . $numrow, $data['NOMINAL']);
-            $sheet->setCellValue('D' . $numrow, $data['NAMA_INS']);
+            $sheet->setCellValue('C' . $numrow, $data['Jumlah_berhasil']);
+            $sheet->setCellValue('D' . $numrow, $data['Jumlah_gagal']);
+            $sheet->setCellValue('E' . $numrow, $data['Total_tunggakan']);
+            $sheet->setCellValue('F' . $numrow, $data['NAMA_INS']);
 
             // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
             $sheet->getStyle('A' . $numrow)->applyFromArray($style_row_mid);
             $sheet->getStyle('B' . $numrow)->applyFromArray($style_row);
             $sheet->getStyle('C' . $numrow)->applyFromArray($style_row);
             $sheet->getStyle('D' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('E' . $numrow)->applyFromArray($style_row);
+            $sheet->getStyle('F' . $numrow)->applyFromArray($style_row);
 
             $no++; // Tambah 1 setiap kali looping
             $numrow++; // Tambah 1 setiap kali looping
@@ -271,7 +312,9 @@ class Import extends CI_Controller
         $sheet->getColumnDimension('A')->setWidth(20); // Set width kolom A
         $sheet->getColumnDimension('B')->setWidth(30); // Set width kolom B
         $sheet->getColumnDimension('C')->setWidth(20); // Set width kolom C
-        $sheet->getColumnDimension('D')->setWidth(30); // Set width kolom D
+        $sheet->getColumnDimension('D')->setWidth(20); // Set width kolom D
+        $sheet->getColumnDimension('E')->setWidth(20); // Set width kolom C
+        $sheet->getColumnDimension('F')->setWidth(30); // Set width kolom C
 
         // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
         $sheet->getDefaultRowDimension()->setRowHeight(-1);
